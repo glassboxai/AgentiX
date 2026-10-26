@@ -10,6 +10,14 @@
   Agentic Software Development — Human in the Loop
 </p>
 
+## About AgentiX
+
+**AgentiX** is an open-source, AI-powered software development system designed **for software developers, not end users**.
+
+Built around a **Human-in-the-Loop** philosophy, AgentiX combines agentic AI with human engineering expertise to develop reliable, maintainable, and well-tested software. Rather than simply generating code, it emphasizes modular architecture, software reuse, systematic validation, and developer oversight to minimize technical debt and improve software quality.
+
+AgentiX is part of **[The Glass Box AI Project](https://glassboxai.dev/)**, an independent research and development initiative dedicated to building understandable, inspectable, and trustworthy Artificial Intelligence.
+
 # AgentiX v3: Infrastructure as Code
 
 For reproducible Windows-user setup, use [Plan/Apply/Test](infra/README.md).
