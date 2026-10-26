@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 3 items
+
+tests\e2e\test_browser_review.py ..F                                     [100%]
+
+================================== FAILURES ===================================
+____________________ test_file_review_uses_edited_content _____________________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=155.0.4283.62>
+server = 'http://127.0.0.1:60588'
+
+            expect(page.get_by_text("Human review rejected, expired or cancelled", exact=False)).to_be_visible(timeout=15000)
+            expect(page.get_by_text("Verified against approved cases", exact=False)).not_to_be_visible()
+        finally:
+            context.close()
+    
+    
+    def test_file_review_uses_edited_content(browser, server):
+        from playwright.sync_api import expect
+    
+>       context = browser.new_context()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Locator expected to have Value 'Original specification'
+E       Actual value: Directory: C:\Users\xpiku\AppData\Local\Temp\pytest-of-xpiku\pytest-347\agentix-browser0\artifacts\78d3ef93a272418bbebc40261d1a48b2\fixture
+E       Error: element(s) not found 
+E       Call log:
+E         - Expect "to_have_value" with timeout 15000ms
+E         - waiting for get_by_role("textbox", name="Review and edit file content or acceptance cases before approving")
+E           13 � locator resolved to <textarea dir="ltr" rows="14" placeholder="" data-testid="textbox" class="svelte-1hguek3"></textarea>
+E              - unexpected value "Directory: C:\Users\xpiku\AppData\Local\Temp\pytest-of-xpiku\pytest-347\agentix-browser0\artifacts\78d3ef93a272418bbebc40261d1a48b2\fixture"
+
+tests\e2e\test_browser_review.py:136: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_file_review_uses_edited_content
+======================== 1 failed, 2 passed in 40.49s =========================

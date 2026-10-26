@@ -1,0 +1,46 @@
+.F                                                                       [100%]
+================================== FAILURES ===================================
+______________ test_saved_profile_lifecycle_and_session_consent _______________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:64681', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-419/agentix-browser0/artifacts'))
+
+    def test_saved_profile_lifecycle_and_session_consent(browser, server):
+        """Create/update/reload/delete a synthetic profile through actual browser UI."""
+        from playwright.sync_api import expect
+    
+        first = browser.new_context(viewport={"width": 1440, "height": 1100})
+        second = browser.new_context(viewport={"width": 1440, "height": 1100})
+    
+        def choose(page, selector, label):
+            """Select a visible native Gradio dropdown option by its accessible role."""
+            page.locator(selector).get_by_role("combobox").click()
+            page.get_by_role("option", name=label, exact=True).click()
+    
+        try:
+            page = first.new_page()
+            page.goto(server[0])
+            expect(page.locator("#model-status")).to_contain_text("refreshed", timeout=15000)
+            choose(page, "#llm-provider", "OpenAI")
+            page.get_by_role("textbox", name="Profile name", exact=True).fill("Synthetic provider")
+            page.locator("#llm-model input").fill("test-model")
+            page.locator("#llm-model input").press("Enter")
+            key = page.locator("#llm-api-key input")
+            key.fill("synthetic-browser-profile-key")
+            page.locator("#save-profile").click()
+            expect(key).to_have_value("", timeout=15000)
+>           expect(page.locator("#model-status")).to_contain_text("Profile saved", timeout=15000)
+E           AssertionError: Locator expected to contain text 'Profile saved'
+E           Actual value:     Profile action was not completed. Check saved selection, name, key and pending work; reload after concurrent edits. Switch to Ollama before deleting an active profile.
+E              
+E           Call log:
+E             - Expect "to_contain_text" with timeout 15000ms
+E             - waiting for locator("#model-status")
+E               19 � locator resolved to <div dir="ltr" id="model-status" class="block  svelte-1plpy97 padded hide-container auto-margin">�</div>
+E                  - unexpected value "    Profile action was not completed. Check saved selection, name, key and pending work; reload after concurrent edits. Switch to Ollama before deleting an active profile.
+E             "
+
+tests\e2e\test_browser_review.py:337: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_saved_profile_lifecycle_and_session_consent
+1 failed, 1 passed, 5 deselected in 26.46s

@@ -1,0 +1,40 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 1 item
+
+tests\unit\test_live_review_findings.py F                                [100%]
+
+================================== FAILURES ===================================
+____________ test_creation_pipeline_retains_original_user_contract ____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{190c01f3-ec4a-4fa4-afc2-363aa0515673}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B54A3C0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B54B421A90>
+
+    @pytest.mark.known_issue
+    @pytest.mark.xfail(strict=True, reason="LIVE-FLOW-001: creation receives only model summary")
+    def test_creation_pipeline_retains_original_user_contract(system, monkeypatch):
+        """A shortened manager purpose must not remove the user's input/error contract."""
+        query = "Create a tiered bill; reject bool and floats with ValueError; return integer cents."
+        decision = '{"action":"CREATE_TOOL","tool_name":"bill","purpose":"Calculate a tiered bill"}'
+        monkeypatch.setattr(system.main, "Crew", Mock(return_value=SimpleNamespace(kickoff=lambda: decision)))
+        received = []
+    
+        def downstream(tool_name, user_requirement):
+            """Observe the actual contract received by the creation-stage boundary."""
+            received.append(user_requirement)
+    
+        monkeypatch.setattr(system.main, "build_tool_pipeline", downstream)
+        system.main.run_system(query)
+        assert len(received) == 1
+>       assert query in received[0]
+E       AssertionError: assert 'Create a tiered bill; reject bool and floats with ValueError; return integer cents.' in 'Calculate a tiered bill'
+
+tests\unit\test_live_review_findings.py:25: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:49 event=tool_pipeline_not_verified session_id=legacy operation_id=eda58a01936f4441bb2dea19e5eb6484 request_id=- error_type=- line=-
+=========================== short test summary info ===========================
+FAILED tests/unit/test_live_review_findings.py::test_creation_pipeline_retains_original_user_contract
+============================== 1 failed in 0.48s ==============================

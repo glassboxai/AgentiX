@@ -1,0 +1,3 @@
+omit_shipping: detected by reviewed tests
+wrong_second_tier_rate: detected by reviewed tests
+accept_boolean: detected by reviewed tests

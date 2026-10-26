@@ -1,0 +1,535 @@
+FFFFFFFFFFFFFFFFFFFFF                                                    [100%]
+================================== FAILURES ===================================
+________ test_second_query_reuses_without_tests_review_or_reading_code ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_second_query_reuses_with...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000020FFCE97250>
+
+    def test_second_query_reuses_without_tests_review_or_reading_code(system, monkeypatch):
+        """A real service call with new inputs must yield a fresh observed result."""
+        successful_tool(system)
+        def forbidden(*args, **kwargs):
+            """Fail on any repeated review, artifact read or unittest execution."""
+            pytest.fail("Normal reuse must not test, display code or request approval")
+        monkeypatch.setattr(system.security, "request_user_permission", forbidden)
+        monkeypatch.setattr(system.custom_tools.runner, "verify_existing_tool", forbidden)
+        monkeypatch.setattr(system.custom_tools, "read_artifact_tool", forbidden)
+        def kickoff():
+            """Replace only LLM choice; exercise real preparation and execution."""
+            prepared = system.custom_tools.verify_existing_tool_tool("adder")
+            assert prepared.startswith("REUSE_READY:")
+            assert "add(a: int, b: int=2) -> int" in prepared
+            assert system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}').endswith("42")
+            return "Invented 999"
+        monkeypatch.setattr(system.main, "Crew", lambda **kw: SimpleNamespace(kickoff=kickoff))
+>       result = system.main.run_system("Please add two to forty.")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_reviewed_reuse.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\orchestration.py:196: in run_system
+    result = self._run_system(user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\agentix\orchestration.py:251: in _run_system
+    manager_decision = str(manager_crew.kickoff())
+                           ^^^^^^^^^^^^^^^^^^^^^^
+tests\unit\test_reviewed_reuse.py:28: in kickoff
+    prepared = system.custom_tools.verify_existing_tool_tool("adder")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\agentix\tools.py:47: in verify_existing_tool_tool
+    result = self.runner.verify_existing_tool(tool_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ('adder',), kwargs = {}
+
+    def forbidden(*args, **kwargs):
+        """Fail on any repeated review, artifact read or unittest execution."""
+>       pytest.fail("Normal reuse must not test, display code or request approval")
+E       Failed: Normal reuse must not test, display code or request approval
+
+tests\unit\test_reviewed_reuse.py:22: Failed
+__________ test_review_without_successful_call_does_not_grant_reuse ___________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_review_without_successfu...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+
+    def test_review_without_successful_call_does_not_grant_reuse(system):
+        """A review alone must not establish later-operation authorization."""
+        ledger = authorize_fixture(system)
+        system.security.operation_id = "next"
+>       assert not ledger.prepare_reuse("adder")
+                   ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:42: AttributeError
+_____________ test_reuse_rejects_drift_owner_and_revocation[code] _____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_reuse_rejects_drift_owne...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+change = 'code'
+
+    @pytest.mark.parametrize("change", ["code", "tests", "owner", "closed", "revoked"])
+    def test_reuse_rejects_drift_owner_and_revocation(system, change):
+        """Observed edits and owner/lifecycle changes cannot revive earlier trust."""
+        ledger = successful_tool(system)
+        system.security.operation_id = "next"
+        if change in ("code", "tests"):
+            path = system.root / "adder" / f"adder_{change}.py"
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n# changed")
+>           assert not ledger.prepare_reuse("adder")
+                       ^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:54: AttributeError
+____________ test_reuse_rejects_drift_owner_and_revocation[tests] _____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_reuse_rejects_drift_owne...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+change = 'tests'
+
+    @pytest.mark.parametrize("change", ["code", "tests", "owner", "closed", "revoked"])
+    def test_reuse_rejects_drift_owner_and_revocation(system, change):
+        """Observed edits and owner/lifecycle changes cannot revive earlier trust."""
+        ledger = successful_tool(system)
+        system.security.operation_id = "next"
+        if change in ("code", "tests"):
+            path = system.root / "adder" / f"adder_{change}.py"
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n# changed")
+>           assert not ledger.prepare_reuse("adder")
+                       ^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:54: AttributeError
+____________ test_reuse_rejects_drift_owner_and_revocation[owner] _____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_reuse_rejects_drift_owne...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+change = 'owner'
+
+    @pytest.mark.parametrize("change", ["code", "tests", "owner", "closed", "revoked"])
+    def test_reuse_rejects_drift_owner_and_revocation(system, change):
+        """Observed edits and owner/lifecycle changes cannot revive earlier trust."""
+        ledger = successful_tool(system)
+        system.security.operation_id = "next"
+        if change in ("code", "tests"):
+            path = system.root / "adder" / f"adder_{change}.py"
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n# changed")
+            assert not ledger.prepare_reuse("adder")
+            path.write_bytes(original)
+        elif change == "owner":
+            system.security.owner_id = "someone-else"
+        elif change == "closed":
+            system.security.cancel_pending()
+        else:
+            ledger.revoke_acceptance("adder")
+>       assert not ledger.prepare_reuse("adder")
+                   ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:62: AttributeError
+____________ test_reuse_rejects_drift_owner_and_revocation[closed] ____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_reuse_rejects_drift_owne...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+change = 'closed'
+
+    @pytest.mark.parametrize("change", ["code", "tests", "owner", "closed", "revoked"])
+    def test_reuse_rejects_drift_owner_and_revocation(system, change):
+        """Observed edits and owner/lifecycle changes cannot revive earlier trust."""
+        ledger = successful_tool(system)
+        system.security.operation_id = "next"
+        if change in ("code", "tests"):
+            path = system.root / "adder" / f"adder_{change}.py"
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n# changed")
+            assert not ledger.prepare_reuse("adder")
+            path.write_bytes(original)
+        elif change == "owner":
+            system.security.owner_id = "someone-else"
+        elif change == "closed":
+            system.security.cancel_pending()
+        else:
+            ledger.revoke_acceptance("adder")
+>       assert not ledger.prepare_reuse("adder")
+                   ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:62: AttributeError
+___________ test_reuse_rejects_drift_owner_and_revocation[revoked] ____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_reuse_rejects_drift_owne...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+change = 'revoked'
+
+    @pytest.mark.parametrize("change", ["code", "tests", "owner", "closed", "revoked"])
+    def test_reuse_rejects_drift_owner_and_revocation(system, change):
+        """Observed edits and owner/lifecycle changes cannot revive earlier trust."""
+        ledger = successful_tool(system)
+        system.security.operation_id = "next"
+        if change in ("code", "tests"):
+            path = system.root / "adder" / f"adder_{change}.py"
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n# changed")
+            assert not ledger.prepare_reuse("adder")
+            path.write_bytes(original)
+        elif change == "owner":
+            system.security.owner_id = "someone-else"
+        elif change == "closed":
+            system.security.cancel_pending()
+        else:
+            ledger.revoke_acceptance("adder")
+>       assert not ledger.prepare_reuse("adder")
+                   ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:62: AttributeError
+_________ test_successful_tool_does_not_authorize_unreviewed_function _________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_successful_tool_does_not...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+
+    def test_successful_tool_does_not_authorize_unreviewed_function(system):
+        """Reusable grants retain the approved public-function boundary."""
+        ledger = successful_tool(system)
+        system.security.operation_id = "next"
+>       assert ledger.prepare_reuse("adder")
+               ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'prepare_reuse'
+
+tests\unit\test_reviewed_reuse.py:69: AttributeError
+________ test_sensitive_call_needs_manual_permission_even_after_review ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-445/test_sensitive_call_needs_man...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000020FFCD52FC0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000020FFCE59950>
+
+    def test_sensitive_call_needs_manual_permission_even_after_review(system, monkeypatch):
+        """File-capable code cannot inherit silent execution from acceptance."""
+        folder = system.root / "adder"
+        ledger = authorize_fixture(system)
+        (folder / "adder_code.py").write_text("def add(a, b=2):\n    if a < 0: open('output.txt', 'w')\n    return a+b")
+        code, tests = ledger.snapshot("adder")
+        assert ledger.record("adder", code, tests, dict(kind="tests", run=1, failures=0, errors=0, skipped=0, successful=True), isolated=True, exit_code=0)
+        assert ledger.authorize("adder", code, tests, "reviewed", frozenset({"add"}))
+        requests = []
+        def deny(*args, **kwargs):
+            """Capture server-owned exact-call details and deny the sensitive action."""
+            requests.append((args, kwargs))
+            return False, ""
+        monkeypatch.setattr(system.security, "request_user_permission", deny)
+        outcome = system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert outcome.startswith("EXECUTION_DENIED:")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x0000020FFCED66F0>('EXECUTION_DENIED:')
+E        +    where <built-in method startswith of str object at 0x0000020FFCED66F0> = 'Tool Execution Result: 42'.startswith
+
+tests\unit\test_reviewed_reuse.py:88: AssertionError
+_ test_computation_classifier_is_conservative[def add(a,b): return a+b-True] __
+
+source = 'def add(a,b): return a+b', expected = True
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[import math\ndef root(x): return math.sqrt(x)-True] _
+
+source = 'import math\ndef root(x): return math.sqrt(x)', expected = True
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def count(text): return len(text.split())-True] _
+
+source = 'def count(text): return len(text.split())', expected = True
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)-True] _
+
+source = "def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)"
+expected = True
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def write(x): return open(x,'w')-False] _
+
+source = "def write(x): return open(x,'w')", expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[import requests\ndef send(x): return requests.post(x)-False] _
+
+source = 'import requests\ndef send(x): return requests.post(x)'
+expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def dynamic(x): return getattr(x,'write')('data')-False] _
+
+source = "def dynamic(x): return getattr(x,'write')('data')", expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def dynamic(x): return x()-False] _
+
+source = 'def dynamic(x): return x()', expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def hidden(x): return x.__class__-False] _
+
+source = 'def hidden(x): return x.__class__', expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+______ test_computation_classifier_is_conservative[class C: pass-False] _______
+
+source = 'class C: pass', expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def f(x): return eval(x)-False] _
+
+source = 'def f(x): return eval(x)', expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+_ test_computation_classifier_is_conservative[def f(x): return x.format(secret='value')-False] _
+
+source = "def f(x): return x.format(secret='value')", expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+>       from agentix.reuse_policy import computation_only
+E       ModuleNotFoundError: No module named 'agentix.reuse_policy'
+
+tests\unit\test_reviewed_reuse.py:110: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_reviewed_reuse.py::test_second_query_reuses_without_tests_review_or_reading_code
+FAILED tests/unit/test_reviewed_reuse.py::test_review_without_successful_call_does_not_grant_reuse
+FAILED tests/unit/test_reviewed_reuse.py::test_reuse_rejects_drift_owner_and_revocation[code]
+FAILED tests/unit/test_reviewed_reuse.py::test_reuse_rejects_drift_owner_and_revocation[tests]
+FAILED tests/unit/test_reviewed_reuse.py::test_reuse_rejects_drift_owner_and_revocation[owner]
+FAILED tests/unit/test_reviewed_reuse.py::test_reuse_rejects_drift_owner_and_revocation[closed]
+FAILED tests/unit/test_reviewed_reuse.py::test_reuse_rejects_drift_owner_and_revocation[revoked]
+FAILED tests/unit/test_reviewed_reuse.py::test_successful_tool_does_not_authorize_unreviewed_function
+FAILED tests/unit/test_reviewed_reuse.py::test_sensitive_call_needs_manual_permission_even_after_review
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def add(a,b): return a+b-True]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[import math\ndef root(x): return math.sqrt(x)-True]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def count(text): return len(text.split())-True]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)-True]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def write(x): return open(x,'w')-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[import requests\ndef send(x): return requests.post(x)-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def dynamic(x): return getattr(x,'write')('data')-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def dynamic(x): return x()-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def hidden(x): return x.__class__-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[class C: pass-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def f(x): return eval(x)-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[def f(x): return x.format(secret='value')-False]
+21 failed in 2.24s

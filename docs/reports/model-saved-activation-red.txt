@@ -1,0 +1,52 @@
+...........FF                                                            [100%]
+================================== FAILURES ===================================
+___ test_saved_activation_requires_fresh_consent_and_survives_session_close ___
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-411/test_saved_activation_requires0')
+vault = namespace(data={'AgentiX/v3/ec7648c63f3448a98aa34c2970dbdb2b/73c5cce0bf1c4f06ac6bb37e58d07df8': 'synthetic-first-key'}...nction vault.<locals>.<lambda> at 0x000002BB3AF40720>, delete=<function vault.<locals>.<lambda> at 0x000002BB3AF40680>)
+
+    def test_saved_activation_requires_fresh_consent_and_survives_session_close(tmp_path, vault):
+        """Persistence never implies remote startup or remembered task-transfer consent."""
+        from agentix.model_profiles import SessionModelConfiguration
+        store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+        saved = store.save("Provider", "OpenAI", "model", "https://api.openai.com/v1", "synthetic-first-key")
+        def service():
+            """Create another independent browser configuration over shared saved profiles."""
+            controller = SimpleNamespace(state=SimpleNamespace(is_running=False, session_id="a"*32), security=SimpleNamespace(get_pending_request=lambda: None))
+            runtime = SimpleNamespace(orchestrator=SimpleNamespace(run_system="new"), operations=SimpleNamespace(acceptance="new"), catalog=SimpleNamespace(render="new"))
+            return SessionModelConfiguration(controller, lambda llm: runtime, vault_factory=lambda: vault, llm_factory=lambda **kw: object(), resolver=lambda host: ["93.184.216.34"], store_factory=lambda vault: store)
+>       first = service()
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def service():
+        """Create another independent browser configuration over shared saved profiles."""
+        controller = SimpleNamespace(state=SimpleNamespace(is_running=False, session_id="a"*32), security=SimpleNamespace(get_pending_request=lambda: None))
+        runtime = SimpleNamespace(orchestrator=SimpleNamespace(run_system="new"), operations=SimpleNamespace(acceptance="new"), catalog=SimpleNamespace(render="new"))
+>       return SessionModelConfiguration(controller, lambda llm: runtime, vault_factory=lambda: vault, llm_factory=lambda **kw: object(), resolver=lambda host: ["93.184.216.34"], store_factory=lambda vault: store)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: SessionModelConfiguration.__init__() got an unexpected keyword argument 'store_factory'
+
+tests\unit\test_saved_model_profiles.py:118: TypeError
+______________ test_saved_key_cannot_be_sent_to_edited_endpoint _______________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-411/test_saved_key_cannot_be_sent_0')
+vault = namespace(data={'AgentiX/v3/614bf898fb0644fb9758811f3a96e4ce/8a648df0aebd4afe8eb4cf6214902505': 'synthetic-first-key'}...nction vault.<locals>.<lambda> at 0x000002BB3AFE4CC0>, delete=<function vault.<locals>.<lambda> at 0x000002BB3AFE5120>)
+
+    def test_saved_key_cannot_be_sent_to_edited_endpoint(tmp_path, vault):
+        """A changed destination requires saving a reviewed profile rather than reusing its key."""
+        from agentix.model_profiles import SessionModelConfiguration
+        store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+        saved = store.save("Provider", "OpenAI-compatible", "model", "https://example.com/v1", "synthetic-first-key")
+        controller = SimpleNamespace(state=SimpleNamespace(is_running=False), security=SimpleNamespace(get_pending_request=lambda: None))
+>       service = SessionModelConfiguration(controller, lambda llm: pytest.fail("must not build runtime"), vault_factory=lambda: vault, store_factory=lambda vault: store, resolver=lambda host: ["93.184.216.34"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: SessionModelConfiguration.__init__() got an unexpected keyword argument 'store_factory'
+
+tests\unit\test_saved_model_profiles.py:136: TypeError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_saved_model_profiles.py::test_saved_activation_requires_fresh_consent_and_survives_session_close
+FAILED tests/unit/test_saved_model_profiles.py::test_saved_key_cannot_be_sent_to_edited_endpoint
+2 failed, 11 passed in 0.50s

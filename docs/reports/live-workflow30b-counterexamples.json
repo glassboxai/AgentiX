@@ -1,0 +1,66 @@
+[
+  {
+    "scenario": "original_boolean_defect",
+    "expected_success": false,
+    "exit_code": 1,
+    "output": "FF\r\n======================================================================\r\nFAIL: test_false_rejected (tiered_energy_bill_tests.ReviewRegression.test_false_rejected)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-yexa1ef8\\work\\tiered_energy_bill_tests.py\", line 7, in test_false_rejected\r\n    with self.assertRaises(ValueError): tiered_energy_bill(False)\r\nAssertionError: ValueError not raised\r\n\r\n======================================================================\r\nFAIL: test_true_rejected (tiered_energy_bill_tests.ReviewRegression.test_true_rejected)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-yexa1ef8\\work\\tiered_energy_bill_tests.py\", line 5, in test_true_rejected\r\n    with self.assertRaises(ValueError): tiered_energy_bill(True)\r\nAssertionError: ValueError not raised\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 0.001s\r\n\r\nFAILED (failures=2)\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 2, \"failures\": 2, \"errors\": 0, \"skipped\": 0, \"successful\": false}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 2,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "successful": false
+    },
+    "isolated": true,
+    "failure": ""
+  },
+  {
+    "scenario": "corrected_boolean_regression",
+    "expected_success": true,
+    "exit_code": 0,
+    "output": "..\r\n----------------------------------------------------------------------\r\nRan 2 tests in 0.000s\r\n\r\nOK\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 2, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"successful\": true}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true
+    },
+    "isolated": true,
+    "failure": ""
+  },
+  {
+    "scenario": "original_wrong_test_oracle",
+    "expected_success": false,
+    "exit_code": 1,
+    "output": "....F.\r\n======================================================================\r\nFAIL: test_tier_2_consumption (tiered_energy_bill_tests.TestTieredEnergyBill.test_tier_2_consumption)\r\nTest consumption within second tier (101-200 kWh)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-ryvk6y8_\\work\\tiered_energy_bill_tests.py\", line 17, in test_tier_2_consumption\r\n    self.assertEqual(tiered_energy_bill(101), 1212)  # 100*12 + 1*18\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: 1218 != 1212\r\n\r\n----------------------------------------------------------------------\r\nRan 6 tests in 0.001s\r\n\r\nFAILED (failures=1)\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 6, \"failures\": 1, \"errors\": 0, \"skipped\": 0, \"successful\": false}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 6,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "successful": false
+    },
+    "isolated": true,
+    "failure": ""
+  },
+  {
+    "scenario": "approved_full_suite",
+    "expected_success": true,
+    "exit_code": 0,
+    "output": ".......\r\n----------------------------------------------------------------------\r\nRan 7 tests in 0.000s\r\n\r\nOK\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 7, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"successful\": true}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true
+    },
+    "isolated": true,
+    "failure": ""
+  }
+]

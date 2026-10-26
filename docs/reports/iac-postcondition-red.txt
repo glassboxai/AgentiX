@@ -1,0 +1,25 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 30 items / 29 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+_____________ test_zero_exit_without_convergence_stops_dependents _____________
+
+    def test_zero_exit_without_convergence_stops_dependents():
+        """IAC-ERR-006: a successful installer exit alone cannot authorize dependent work."""
+        result = powershell("$c=Read-IacConfiguration;$s=New-IacFixtureState $c;$s.python.version='missing';$s.environment.present=$false;$p=Get-IacPlan $c $s;$calls=[Collections.Generic.List[string]]::new();$outcome=try{Invoke-IacConverge -Config $c -Plan $p -Observe {$s} -Set {param($id,$cfg,$review)$calls.Add($id)}|Out-Null;'unexpected'}catch{$_.Exception.Message};@{calls=@($calls);error=$outcome}|ConvertTo-Json")
+>       assert result["calls"] == ["python"]
+E       AssertionError: assert ['python', 'environment'] == ['python']
+E         
+E         Left contains one more item: 'environment'
+E         Use -v to get more diff
+
+tests\unit\test_iac.py:286: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_zero_exit_without_convergence_stops_dependents
+====================== 1 failed, 29 deselected in 1.17s =======================

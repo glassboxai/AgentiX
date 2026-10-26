@@ -1,0 +1,71 @@
+......................FFFFF                                              [100%]
+================================== FAILURES ===================================
+_ test_remote_request_policy_denies_destination_changes[https://evil.example/v1/chat/completions] _
+
+destination = 'https://evil.example/v1/chat/completions'
+
+    @pytest.mark.parametrize("destination", ["https://evil.example/v1/chat/completions", "http://api.openai.com/v1/chat/completions", "https://api.openai.com/other"])
+    def test_remote_request_policy_denies_destination_changes(destination):
+        """No credential-bearing request can change its approved origin or base path."""
+        module = profiles()
+>       policy = module.RemoteRequestPolicy(module.ModelProfile("OpenAI", "model", "https://api.openai.com/v1", remote_consent=True), lambda host: ["93.184.216.34"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'RemoteRequestPolicy'
+
+tests\unit\test_model_profiles.py:250: AttributeError
+_ test_remote_request_policy_denies_destination_changes[http://api.openai.com/v1/chat/completions] _
+
+destination = 'http://api.openai.com/v1/chat/completions'
+
+    @pytest.mark.parametrize("destination", ["https://evil.example/v1/chat/completions", "http://api.openai.com/v1/chat/completions", "https://api.openai.com/other"])
+    def test_remote_request_policy_denies_destination_changes(destination):
+        """No credential-bearing request can change its approved origin or base path."""
+        module = profiles()
+>       policy = module.RemoteRequestPolicy(module.ModelProfile("OpenAI", "model", "https://api.openai.com/v1", remote_consent=True), lambda host: ["93.184.216.34"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'RemoteRequestPolicy'
+
+tests\unit\test_model_profiles.py:250: AttributeError
+_ test_remote_request_policy_denies_destination_changes[https://api.openai.com/other] _
+
+destination = 'https://api.openai.com/other'
+
+    @pytest.mark.parametrize("destination", ["https://evil.example/v1/chat/completions", "http://api.openai.com/v1/chat/completions", "https://api.openai.com/other"])
+    def test_remote_request_policy_denies_destination_changes(destination):
+        """No credential-bearing request can change its approved origin or base path."""
+        module = profiles()
+>       policy = module.RemoteRequestPolicy(module.ModelProfile("OpenAI", "model", "https://api.openai.com/v1", remote_consent=True), lambda host: ["93.184.216.34"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'RemoteRequestPolicy'
+
+tests\unit\test_model_profiles.py:250: AttributeError
+____________ test_remote_policy_rejects_redirect_and_rechecks_dns _____________
+
+    def test_remote_policy_rejects_redirect_and_rechecks_dns():
+        """Prevent redirect following and detect private resolution on later calls."""
+        module = profiles()
+        addresses = ["93.184.216.34"]
+>       policy = module.RemoteRequestPolicy(module.ModelProfile("OpenAI", "model", "https://api.openai.com/v1", remote_consent=True), lambda host: addresses)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'RemoteRequestPolicy'
+
+tests\unit\test_model_profiles.py:259: AttributeError
+_____________________ test_agents_have_finite_work_limits _____________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-404/test_agents_have_finite_work_...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000294E48528E0>)
+
+    def test_agents_have_finite_work_limits(system):
+        """All roles retain verbose output but have bounded iteration/time/retry policy."""
+        for call in system.crewai.Agent.call_args_list:
+>           assert call.kwargs["max_iter"] == 12
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'max_iter'
+
+tests\unit\test_model_profiles.py:271: KeyError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_remote_request_policy_denies_destination_changes[https://evil.example/v1/chat/completions]
+FAILED tests/unit/test_model_profiles.py::test_remote_request_policy_denies_destination_changes[http://api.openai.com/v1/chat/completions]
+FAILED tests/unit/test_model_profiles.py::test_remote_request_policy_denies_destination_changes[https://api.openai.com/other]
+FAILED tests/unit/test_model_profiles.py::test_remote_policy_rejects_redirect_and_rechecks_dns
+FAILED tests/unit/test_model_profiles.py::test_agents_have_finite_work_limits
+5 failed, 22 passed in 0.27s

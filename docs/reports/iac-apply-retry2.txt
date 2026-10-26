@@ -1,0 +1,16 @@
+Write-Error: 
+Line |
+  33 |  & ./infra/Invoke-AgentiXIac.ps1 -Action Apply -PlanFile docs/reports/ …
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Process failed (2): en Set-IacResource, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 357
+en <ScriptBlock>, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 386
+en Invoke-IacConverge, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 398
+en <ScriptBlock>, D:\AI\AgentiX_v3\infra\resource.ps1: línea 19
+
+2026-10-24T08:55:18.548704Z ERROR Error: Command: Resource 'powershell.exe' [exit code 1] Actual environment location may have moved due to redirects, links or junctions.
+en Invoke-IacProcess, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 126
+en Set-IacResource, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 357
+en <ScriptBlock>, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 386
+en Invoke-IacConverge, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 398
+en <ScriptBlock>, D:\AI\AgentiX_v3\infra\resource.ps1: línea 19
+

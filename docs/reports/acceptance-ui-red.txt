@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 2 items
+
+tests\unit\test_acceptance_ui.py FF                                      [100%]
+
+================================== FAILURES ===================================
+________ test_review_panel_shows_python_tests_and_provisional_summary _________
+tests\unit\test_acceptance_ui.py:12: in test_review_panel_shows_python_tests_and_provisional_summary
+    assert "Human acceptance review" in snapshot[2]
+E   AssertionError: assert 'Human acceptance review' in '**File:** `Acceptance cases`\n\n**Action:** `REVIEW_ACCEPTANCE`'
+_______ test_validation_status_uses_owned_evaluator_and_escapes_values ________
+tests\unit\test_acceptance_ui.py:23: in test_validation_status_uses_owned_evaluator_and_escapes_values
+    rendered = system.app.validation_status()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'UiController' object has no attribute 'validation_status'
+=========================== short test summary info ===========================
+FAILED tests/unit/test_acceptance_ui.py::test_review_panel_shows_python_tests_and_provisional_summary
+FAILED tests/unit/test_acceptance_ui.py::test_validation_status_uses_owned_evaluator_and_escapes_values
+============================== 2 failed in 0.28s ==============================

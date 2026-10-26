@@ -1,0 +1,12 @@
+2026-10-19 11:54:13 [INFO] [crewai_core.settings]: Using config path: C:\Users\xpiku\.config\crewai\settings.json
+2026-10-19 11:54:13 [INFO] [agentix.bootstrap]: event=model_adapter_constructing session_id=legacy operation_id=- request_id=- error_type=- line=-
+2026-10-19 11:54:14 [INFO] [agentix.bootstrap]: event=runtime_composed session_id=legacy operation_id=- request_id=- error_type=- line=-
+
+======================================================================
+   AUTONOMOUS MULTI-AGENT TOOL BUILDER SYSTEM
+   Type 'quit', 'exit' or 'q' to stop the program.
+======================================================================
+
+
+Enter your query: 
+[INFO] Exiting session. Goodbye!

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-19",
+  "python": "3.11.9",
+  "scope": "Human-reviewed declarative acceptance, host comparisons and mandatory final authorization; installer deferred, Docker rejected. No existing generated_tools contents inspected/modified/tested/executed; no live app restarted.",
+  "checks": {
+    "acceptance-tests": {
+      "tests": 251,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "acceptance-native": {
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "acceptance-frameworks": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "implemented": [
+    "Generated unittest results are provisional only and cannot authorize execution.",
+    "Mandatory owner/request-bound human review displays Python tests, provisional results and editable case JSON; file auto-approval does not apply.",
+    "Exact typed JSON, approximate finite numeric and expected exception comparisons run in maintained host code.",
+    "Fresh native isolated call per acceptance case; expected values, contract and test source never enter acceptance child requests.",
+    "Final authorization binds owner, operation, exact code/test bytes, approved contract digest, evaluator version and covered functions.",
+    "Rejection/expiry prevents reprompting in that operation; source changes and failed rechecks revoke acceptance.",
+    "Session-owned UI status shows expected/observed data and per-case verdicts, separately from model replies."
+  ],
+  "resolved_implementation_incidents": [
+    "ACCEPT-ERR-001 serialization failures distinguished from expected function exceptions.",
+    "ACCEPT-ERR-002 acceptance/function/snapshot rechecked atomically before dispatch.",
+    "ACCEPT-ERR-003 duplicate JSON child report keys rejected.",
+    "ACCEPT-ERR-004 human rejection cannot be followed by automatic same-operation reprompt.",
+    "ACCEPT-ERR-005 observed content change revokes old approval even after file restoration.",
+    "ACCEPT-UI-001 final UI includes escaped expected/observed data."
+  ],
+  "limitations": [
+    "Finite approved cases establish observed agreement for those inputs, not correctness for every input or requirement quality.",
+    "No internal execution-provenance attestation; child can fabricate outputs but cannot decide host verdicts.",
+    "Approval contracts/receipts live in runtime memory; review required again after new query/restart.",
+    "Gradio is the implemented interactive review adapter; legacy synchronous CLI has no dedicated review client and cannot bypass review.",
+    "Existing AppContainer shared-kernel/no-disk-quota/standard-library-only/staging-time limitations remain.",
+    "Real framework checks use process_api in memory without model, browser or HTTP server; native tests use trusted temporary fixtures."
+  ],
+  "source_hashes": {
+    "_agentix_path.py": "91fe3463ed3d14d74ee19294c8db9f3df027701227223e37d64a33a188349499",
+    "app.py": "1230cec93911a76a942a9e71cbfc0c1b4a6ecaafae4605d9287182bf56f0b4cc",
+    "config.py": "936baa272919cddc44de2a8a79c542b1f0e1fae22ee65cb43221d7680ea33cc0",
+    "custom_tools.py": "9ec81fb368d2e57176c92c961fa3e38f85b096d3e478bbe39021174cd6370c05",
+    "main.py": "7f6adc2d30fdb440a8a593f3bb6830f06391b47b68cd39c17c000d50d8622308",
+    "security_manager.py": "486c6b44e42210f6fe943b58e234ac7af87c5e63197bdab744421f1cb09f2ad8",
+    "src/agentix/__init__.py": "63ad1c1f0d1da84ab44c7d073bafb9f30bac9e3148248946085aee4a5f0900d8",
+    "src/agentix/acceptance.py": "0e423f8d61e8b4e159e939ff0dea26f43ff605a0a99fe69d953ce24728c3cf8a",
+    "src/agentix/adapters/__init__.py": "644e02ebc83327e8b61abc644b15007a0e34d8e5df9cf4b8300c1e56514c3b73",
+    "src/agentix/adapters/crewai.py": "0a48ff423adedd6659912831caa52849ff43acbad34ed1cd751ce1d4ee7ed2fb",
+    "src/agentix/approvals.py": "ba0ae4eea636511071cc46224772e2655ab10337ea02e4e9cd33455a67dc069e",
+    "src/agentix/bootstrap.py": "a6b27b4837d248f9319bf9de0f5e53a34247b4dfc1fd4a339215eadc7d56a38a",
+    "src/agentix/catalog.py": "2b72d2057196c3575c52dae9860424c3784089a5c3622e079827352e47803a2c",
+    "src/agentix/cli.py": "85dbfbd091af37f3dae4ca1c1f9c8773a13a8303a0cafc3dc0a92fc20b28f1b7",
+    "src/agentix/contracts.py": "cf091700e0aa5f209c295e96dc1fdff378508253b73c6cfc246689b5a27f0b1e",
+    "src/agentix/decisions.py": "2faef8e005e13451b23531a7d0c206f8b15838d2db69c866b1f2717f19f60e35",
+    "src/agentix/diagnostics.py": "2d3e0e2011e041b94e494206f4769ab081fe64253f2d80d4d9f4b2820df9a59e",
+    "src/agentix/execution.py": "da3a912e7de9a2217ed5b5668faaf060cdc2a662d1eb55b952bee92c79f181c2",
+    "src/agentix/orchestration.py": "e438e6c074bbbb684d042d575d51409c38ef447d3f85f9967a7dbfe486eedeb3",
+    "src/agentix/paths.py": "bf8c04d21ec00634be69ea561ba06f8caeefc5872ca824b267103ed73379df2b",
+    "src/agentix/sandbox.py": "0e98fd8b4705f9dd42b6a4e362492b43ba7850a7c0e9466ff75166d23707fee6",
+    "src/agentix/sandbox_worker.py": "d6ce9f20338db5d6a61552073836f4d2cd50ba1b451b472604f6e1ee2c89964f",
+    "src/agentix/security.py": "f152d2ab14c94d066e1998bf4e7b81c1407f475ed3ffd58f421b5298cb1225d4",
+    "src/agentix/settings.py": "5676288c57407734f53c92d27ed97d4721c243951ba11344128f31c54210e624",
+    "src/agentix/storage.py": "a7e7074efcd1870edba097c2fc6b8ad53279834069298881a96570a4202b8f9d",
+    "src/agentix/testing.py": "3bfd0e28c6903dcfb0b2a035f906021cf5ef7e1faa3946fa95bdcf15a52ca50f",
+    "src/agentix/tools.py": "3fa67dd2322c206ac1c05c1caedc1fbb86a97cf2f059fc3f7effc85ed025f8cb",
+    "src/agentix/ui/__init__.py": "04e76928475913bc67918b71a3ffdb7661fc8e19c938aa96bb7cab0e766fffd1",
+    "src/agentix/ui/controller.py": "72ded46c14b779fd43d877713461e73189852246fcd08a42b30b578711626159",
+    "src/agentix/ui/sessions.py": "e818295bf47d00b5dc8e8ec269b1f097805c9ab10b0cd1cb6e9971a980dae871",
+    "src/agentix/ui/state.py": "38825d3443a8c64239a01d4bad100fb2732078381c71fadc4cc243870e2210fc",
+    "src/agentix/ui/view.py": "c72f103ea3e9e5c2d72501ddbaaaaefc9b3d8955c39fc68d7c645979afd584b0",
+    "src/agentix/verification.py": "f53da5c410e5fd83bd4727e0f039d72e9213107b047dee3ef73865f37bef967a",
+    "src/agentix/windows_process.py": "3f7905930df298aff696338b1fa10f9f79e3c3eb9d1f1742f853384920665cae"
+  }
+}

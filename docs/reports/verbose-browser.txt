@@ -1,0 +1,10 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 3 items
+
+tests\e2e\test_browser_review.py ...                                     [100%]
+
+============================= 3 passed in 30.13s ==============================

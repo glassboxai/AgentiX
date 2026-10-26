@@ -1,0 +1,159 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 96 items
+
+tests\unit\test_security.py ..................FFFFF.FFFFFFFFF..FFFF.FF.F [ 45%]
+                                                                         [ 45%]
+tests\unit\test_tools.py ............................FF                  [ 77%]
+tests\unit\test_app.py ....................FF                            [100%]
+
+================================== FAILURES ===================================
+___________________ test_reject_sibling_tool_prefix_escape ____________________
+tests\unit\test_security.py:110: in test_reject_sibling_tool_prefix_escape
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+___________________ test_reject_sibling_root_prefix_escape ____________________
+tests\unit\test_security.py:115: in test_reject_sibling_root_prefix_escape
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+___________________ test_pending_request_is_defensive_copy ____________________
+tests\unit\test_security.py:122: in test_pending_request_is_defensive_copy
+    assert system.security.get_pending_request()['filepath'] == 'original'
+E   AssertionError: assert 'modified' == 'original'
+E     
+E     - original
+E     + modified
+____________ test_reject_ambiguous_or_unsafe_windows_paths[-x.py] _____________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+____________ test_reject_ambiguous_or_unsafe_windows_paths[.-x.py] ____________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+_______ test_reject_ambiguous_or_unsafe_windows_paths[safe/other-x.py] ________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+_______ test_reject_ambiguous_or_unsafe_windows_paths[safe\\other-x.py] _______
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+_________ test_reject_ambiguous_or_unsafe_windows_paths[C:drive-x.py] _________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+___________ test_reject_ambiguous_or_unsafe_windows_paths[CON-x.py] ___________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+__________ test_reject_ambiguous_or_unsafe_windows_paths[safe.-x.py] __________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+__________ test_reject_ambiguous_or_unsafe_windows_paths[safe -x.py] __________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+____________ test_reject_ambiguous_or_unsafe_windows_paths[safe-] _____________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+______ test_reject_ambiguous_or_unsafe_windows_paths[safe-../safe/x.py] _______
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+______ test_reject_ambiguous_or_unsafe_windows_paths[safe-C:relative.py] ______
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+_______ test_reject_ambiguous_or_unsafe_windows_paths[safe-x.py:stream] _______
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+_________ test_reject_ambiguous_or_unsafe_windows_paths[safe-NUL.py] __________
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+_____ test_reject_ambiguous_or_unsafe_windows_paths[safe-nested/../x.py] ______
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+______ test_reject_ambiguous_or_unsafe_windows_paths[safe-nested./x.py] _______
+tests\unit\test_security.py:136: in test_reject_ambiguous_or_unsafe_windows_paths
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+______________ test_pending_snapshot_cannot_modify_nested_state _______________
+tests\unit\test_security.py:147: in test_pending_snapshot_cannot_modify_nested_state
+    assert system.security.get_pending_request()['metadata']['stage'] == 'original'
+E   AssertionError: assert 'changed' == 'original'
+E     
+E     - original
+E     + changed
+_________________ test_invalid_python_preserves_existing_file _________________
+tests\unit\test_security.py:158: in test_invalid_python_preserves_existing_file
+    assert result.startswith('Error validating Python:')
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x00000126F1BF8330>('Error validating Python:')
+E    +    where <built-in method startswith of str object at 0x00000126F1BF8330> = 'Success: Content written to C:\\Users\\xpiku\\AppData\\Local\\Packages\\sandbox.{ae37f135-6d65-49b4-b129-7767d7604a6f}\\AC\\Temp\\pytest-of-xpiku\\pytest-0\\test_invalid_python_preserves_0\\generated_tools\\safe\\code.py'.startswith
+_____________ test_invalid_python_append_preserves_existing_file ______________
+tests\unit\test_security.py:174: in test_invalid_python_append_preserves_existing_file
+    assert result.startswith('Error validating Python:')
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x00000126F1B0B430>('Error validating Python:')
+E    +    where <built-in method startswith of str object at 0x00000126F1B0B430> = 'Success: Content written to C:\\Users\\xpiku\\AppData\\Local\\Packages\\sandbox.{ae37f135-6d65-49b4-b129-7767d7604a6f}\\AC\\Temp\\pytest-of-xpiku\\pytest-0\\test_invalid_python_append_pre0\\generated_tools\\safe\\code.py'.startswith
+_________________ test_edited_python_is_validated_before_save _________________
+tests\unit\test_tools.py:132: in test_edited_python_is_validated_before_save
+    assert not target.exists(), 'Invalid edited Python was persisted'
+E   AssertionError: Invalid edited Python was persisted
+E   assert not True
+E    +  where True = exists()
+E    +    where exists = WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{ae37f135-6d65-49b4-b129-7767d7604a6f}/AC/Temp/pytest-of-xpiku/pytest-0/test_edited_python_is_validate0/generated_tools/adder/adder_code.py').exists
+_________________ test_invalid_edited_tests_are_not_executed __________________
+tests\unit\test_tools.py:142: in test_invalid_edited_tests_are_not_executed
+    assert result.startswith('Error validating Python:')
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x00000126F1D6D6B0>('Error validating Python:')
+E    +    where <built-in method startswith of str object at 0x00000126F1D6D6B0> = "TESTS_FAILED: Unexpected testing error: unsupported operand type(s) for +: 'Mock' and 'str'".startswith
+______________ test_execution_states_have_independent_histories _______________
+tests\unit\test_app.py:134: in test_execution_states_have_independent_histories
+    assert first.chat_history is not second.chat_history
+E   assert [] is not []
+E    +  where [] = <app.ExecutionState object at 0x00000126F1DDC490>.chat_history
+E    +  and   [] = <app.ExecutionState object at 0x00000126F1DDC210>.chat_history
+________ test_new_execution_state_does_not_inherit_other_state_values _________
+tests\unit\test_app.py:142: in test_new_execution_state_does_not_inherit_other_state_values
+    assert second.chat_history == []
+E   AssertionError: assert [{'role': 'us...': 'private'}] == []
+E     
+E     Left contains one more item: {'role': 'user', 'content': 'private'}
+E     Use -v to get more diff
+=========================== short test summary info ===========================
+FAILED tests/unit/test_security.py::test_reject_sibling_tool_prefix_escape - ...
+FAILED tests/unit/test_security.py::test_reject_sibling_root_prefix_escape - ...
+FAILED tests/unit/test_security.py::test_pending_request_is_defensive_copy - ...
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[.-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe/other-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe\\other-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[C:drive-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[CON-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe.-x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe -x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-../safe/x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-C:relative.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-x.py:stream]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-NUL.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-nested/../x.py]
+FAILED tests/unit/test_security.py::test_reject_ambiguous_or_unsafe_windows_paths[safe-nested./x.py]
+FAILED tests/unit/test_security.py::test_pending_snapshot_cannot_modify_nested_state
+FAILED tests/unit/test_security.py::test_invalid_python_preserves_existing_file
+FAILED tests/unit/test_security.py::test_invalid_python_append_preserves_existing_file
+FAILED tests/unit/test_tools.py::test_edited_python_is_validated_before_save
+FAILED tests/unit/test_tools.py::test_invalid_edited_tests_are_not_executed
+FAILED tests/unit/test_app.py::test_execution_states_have_independent_histories
+FAILED tests/unit/test_app.py::test_new_execution_state_does_not_inherit_other_state_values
+======================== 25 failed, 71 passed in 1.90s ========================

@@ -1,0 +1,18 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\unit\test_human_acceptance.py F                                    [100%]
+
+================================== FAILURES ===================================
+_______ test_transport_serialization_error_is_not_a_function_exception ________
+tests\unit\test_human_acceptance.py:130: in test_transport_serialization_error_is_not_a_function_exception
+    assert result.startswith("ACCEPTANCE_FAILED:")
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x0000018A58CB8FF0>('ACCEPTANCE_FAILED:')
+E    +    where <built-in method startswith of str object at 0x0000018A58CB8FF0> = 'ACCEPTANCE_VERIFIED: 1 approved cases passed. Contract SHA-256: 13ed7db73915d7bceaf7e23b66ad0a4f550820f9f6fdf176b995b8de4c32eca9'.startswith
+=========================== short test summary info ===========================
+FAILED tests/unit/test_human_acceptance.py::test_transport_serialization_error_is_not_a_function_exception
+============================== 1 failed in 0.88s ==============================

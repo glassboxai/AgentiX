@@ -1,0 +1,41 @@
+..........................F.                                             [100%]
+================================== FAILURES ===================================
+_____________ test_native_limits_child_count_and_cleans_resources _____________
+
+    def test_native_limits_child_count_and_cleans_resources():
+        """Verify native limits child count and cleans resources."""
+        import os
+        import tempfile
+        from pathlib import Path
+    
+        from agentix.sandbox import WindowsSandbox
+    
+        packages = Path(os.environ["LOCALAPPDATA"]) / "Packages"
+        temporary = Path(tempfile.gettempdir())
+        profiles_before = set(packages.glob("Agentix.*"))
+        folders_before = set(temporary.glob("agentix-isolated-*"))
+        code = b"""import subprocess
+    import sys
+    def children():
+        created = []
+        for attempt in range(10):
+            try:
+                created.append(subprocess.Popen([sys.executable, '-I', '-S', '-c',
+                    'import time; time.sleep(20)'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
+            except OSError:
+                return len(created)
+        return len(created)
+    """
+        result = WindowsSandbox(processes=2).execute(code, None, "children", "children", {})
+        assert result.isolated and result.report["result"] == "1"
+>       assert set(packages.glob("Agentix.*")) == profiles_before
+E       AssertionError: assert {WindowsPath(...7c2c0ed1e31')} == {WindowsPath(...7c2c0ed1e31')}
+E         
+E         Extra items in the right set:
+E         WindowsPath('C:/Users/xpiku/AppData/Local/Packages/agentix.3fc3de8d4dbd4b53b1e6b55211b94c0e')
+E         Use -v to get more diff
+
+tests\integration\test_windows_isolation.py:189: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_windows_isolation.py::test_native_limits_child_count_and_cleans_resources
+1 failed, 27 passed, 448 deselected in 177.86s (0:02:57)

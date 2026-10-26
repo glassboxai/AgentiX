@@ -1,0 +1,20 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\integration\test_windows_isolation.py F                            [100%]
+
+================================== FAILURES ===================================
+_______________ test_native_denies_host_write_read_and_network ________________
+tests\integration\test_windows_isolation.py:58: in test_native_denies_host_write_read_and_network
+    assert result.isolated and result.report["result"] == "[True, True, True]"
+E   assert (True and '[True, True,... None, None)]' == '[True, True, True]'
+E    +  where True = SandboxResult(exit_code=0, output='\r\nAGENTIX_REPORT:{"kind": "call", "result": "[True, True, (\'TimeoutError\', None...e)]"}\r\n', report={'kind': 'call', 'result': "[True, True, ('TimeoutError', None, None)]"}, isolated=True, failure='').isolated
+E     
+E     - [True, True, True]
+E     + [True, True, ('TimeoutError', None, None)])
+=========================== short test summary info ===========================
+FAILED tests/integration/test_windows_isolation.py::test_native_denies_host_write_read_and_network
+============================== 1 failed in 5.05s ==============================

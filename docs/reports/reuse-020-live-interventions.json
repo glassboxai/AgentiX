@@ -1,0 +1,6 @@
+{
+  "specification": "Clarified bool/nonfinite validation, numeric float representation and Python rounding.",
+  "implementation": "Enforced bool/nonfinite validation promised by the approved specification and removed unnecessary executable __main__ demonstration code.",
+  "tests": "Corrected module import to the actual _code module, strengthened exact float type and added small-distance rounding and zero return-type assertions. Other numeric expectations independently checked.",
+  "acceptance": "Expanded three valid examples to eleven independently calculated cases, adding fractional distances and invalid inputs. Reload/restart queries use 25km and 12km, neither included in the acceptance cases."
+}

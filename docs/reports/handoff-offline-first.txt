@@ -1,0 +1,220 @@
+........................................................................ [ 24%]
+........................................................................ [ 48%]
+..................................FFF................................... [ 72%]
+........................................................................ [ 96%]
+......F....                                                              [100%]
+================================== FAILURES ===================================
+_ test_create_tool_routing[{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}] _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{57fd41d6-f672-4600-91a7-5f25ce24307d}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002461F7019E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002462097B950>
+response = '{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}'
+
+    @pytest.mark.parametrize(
+        "response",
+        [
+            '{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}',
+            '```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```',
+            '```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```',
+        ],
+    )
+    def test_create_tool_routing(system, monkeypatch, response):
+        crew = Mock(
+            side_effect=[
+                SimpleNamespace(kickoff=lambda: response),
+                SimpleNamespace(kickoff=lambda: "<tool_call> final "),
+            ]
+        )
+        monkeypatch.setattr(system.main, "Crew", crew)
+    
+        def completed(**kwargs):
+            name = kwargs["tool_name"]
+            install(system, name, "def add(): return 3")
+            (system.root / name / f"{name}_tests.py").write_text("import unittest")
+            ledger = system.custom_tools.verification
+            code, tests = ledger.snapshot(name)
+            assert ledger.record(
+                name,
+                code,
+                tests,
+                dict(kind="tests", run=1, failures=0, errors=0, skipped=0, successful=True),
+                isolated=True,
+                exit_code=0,
+            )
+            assert ledger.authorize(name, code, tests, "fixture-contract", frozenset({"add"}))
+    
+        pipeline = Mock(side_effect=completed)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", pipeline)
+>       assert system.main.run_system("add numbers") == "final"
+E       AssertionError: assert 'EXECUTION_NO...ol execution.' == 'final'
+E         
+E         - final
+E         + EXECUTION_NOT_VERIFIED: No current successful isolated tool execution.
+
+tests\unit\test_orchestration.py:116: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:50 event=final_execution_missing session_id=legacy operation_id=148ffc54eda64e8089de2823018043c1 request_id=- error_type=- line=-
+_ test_create_tool_routing[```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```] _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{57fd41d6-f672-4600-91a7-5f25ce24307d}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002461F7019E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000246209B3850>
+response = '```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```'
+
+    @pytest.mark.parametrize(
+        "response",
+        [
+            '{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}',
+            '```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```',
+            '```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```',
+        ],
+    )
+    def test_create_tool_routing(system, monkeypatch, response):
+        crew = Mock(
+            side_effect=[
+                SimpleNamespace(kickoff=lambda: response),
+                SimpleNamespace(kickoff=lambda: "<tool_call> final "),
+            ]
+        )
+        monkeypatch.setattr(system.main, "Crew", crew)
+    
+        def completed(**kwargs):
+            name = kwargs["tool_name"]
+            install(system, name, "def add(): return 3")
+            (system.root / name / f"{name}_tests.py").write_text("import unittest")
+            ledger = system.custom_tools.verification
+            code, tests = ledger.snapshot(name)
+            assert ledger.record(
+                name,
+                code,
+                tests,
+                dict(kind="tests", run=1, failures=0, errors=0, skipped=0, successful=True),
+                isolated=True,
+                exit_code=0,
+            )
+            assert ledger.authorize(name, code, tests, "fixture-contract", frozenset({"add"}))
+    
+        pipeline = Mock(side_effect=completed)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", pipeline)
+>       assert system.main.run_system("add numbers") == "final"
+E       AssertionError: assert 'EXECUTION_NO...ol execution.' == 'final'
+E         
+E         - final
+E         + EXECUTION_NOT_VERIFIED: No current successful isolated tool execution.
+
+tests\unit\test_orchestration.py:116: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:50 event=final_execution_missing session_id=legacy operation_id=728ec1664fae4813b2f98908ae2d6e40 request_id=- error_type=- line=-
+_ test_create_tool_routing[```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```] _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{57fd41d6-f672-4600-91a7-5f25ce24307d}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002461F7019E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024620A41A10>
+response = '```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```'
+
+    @pytest.mark.parametrize(
+        "response",
+        [
+            '{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}',
+            '```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```',
+            '```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```',
+        ],
+    )
+    def test_create_tool_routing(system, monkeypatch, response):
+        crew = Mock(
+            side_effect=[
+                SimpleNamespace(kickoff=lambda: response),
+                SimpleNamespace(kickoff=lambda: "<tool_call> final "),
+            ]
+        )
+        monkeypatch.setattr(system.main, "Crew", crew)
+    
+        def completed(**kwargs):
+            name = kwargs["tool_name"]
+            install(system, name, "def add(): return 3")
+            (system.root / name / f"{name}_tests.py").write_text("import unittest")
+            ledger = system.custom_tools.verification
+            code, tests = ledger.snapshot(name)
+            assert ledger.record(
+                name,
+                code,
+                tests,
+                dict(kind="tests", run=1, failures=0, errors=0, skipped=0, successful=True),
+                isolated=True,
+                exit_code=0,
+            )
+            assert ledger.authorize(name, code, tests, "fixture-contract", frozenset({"add"}))
+    
+        pipeline = Mock(side_effect=completed)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", pipeline)
+>       assert system.main.run_system("add numbers") == "final"
+E       AssertionError: assert 'EXECUTION_NO...ol execution.' == 'final'
+E         
+E         - final
+E         + EXECUTION_NOT_VERIFIED: No current successful isolated tool execution.
+
+tests\unit\test_orchestration.py:116: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:50 event=final_execution_missing session_id=legacy operation_id=defd43d3abc8446da08796fcd041b276 request_id=- error_type=- line=-
+_________ test_manager_and_final_execution_crews_keep_verbose_enabled _________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{57fd41d6-f672-4600-91a7-5f25ce24307d}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002461F7019E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024620A62A50>
+
+    def test_manager_and_final_execution_crews_keep_verbose_enabled(system, monkeypatch):
+        """Check constructor policy only; this fixture does not validate execution."""
+        observed = []
+    
+        def crew(**kwargs):
+            observed.append(kwargs["verbose"])
+            response = (
+                '{"action":"CREATE_TOOL","tool_name":"adder","purpose":"Add"}'
+                if len(observed) == 1
+                else "Final answer"
+            )
+            return SimpleNamespace(kickoff=lambda: response)
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", lambda **kwargs: None)
+        monkeypatch.setattr(system.custom_tools.verification, "is_verified", lambda name: True)
+>       assert system.main.run_system("Add") == "Final answer"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_verbose_activity.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\orchestration.py:185: in run_system
+    result = self._run_system(user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\agentix\orchestration.py:254: in _run_system
+    context = self.verification.acceptance_context(tool_name)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\agentix\verification.py:171: in acceptance_context
+    code, tests = self.snapshot(tool_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+src\agentix\verification.py:40: in snapshot
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{57fd41d6-f672-4600-91a7-5f25ce24307d}/AC/Temp/pytest-of-xpiku/pytest-0/test_manager_and_final_executi0/generated_tools/adder/adder_code.py')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\xpiku\\AppData\\Local\\Packages\\sandbox.{57fd41d6-f672-4600-91a7-5f25ce24307d}\\AC\\Temp\\pytest-of-xpiku\\pytest-0\\test_manager_and_final_executi0\\generated_tools\\adder\\adder_code.py'
+
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1044: FileNotFoundError
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.orchestration:diagnostics.py:50 event=manager_failed session_id=legacy operation_id=c60d5eed329d4bf9901d0feffeacca78 request_id=- error_type=FileNotFoundError line=-
+=========================== short test summary info ===========================
+FAILED tests/unit/test_orchestration.py::test_create_tool_routing[{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}]
+FAILED tests/unit/test_orchestration.py::test_create_tool_routing[```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```]
+FAILED tests/unit/test_orchestration.py::test_create_tool_routing[```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```]
+FAILED tests/unit/test_verbose_activity.py::test_manager_and_final_execution_crews_keep_verbose_enabled
+4 failed, 295 passed, 17 deselected in 14.49s

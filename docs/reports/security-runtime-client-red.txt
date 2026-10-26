@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\unit\test_ui_runtime_isolation.py F                                [100%]
+
+================================== FAILURES ===================================
+____________ test_default_view_creates_independent_runtime_clients ____________
+tests\unit\test_ui_runtime_isolation.py:35: in test_default_view_creates_independent_runtime_clients
+    assert first.controller.run_system('query') != second.controller.run_system('query')
+E   AssertionError: assert 'legacy-client' != 'legacy-client'
+E    +  where 'legacy-client' = <function test_default_view_creates_independent_runtime_clients.<locals>.runtime.<locals>.<lambda> at 0x00000293B90D0A40>('query')
+E    +    where <function test_default_view_creates_independent_runtime_clients.<locals>.runtime.<locals>.<lambda> at 0x00000293B90D0A40> = <agentix.ui.controller.UiController object at 0x00000293B6307450>.run_system
+E    +      where <agentix.ui.controller.UiController object at 0x00000293B6307450> = Session(token='oTITcsaGWu8ZTmi04rXPAqODkjs10HKIg4tLWZ-Oe0k', owner='browser-a', controller=<agentix.ui.controller.UiController object at 0x00000293B6307450>, last_seen=331072.281, session_id='a02d2134903145099ded050f3b3d597e').controller
+E    +  and   'legacy-client' = <function test_default_view_creates_independent_runtime_clients.<locals>.runtime.<locals>.<lambda> at 0x00000293B90D0CC0>('query')
+E    +    where <function test_default_view_creates_independent_runtime_clients.<locals>.runtime.<locals>.<lambda> at 0x00000293B90D0CC0> = <agentix.ui.controller.UiController object at 0x00000293B90A2ED0>.run_system
+E    +      where <agentix.ui.controller.UiController object at 0x00000293B90A2ED0> = Session(token='cS46sqFAtEcg2hUNAt31c2HBisln3qWpuP4FzMOdQG4', owner='browser-b', controller=<agentix.ui.controller.UiController object at 0x00000293B90A2ED0>, last_seen=331072.281, session_id='7fbeeb44fb0f4da6a98d0ae4943b08a2').controller
+=========================== short test summary info ===========================
+FAILED tests/unit/test_ui_runtime_isolation.py::test_default_view_creates_independent_runtime_clients
+============================== 1 failed in 0.23s ==============================

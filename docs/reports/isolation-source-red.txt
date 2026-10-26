@@ -1,0 +1,21 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 19 items
+
+tests\unit\test_pipeline_verification.py ..................F             [100%]
+
+================================== FAILURES ===================================
+____ test_invalid_current_source_never_gains_evidence_from_unrelated_tests ____
+tests\unit\test_pipeline_verification.py:172: in test_invalid_current_source_never_gains_evidence_from_unrelated_tests
+    assert system.custom_tools.run_and_save_tests_tool("adder", unrelated).startswith("TESTS_FAILED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x000002841B0309C0>('TESTS_FAILED:')
+E    +    where <built-in method startswith of str object at 0x000002841B0309C0> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+E    +      where 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n' = run_and_save_tests_tool('adder', 'import unittest\nclass Checks(unittest.TestCase):\n def test_constant(self): self.assertEqual(1,1)\n')
+E    +        where run_and_save_tests_tool = <agentix.tools.ArtifactTools object at 0x000002841B179B90>.run_and_save_tests_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x000002841B179B90> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{ad9dc48d-86fd-4f77-a2d9-a3b296969830}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002841A79B060>).custom_tools
+=========================== short test summary info ===========================
+FAILED tests/unit/test_pipeline_verification.py::test_invalid_current_source_never_gains_evidence_from_unrelated_tests
+======================== 1 failed, 18 passed in 1.73s =========================

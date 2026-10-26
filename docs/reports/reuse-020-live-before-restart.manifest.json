@@ -1,0 +1,9 @@
+{
+  "storage": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-live-durable-020-vnc80mft\\artifacts",
+  "port": 7874,
+  "model": "ollama/qwen3-coder:30b",
+  "pid": 38712,
+  "real_model": true,
+  "native_isolation": true,
+  "manual_approvals": true
+}

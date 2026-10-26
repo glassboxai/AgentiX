@@ -1,0 +1,14 @@
+{
+  "src/agentix/reuse_policy.py": "c6ef587ee26d3b5e6038e573c11dc83a993f5c223cc7098606f0d6ab2e7aab68",
+  "src/agentix/verification.py": "3a7c3b7dc738f25633f8845080a5f479b5a2049855a3f88372513f9ca3cbcfe2",
+  "src/agentix/execution.py": "a6e5745cd14d49db3c69fb66a5e643080f100bdbaa5b2175e0deef84a6536a41",
+  "src/agentix/tools.py": "6aaa66a118d5107bc251662f7641c30c7451cbaf4a0a4a57a2cc862ed7f62767",
+  "src/agentix/orchestration.py": "bcb7493033d9703125780a87e82a683d170b9e39ea37ed1d215fb89137c8caec",
+  "src/agentix/workflow_policy.py": "de5f368b426abd90161b6b81e1aa9db6c0874d44d82a7f5928671ff88ff4cb19",
+  "src/agentix/adapters/crewai.py": "74da0dc5e2ffe1fc2382669340d090010d1c864f638c2744199d129ae1473aac",
+  "tests/unit/test_reviewed_reuse.py": "588c7d2e0ce098a83dbe6b03585fd5ca1656a2712b59f8003902fbb0d0eab157",
+  "tests/e2e/server.py": "a09e08346f1e6f738dc6a6c9621ee2ac0ce3ed329f72a51c258adbbbcb309118",
+  "tests/e2e/test_browser_review.py": "4391c6a1731c557a67bdc298c2d140eb08143afed98675a60194496c13698dfa",
+  "tests/integration/test_windows_isolation.py": "0fa964364cf56c26622ea4ed40248faa2a32f1125bb9f36c687043bc3e1d80f0",
+  "docs/specs/019-reviewed-tool-reuse.md": "841e24ffe8bccaf91b33026837c1e6834fbcab7abc2d2c934899bd33eae41c80"
+}

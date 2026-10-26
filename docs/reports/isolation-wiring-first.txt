@@ -1,0 +1,222 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 209 items / 6 deselected / 203 selected
+
+tests\integration\test_artifact_workflow.py .F                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  7%]
+tests\integration\test_session_workflows.py ....                         [  9%]
+tests\unit\test_app.py ......................                            [ 20%]
+tests\unit\test_approval_identity.py .............                       [ 26%]
+tests\unit\test_cli.py .......                                           [ 30%]
+tests\unit\test_compatibility.py ........                                [ 33%]
+tests\unit\test_composition.py ...                                       [ 35%]
+tests\unit\test_config.py ..                                             [ 36%]
+tests\unit\test_decision_security.py .............F...                   [ 44%]
+tests\unit\test_import_boundaries.py .                                   [ 45%]
+tests\unit\test_orchestration.py ..........FFF...                        [ 53%]
+tests\unit\test_pipeline_verification.py .........                       [ 57%]
+tests\unit\test_sandbox_protocol.py .....                                [ 60%]
+tests\unit\test_security.py ............................................ [ 81%]
+.                                                                        [ 82%]
+tests\unit\test_sessions.py .....                                        [ 84%]
+tests\unit\test_tools.py ............FFFFFFF.FFFFFFF...                  [ 99%]
+tests\unit\test_ui_runtime_isolation.py .                                [100%]
+
+================================== FAILURES ===================================
+______________ test_real_failing_generated_test_creates_incident ______________
+tests\integration\test_artifact_workflow.py:40: in test_real_failing_generated_test_creates_incident
+    assert "AssertionError" in (system.root / "broken" / "broken_tests_incidences.md").read_text()
+E   AssertionError: assert 'AssertionError' in '\n## [2026-10-19 09:59:48] - Isolated Test Verification Failure\n- **Tool Name:** `broken`\n\n### Incidence Details:\n```text\nIsolation unavailable or test input access failed; execution denied.\n```\n\n---\n'
+E    +  where '\n## [2026-10-19 09:59:48] - Isolated Test Verification Failure\n- **Tool Name:** `broken`\n\n### Incidence Details:\n```text\nIsolation unavailable or test input access failed; execution denied.\n```\n\n---\n' = read_text()
+E    +    where read_text = ((WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Temp/pytest-of-xpiku/pytest-0/test_real_failing_generated_te0/generated_tools') / 'broken') / 'broken_tests_incidences.md').read_text
+E    +      where WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Temp/pytest-of-xpiku/pytest-0/test_real_failing_generated_te0/generated_tools') = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E1346D6F20>).root
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.testing:diagnostics.py:49 event=generated_test_runner_failed session_id=legacy operation_id=- request_id=- error_type=FileNotFoundError line=-
+WARNING  agentix.testing:diagnostics.py:49 event=generated_tests_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+_______________ test_execution_exception_payload_is_not_logged ________________
+tests\unit\test_decision_security.py:53: in test_execution_exception_payload_is_not_logged
+    assert "Execution Error:" in system.custom_tools.execute_generated_tool_tool("safe", "run")
+E   assert 'Execution Error:' in "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first."
+E    +  where "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first." = execute_generated_tool_tool('safe', 'run')
+E    +    where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000001E13518C750>.execute_generated_tool_tool
+E    +      where <agentix.tools.ArtifactTools object at 0x000001E13518C750> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E1346D6F20>).custom_tools
+------------------------------ Captured log call ------------------------------
+DEBUG    agentix.paths:diagnostics.py:49 event=artifact_path_validated session_id=legacy operation_id=- request_id=- error_type=- line=-
+DEBUG    agentix.paths:diagnostics.py:49 event=artifact_path_validated session_id=legacy operation_id=- request_id=- error_type=- line=-
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+_ test_create_tool_routing[{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}] _
+tests\unit\test_orchestration.py:99: in test_create_tool_routing
+    assert system.main.run_system("add numbers") == "final"
+E   AssertionError: assert 'PIPELINE_NOT...est evidence.' == 'final'
+E     
+E     - final
+E     + PIPELINE_NOT_VERIFIED: No current successful isolated test evidence.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:49 event=tool_pipeline_not_verified session_id=legacy operation_id=50baa1f91e2b465e8f0c825957ef21ff request_id=- error_type=- line=-
+_ test_create_tool_routing[```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```] _
+tests\unit\test_orchestration.py:99: in test_create_tool_routing
+    assert system.main.run_system("add numbers") == "final"
+E   AssertionError: assert 'PIPELINE_NOT...est evidence.' == 'final'
+E     
+E     - final
+E     + PIPELINE_NOT_VERIFIED: No current successful isolated test evidence.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:49 event=tool_pipeline_not_verified session_id=legacy operation_id=e6103f0e42654529beecbcf32f0c4c76 request_id=- error_type=- line=-
+_ test_create_tool_routing[```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```] _
+tests\unit\test_orchestration.py:99: in test_create_tool_routing
+    assert system.main.run_system("add numbers") == "final"
+E   AssertionError: assert 'PIPELINE_NOT...est evidence.' == 'final'
+E     
+E     - final
+E     + PIPELINE_NOT_VERIFIED: No current successful isolated test evidence.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:49 event=tool_pipeline_not_verified session_id=legacy operation_id=8b8a2e0f4f004d5b88f3d424c0adccf6 request_id=- error_type=- line=-
+____________________ test_execute_function_arguments[{}-3] ____________________
+tests\unit\test_tools.py:86: in test_execute_function_arguments
+    assert (
+E   AssertionError: assert 'TOOL_NOT_VER...ration first.' == 'Tool Execution Result: 3'
+E     
+E     - Tool Execution Result: 3
+E     + TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+____________ test_execute_function_arguments[{"a": 5, "b": 7}-12] _____________
+tests\unit\test_tools.py:86: in test_execute_function_arguments
+    assert (
+E   AssertionError: assert 'TOOL_NOT_VER...ration first.' == 'Tool Execution Result: 12'
+E     
+E     - Tool Execution Result: 12
+E     + TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+_____________________ test_execute_function_arguments[-3] _____________________
+tests\unit\test_tools.py:86: in test_execute_function_arguments
+    assert (
+E   AssertionError: assert 'TOOL_NOT_VER...ration first.' == 'Tool Execution Result: 3'
+E     
+E     - Tool Execution Result: 3
+E     + TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+____________________ test_execute_function_arguments[''-3] ____________________
+tests\unit\test_tools.py:86: in test_execute_function_arguments
+    assert (
+E   AssertionError: assert 'TOOL_NOT_VER...ration first.' == 'Tool Execution Result: 3'
+E     
+E     - Tool Execution Result: 3
+E     + TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+____________________ test_execute_function_arguments[""-3] ____________________
+tests\unit\test_tools.py:86: in test_execute_function_arguments
+    assert (
+E   AssertionError: assert 'TOOL_NOT_VER...ration first.' == 'Tool Execution Result: 3'
+E     
+E     - Tool Execution Result: 3
+E     + TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+__________________________ test_execute_missing_file __________________________
+tests\unit\test_tools.py:93: in test_execute_missing_file
+    assert "Tool code file not found" in system.custom_tools.execute_generated_tool_tool(
+E   assert 'Tool code file not found' in "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first."
+E    +  where "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first." = execute_generated_tool_tool('missing', 'add')
+E    +    where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000001E1352437D0>.execute_generated_tool_tool
+E    +      where <agentix.tools.ArtifactTools object at 0x000001E1352437D0> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E1346D6F20>).custom_tools
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+____________ test_execute_unknown_function_lists_public_functions _____________
+tests\unit\test_tools.py:101: in test_execute_unknown_function_lists_public_functions
+    assert "['add']" in result
+E   assert "['add']" in "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first."
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+_ test_execute_errors_are_reported[def add(): raise ValueError("bad value")-{}] _
+tests\unit\test_tools.py:121: in test_execute_errors_are_reported
+    assert system.custom_tools.execute_generated_tool_tool("adder", "add", kwargs).startswith(
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x000001E1346CA3B0>('Execution Error:')
+E    +    where <built-in method startswith of str object at 0x000001E1346CA3B0> = "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.".startswith
+E    +      where "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first." = execute_generated_tool_tool('adder', 'add', '{}')
+E    +        where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000001E13525C410>.execute_generated_tool_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x000001E13525C410> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E1346D6F20>).custom_tools
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+__________ test_execute_errors_are_reported[def add(a): return a-{}] __________
+tests\unit\test_tools.py:121: in test_execute_errors_are_reported
+    assert system.custom_tools.execute_generated_tool_tool("adder", "add", kwargs).startswith(
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x000001E1346CA3B0>('Execution Error:')
+E    +    where <built-in method startswith of str object at 0x000001E1346CA3B0> = "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.".startswith
+E    +      where "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first." = execute_generated_tool_tool('adder', 'add', '{}')
+E    +        where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000001E1351F3E50>.execute_generated_tool_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x000001E1351F3E50> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E1346D6F20>).custom_tools
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:49 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+__________ test_execute_errors_are_reported[def add(): return 1-[]] ___________
+tests\unit\test_tools.py:121: in test_execute_errors_are_reported
+    assert system.custom_tools.execute_generated_tool_tool("adder", "add", kwargs).startswith(
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x000001E13522CC70>('Execution Error:')
+E    +    where <built-in method startswith of str object at 0x000001E13522CC70> = 'Error parsing kwargs_json: Arguments must be a JSON object'.startswith
+E    +      where 'Error parsing kwargs_json: Arguments must be a JSON object' = execute_generated_tool_tool('adder', 'add', '[]')
+E    +        where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000001E1351B5950>.execute_generated_tool_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x000001E1351B5950> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{df856d47-ab24-4e2e-ab37-23eb5690cfcb}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E1346D6F20>).custom_tools
+_____________ test_test_runner_captures_results[0-TESTS_PASSED:] ______________
+tests\unit\test_tools.py:134: in test_test_runner_captures_results
+    assert result.startswith(prefix)
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x000001E1351FD470>('TESTS_PASSED:')
+E    +    where <built-in method startswith of str object at 0x000001E1351FD470> = 'TESTS_FAILED: Isolation unavailable or test input access failed; execution denied.'.startswith
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.testing:diagnostics.py:49 event=generated_test_runner_failed session_id=legacy operation_id=- request_id=- error_type=FileNotFoundError line=-
+WARNING  agentix.testing:diagnostics.py:49 event=generated_tests_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+_____________ test_test_runner_captures_results[1-TESTS_FAILED:] ______________
+tests\unit\test_tools.py:135: in test_test_runner_captures_results
+    assert "output" in result and "detail" in result
+E   AssertionError: assert ('output' in 'TESTS_FAILED: Isolation unavailable or test input access failed; execution denied.')
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.testing:diagnostics.py:49 event=generated_test_runner_failed session_id=legacy operation_id=- request_id=- error_type=FileNotFoundError line=-
+WARNING  agentix.testing:diagnostics.py:49 event=generated_tests_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+___________ test_runner_failure_records_incident[error0-timed out] ____________
+tests\unit\test_tools.py:154: in test_runner_failure_records_incident
+    assert result.startswith("TESTS_FAILED:") and expected in result
+E   AssertionError: assert (True and 'timed out' in 'TESTS_FAILED: Isolation unavailable or test input access failed; execution denied.')
+E    +  where True = <built-in method startswith of str object at 0x000001E1351FD7D0>('TESTS_FAILED:')
+E    +    where <built-in method startswith of str object at 0x000001E1351FD7D0> = 'TESTS_FAILED: Isolation unavailable or test input access failed; execution denied.'.startswith
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.testing:diagnostics.py:49 event=generated_test_runner_failed session_id=legacy operation_id=- request_id=- error_type=FileNotFoundError line=-
+WARNING  agentix.testing:diagnostics.py:49 event=generated_tests_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+__________ test_runner_failure_records_incident[error1-cannot spawn] __________
+tests\unit\test_tools.py:154: in test_runner_failure_records_incident
+    assert result.startswith("TESTS_FAILED:") and expected in result
+E   AssertionError: assert (True and 'cannot spawn' in 'TESTS_FAILED: Isolation unavailable or test input access failed; execution denied.')
+E    +  where True = <built-in method startswith of str object at 0x000001E1351FD860>('TESTS_FAILED:')
+E    +    where <built-in method startswith of str object at 0x000001E1351FD860> = 'TESTS_FAILED: Isolation unavailable or test input access failed; execution denied.'.startswith
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.testing:diagnostics.py:49 event=generated_test_runner_failed session_id=legacy operation_id=- request_id=- error_type=FileNotFoundError line=-
+WARNING  agentix.testing:diagnostics.py:49 event=generated_tests_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+=========================== short test summary info ===========================
+FAILED tests/integration/test_artifact_workflow.py::test_real_failing_generated_test_creates_incident
+FAILED tests/unit/test_decision_security.py::test_execution_exception_payload_is_not_logged
+FAILED tests/unit/test_orchestration.py::test_create_tool_routing[{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}]
+FAILED tests/unit/test_orchestration.py::test_create_tool_routing[```json\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```]
+FAILED tests/unit/test_orchestration.py::test_create_tool_routing[```\n{"action":"CREATE_TOOL","tool_name":"my_adder","purpose":"addition"}\n```]
+FAILED tests/unit/test_tools.py::test_execute_function_arguments[{}-3] - Asse...
+FAILED tests/unit/test_tools.py::test_execute_function_arguments[{"a": 5, "b": 7}-12]
+FAILED tests/unit/test_tools.py::test_execute_function_arguments[-3] - Assert...
+FAILED tests/unit/test_tools.py::test_execute_function_arguments[''-3] - Asse...
+FAILED tests/unit/test_tools.py::test_execute_function_arguments[""-3] - Asse...
+FAILED tests/unit/test_tools.py::test_execute_missing_file - assert 'Tool cod...
+FAILED tests/unit/test_tools.py::test_execute_unknown_function_lists_public_functions
+FAILED tests/unit/test_tools.py::test_execute_errors_are_reported[def add(): raise ValueError("bad value")-{}]
+FAILED tests/unit/test_tools.py::test_execute_errors_are_reported[def add(a): return a-{}]
+FAILED tests/unit/test_tools.py::test_execute_errors_are_reported[def add(): return 1-[]]
+FAILED tests/unit/test_tools.py::test_test_runner_captures_results[0-TESTS_PASSED:]
+FAILED tests/unit/test_tools.py::test_test_runner_captures_results[1-TESTS_FAILED:]
+FAILED tests/unit/test_tools.py::test_runner_failure_records_incident[error0-timed out]
+FAILED tests/unit/test_tools.py::test_runner_failure_records_incident[error1-cannot spawn]
+================ 19 failed, 184 passed, 6 deselected in 3.65s =================

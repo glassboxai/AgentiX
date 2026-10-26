@@ -1,0 +1,32 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_ test_durable_reuse_survives_reload_other_browser_restart_and_detects_drift __
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:56559', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-467/agentix-browser0/artifacts'), <function server.<locals>.restart at 0x0000021D5D236AC0>)
+
+    def test_durable_reuse_survives_reload_other_browser_restart_and_detects_drift(browser, server):
+        """Use actual GUI approval and native protected storage across runtime loss."""
+        from playwright.sync_api import expect
+    
+        context, other_context = browser.new_context(), browser.new_context()
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            page.get_by_role("checkbox", name="Auto-approve file writes for this session").check()
+            submit(page, "durable create")
+            editor = page.get_by_role("textbox", name=EDITOR)
+            expect(editor).to_be_visible(timeout=15000)
+            assert json.loads(editor.input_value())["cases"][0]["expect"]["value"] == 12
+>           expect(page.get_by_text("Approval will be remembered for future sessions", exact=False)).to_be_visible()
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 5000ms
+E             - waiting for get_by_text("Approval will be remembered for future sessions")
+
+tests\e2e\test_browser_review.py:578: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_durable_reuse_survives_reload_other_browser_restart_and_detects_drift
+1 failed, 11 deselected in 20.58s

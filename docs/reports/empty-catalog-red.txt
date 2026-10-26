@@ -1,0 +1,29 @@
+.....F                                                                   [100%]
+================================== FAILURES ===================================
+__ test_empty_catalog_manager_has_no_tools_but_execution_manager_keeps_them ___
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{cdd67a84-151f-4481-8534-ce2efbedc368}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E074EED940>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001E075F55A90>
+
+    def test_empty_catalog_manager_has_no_tools_but_execution_manager_keeps_them(system, monkeypatch):
+        """Catch prompts that forbid guessed verification but still expose its tool."""
+        from types import SimpleNamespace
+    
+        assigned = []
+    
+        def crew(**kwargs):
+            assigned.append(kwargs["tasks"][0].agent)
+            return SimpleNamespace(kickoff=lambda: "Plain conversation")
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+        assert system.main.run_system("hello") == "Plain conversation"
+>       assert assigned[0].tools == []
+E       assert [<function Ar...01E075F337E0>] == []
+E         
+E         Left contains 4 more items, first extra item: <function ArtifactTools.verify_existing_tool_tool at 0x000001E075F32F20>
+E         Use -v to get more diff
+
+tests\unit\test_agent_workflow_policy.py:41: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_agent_workflow_policy.py::test_empty_catalog_manager_has_no_tools_but_execution_manager_keeps_them
+1 failed, 5 passed in 0.41s

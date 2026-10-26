@@ -1,0 +1,69 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, platformdirs-4.13.5
+collected 378 items / 19 deselected / 359 selected
+
+tests\integration\test_artifact_workflow.py ..                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  4%]
+tests\integration\test_session_workflows.py ....                         [  5%]
+tests\unit\test_acceptance_ui.py ...                                     [  6%]
+tests\unit\test_agent_workflow_policy.py ......                          [  7%]
+tests\unit\test_app.py ......................                            [ 13%]
+tests\unit\test_approval_identity.py .............                       [ 17%]
+tests\unit\test_cli.py .......                                           [ 19%]
+tests\unit\test_cli_review.py ............                               [ 22%]
+tests\unit\test_compatibility.py ........                                [ 25%]
+tests\unit\test_composition.py ...                                       [ 25%]
+tests\unit\test_config.py ..                                             [ 26%]
+tests\unit\test_creation_stage_gates.py ..........                       [ 29%]
+tests\unit\test_decision_security.py .................                   [ 33%]
+tests\unit\test_execution_handoff.py ...........                         [ 37%]
+tests\unit\test_human_acceptance.py .................................... [ 47%]
+...                                                                      [ 47%]
+tests\unit\test_iac.py .....................................             [ 58%]
+tests\unit\test_import_boundaries.py .                                   [ 58%]
+tests\unit\test_live_review_findings.py .                                [ 58%]
+tests\unit\test_orchestration.py ................                        [ 63%]
+tests\unit\test_pipeline_verification.py ...................             [ 68%]
+tests\unit\test_presentation.py .........                                [ 71%]
+tests\unit\test_reference_freshness.py ...                               [ 71%]
+tests\unit\test_sandbox_protocol.py ......                               [ 73%]
+tests\unit\test_security.py ............................................ [ 85%]
+.                                                                        [ 86%]
+tests\unit\test_sessions.py .....                                        [ 87%]
+tests\unit\test_stage_completion_adapter.py ..                           [ 88%]
+tests\unit\test_tools.py .............................                   [ 96%]
+tests\unit\test_ui_runtime_isolation.py .                                [ 96%]
+tests\unit\test_v3_quality.py ...                                        [ 97%]
+tests\unit\test_verbose_activity.py ..........                           [100%]
+
+============================== warnings summary ===============================
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:425: DeprecationWarning: function_calling_llm is deprecated and will be removed in a future release.
+    if self.function_calling_llm and not isinstance(
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:433: DeprecationWarning: deprecated
+    if self.allow_code_execution:
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:444: DeprecationWarning: deprecated
+    if self.reasoning and self.planning_config is None:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============== 359 passed, 19 deselected, 15 warnings in 33.75s ===============

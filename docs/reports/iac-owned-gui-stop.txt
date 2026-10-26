@@ -1,0 +1,1 @@
+Correcto: se terminó el proceso con PID 21116.

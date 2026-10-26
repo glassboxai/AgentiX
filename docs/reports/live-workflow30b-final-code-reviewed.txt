@@ -1,0 +1,42 @@
+def tiered_energy_bill(kwh: int) -> int:
+    """
+    Calculate electricity bill based on tiered pricing structure.
+    
+    Args:
+        kwh (int): Electricity consumption in kilowatt-hours
+        
+    Returns:
+        int: Total cost in cents
+        
+    Raises:
+        ValueError: If input is not a non-negative integer
+    """
+    # Validate input type and value
+    if not isinstance(kwh, int):
+        raise ValueError("Input must be an integer")
+        
+    if kwh < 0:
+        raise ValueError("Input must be non-negative")
+    
+    # Calculate bill based on tiers
+    if kwh <= 100:
+        # First 100 kWh at 12 cents/kWh
+        return kwh * 12
+    elif kwh <= 200:
+        # First 100 kWh at 12 cents/kWh, next (kwh-100) at 18 cents/kWh
+        return 100 * 12 + (kwh - 100) * 18
+    else:
+        # First 100 kWh at 12 cents/kWh, next 100 at 18 cents/kWh, 
+        # remaining (kwh-200) at 25 cents/kWh
+        return 100 * 12 + 100 * 18 + (kwh - 200) * 25
+
+# Test the function with the example case
+if __name__ == "__main__":
+    # Test with 250 kWh as specified in requirements
+    result = tiered_energy_bill(250)
+    print(f"Cost for 250 kWh: {result} cents")
+    
+    # Additional test cases
+    print(f"Cost for 50 kWh: {tiered_energy_bill(50)} cents")
+    print(f"Cost for 150 kWh: {tiered_energy_bill(150)} cents")
+    print(f"Cost for 0 kWh: {tiered_energy_bill(0)} cents")

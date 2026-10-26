@@ -1,0 +1,52 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 15 items / 14 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+__________ test_inventory_fingerprint_accepts_adapted_empty_scalars ___________
+
+    def test_inventory_fingerprint_accepts_adapted_empty_scalars():
+        """IAC-ERR-001: observed process/JSON scalar wrappers must hash without property errors."""
+>       result = powershell("$x=Test-Path -LiteralPath 'does-not-exist-iac-fixture'; Get-IacDigest @{owned=$x;items=@()} | ConvertTo-Json")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_iac.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$x=Test-Path -LiteralPath 'does-not-exist-iac-fixture'; Get-IacDigest @{owned=$x;items=@()} | ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; function New-IacFixtureState { param($Config) "
+            + "@{python=@{version=$Config.pythonVersion;path='fixture';hash='x'};"
+            + "ollama=@{version=$Config.ollamaVersion;path='fixture';hash='x'};"
+            + "dsc=@{version=$Config.dscVersion;path='fixture';hash='x'};"
+            + "environment=@{present=$true};launchers=@{present=$true};"
+            + "model=@{present=$true;server=$true;digest=$Config.modelDigest;version=$Config.ollamaVersion};portFree=$true}}; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: InvalidOperation: The property 'Name' cannot be found on this object. Verify that the property exists.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...='', stderr="InvalidOperation: The property 'Name' cannot be found on this object. Verify that the property exists.\n").returncode
+
+tests\unit\test_iac.py:38: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_inventory_fingerprint_accepts_adapted_empty_scalars
+====================== 1 failed, 14 deselected in 0.63s =======================

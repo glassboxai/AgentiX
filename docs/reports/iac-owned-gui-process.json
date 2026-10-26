@@ -1,0 +1,7 @@
+{
+  "startedUtc": "2026-10-24T09:18:28.7699161Z",
+  "action": "LaunchGui",
+  "port": 7873,
+  "entry": "D:\\AI\\AgentiX_v3\\infra\\Invoke-AgentiXIac.ps1",
+  "pid": 20240
+}

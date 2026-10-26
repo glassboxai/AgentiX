@@ -1,0 +1,49 @@
+........................................................................ [ 16%]
+........................................................................ [ 32%]
+........................................................................ [ 48%]
+........................................................................ [ 65%]
+......F................................................................. [ 81%]
+........................................................................ [ 97%]
+..........                                                               [100%]
+================================== FAILURES ===================================
+______________________ test_release_reference_is_current ______________________
+
+    def test_release_reference_is_current():
+        """Fail the offline suite whenever source and maintained reference diverge."""
+        root = Path(__file__).resolve().parents[2]
+>       assert build_documents(root, check=True) == []
+E       AssertionError: assert ['src__agenti...licy.md', ...] == []
+E         
+E         Left contains 8 more items, first extra item: 'src__agentix__execution.md'
+E         Use -v to get more diff
+
+tests\unit\test_reference_freshness.py:49: AssertionError
+============================== warnings summary ===============================
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:425: DeprecationWarning: function_calling_llm is deprecated and will be removed in a future release.
+    if self.function_calling_llm and not isinstance(
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:433: DeprecationWarning: deprecated
+    if self.allow_code_execution:
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:444: DeprecationWarning: deprecated
+    if self.reasoning and self.planning_config is None:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/unit/test_reference_freshness.py::test_release_reference_is_current
+1 failed, 441 passed, 27 deselected, 15 warnings in 43.13s

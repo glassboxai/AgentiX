@@ -1,0 +1,119 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 6 items
+
+tests\unit\test_creation_stage_gates.py FFFFFF                           [100%]
+
+================================== FAILURES ===================================
+________________ test_missing_specification_stops_before_coder ________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EE2008E490>
+
+    def test_missing_specification_stops_before_coder(system, monkeypatch):
+        seen = install_backend(system, monkeypatch, [lambda task: None])
+        result = system.main.build_tool_pipeline("adder", "reject booleans")
+>       assert "PIPELINE_STAGE_FAILED: specification" in result
+E       AssertionError: assert 'PIPELINE_STAGE_FAILED: specification' in 'Model completion claim'
+
+tests\unit\test_creation_stage_gates.py:32: AssertionError
+____________________ test_missing_code_stops_before_tester ____________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EE2007DAD0>
+
+    def test_missing_code_stops_before_tester(system, monkeypatch):
+        seen = install_backend(system, monkeypatch, [lambda task: save(system, "specifications.md", "Approved spec"), lambda task: None])
+        result = system.main.build_tool_pipeline("adder", "original requirement")
+>       assert "PIPELINE_STAGE_FAILED: code" in result
+E       AssertionError: assert 'PIPELINE_STAGE_FAILED: code' in 'Model completion claim'
+
+tests\unit\test_creation_stage_gates.py:39: AssertionError
+______ test_existing_or_unapproved_artifact_cannot_complete_stage[False] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EE20068F10>
+untrusted_file = False
+
+    @pytest.mark.parametrize("untrusted_file", [False, True])
+    def test_existing_or_unapproved_artifact_cannot_complete_stage(system, monkeypatch, untrusted_file):
+        if untrusted_file:
+            folder = system.root / "adder"
+            folder.mkdir(parents=True)
+            (folder / "adder_specifications.md").write_text("unapproved", encoding="utf-8")
+        else:
+            system.security.auto_approve = True
+            save(system, "specifications.md", "approved in an earlier stage")
+        seen = install_backend(system, monkeypatch, [lambda task: None])
+>       assert "PIPELINE_STAGE_FAILED: specification" in system.main.build_tool_pipeline("adder", "query")
+E       AssertionError: assert 'PIPELINE_STAGE_FAILED: specification' in 'Model completion claim'
+E        +  where 'Model completion claim' = build_tool_pipeline('adder', 'query')
+E        +    where build_tool_pipeline = <agentix.orchestration.Orchestrator object at 0x000001EE200692D0>.build_tool_pipeline
+E        +      where <agentix.orchestration.Orchestrator object at 0x000001EE200692D0> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>).main
+
+tests\unit\test_creation_stage_gates.py:53: AssertionError
+______ test_existing_or_unapproved_artifact_cannot_complete_stage[True] _______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EE2007F190>
+untrusted_file = True
+
+    @pytest.mark.parametrize("untrusted_file", [False, True])
+    def test_existing_or_unapproved_artifact_cannot_complete_stage(system, monkeypatch, untrusted_file):
+        if untrusted_file:
+            folder = system.root / "adder"
+            folder.mkdir(parents=True)
+            (folder / "adder_specifications.md").write_text("unapproved", encoding="utf-8")
+        else:
+            system.security.auto_approve = True
+            save(system, "specifications.md", "approved in an earlier stage")
+        seen = install_backend(system, monkeypatch, [lambda task: None])
+>       assert "PIPELINE_STAGE_FAILED: specification" in system.main.build_tool_pipeline("adder", "query")
+E       AssertionError: assert 'PIPELINE_STAGE_FAILED: specification' in 'Model completion claim'
+E        +  where 'Model completion claim' = build_tool_pipeline('adder', 'query')
+E        +    where build_tool_pipeline = <agentix.orchestration.Orchestrator object at 0x000001EE2000CCD0>.build_tool_pipeline
+E        +      where <agentix.orchestration.Orchestrator object at 0x000001EE2000CCD0> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>).main
+
+tests\unit\test_creation_stage_gates.py:53: AssertionError
+_________ test_stage_context_uses_saved_edits_instead_of_model_claim __________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EE2008C590>
+
+    def test_stage_context_uses_saved_edits_instead_of_model_claim(system, monkeypatch):
+        original = "Reject bool and float; require exact integer results."
+        seen = install_backend(system, monkeypatch, [lambda task: save(system, "specifications.md", "Human edited contract"), lambda task: save(system, "code.py", "def adder(kwh): return 3"), lambda task: None])
+        result = system.main.build_tool_pipeline("adder", original)
+>       assert len(seen) == 3
+E       assert 1 == 3
+E        +  where 1 = len(["User Requirement: 'Reject bool and float; require exact integer results.'.\n1. Design software specifications for to..._specifications.md'.\n4. If any ambiguity or design hurdle occurred, document it using 'Log Architectural Incidence'."])
+
+tests\unit\test_creation_stage_gates.py:61: AssertionError
+_______________ test_changed_saved_bytes_cannot_complete_stage ________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EE20034550>
+
+    def test_changed_saved_bytes_cannot_complete_stage(system, monkeypatch):
+        def tamper(task):
+            save(system, "specifications.md", "approved")
+            (system.root / "adder" / "adder_specifications.md").write_text("replaced", encoding="utf-8")
+        seen = install_backend(system, monkeypatch, [tamper])
+>       assert "PIPELINE_STAGE_FAILED: specification" in system.main.build_tool_pipeline("adder", "query")
+E       AssertionError: assert 'PIPELINE_STAGE_FAILED: specification' in 'Model completion claim'
+E        +  where 'Model completion claim' = build_tool_pipeline('adder', 'query')
+E        +    where build_tool_pipeline = <agentix.orchestration.Orchestrator object at 0x000001EE20036550>.build_tool_pipeline
+E        +      where <agentix.orchestration.Orchestrator object at 0x000001EE20036550> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{2854633e-c74a-45d6-8cca-8f22b3741663}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001EE1EFD0FE0>).main
+
+tests\unit\test_creation_stage_gates.py:73: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_creation_stage_gates.py::test_missing_specification_stops_before_coder
+FAILED tests/unit/test_creation_stage_gates.py::test_missing_code_stops_before_tester
+FAILED tests/unit/test_creation_stage_gates.py::test_existing_or_unapproved_artifact_cannot_complete_stage[False]
+FAILED tests/unit/test_creation_stage_gates.py::test_existing_or_unapproved_artifact_cannot_complete_stage[True]
+FAILED tests/unit/test_creation_stage_gates.py::test_stage_context_uses_saved_edits_instead_of_model_claim
+FAILED tests/unit/test_creation_stage_gates.py::test_changed_saved_bytes_cannot_complete_stage
+============================== 6 failed in 0.50s ==============================

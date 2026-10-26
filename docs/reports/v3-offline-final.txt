@@ -1,0 +1,42 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 341 items / 19 deselected / 322 selected
+
+tests\integration\test_artifact_workflow.py ..                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  4%]
+tests\integration\test_session_workflows.py ....                         [  5%]
+tests\unit\test_acceptance_ui.py ...                                     [  6%]
+tests\unit\test_agent_workflow_policy.py ......                          [  8%]
+tests\unit\test_app.py ......................                            [ 15%]
+tests\unit\test_approval_identity.py .............                       [ 19%]
+tests\unit\test_cli.py .......                                           [ 21%]
+tests\unit\test_cli_review.py ............                               [ 25%]
+tests\unit\test_compatibility.py ........                                [ 27%]
+tests\unit\test_composition.py ...                                       [ 28%]
+tests\unit\test_config.py ..                                             [ 29%]
+tests\unit\test_creation_stage_gates.py ..........                       [ 32%]
+tests\unit\test_decision_security.py .................                   [ 37%]
+tests\unit\test_execution_handoff.py ...........                         [ 41%]
+tests\unit\test_human_acceptance.py .................................... [ 52%]
+...                                                                      [ 53%]
+tests\unit\test_import_boundaries.py .                                   [ 53%]
+tests\unit\test_live_review_findings.py .                                [ 54%]
+tests\unit\test_orchestration.py ................                        [ 59%]
+tests\unit\test_pipeline_verification.py ...................             [ 64%]
+tests\unit\test_presentation.py .........                                [ 67%]
+tests\unit\test_reference_freshness.py ...                               [ 68%]
+tests\unit\test_sandbox_protocol.py ......                               [ 70%]
+tests\unit\test_security.py ............................................ [ 84%]
+.                                                                        [ 84%]
+tests\unit\test_sessions.py .....                                        [ 86%]
+tests\unit\test_stage_completion_adapter.py ..                           [ 86%]
+tests\unit\test_tools.py .............................                   [ 95%]
+tests\unit\test_ui_runtime_isolation.py .                                [ 95%]
+tests\unit\test_v3_quality.py ...                                        [ 96%]
+tests\unit\test_verbose_activity.py ..........                           [100%]
+
+===================== 322 passed, 19 deselected in 22.86s =====================

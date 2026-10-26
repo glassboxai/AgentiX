@@ -1,0 +1,34 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_______ test_reviewed_specification_and_code_saves_end_the_agent_stage ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6fb7df62-2e8f-4ed7-967d-8ab9ab55e586}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001FB966FDA80>)
+
+    def test_reviewed_specification_and_code_saves_end_the_agent_stage(system):
+        """Catch an adapter that asks the model again after the approved stage result."""
+        registered = register_tools(
+            system.custom_tools,
+            decorator=lambda name: lambda fn: SimpleNamespace(run=fn, result_as_answer=False),
+        )
+        assert registered.save_specifications_tool.result_as_answer is True
+        assert registered.compile_and_save_code_tool.result_as_answer is True
+>       assert registered.execute_generated_tool_tool.result_as_answer is True
+E       assert False is True
+E        +  where False = namespace(run=<function ArtifactTools.execute_generated_tool_tool at 0x000001FB96763380>, result_as_answer=False).result_as_answer
+E        +    where namespace(run=<function ArtifactTools.execute_generated_tool_tool at 0x000001FB96763380>, result_as_answer=False) = namespace(save_specifications_tool=namespace(run=<function ArtifactTools.save_specifications_tool at 0x000001FB96762FC...ool=namespace(run=<function ArtifactTools.submit_acceptance_cases_tool at 0x000001FB967634C0>, result_as_answer=False)).execute_generated_tool_tool
+
+tests\unit\test_stage_completion_adapter.py:16: AssertionError
+___ test_qa_finishes_on_acceptance_but_reuse_manager_continues_to_execution ___
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6fb7df62-2e8f-4ed7-967d-8ab9ab55e586}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001FB966FDA80>)
+
+    def test_qa_finishes_on_acceptance_but_reuse_manager_continues_to_execution(system):
+>       assert getattr(system.main.tester_agent.tools[1], "result_as_answer", False) is True
+E       AssertionError: assert False is True
+E        +  where False = getattr(<function ArtifactTools.submit_acceptance_cases_tool at 0x000001FB967F6980>, 'result_as_answer', False)
+
+tests\unit\test_stage_completion_adapter.py:24: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_stage_completion_adapter.py::test_reviewed_specification_and_code_saves_end_the_agent_stage
+FAILED tests/unit/test_stage_completion_adapter.py::test_qa_finishes_on_acceptance_but_reuse_manager_continues_to_execution
+2 failed in 0.39s

@@ -1,0 +1,11 @@
+0.0s
+Conversation
+
+A shop offers a 10% discount on purchases of at least 100 euros and no discount below that. Please calculate the final price for a purchase of 150 euros.
+
+Agent Thoughts & Activity (Click to expand)
+Result
+
+135.0
+
+Execution details

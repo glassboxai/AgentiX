@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-24",
+  "requested_model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "scope": "engineering report prose only",
+  "result": "failed: local connection refused (WinError 10061)",
+  "evidence": "model-report-draft-attempt.txt",
+  "fallback": "Manually authored English report, checked against raw evidence; no remote report service used."
+}

@@ -1,0 +1,7 @@
+import unittest
+from tiered_energy_bill_code import tiered_energy_bill
+class ReviewRegression(unittest.TestCase):
+ def test_true_rejected(self):
+  with self.assertRaises(ValueError): tiered_energy_bill(True)
+ def test_false_rejected(self):
+  with self.assertRaises(ValueError): tiered_energy_bill(False)

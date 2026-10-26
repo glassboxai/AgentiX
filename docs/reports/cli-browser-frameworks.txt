@@ -1,0 +1,13 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 278 items / 275 deselected / 3 selected
+
+tests\integration\test_framework_adapters.py .                           [ 33%]
+tests\integration\test_gradio_acceptance.py .                            [ 66%]
+tests\integration\test_gradio_session_routing.py .                       [100%]
+
+===================== 3 passed, 275 deselected in 25.93s ======================

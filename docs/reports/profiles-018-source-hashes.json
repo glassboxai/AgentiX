@@ -1,0 +1,12 @@
+{
+  "src/agentix/profile_errors.py": "74dc0c01372b5dc8c56a71cb75bdc16fdeb08bd56a43926669c5c5309a80637c",
+  "src/agentix/profile_store.py": "21f3361cf68c5fb3595e03361b45e5365e63561e0fc17a976fd3d0378099c67c",
+  "src/agentix/credentials.py": "31e5d34f50a2eb83c7396cf7bb259a72912c1e17f6d17e920eeca59d5bf5405c",
+  "src/agentix/model_profiles.py": "91ed13b9a785423ee9d2f5b562a959397cb21c5c1a24a0dbe31a8d9351fe0392",
+  "src/agentix/ui/controller.py": "d5d1f694ffed39c62554e63083fbfcbba1b67a2e15bd095bb8a6b2453c70cc4e",
+  "src/agentix/ui/view.py": "3ec1a30f08437eab752c34ba03ada2bbba0eb5836d551e2369c153ce3c16d391",
+  "tests/unit/test_saved_model_profiles.py": "e9922de83ec3dd330f5639207fc54cbc1b79eaad79026c8823b59e3fc6fdf108",
+  "tests/e2e/test_browser_review.py": "b742b0b788616ada6d70697f94854e992e9dffa5fe741750b9c76913b0ddabdb",
+  "tests/e2e/server.py": "5f119f0ace559b32357458b7ac3187b96d07458f8ad58ce9e3810e0f2f4add15",
+  "tests/integration/test_gradio_native_profiles.py": "ad7608e2e023dbde378e51d9a68926e24a6da1dd2183b952597708d9a3a4e372"
+}

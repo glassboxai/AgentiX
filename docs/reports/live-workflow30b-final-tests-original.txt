@@ -1,0 +1,61 @@
+import unittest
+from tiered_energy_bill_code import tiered_energy_bill
+
+class TestTieredEnergyBill(unittest.TestCase):
+    
+    def test_first_tier(self):
+        """Test consumption up to 100 kWh at 12 cents/kWh"""
+        self.assertEqual(tiered_energy_bill(0), 0)
+        self.assertEqual(tiered_energy_bill(50), 600)
+        self.assertEqual(tiered_energy_bill(100), 1200)
+    
+    def test_second_tier(self):
+        """Test consumption from 101-200 kWh at 18 cents/kWh"""
+        self.assertEqual(tiered_energy_bill(101), 1200 + 18)
+        self.assertEqual(tiered_energy_bill(150), 1200 + 50 * 18)
+        self.assertEqual(tiered_energy_bill(200), 1200 + 100 * 18)
+    
+    def test_third_tier(self):
+        """Test consumption above 200 kWh at 25 cents/kWh"""
+        self.assertEqual(tiered_energy_bill(201), 1200 + 1800 + 25)
+        self.assertEqual(tiered_energy_bill(250), 4250)  # As per example
+        self.assertEqual(tiered_energy_bill(300), 1200 + 1800 + 100 * 25)
+    
+    def test_boundary_values(self):
+        """Test exact boundary values"""
+        self.assertEqual(tiered_energy_bill(100), 1200)  # End of first tier
+        self.assertEqual(tiered_energy_bill(200), 3000)  # End of second tier
+    
+    def test_invalid_types(self):
+        """Test that invalid input types raise ValueError"""
+        with self.assertRaises(ValueError):
+            tiered_energy_bill(1.0)  # float
+        
+        with self.assertRaises(ValueError):
+            tiered_energy_bill("100")  # string
+        
+        with self.assertRaises(ValueError):
+            tiered_energy_bill(None)  # None
+        
+        with self.assertRaises(ValueError):
+            tiered_energy_bill(True)  # bool
+        
+        with self.assertRaises(ValueError):
+            tiered_energy_bill(False)  # bool
+    
+    def test_negative_values(self):
+        """Test that negative values raise ValueError"""
+        with self.assertRaises(ValueError):
+            tiered_energy_bill(-1)
+        
+        with self.assertRaises(ValueError):
+            tiered_energy_bill(-100)
+    
+    def test_exact_return_type(self):
+        """Test that return value is exactly an integer"""
+        result = tiered_energy_bill(250)
+        self.assertIsInstance(result, int)
+        self.assertEqual(result, 4250)
+
+if __name__ == '__main__':
+    unittest.main()

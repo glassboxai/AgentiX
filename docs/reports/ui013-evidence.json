@@ -1,0 +1,21 @@
+{
+  "requirement": "UI-013",
+  "date": "2026-10-20",
+  "status": "implemented and verified",
+  "changes": [
+    "Project link https://glassboxai.dev/ below final description",
+    "Reference Inter typography: desktop h1 44px weight500, body/fields14px weight400, buttons16px weight600",
+    "All corners square",
+    "Reference checkbox20px with2px mutedborder darkuncheckedfill andcyancheckedfill; keyboardfocus andSpace toggling; disabled andforcedcolors support"
+  ],
+  "verification": {
+    "offline": "316 passed,19 deselected",
+    "browser": "5 passed including1440px and390px, link target, h1weight, computedradii, checkboxdimensions/border/colors andkeyboardtoggle/focus; existing approval/session regressions pass",
+    "ruff": "78 activePythonfiles lint/format pass"
+  },
+  "limits": [
+    "Browser uses authored trusted fixtures, no new model or native isolation verification",
+    "Existing live apps not restarted; separate real-model-capable localhost7872 instance usesqwen3-coder:30b but no newquery submitted",
+    "Reference config viewed without saving or modifying settings"
+  ]
+}

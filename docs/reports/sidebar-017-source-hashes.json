@@ -1,0 +1,6 @@
+{
+  "src/agentix/ui/view.py": "086baa2e66900d0d6706d4d911df13f6bce37c1cf611055558d43723060b98e0",
+  "src/agentix/ui/assets/style.css": "346308d93d04f3cfea86bf2c6cb7f5ea37760ad5293d32cb027e0469f8f5f3d1",
+  "tests/e2e/server.py": "810590be876e6258aeafb9d4cdf0f5f3a685f663e1e55b26ab5aceb6e3ed863e",
+  "tests/e2e/test_browser_review.py": "88cd977333642f05cabd408675356b7214ad216ac52f9cc24454adf9b3498e1c"
+}

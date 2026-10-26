@@ -1,0 +1,29 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 222 items / 10 deselected / 212 selected
+
+tests\integration\test_artifact_workflow.py ..                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  7%]
+tests\integration\test_session_workflows.py ....                         [  8%]
+tests\unit\test_app.py ......................                            [ 19%]
+tests\unit\test_approval_identity.py .............                       [ 25%]
+tests\unit\test_cli.py .......                                           [ 28%]
+tests\unit\test_compatibility.py ........                                [ 32%]
+tests\unit\test_composition.py ...                                       [ 33%]
+tests\unit\test_config.py ..                                             [ 34%]
+tests\unit\test_decision_security.py .................                   [ 42%]
+tests\unit\test_import_boundaries.py .                                   [ 43%]
+tests\unit\test_orchestration.py ................                        [ 50%]
+tests\unit\test_pipeline_verification.py ...................             [ 59%]
+tests\unit\test_sandbox_protocol.py .....                                [ 62%]
+tests\unit\test_security.py ............................................ [ 83%]
+.                                                                        [ 83%]
+tests\unit\test_sessions.py .....                                        [ 85%]
+tests\unit\test_tools.py .............................                   [ 99%]
+tests\unit\test_ui_runtime_isolation.py .                                [100%]
+
+---- generated xml file: D:\AI\Agentix_v2\docs\reports\isolation-tests.xml ----
+===================== 212 passed, 10 deselected in 6.85s ======================

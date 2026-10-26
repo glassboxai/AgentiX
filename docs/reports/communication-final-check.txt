@@ -1,0 +1,1 @@
+Verified: 35 unchanged final source hashes; 307 offline, 5 framework, 9 native, 3 browser passes; Ruff 75 files; 16 live host PASS verdicts; actual final call kwh=250 result=4250; accepted signature/digest delivered to final manager.

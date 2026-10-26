@@ -1,0 +1,271 @@
+FFFFFFFFF                                                                [100%]
+================================== FAILURES ===================================
+___________ test_successful_review_survives_a_new_owner_and_ledger ____________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_successful_review_surviv...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_successful_review_survive0')
+
+    def test_successful_review_survives_a_new_owner_and_ledger(system, tmp_path):
+        """Another session can use intact approved bytes without tests or review."""
+        from agentix.verification import VerificationLedger
+>       store, _ = publish(system, tmp_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_successful_review_surviv...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_successful_review_survive0/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+_____ test_durable_approval_rejects_changed_identity_and_tampering[code] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_0')
+mutation = 'code'
+
+    @pytest.mark.parametrize("mutation", ["code", "tests", "policy", "root", "tamper", "plaintext"])
+    def test_durable_approval_rejects_changed_identity_and_tampering(system, tmp_path, mutation):
+        """Changed source, policy, location and unauthenticated records cannot authorize."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_0/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+_____ test_durable_approval_rejects_changed_identity_and_tampering[tests] _____
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_1')
+mutation = 'tests'
+
+    @pytest.mark.parametrize("mutation", ["code", "tests", "policy", "root", "tamper", "plaintext"])
+    def test_durable_approval_rejects_changed_identity_and_tampering(system, tmp_path, mutation):
+        """Changed source, policy, location and unauthenticated records cannot authorize."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_1/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+____ test_durable_approval_rejects_changed_identity_and_tampering[policy] _____
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_2')
+mutation = 'policy'
+
+    @pytest.mark.parametrize("mutation", ["code", "tests", "policy", "root", "tamper", "plaintext"])
+    def test_durable_approval_rejects_changed_identity_and_tampering(system, tmp_path, mutation):
+        """Changed source, policy, location and unauthenticated records cannot authorize."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_2/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+_____ test_durable_approval_rejects_changed_identity_and_tampering[root] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_3')
+mutation = 'root'
+
+    @pytest.mark.parametrize("mutation", ["code", "tests", "policy", "root", "tamper", "plaintext"])
+    def test_durable_approval_rejects_changed_identity_and_tampering(system, tmp_path, mutation):
+        """Changed source, policy, location and unauthenticated records cannot authorize."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_3/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+____ test_durable_approval_rejects_changed_identity_and_tampering[tamper] _____
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_4')
+mutation = 'tamper'
+
+    @pytest.mark.parametrize("mutation", ["code", "tests", "policy", "root", "tamper", "plaintext"])
+    def test_durable_approval_rejects_changed_identity_and_tampering(system, tmp_path, mutation):
+        """Changed source, policy, location and unauthenticated records cannot authorize."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_4/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+___ test_durable_approval_rejects_changed_identity_and_tampering[plaintext] ___
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_5')
+mutation = 'plaintext'
+
+    @pytest.mark.parametrize("mutation", ["code", "tests", "policy", "root", "tamper", "plaintext"])
+    def test_durable_approval_rejects_changed_identity_and_tampering(system, tmp_path, mutation):
+        """Changed source, policy, location and unauthenticated records cannot authorize."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_durable_approval_rejects_5/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+_ test_session_close_retains_durable_approval_but_explicit_revoke_removes_it __
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_session_close_retains_du...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_session_close_retains_dur0')
+
+    def test_session_close_retains_durable_approval_but_explicit_revoke_removes_it(system, tmp_path):
+        """Closing a browser expires its work, not an approval owned by the Windows user."""
+        from agentix.verification import VerificationLedger
+>       store, ledger = publish(system, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_durable_approvals.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\unit\test_durable_approvals.py:35: in publish
+    store = configure_store(system, tmp_path / "approvals")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_session_close_retains_du...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_session_close_retains_dur0/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+________ test_review_without_actual_success_creates_no_durable_record _________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_review_without_actual_su...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_review_without_actual_suc0')
+
+    def test_review_without_actual_success_creates_no_durable_record(system, tmp_path):
+        """Manual review alone never persists an executable grant."""
+>       configure_store(system, tmp_path / "approvals")
+
+tests\unit\test_durable_approvals.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_review_without_actual_su...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002DDD6BA3100>)
+directory = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-460/test_review_without_actual_suc0/approvals')
+policy = 'fixture-policy'
+
+    def configure_store(system, directory: Path, *, policy: str = "fixture-policy"):
+        """Inject temporary protected persistence into the actual ledger."""
+>       from agentix.approval_store import ApprovalStore
+E       ModuleNotFoundError: No module named 'agentix.approval_store'
+
+tests\unit\test_durable_approvals.py:26: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_durable_approvals.py::test_successful_review_survives_a_new_owner_and_ledger
+FAILED tests/unit/test_durable_approvals.py::test_durable_approval_rejects_changed_identity_and_tampering[code]
+FAILED tests/unit/test_durable_approvals.py::test_durable_approval_rejects_changed_identity_and_tampering[tests]
+FAILED tests/unit/test_durable_approvals.py::test_durable_approval_rejects_changed_identity_and_tampering[policy]
+FAILED tests/unit/test_durable_approvals.py::test_durable_approval_rejects_changed_identity_and_tampering[root]
+FAILED tests/unit/test_durable_approvals.py::test_durable_approval_rejects_changed_identity_and_tampering[tamper]
+FAILED tests/unit/test_durable_approvals.py::test_durable_approval_rejects_changed_identity_and_tampering[plaintext]
+FAILED tests/unit/test_durable_approvals.py::test_session_close_retains_durable_approval_but_explicit_revoke_removes_it
+FAILED tests/unit/test_durable_approvals.py::test_review_without_actual_success_creates_no_durable_record
+9 failed in 0.58s

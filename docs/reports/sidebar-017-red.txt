@@ -1,0 +1,60 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_____________ test_model_sidebar_is_hideable_and_key_input_clears _____________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:52494', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-433/agentix-browser0/artifacts'))
+
+    def test_model_sidebar_is_hideable_and_key_input_clears(browser, server):
+        """Use the native sidebar toggle and validate session-owned model settings."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": 1440, "height": 1100})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            sidebar = page.locator("#agentix-sidebar")
+            expect(sidebar).to_be_visible()
+            expect(sidebar.get_by_text("Authorization & Test Review", exact=True)).to_be_visible()
+            assert page.get_by_text("Authorization & Test Review", exact=True).count() == 1
+            page.locator("#refresh-models").click()
+            expect(page.locator("#model-status")).to_contain_text("models refreshed", timeout=15000)
+            page.locator("#llm-model").get_by_role("combobox").click()
+            page.get_by_role("option", name="qwen3:14b", exact=True).click()
+>           expect(page.locator("#llm-api-key")).not_to_be_visible()
+E           AssertionError: Locator expected not to be visible
+E           Actual value: visible 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 5000ms
+E             - waiting for locator("#llm-api-key")
+E               9 � locator resolved to <div dir="ltr" id="llm-api-key" class="block  svelte-1plpy97 padded auto-margin">�</div>
+E                 - unexpected value "visible"
+
+tests\e2e\test_browser_review.py:301: AssertionError
+____________ test_local_secret_controls_and_sidebar_button_colors _____________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:52494', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-433/agentix-browser0/artifacts'))
+
+    def test_local_secret_controls_and_sidebar_button_colors(browser, server):
+        """Match the reference palette and clear external-only inputs on provider changes."""
+        from playwright.sync_api import expect
+        context = browser.new_context(viewport={"width":1440,"height":1100})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            expect(page.locator("#model-status")).to_contain_text("refreshed", timeout=15000)
+>           expect(page.locator("#llm-api-key")).not_to_be_visible()
+E           AssertionError: Locator expected not to be visible
+E           Actual value: visible 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 5000ms
+E             - waiting for locator("#llm-api-key")
+E               9 � locator resolved to <div dir="ltr" id="llm-api-key" class="block  svelte-1plpy97 padded auto-margin">�</div>
+E                 - unexpected value "visible"
+
+tests\e2e\test_browser_review.py:400: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_model_sidebar_is_hideable_and_key_input_clears
+FAILED tests/e2e/test_browser_review.py::test_local_secret_controls_and_sidebar_button_colors
+2 failed, 6 deselected in 20.84s

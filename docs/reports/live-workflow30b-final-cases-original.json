@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "zero_consumption",
+      "purpose": "Test zero electricity consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 0
+      },
+      "expect": {
+        "kind": "value",
+        "value": 0
+      }
+    },
+    {
+      "id": "first_tier_boundary",
+      "purpose": "Test boundary of first tier (100 kWh)",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 100
+      },
+      "expect": {
+        "kind": "value",
+        "value": 1200
+      }
+    },
+    {
+      "id": "second_tier_boundary",
+      "purpose": "Test boundary of second tier (200 kWh)",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 200
+      },
+      "expect": {
+        "kind": "value",
+        "value": 3000
+      }
+    },
+    {
+      "id": "example_case_250_kwh",
+      "purpose": "Test the provided example case of 250 kWh",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 250
+      },
+      "expect": {
+        "kind": "value",
+        "value": 4250
+      }
+    },
+    {
+      "id": "invalid_float",
+      "purpose": "Test that float input raises ValueError",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 100.0
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "invalid_string",
+      "purpose": "Test that string input raises ValueError",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": "100"
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "invalid_none",
+      "purpose": "Test that None input raises ValueError",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": null
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "invalid_boolean",
+      "purpose": "Test that boolean input raises ValueError",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": true
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "negative_value",
+      "purpose": "Test that negative input raises ValueError",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": -50
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    }
+  ]
+}

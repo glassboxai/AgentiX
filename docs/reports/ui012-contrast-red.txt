@@ -1,0 +1,45 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 335 items / 334 deselected / 1 selected
+
+tests\e2e\test_browser_review.py F                                       [100%]
+
+================================== FAILURES ===================================
+__________ test_brand_readable_result_and_bounded_disclosures[1440] ___________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=155.0.4283.62>
+server = ('http://127.0.0.1:59425', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-360/agentix-browser0/artifacts'))
+width = 1440
+
+    @pytest.mark.parametrize("width", [1440, 390])
+    def test_brand_readable_result_and_bounded_disclosures(browser, server, width):
+        """Verify actual layout, accessible send control and timer-stable disclosures."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": width, "height": 1000})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            expect(page.get_by_role("heading", name="AgentiX", exact=True)).to_be_visible()
+            expect(page.get_by_text("Developer-in-the-Loop.", exact=True)).to_be_visible()
+            expect(page.get_by_role("img", name="AgentiX logo")).to_be_visible()
+            send = page.get_by_role("button", name="Send query", exact=True)
+            expect(send).to_be_visible()
+            assert send.bounding_box()["width"] < 65
+            submit(page, "presentation in euros (�)")
+>           expect(page.get_by_text("�67.50", exact=False)).to_be_visible(timeout=15000)
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 15000ms
+E             - waiting for get_by_text("�67.50")
+
+tests\e2e\test_browser_review.py:202: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_brand_readable_result_and_bounded_disclosures[1440]
+===================== 1 failed, 334 deselected in 22.64s ======================

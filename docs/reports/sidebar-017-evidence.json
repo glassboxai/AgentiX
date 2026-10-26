@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-25",
+  "project": "D:/AI/AgentiX_v3",
+  "approved_requirement": "UI-MODEL-002",
+  "offline": "412 passed, 24 deselected, 15 existing CrewAI warnings",
+  "browser": "8 passed using actual Edge/Playwright and disposable Gradio",
+  "framework_and_windows_vault": "7 passed; synthetic credential roundtrip across processes",
+  "verified_buttons": [
+    "Refresh models reveals newly available choice",
+    "Apply model changes injected client identity used by query backend",
+    "Save profile persists and updates metadata",
+    "Refresh saved profiles discovers profile created after browser load",
+    "Delete selected profile removes JSON and refreshed catalog entry"
+  ],
+  "GUI_changes": [
+    "Glass Box dark translucent secondary buttons, light text, subtle border",
+    "Ollama hides key/remote consent",
+    "provider changes clear key and consent"
+  ],
+  "limits": [
+    "UI browser model/network/vault doubles; no actual model inference or paid APIs",
+    "live instance not restarted",
+    "generated_tools not inspected"
+  ]
+}

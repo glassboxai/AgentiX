@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-25",
+  "requirement": "PROFILE-001",
+  "observations": {
+    "offline": "421 passed, 27 deselected, 15 existing warnings",
+    "browser_framework_vault": "18 passed (10 browser, 6 frameworks, 2 native credential integrations)",
+    "ruff": "passed",
+    "format": "91 files formatted",
+    "reference": "fresh"
+  },
+  "implemented": [
+    "Unified local/remote Saved profiles",
+    "Local metadata does not touch Windows vault",
+    "Readable Unicode names and model punctuation",
+    "Closed safe error codes and numeric native status",
+    "Refresh retains failed save reason",
+    "Legacy external records and UTF-16 credentials preserved"
+  ],
+  "diagnosis": {
+    "local_failure": "External-only store rejected Ollama; corrected",
+    "external_historical_failure": "Cause still unknown: old wrapper hid it; valid synthetic real-vault saves and a new native Gradio/store/vault integration succeed"
+  },
+  "limits": [
+    "No real API keys or existing user profiles read/modified",
+    "No paid provider or model task inference",
+    "Existing live instance not restarted",
+    "No generated artifacts inspected"
+  ]
+}

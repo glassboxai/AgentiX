@@ -1,0 +1,7 @@
+{"executionInformation":{"duration":"PT13.9095955S","endDatetime":"2026-10-24T11:13:28.193181600+02:00","executionType":"actual","operation":"set","securityContext":"restricted","startDatetime":"2026-10-24T11:13:14.283586100+02:00","version":"3.3.0"},"metadata":{"Microsoft.DSC":{"duration":"PT13.909591S","endDatetime":"2026-10-24T11:13:28.193177100+02:00","executionType":"actual","operation":"set","securityContext":"restricted","startDatetime":"2026-10-24T11:13:14.283586100+02:00","version":"3.3.0"}},"results":[{"executionInformation":{"duration":"PT7.5767785S"},"metadata":{"Microsoft.DSC":{"duration":"PT7.5767785S"}},"name":"AgentiX user environment","type":"AgentiX.Local/Deployment","result":{"beforeState":{"profile":"windows-user","inDesiredState":true},"afterState":{"profile":"windows-user","inDesiredState":true},"changedProperties":null}}],"messages":[],"hadErrors":false}
+{
+  "warnings": [],
+  "blockers": [],
+  "inDesiredState": true,
+  "changes": []
+}

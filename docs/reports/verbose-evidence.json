@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-19",
+  "requirement": "LIVE-UX-001, approved verbosity sub-block",
+  "implemented": [
+    "All four application agents and all crews have verbose=True",
+    "Technical events remain visible in the same owner-bound GUI activity",
+    "Main UI and supervised launcher share startup stdout routing with restoration",
+    "Windows console Unicode failure cannot erase the Unicode GUI copy",
+    "Rich fragments become bounded logical lines, including split ANSI and partial streaming output"
+  ],
+  "checks": {
+    "verbose-offline.txt": "===================== 284 passed, 17 deselected in 12.36s =====================",
+    "verbose-frameworks.txt": "===================== 5 passed, 296 deselected in 25.33s ======================",
+    "verbose-browser.txt": "============================= 3 passed in 30.13s ==============================",
+    "verbose-ruff.txt": "71 files already formatted"
+  },
+  "source_hashes": {
+    "app.py": "1230cec93911a76a942a9e71cbfc0c1b4a6ecaafae4605d9287182bf56f0b4cc",
+    "main.py": "7f6adc2d30fdb440a8a593f3bb6830f06391b47b68cd39c17c000d50d8622308",
+    "config.py": "936baa272919cddc44de2a8a79c542b1f0e1fae22ee65cb43221d7680ea33cc0",
+    "security_manager.py": "486c6b44e42210f6fe943b58e234ac7af87c5e63197bdab744421f1cb09f2ad8",
+    "custom_tools.py": "9ec81fb368d2e57176c92c961fa3e38f85b096d3e478bbe39021174cd6370c05",
+    "_agentix_path.py": "91fe3463ed3d14d74ee19294c8db9f3df027701227223e37d64a33a188349499",
+    "src/agentix/__init__.py": "63ad1c1f0d1da84ab44c7d073bafb9f30bac9e3148248946085aee4a5f0900d8",
+    "src/agentix/acceptance.py": "0e423f8d61e8b4e159e939ff0dea26f43ff605a0a99fe69d953ce24728c3cf8a",
+    "src/agentix/adapters/__init__.py": "644e02ebc83327e8b61abc644b15007a0e34d8e5df9cf4b8300c1e56514c3b73",
+    "src/agentix/adapters/crewai.py": "950fbf6acc4e55b501cc512d13b1d4d777b54218c4b4b91e47bd3cdb684efceb",
+    "src/agentix/approvals.py": "28978d24fb741e78f26cc788e692a36ac90c96b8c3b8f02af3a2ec9b4f73343e",
+    "src/agentix/bootstrap.py": "b3eae16c1f9504bf34b898b49dba32c41c1bcfe56f36ba97c7388bc5f50cb093",
+    "src/agentix/catalog.py": "2b72d2057196c3575c52dae9860424c3784089a5c3622e079827352e47803a2c",
+    "src/agentix/cli.py": "1f7fcaa2411122e64951f93afdf77601c619c5e9b679becffdc7cfeb59ba1174",
+    "src/agentix/contracts.py": "a43c575da4355eab31589f22ac533495baf4f2784bd25e3001069fa6077bc985",
+    "src/agentix/decisions.py": "2faef8e005e13451b23531a7d0c206f8b15838d2db69c866b1f2717f19f60e35",
+    "src/agentix/diagnostics.py": "993d6c633053edfdb9857742994f166f42bdbac01f29f1d67b81fe8feba48312",
+    "src/agentix/execution.py": "da3a912e7de9a2217ed5b5668faaf060cdc2a662d1eb55b952bee92c79f181c2",
+    "src/agentix/orchestration.py": "20434d66f0193b5554b0448ea73a8869a1a807c5ef5ca5d7195bcdd887457923",
+    "src/agentix/paths.py": "bf8c04d21ec00634be69ea561ba06f8caeefc5872ca824b267103ed73379df2b",
+    "src/agentix/sandbox.py": "0e98fd8b4705f9dd42b6a4e362492b43ba7850a7c0e9466ff75166d23707fee6",
+    "src/agentix/sandbox_worker.py": "d6ce9f20338db5d6a61552073836f4d2cd50ba1b451b472604f6e1ee2c89964f",
+    "src/agentix/security.py": "f152d2ab14c94d066e1998bf4e7b81c1407f475ed3ffd58f421b5298cb1225d4",
+    "src/agentix/settings.py": "5676288c57407734f53c92d27ed97d4721c243951ba11344128f31c54210e624",
+    "src/agentix/storage.py": "e0788e86c853ba114741c6c53fe2eb0b5a8ef548a54ce0516d269b882be5f609",
+    "src/agentix/testing.py": "3bfd0e28c6903dcfb0b2a035f906021cf5ef7e1faa3946fa95bdcf15a52ca50f",
+    "src/agentix/tools.py": "3fa67dd2322c206ac1c05c1caedc1fbb86a97cf2f059fc3f7effc85ed025f8cb",
+    "src/agentix/ui/__init__.py": "04e76928475913bc67918b71a3ffdb7661fc8e19c938aa96bb7cab0e766fffd1",
+    "src/agentix/ui/controller.py": "72ded46c14b779fd43d877713461e73189852246fcd08a42b30b578711626159",
+    "src/agentix/ui/sessions.py": "e818295bf47d00b5dc8e8ec269b1f097805c9ab10b0cd1cb6e9971a980dae871",
+    "src/agentix/ui/state.py": "6a875166a62f7610bc450927a2026fe73b70d17fc5f3afd639751c48533ce523",
+    "src/agentix/ui/view.py": "b5a21f9fa33c307d6c7d93bcbc8c797e3178bbba41257b2bb42a374d78ee021b",
+    "src/agentix/verification.py": "f53da5c410e5fd83bd4727e0f039d72e9213107b047dee3ef73865f37bef967a",
+    "src/agentix/windows_process.py": "3f7905930df298aff696338b1fa10f9f79e3c3eb9d1f1742f853384920665cae"
+  },
+  "changed_application_files": [
+    "src/agentix/adapters/crewai.py",
+    "src/agentix/bootstrap.py",
+    "src/agentix/diagnostics.py",
+    "src/agentix/orchestration.py",
+    "src/agentix/ui/state.py"
+  ],
+  "regressions": [
+    "Eight initial verbosity/routing tests failed before implementation",
+    "Unicode console regression failed before correction",
+    "Fragment/ANSI regression failed before correction",
+    "Real CrewAI event rendering verified role, task, tool result, final answer and technical event isolation between two concurrent controllers"
+  ],
+  "limits": [
+    "Framework test uses real SDK events and renderer without a model or server",
+    "Browser fixtures are deterministic trusted fixtures, not real LLM tool creation",
+    "The supervised qwen3-coder:30b test is still paused",
+    "Shared workflow prompts and further handoff changes remain proposed",
+    "Verbose output may intentionally contain workflow text; no blanket third-party-output redaction is claimed",
+    "Existing generated project artifacts were not read or executed; original live application was not restarted"
+  ]
+}

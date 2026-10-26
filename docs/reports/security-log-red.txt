@@ -1,0 +1,51 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 18 items
+
+tests\integration\test_session_workflows.py ...                          [ 16%]
+tests\unit\test_decision_security.py .............FF                     [100%]
+
+================================== FAILURES ===================================
+_______________ test_execution_exception_payload_is_not_logged ________________
+tests\unit\test_decision_security.py:48: in test_execution_exception_payload_is_not_logged
+    assert 'private-source-token' not in caplog.text
+E   AssertionError: assert 'private-source-token' not in 'DEBUG    ag...urce-token\n'
+E     
+E     'private-source-token' is contained here:
+E       function: private-source-token
+------------------------------ Captured log call ------------------------------
+DEBUG    agentix.execution:execution.py:32 Resolving dynamic tool call: tool=safe function=run
+DEBUG    agentix.paths:paths.py:74 Artifact path validated for tool=safe
+ERROR    agentix.execution:execution.py:64 Error executing standalone function: private-source-token
+________________ test_storage_exception_payload_is_not_logged _________________
+tests\unit\test_decision_security.py:57: in test_storage_exception_payload_is_not_logged
+    assert 'private-source-token' not in caplog.text
+E   AssertionError: assert 'private-source-token' not in 'DEBUG    ag...urce-token\n'
+E     
+E     'private-source-token' is contained here:
+E       
+E       OSError: private-source-token
+------------------------------ Captured log call ------------------------------
+DEBUG    agentix.paths:paths.py:74 Artifact path validated for tool=safe
+INFO     agentix.approvals:diagnostics.py:38 event=approval_automatic session_id=legacy operation_id=- request_id=- error_type=-
+DEBUG    agentix.paths:paths.py:74 Artifact path validated for tool=safe
+ERROR    agentix.storage:storage.py:83 Failed writing artifact: tool=safe error=OSError
+Traceback (most recent call last):
+  File "D:\AI\Agentix_v2\src\agentix\storage.py", line 78, in write
+    with open(target_path, mode, encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1183, in _execute_mock_call
+    raise effect
+OSError: private-source-token
+=========================== short test summary info ===========================
+FAILED tests/unit/test_decision_security.py::test_execution_exception_payload_is_not_logged
+FAILED tests/unit/test_decision_security.py::test_storage_exception_payload_is_not_logged
+======================== 2 failed, 16 passed in 0.55s =========================

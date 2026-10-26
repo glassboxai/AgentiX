@@ -1,0 +1,4 @@
+        # Do not silently round a finer-grained observed rate or a large integer.
+        if abs(value) < 10**18 and value == round(value, 2):
+            return f"{currency}{value:,.2f}"
+        return currency + _text(value)

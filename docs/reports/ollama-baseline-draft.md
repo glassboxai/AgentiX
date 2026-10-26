@@ -1,0 +1,9 @@
+# Unverified local-model report draft
+
+The system was tested using Python 3.11.9 on a Windows 10 platform (version 10.0.26200-SP0). The dependencies included pytest 9.1.1, gradio 6.30.0, crewai 1.15.28, and litellm, for which distribution metadata was unavailable. A total of 105 tests were collected, with 100 passing and no failures or errors recorded. However, five tests were marked as expected failures: `test_execution_states_have_independent_histories`, `test_reject_sibling_tool_prefix_escape`, `test_reject_sibling_root_prefix_escape`, `test_pending_request_is_defensive_copy`, and `test_edited_python_is_validated_before_save`.
+
+The production code has remained unchanged, with SHA256 hashes confirming the integrity of the following files: `app.py`, `security_manager.py`, `custom_tools.py`, `main.py`, and `config.py`.
+
+Observations indicate that the test suite is largely successful, with no unexpected failures or errors. However, several limitations persist. Unit tests are constrained by framework and LLM boundaries that are effectively doubled, which may affect the accuracy of certain test scenarios. Component tests are limited to executing trusted temporary Python code, which may not fully represent real-world conditions. Additionally, the absence of coverage percentage data, live browser testing, live agent validation, and installer or OS isolation testing represents significant gaps in the testing process.
+
+Unresolved defects remain open, and no fixes or refactoring have been authorized. These defects are not addressed in the current report, as the focus is solely on the evidence provided. The system's current state reflects a stable production environment, but further testing and validation are required to ensure robustness and reliability in all operational contexts.

@@ -1,0 +1,27 @@
+**Engineering Verification Report: AgentiX v3**
+
+**Project:** AgentiX v3  
+**Fixed:** Approvals now persist across browser reload, new browser sessions, and process restarts, using user/machine-protected Windows DPAPI records bound to exact code, tests, root, functions, and security policy. The review panel is located below Tool validation in the right column.
+
+**GUI Fixture Checks:**  
+Playwright confirmed reload, new-browser, and server-restart reuse, as well as source-drift reapproval, using actual native DPAPI.
+
+**Live Model:**  
+qwen3-coder:30b, real Gradio GUI, Playwright Edge, native isolation, and fresh temporary tool storage.
+
+**Live Results:**  
+- 10 km → 6.214 miles after creation and five initial manual reviews  
+- After page reload: 25 km → 15.534 miles without review or tests  
+- After disposable-server restart: 12 km → 7.456 miles without review or tests  
+
+**Evidence:**  
+Three distinct session owners; two reuse queries had zero approval/test/acceptance/code-read/write events, with one successful native call.
+
+**Human Interventions:**  
+Clarified bool/nonfinite behavior; corrected generated code, test import/type assertions, and expanded acceptance to eleven cases.
+
+**Verification:**  
+22 non-native integrations passed. Final offline and native totals must be derived from raw logs, not estimated.
+
+**Limitations:**  
+Old tools without protected records require one initial review. Sensitive/unclassified calls retain permission. No native capability escalation. Finite cases are not universal proof. Same-user host malware is outside the boundary. User live 7873 was not restarted.

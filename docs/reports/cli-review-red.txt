@@ -1,0 +1,228 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 8 items / 1 deselected / 7 selected
+
+tests\unit\test_cli_review.py FFFFFFF                                    [100%]
+
+================================== FAILURES ===================================
+__________ test_terminal_resolves_manual_review[answers0-expected0] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED0FA890>
+capsys = <_pytest.capture.CaptureFixture object at 0x000002BEED0FA950>
+answers = ['approve'], expected = (True, 'original')
+
+    @pytest.mark.parametrize(
+        ("answers", "expected"),
+        [(["approve"], (True, "original")), (["reject"], (False, "original")),
+         (["",], (False, "original")),
+         (["edit", "replacement", ".end", "approve"], (True, "replacement")),
+         (["unknown", "reject"], (False, "original"))],
+    )
+    def test_terminal_resolves_manual_review(monkeypatch, capsys, answers, expected):
+        security = ApprovalCoordinator.for_owner("terminal", timeout=2)
+        security.auto_approve = True
+        results = []
+        inputs = iter(["query", *answers, "q"])
+        monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+    
+        def workflow(query):
+            assert threading.current_thread() is not threading.main_thread()
+            results.append(security.request_user_permission(
+                "fixture", "review_acceptance", "original", require_manual=True,
+                review_context={"python_tests": "trusted tests", "provisional_result": "provisional"}))
+            return "finished"
+    
+        with pytest.raises(SystemExit) as stopped:
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:33: TypeError
+__________ test_terminal_resolves_manual_review[answers1-expected1] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED154390>
+capsys = <_pytest.capture.CaptureFixture object at 0x000002BEED156BD0>
+answers = ['reject'], expected = (False, 'original')
+
+    @pytest.mark.parametrize(
+        ("answers", "expected"),
+        [(["approve"], (True, "original")), (["reject"], (False, "original")),
+         (["",], (False, "original")),
+         (["edit", "replacement", ".end", "approve"], (True, "replacement")),
+         (["unknown", "reject"], (False, "original"))],
+    )
+    def test_terminal_resolves_manual_review(monkeypatch, capsys, answers, expected):
+        security = ApprovalCoordinator.for_owner("terminal", timeout=2)
+        security.auto_approve = True
+        results = []
+        inputs = iter(["query", *answers, "q"])
+        monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+    
+        def workflow(query):
+            assert threading.current_thread() is not threading.main_thread()
+            results.append(security.request_user_permission(
+                "fixture", "review_acceptance", "original", require_manual=True,
+                review_context={"python_tests": "trusted tests", "provisional_result": "provisional"}))
+            return "finished"
+    
+        with pytest.raises(SystemExit) as stopped:
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:33: TypeError
+__________ test_terminal_resolves_manual_review[answers2-expected2] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED0FACD0>
+capsys = <_pytest.capture.CaptureFixture object at 0x000002BEED0F9B90>
+answers = [''], expected = (False, 'original')
+
+    @pytest.mark.parametrize(
+        ("answers", "expected"),
+        [(["approve"], (True, "original")), (["reject"], (False, "original")),
+         (["",], (False, "original")),
+         (["edit", "replacement", ".end", "approve"], (True, "replacement")),
+         (["unknown", "reject"], (False, "original"))],
+    )
+    def test_terminal_resolves_manual_review(monkeypatch, capsys, answers, expected):
+        security = ApprovalCoordinator.for_owner("terminal", timeout=2)
+        security.auto_approve = True
+        results = []
+        inputs = iter(["query", *answers, "q"])
+        monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+    
+        def workflow(query):
+            assert threading.current_thread() is not threading.main_thread()
+            results.append(security.request_user_permission(
+                "fixture", "review_acceptance", "original", require_manual=True,
+                review_context={"python_tests": "trusted tests", "provisional_result": "provisional"}))
+            return "finished"
+    
+        with pytest.raises(SystemExit) as stopped:
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:33: TypeError
+__________ test_terminal_resolves_manual_review[answers3-expected3] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED1569D0>
+capsys = <_pytest.capture.CaptureFixture object at 0x000002BEED1579D0>
+answers = ['edit', 'replacement', '.end', 'approve']
+expected = (True, 'replacement')
+
+    @pytest.mark.parametrize(
+        ("answers", "expected"),
+        [(["approve"], (True, "original")), (["reject"], (False, "original")),
+         (["",], (False, "original")),
+         (["edit", "replacement", ".end", "approve"], (True, "replacement")),
+         (["unknown", "reject"], (False, "original"))],
+    )
+    def test_terminal_resolves_manual_review(monkeypatch, capsys, answers, expected):
+        security = ApprovalCoordinator.for_owner("terminal", timeout=2)
+        security.auto_approve = True
+        results = []
+        inputs = iter(["query", *answers, "q"])
+        monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+    
+        def workflow(query):
+            assert threading.current_thread() is not threading.main_thread()
+            results.append(security.request_user_permission(
+                "fixture", "review_acceptance", "original", require_manual=True,
+                review_context={"python_tests": "trusted tests", "provisional_result": "provisional"}))
+            return "finished"
+    
+        with pytest.raises(SystemExit) as stopped:
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:33: TypeError
+__________ test_terminal_resolves_manual_review[answers4-expected4] ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED162E10>
+capsys = <_pytest.capture.CaptureFixture object at 0x000002BEED162890>
+answers = ['unknown', 'reject'], expected = (False, 'original')
+
+    @pytest.mark.parametrize(
+        ("answers", "expected"),
+        [(["approve"], (True, "original")), (["reject"], (False, "original")),
+         (["",], (False, "original")),
+         (["edit", "replacement", ".end", "approve"], (True, "replacement")),
+         (["unknown", "reject"], (False, "original"))],
+    )
+    def test_terminal_resolves_manual_review(monkeypatch, capsys, answers, expected):
+        security = ApprovalCoordinator.for_owner("terminal", timeout=2)
+        security.auto_approve = True
+        results = []
+        inputs = iter(["query", *answers, "q"])
+        monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+    
+        def workflow(query):
+            assert threading.current_thread() is not threading.main_thread()
+            results.append(security.request_user_permission(
+                "fixture", "review_acceptance", "original", require_manual=True,
+                review_context={"python_tests": "trusted tests", "provisional_result": "provisional"}))
+            return "finished"
+    
+        with pytest.raises(SystemExit) as stopped:
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:33: TypeError
+__________ test_interrupted_review_denies_and_closes_owner[EOFError] __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED0FAC50>
+interruption = <class 'EOFError'>
+
+    @pytest.mark.parametrize("interruption", [EOFError, KeyboardInterrupt])
+    def test_interrupted_review_denies_and_closes_owner(monkeypatch, interruption):
+        security = ApprovalCoordinator.for_owner("interrupted", timeout=2)
+        results = []
+        finished = threading.Event()
+        def read(prompt):
+            if "query" in prompt.lower():
+                return "query"
+            raise interruption()
+        monkeypatch.setattr("builtins.input", read)
+        def workflow(query):
+            results.append(security.request_user_permission("fixture", content="original"))
+            finished.set()
+            return "denied"
+        with pytest.raises(SystemExit):
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:56: TypeError
+_____ test_interrupted_review_denies_and_closes_owner[KeyboardInterrupt] ______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002BEED156490>
+interruption = <class 'KeyboardInterrupt'>
+
+    @pytest.mark.parametrize("interruption", [EOFError, KeyboardInterrupt])
+    def test_interrupted_review_denies_and_closes_owner(monkeypatch, interruption):
+        security = ApprovalCoordinator.for_owner("interrupted", timeout=2)
+        results = []
+        finished = threading.Event()
+        def read(prompt):
+            if "query" in prompt.lower():
+                return "query"
+            raise interruption()
+        monkeypatch.setattr("builtins.input", read)
+        def workflow(query):
+            results.append(security.request_user_permission("fixture", content="original"))
+            finished.set()
+            return "denied"
+        with pytest.raises(SystemExit):
+>           run_cli(workflow, security=security)
+E           TypeError: run_cli() got an unexpected keyword argument 'security'
+
+tests\unit\test_cli_review.py:56: TypeError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_cli_review.py::test_terminal_resolves_manual_review[answers0-expected0]
+FAILED tests/unit/test_cli_review.py::test_terminal_resolves_manual_review[answers1-expected1]
+FAILED tests/unit/test_cli_review.py::test_terminal_resolves_manual_review[answers2-expected2]
+FAILED tests/unit/test_cli_review.py::test_terminal_resolves_manual_review[answers3-expected3]
+FAILED tests/unit/test_cli_review.py::test_terminal_resolves_manual_review[answers4-expected4]
+FAILED tests/unit/test_cli_review.py::test_interrupted_review_denies_and_closes_owner[EOFError]
+FAILED tests/unit/test_cli_review.py::test_interrupted_review_denies_and_closes_owner[KeyboardInterrupt]
+======================= 7 failed, 1 deselected in 0.44s =======================

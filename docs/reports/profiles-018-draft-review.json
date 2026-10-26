@@ -1,0 +1,8 @@
+{
+  "draft": "PROFILES_018_DRAFT.md",
+  "model": "qwen3:14b",
+  "scope": "prose only; no code/tests",
+  "review": "Counts, implemented behavior and unresolved historical external cause checked against raw evidence.",
+  "correction": "Fresh source references establish documentation consistency, not absence of state conflicts. The reviewed final report makes no state-conflict guarantee.",
+  "final_report": "PROFILES_018_VALIDATION.md"
+}

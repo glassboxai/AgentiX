@@ -1,0 +1,43 @@
+........................F..                                              [100%]
+================================== FAILURES ===================================
+__________ test_native_service_lifecycle_uses_verified_current_bytes __________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-451/test_native_service_lifecycle_0')
+
+    def test_native_service_lifecycle_uses_verified_current_bytes(tmp_path):
+        """Verify native service lifecycle uses verified current bytes."""
+        from trusted_sandbox import approve_next_review
+    
+        from agentix.security import SecurityManager
+        from agentix.tools import ArtifactTools
+    
+        security = SecurityManager.for_owner("native-test-owner")
+        security.TOOLS_ROOT_DIR = str(tmp_path / "artifacts")
+        security.auto_approve = True
+        operations = ArtifactTools(security)
+        operations.compile_and_save_code_tool("adder", "def add(): return 3")
+        tests = "import unittest\nfrom adder_code import add\nclass Checks(unittest.TestCase):\n def test_sum(self): self.assertEqual(add(),3)\n"
+        assert operations.run_and_save_tests_tool("adder", tests).startswith(
+            "TESTS_PROVISIONAL_PASSED:"
+        )
+        assert "NOT_VERIFIED" in operations.execute_generated_tool_tool("adder", "add")
+        thread, errors = approve_next_review(security)
+        assert operations.submit_acceptance_cases_tool(
+            "adder",
+            '{"version":1,"cases":[{"id":"sum","purpose":"Add numbers","function":"add","kwargs":{},"expect":{"kind":"value","value":3}}]}',
+        ).startswith("ACCEPTANCE_VERIFIED:")
+        thread.join(10)
+        assert not errors
+        assert operations.execute_generated_tool_tool("adder", "add") == "Tool Execution Result: 3"
+        security.operation_id = "new-operation"
+>       assert operations.verification.execution_result() is None
+E       AssertionError: assert 'NOT_VERIFIED' in 'Tool Execution Result: 3'
+E        +  where 'Tool Execution Result: 3' = execute_generated_tool_tool('adder', 'add')
+E        +    where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000001F0DC83E250>.execute_generated_tool_tool
+
+tests\integration\test_windows_isolation.py:150: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:50 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+=========================== short test summary info ===========================
+FAILED tests/integration/test_windows_isolation.py::test_native_service_lifecycle_uses_verified_current_bytes
+1 failed, 26 passed, 446 deselected in 219.38s (0:03:39)

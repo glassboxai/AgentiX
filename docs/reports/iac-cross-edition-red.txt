@@ -1,0 +1,28 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 28 items / 27 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+_______ test_fingerprints_match_windows_powershell_and_powershell_core ________
+
+    def test_fingerprints_match_windows_powershell_and_powershell_core():
+        """IAC-ERR-004: cross-edition locale sorting cannot invalidate an unchanged DSC plan."""
+        expected = powershell("Get-IacSourceDigest|ConvertTo-Json")
+        executable = Path(os.environ["SystemRoot"]) / "System32/WindowsPowerShell/v1.0/powershell.exe"
+        result = subprocess.run([str(executable), "-NoProfile", "-NonInteractive", "-Command", "Import-Module '"+str(MODULE)+"' -Force;Get-IacSourceDigest|ConvertTo-Json"], capture_output=True,text=True,timeout=35)
+        assert result.returncode == 0, result.stderr
+>       assert json.loads(result.stdout) == expected
+E       AssertionError: assert '737b1d5afaea...e158d6c2881c8' == 'c17504939437...8992b67e579a8'
+E         
+E         - c175049394371d0142292d18fa68b8b4be35431fc84bcbe20428992b67e579a8
+E         + 737b1d5afaeafe9feeb31a6dd60214828da708e38222df09b0fe158d6c2881c8
+
+tests\unit\test_iac.py:270: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_fingerprints_match_windows_powershell_and_powershell_core
+====================== 1 failed, 27 deselected in 1.97s =======================

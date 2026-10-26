@@ -1,0 +1,6 @@
+{
+  "name": "qwen3-coder:30b",
+  "size": 19207248934,
+  "size_vram": 10685975100,
+  "context_length": 4096
+}

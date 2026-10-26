@@ -1,0 +1,48 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\integration\test_gradio_session_routing.py F                       [100%]
+
+================================== FAILURES ===================================
+__________ test_real_gradio_state_owner_and_editor_request_transport __________
+tests\integration\test_gradio_session_routing.py:76: in test_real_gradio_state_owner_and_editor_request_transport
+    assert result.returncode == 0, result.stdout + result.stderr
+E   AssertionError: workflow_started | operation=2ab5397e4a6b4d1d95dffc6487ea8126
+E     workflow_finished | operation=2ab5397e4a6b4d1d95dffc6487ea8126
+E     workflow_started | operation=af6a7fae95974e2bb89c062e64491e48
+E     workflow_finished | operation=af6a7fae95974e2bb89c062e64491e48
+E     event=approval_response_rejected session_id=a9dacbcc4edf4306a6f48bb104c24699 operation_id=2ab5397e4a6b4d1d95dffc6487ea8126 request_id=- error_type=- line=-
+E     D:\AI\Agentix_v2\.autotool\Lib\site-packages\gradio\blocks.py:2244: UserWarning: A function (approve) returned too many output values (needed: 0, returned: 1). Ignoring extra values.
+E         Output components:
+E             []
+E         Output values returned:
+E             [False]
+E       warnings.warn(
+E     D:\AI\Agentix_v2\.autotool\Lib\site-packages\gradio\blocks.py:2244: UserWarning: A function (approve) returned too many output values (needed: 0, returned: 1). Ignoring extra values.
+E         Output components:
+E             []
+E         Output values returned:
+E             [True]
+E       warnings.warn(
+E     Traceback (most recent call last):
+E       File "<string>", line 58, in <module>
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+E         return runner.run(main)
+E                ^^^^^^^^^^^^^^^^
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+E         return self._loop.run_until_complete(task)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 654, in run_until_complete
+E         return future.result()
+E                ^^^^^^^^^^^^^^^
+E       File "<string>", line 50, in verify
+E     KeyError: 'unload'
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['D:\\AI\\Agentix_v2\\.autotool\\Scripts\\python.exe', '-c', "\nimport os\nos.environ.update(OTE...    return future.result()\n           ^^^^^^^^^^^^^^^\n  File "<string>", line 50, in verify\nKeyError: \'unload\'\n').returncode
+=========================== short test summary info ===========================
+FAILED tests/integration/test_gradio_session_routing.py::test_real_gradio_state_owner_and_editor_request_transport
+============================== 1 failed in 4.47s ==============================

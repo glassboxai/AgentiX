@@ -1,0 +1,12 @@
+{
+  "model": "qwen3:8b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "unverified draft",
+  "reviewed_by": "Codex, against GUI snapshots, inventories, source hashes and raw test logs",
+  "authoritative_report": "LIVE_HITL.md",
+  "clarifications": [
+    "Third worker was active at process termination; no surviving background worker is claimed.",
+    "Two strict xfails are open defects; passing checks do not constitute successful real-model validation."
+  ]
+}

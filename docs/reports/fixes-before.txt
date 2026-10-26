@@ -1,0 +1,47 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 105 items / 100 deselected / 5 selected
+
+tests\unit\test_app.py F                                                 [ 20%]
+tests\unit\test_security.py FFF                                          [ 80%]
+tests\unit\test_tools.py F                                               [100%]
+
+================================== FAILURES ===================================
+______________ test_execution_states_have_independent_histories _______________
+tests\unit\test_app.py:136: in test_execution_states_have_independent_histories
+    assert first.chat_history is not second.chat_history
+E   assert [] is not []
+E    +  where [] = <app.ExecutionState object at 0x00000163A73CD990>.chat_history
+E    +  and   [] = <app.ExecutionState object at 0x00000163A7425310>.chat_history
+___________________ test_reject_sibling_tool_prefix_escape ____________________
+tests\unit\test_security.py:112: in test_reject_sibling_tool_prefix_escape
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+___________________ test_reject_sibling_root_prefix_escape ____________________
+tests\unit\test_security.py:119: in test_reject_sibling_root_prefix_escape
+    with pytest.raises(system.security_manager.SecurityViolationError):
+E   Failed: DID NOT RAISE SecurityViolationError
+___________________ test_pending_request_is_defensive_copy ____________________
+tests\unit\test_security.py:128: in test_pending_request_is_defensive_copy
+    assert system.security.get_pending_request()['filepath'] == 'original'
+E   AssertionError: assert 'modified' == 'original'
+E     
+E     - original
+E     + modified
+_________________ test_edited_python_is_validated_before_save _________________
+tests\unit\test_tools.py:134: in test_edited_python_is_validated_before_save
+    assert not target.exists(), 'Invalid edited Python was persisted'
+E   AssertionError: Invalid edited Python was persisted
+E   assert not True
+E    +  where True = exists()
+E    +    where exists = WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{576c78c8-6799-4d69-9feb-b7bcd10210be}/AC/Temp/pytest-of-xpiku/pytest-0/test_edited_python_is_validate0/generated_tools/adder/adder_code.py').exists
+=========================== short test summary info ===========================
+FAILED tests/unit/test_app.py::test_execution_states_have_independent_histories
+FAILED tests/unit/test_security.py::test_reject_sibling_tool_prefix_escape - ...
+FAILED tests/unit/test_security.py::test_reject_sibling_root_prefix_escape - ...
+FAILED tests/unit/test_security.py::test_pending_request_is_defensive_copy - ...
+FAILED tests/unit/test_tools.py::test_edited_python_is_validated_before_save
+====================== 5 failed, 100 deselected in 0.34s ======================

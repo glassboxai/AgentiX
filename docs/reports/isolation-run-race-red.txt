@@ -1,0 +1,21 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 17 items
+
+tests\unit\test_pipeline_verification.py ...............F.               [100%]
+
+================================== FAILURES ===================================
+______ test_inflight_test_result_cannot_be_relabelled_as_a_new_operation ______
+tests\unit\test_pipeline_verification.py:136: in test_inflight_test_result_cannot_be_relabelled_as_a_new_operation
+    assert system.custom_tools.verify_existing_tool_tool("adder").startswith("TESTS_FAILED:")
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x0000029E7FBF4850>('TESTS_FAILED:')
+E    +    where <built-in method startswith of str object at 0x0000029E7FBF4850> = 'TESTS_PASSED:\nobserved'.startswith
+E    +      where 'TESTS_PASSED:\nobserved' = verify_existing_tool_tool('adder')
+E    +        where verify_existing_tool_tool = <agentix.tools.ArtifactTools object at 0x0000029E7FC26290>.verify_existing_tool_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x0000029E7FC26290> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{7033a35f-a8c4-4b6d-b756-145827b29371}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000029E7FA6B060>).custom_tools
+=========================== short test summary info ===========================
+FAILED tests/unit/test_pipeline_verification.py::test_inflight_test_result_cannot_be_relabelled_as_a_new_operation
+======================== 1 failed, 16 passed in 1.47s =========================

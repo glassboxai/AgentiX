@@ -1,0 +1,79 @@
+....................F.F..                                                [100%]
+================================== FAILURES ===================================
+_ test_computation_classifier_is_conservative[import typing\ndef f(x): return typing.get_type_hints(x)-False] _
+
+source = 'import typing\ndef f(x): return typing.get_type_hints(x)'
+expected = False
+
+    @pytest.mark.parametrize("source,expected", [
+        ("def add(a,b): return a+b", True),
+        ("import math\ndef root(x): return math.sqrt(x)", True),
+        ("def count(text): return len(text.split())", True),
+        ("def check(x):\n    if not isinstance(x, (int,float)): raise TypeError('number')\n    return round(x,2)", True),
+        ("def write(x): return open(x,'w')", False),
+        ("import requests\ndef send(x): return requests.post(x)", False),
+        ("def dynamic(x): return getattr(x,'write')('data')", False),
+        ("def dynamic(x): return x()", False),
+        ("def hidden(x): return x.__class__", False),
+        ("class C: pass", False),
+        ("def f(x): return eval(x)", False),
+        ("import typing\ndef f(x): return typing.get_type_hints(x)", False),
+        ("def f(x): return x.format(secret='value')", False),
+    ])
+    def test_computation_classifier_is_conservative(source, expected):
+        """Only explicit computation constructs avoid the per-call permission gate."""
+        from agentix.reuse_policy import computation_only
+>       assert computation_only(source.encode()) is expected
+E       AssertionError: assert True is False
+E        +  where True = <function computation_only at 0x0000029B68EF0180>(b'import typing\ndef f(x): return typing.get_type_hints(x)')
+E        +    where b'import typing\ndef f(x): return typing.get_type_hints(x)' = <built-in method encode of str object at 0x0000029B68F57670>()
+E        +      where <built-in method encode of str object at 0x0000029B68F57670> = 'import typing\ndef f(x): return typing.get_type_hints(x)'.encode
+
+tests\unit\test_reviewed_reuse.py:112: AssertionError
+____ test_sensitive_approval_is_per_call_and_rechecks_waiting_state[none] _____
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-448/test_sensitive_approval_is_pe...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000029B68EF3100>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000029B69034450>
+mutation = 'none'
+
+    @pytest.mark.parametrize("mutation", ["none", "code", "operation"])
+    def test_sensitive_approval_is_per_call_and_rechecks_waiting_state(system, monkeypatch, mutation):
+        """An approved dialog neither changes arguments nor overrides concurrent drift."""
+        ledger = authorize_fixture(system)
+        path = system.root / "adder" / "adder_code.py"
+        path.write_text("def add(a,b=2):\n    if a < 0: open('output.txt','w')\n    return a+b")
+        code, tests = ledger.snapshot("adder")
+        assert ledger.record("adder", code, tests, dict(kind="tests", run=1, failures=0, errors=0, skipped=0, successful=True), isolated=True, exit_code=0)
+        assert ledger.authorize("adder", code, tests, "reviewed", frozenset({"add"}))
+        seen = []
+        def approve(*args, **kwargs):
+            """Approve only the captured call, simulating a mutation during the wait."""
+            seen.append(args)
+            if mutation == "code":
+                path.write_text("def add(a,b=2): return 999")
+            elif mutation == "operation":
+                system.security.operation_id = "concurrent-query"
+            return True, "ignored edited arguments"
+        monkeypatch.setattr(system.security, "request_user_permission", approve)
+        first = system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+        if mutation != "none":
+            assert first.startswith("TOOL_NOT_VERIFIED:")
+            assert ledger.execution_result() is None
+        else:
+            assert first.endswith("42")
+            system.security.operation_id = "next-query"
+>           assert system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":10}').endswith("12")
+E           assert False
+E            +  where False = <built-in method endswith of str object at 0x0000029B68ECA930>('12')
+E            +    where <built-in method endswith of str object at 0x0000029B68ECA930> = "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first.".endswith
+E            +      where "TOOL_NOT_VERIFIED: Run the current tool's tests in this operation first." = execute_generated_tool_tool('adder', 'add', '{"a":10}')
+E            +        where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x0000029B6909EC90>.execute_generated_tool_tool
+E            +          where <agentix.tools.ArtifactTools object at 0x0000029B6909EC90> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-448/test_sensitive_approval_is_pe...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000029B68EF3100>).custom_tools
+
+tests\unit\test_reviewed_reuse.py:141: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.execution:diagnostics.py:50 event=tool_execution_not_verified session_id=legacy operation_id=- request_id=- error_type=- line=-
+=========================== short test summary info ===========================
+FAILED tests/unit/test_reviewed_reuse.py::test_computation_classifier_is_conservative[import typing\ndef f(x): return typing.get_type_hints(x)-False]
+FAILED tests/unit/test_reviewed_reuse.py::test_sensitive_approval_is_per_call_and_rechecks_waiting_state[none]
+2 failed, 23 passed in 1.81s

@@ -1,0 +1,26 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 3 items
+
+tests\unit\test_composition.py FFF                                       [100%]
+
+================================== FAILURES ===================================
+____________ test_settings_are_immutable_and_do_not_create_storage ____________
+tests\unit\test_composition.py:10: in test_settings_are_immutable_and_do_not_create_storage
+    from agentix.settings import Settings
+E   ModuleNotFoundError: No module named 'agentix'
+___________ test_explicit_runtime_connects_llm_agents_and_services ____________
+tests\unit\test_composition.py:19: in test_explicit_runtime_connects_llm_agents_and_services
+    from agentix.bootstrap import create_runtime
+E   ModuleNotFoundError: No module named 'agentix'
+___________ test_view_binds_controller_and_preserves_launch_options ___________
+tests\unit\test_composition.py:38: in test_view_binds_controller_and_preserves_launch_options
+    from agentix.ui.view import build_view, launch
+E   ModuleNotFoundError: No module named 'agentix'
+=========================== short test summary info ===========================
+FAILED tests/unit/test_composition.py::test_settings_are_immutable_and_do_not_create_storage
+FAILED tests/unit/test_composition.py::test_explicit_runtime_connects_llm_agents_and_services
+FAILED tests/unit/test_composition.py::test_view_binds_controller_and_preserves_launch_options
+============================== 3 failed in 0.25s ==============================

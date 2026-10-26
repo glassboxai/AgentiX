@@ -1,0 +1,66 @@
+{
+  "report_model": "qwen3:14b",
+  "source_sha256": {
+    "src/agentix/ui/__init__.py": "04E76928475913BC67918B71A3FFDB7661FC8E19C938AA96BB7CAB0E766FFFD1",
+    "security_manager.py": "486C6B44E42210F6FE943B58E234AC7AF87C5E63197BDAB744421F1CB09F2AD8",
+    "src/agentix/contracts.py": "7FC7AD9CA681D1426BE67A30DDEA8C9C163703F79631F4DE017823FD34927A2D",
+    "src/agentix/testing.py": "C02EE7BD73C16B930C05F561A2A458232EE42CC642BE184E243FA74A02BA86D0",
+    "src/agentix/bootstrap.py": "52FDBE2CF15EA6FAD638A2A3BEDD5EFC0E8AE918C0A9DAA08911575962E5A997",
+    "src/agentix/orchestration.py": "3D68B0380505C7B0D4FC8CC1F519466F88AC7FBE074628CC5B37C9DC0F9661B7",
+    "src/agentix/security.py": "F152D2AB14C94D066E1998BF4E7B81C1407F475ED3FFD58F421B5298CB1225D4",
+    "src/agentix/approvals.py": "743A282C78E8C7413600A9A5A345661F767D2139BAE0E23BEA152A99A7D14AF9",
+    "src/agentix/paths.py": "E2F3DF0A14367654834CE908C9AD0585BDDF94988B67879FBEAA1B4E47FE5445",
+    "main.py": "7F6ADC2D30FDB440A8A593F3BB6830F06391B47B68CD39C17C000D50D8622308",
+    "config.py": "936BAA272919CDDC44DE2A8A79C542B1F0E1FAE22EE65CB43221D7680EA33CC0",
+    "src/agentix/ui/state.py": "1ED2C5A449B724334BD346B71B8C61BDDC515D723AF1135AE5743EA7D6987AEB",
+    "src/agentix/adapters/crewai.py": "29A115D3759AB5014CF23118E91F8C859E6F551689E8B3001F5AD193E10CB889",
+    "src/agentix/catalog.py": "D0E2484C37BA58C29AFF2D63CEACAFA44120D135C7F7D40C10028F8FE333B54C",
+    "src/agentix/__init__.py": "63AD1C1F0D1DA84AB44C7D073BAFB9F30BAC9E3148248946085AEE4A5F0900D8",
+    "src/agentix/execution.py": "C2359683343AAF5CD4A3CA8A45E0D5D95A34727EA0E8D41D503E2011B8DF84F7",
+    "src/agentix/ui/controller.py": "1CBDC7113613B7E59322249930328B3C42B599213401266508EB9BDC0F7B48BB",
+    "src/agentix/cli.py": "F56428FFA3FF452D03594D5267CE08C27F1DA40B79324A35B2912D29D8C942BD",
+    "src/agentix/adapters/__init__.py": "644E02EBC83327E8B61ABC644B15007A0E34D8E5DF9CF4B8300C1E56514C3B73",
+    "src/agentix/storage.py": "07707FAB85EB4783EBFA32F9B8FE68D3914B47A3CB96FBA8E86266CB2CE1FE96",
+    "src/agentix/ui/view.py": "16ED8D584BA625C85E7915FE4C174954B890F0C73350A7954CB0EF851BC7609E",
+    "app.py": "1230CEC93911A76A942A9E71CBFC0C1B4A6ECAAFAE4605D9287182BF56F0B4CC",
+    "custom_tools.py": "9EC81FB368D2E57176C92C961FA3E38F85B096D3E478BBE39021174CD6370C05",
+    "_agentix_path.py": "91FE3463ED3D14D74EE19294C8DB9F3DF027701227223E37D64A33A188349499",
+    "src/agentix/tools.py": "E9681DAE9A6746D124241D06206D639114B356246FDD4418DDD849999AB86713",
+    "src/agentix/settings.py": "5676288C57407734F53C92D27ED97D4721C243951BA11344128F31C54210E624"
+  },
+  "tests": {
+    "offline_passed": 149,
+    "separately_selected": "Default offline suite excludes the opt-in frameworks test; it was executed and passed separately.",
+    "frameworks_passed": 1,
+    "failures": 0,
+    "expected_failures": 0,
+    "errors": 0
+  },
+  "implemented": [
+    "src package with explicit dependency composition",
+    "Inert root and package imports",
+    "Separated settings, paths, approvals, persistence, catalog, execution, testing and tools",
+    "Separated CrewAI registration, orchestration, UI controller/view/state and CLI",
+    "Compatible root entrypoints, original prompts/results/approval semantics and five fixes retained",
+    "English docstrings, annotations, rationale comments and component logs",
+    "Ruff check and format verification passed on 41 active Python files"
+  ],
+  "before": {
+    "resolved_export_regression": "refactor-export-red.txt",
+    "initial_contract_red": [
+      "refactor-imports-red.txt",
+      "refactor-composition-red.txt"
+    ],
+    "passed": 131,
+    "xml": "refactor-before.xml"
+  },
+  "scope": "REF-003 approved behavior-preserving structural refactoring",
+  "limitations": [
+    "No project generated_tools content accessed",
+    "No live model/server/browser or installed-package validation",
+    "Real schemas/widgets tested with existing runtime dependencies",
+    "No coverage percentage or general static type-checker certification",
+    "Session isolation, manager fallback changes, OS sandbox, log retention and installer remain deferred",
+    "Live application not restarted"
+  ]
+}

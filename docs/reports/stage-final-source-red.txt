@@ -1,0 +1,70 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 10 items / 8 deselected / 2 selected
+
+tests\unit\test_creation_stage_gates.py .F                               [100%]
+
+================================== FAILURES ===================================
+______ test_gated_pipeline_completes_with_real_acceptance_services[True] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{3c45f24e-7c52-4c2e-b50f-a1bbabfc520b}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000002D05CDFD3A0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002D05DF20490>
+replace_code = True
+
+    @pytest.mark.parametrize("replace_code", [False, True])
+    def test_gated_pipeline_completes_with_real_acceptance_services(system, monkeypatch, replace_code):
+        import json
+    
+        from trusted_sandbox import approve_next_review
+    
+        def tester(task):
+            if replace_code:
+                (system.root / "adder" / "adder_code.py").write_text("def adder(kwh): return 3", encoding="utf-8")
+            result = system.custom_tools.run_and_save_tests_tool(
+                "adder",
+                "import unittest\nfrom adder_code import adder\nclass Checks(unittest.TestCase):\n def test_sum(self): self.assertEqual(adder(1), 3)\n",
+            )
+            assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+            thread, errors = approve_next_review(system.security)
+            result = system.custom_tools.submit_acceptance_cases_tool(
+                "adder",
+                json.dumps(
+                    {
+                        "version": 1,
+                        "cases": [
+                            {
+                                "id": "sum",
+                                "purpose": "Check return",
+                                "function": "adder",
+                                "kwargs": {"kwh": 1},
+                                "expect": {"kind": "value", "value": 3},
+                            }
+                        ],
+                    }
+                ),
+            )
+            thread.join(3)
+            assert not errors and result.startswith("ACCEPTANCE_VERIFIED:")
+    
+        seen = install_backend(
+            system,
+            monkeypatch,
+            [
+                lambda task: save(system, "specifications.md", "Approved spec"),
+                lambda task: save(system, "code.py", "def adder(kwh): return kwh + 2"),
+                tester,
+            ],
+        )
+        result = system.main.build_tool_pipeline("adder", "Add two")
+>       assert result.startswith("PIPELINE_STAGE_FAILED: acceptance" if replace_code else "ACCEPTANCE_VERIFIED:")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x000002D05CDEA8B0>('PIPELINE_STAGE_FAILED: acceptance')
+E        +    where <built-in method startswith of str object at 0x000002D05CDEA8B0> = 'ACCEPTANCE_VERIFIED: creation stages completed with host evidence.'.startswith
+
+tests\unit\test_creation_stage_gates.py:177: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_creation_stage_gates.py::test_gated_pipeline_completes_with_real_acceptance_services[True]
+================== 1 failed, 1 passed, 8 deselected in 1.17s ==================

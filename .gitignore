@@ -1,0 +1,15 @@
+.venv/
+.autotool/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+generated_tools/
+*.log
+.env
+.env.*
+
+# Machine-specific reviewed deployment plans are not source configuration.
+*.plan.json
+
+infra/.local-paths.*.json

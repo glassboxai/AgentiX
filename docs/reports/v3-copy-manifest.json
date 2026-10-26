@@ -1,0 +1,153 @@
+{
+  "source": "D:\\AI\\Agentix_v2",
+  "destination": "D:\\AI\\AgentiX_v3",
+  "kept_count": 495,
+  "omitted": [
+    {
+      "path": "src/agentix/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "src/agentix/adapters/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "src/agentix/ui/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "tests/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "tests/e2e/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "tests/integration/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "tests/unit/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "tools/__pycache__",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "docs/proposals/final-render",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "docs/proposals/rendered",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "docs/proposals/reviewed-render",
+      "reason": "cache or intermediate document rendering"
+    },
+    {
+      "path": "docs/proposals/build_proposal_document.py",
+      "reason": "intermediate document authoring artifact or bytecode"
+    },
+    {
+      "path": "docs/proposals/proposal-draft-evidence.json",
+      "reason": "intermediate document authoring artifact or bytecode"
+    },
+    {
+      "path": "docs/proposals/proposal-ollama-attempt.txt",
+      "reason": "intermediate document authoring artifact or bytecode"
+    },
+    {
+      "path": "docs/proposals/proposal-ollama-draft.md",
+      "reason": "intermediate document authoring artifact or bytecode"
+    },
+    {
+      "path": "docs/proposals/proposal-ollama-draft.provenance.json",
+      "reason": "intermediate document authoring artifact or bytecode"
+    },
+    {
+      "path": ".autotool",
+      "reason": "nonportable virtual environment; use an explicitly selected interpreter"
+    },
+    {
+      "path": "generated_tools",
+      "reason": "excluded existing runtime artifacts; not enumerated, copied or inspected"
+    },
+    {
+      "path": "custom_tools_.py",
+      "reason": "obsolete alternative source not referenced by active modules or tests"
+    },
+    {
+      "path": "app.stdout.log",
+      "reason": "runtime log"
+    },
+    {
+      "path": "app.stderr.log",
+      "reason": "runtime log"
+    },
+    {
+      "path": "presentation.txt",
+      "reason": "unreferenced legacy presentation notes"
+    },
+    {
+      "path": "__pycache__",
+      "reason": "bytecode cache"
+    },
+    {
+      "path": ".pytest_cache",
+      "reason": "test cache"
+    },
+    {
+      "path": ".ruff_cache",
+      "reason": "lint cache"
+    }
+  ],
+  "original_source_hashes": {
+    "_agentix_path.py": "91fe3463ed3d14d74ee19294c8db9f3df027701227223e37d64a33a188349499",
+    "AGENTS.md": "1b4ec8954766e8d760fa3eb896df76f24a7056994286081e6424f94f52a396c8",
+    "app.py": "1230cec93911a76a942a9e71cbfc0c1b4a6ecaafae4605d9287182bf56f0b4cc",
+    "config.py": "936baa272919cddc44de2a8a79c542b1f0e1fae22ee65cb43221d7680ea33cc0",
+    "custom_tools.py": "9ec81fb368d2e57176c92c961fa3e38f85b096d3e478bbe39021174cd6370c05",
+    "main.py": "7f6adc2d30fdb440a8a593f3bb6830f06391b47b68cd39c17c000d50d8622308",
+    "pytest.ini": "2f9236f2fdee7eb7c9502e68061927e141b83ee1c3ce481374679e5eb0eb45c5",
+    "requirements-browser.txt": "0b2d415f7d412565518fbb9d989bdf0cf3fb2b6a33f22787dca98a76255cad86",
+    "requirements-dev.txt": "6c2893fead3a49a565c5e2dde98be4419746433b064c0df755b097b4dcdefe4c",
+    "ruff.toml": "60373b28dec89fb1427de172296750b2fef98ff9b64d4ca16ad7eac1bba85895",
+    "security_manager.py": "486c6b44e42210f6fe943b58e234ac7af87c5e63197bdab744421f1cb09f2ad8",
+    "src/agentix/acceptance.py": "ada4d5fb301b962b8e9396d2b9e2df3d544820b3a5873a4486535e6df38b9384",
+    "src/agentix/approvals.py": "28978d24fb741e78f26cc788e692a36ac90c96b8c3b8f02af3a2ec9b4f73343e",
+    "src/agentix/bootstrap.py": "b3eae16c1f9504bf34b898b49dba32c41c1bcfe56f36ba97c7388bc5f50cb093",
+    "src/agentix/catalog.py": "8c3fb9e833128a74cf3aeba79bd1501c39f5f39b435b68c7a8f0d512cc80a9ff",
+    "src/agentix/cli.py": "1f7fcaa2411122e64951f93afdf77601c619c5e9b679becffdc7cfeb59ba1174",
+    "src/agentix/contracts.py": "a43c575da4355eab31589f22ac533495baf4f2784bd25e3001069fa6077bc985",
+    "src/agentix/decisions.py": "2faef8e005e13451b23531a7d0c206f8b15838d2db69c866b1f2717f19f60e35",
+    "src/agentix/diagnostics.py": "993d6c633053edfdb9857742994f166f42bdbac01f29f1d67b81fe8feba48312",
+    "src/agentix/execution.py": "3aba18435874c68abb40c50f66dbcc45dbddd7344930baaade9755f321d25ddb",
+    "src/agentix/orchestration.py": "87967475dcc72555a414a8cd3288f8220ae915d98fd72efea02580b4eb86a917",
+    "src/agentix/paths.py": "bf8c04d21ec00634be69ea561ba06f8caeefc5872ca824b267103ed73379df2b",
+    "src/agentix/sandbox.py": "0e98fd8b4705f9dd42b6a4e362492b43ba7850a7c0e9466ff75166d23707fee6",
+    "src/agentix/sandbox_worker.py": "d6ce9f20338db5d6a61552073836f4d2cd50ba1b451b472604f6e1ee2c89964f",
+    "src/agentix/security.py": "f152d2ab14c94d066e1998bf4e7b81c1407f475ed3ffd58f421b5298cb1225d4",
+    "src/agentix/settings.py": "5676288c57407734f53c92d27ed97d4721c243951ba11344128f31c54210e624",
+    "src/agentix/storage.py": "e0788e86c853ba114741c6c53fe2eb0b5a8ef548a54ce0516d269b882be5f609",
+    "src/agentix/testing.py": "3bfd0e28c6903dcfb0b2a035f906021cf5ef7e1faa3946fa95bdcf15a52ca50f",
+    "src/agentix/tools.py": "3fa67dd2322c206ac1c05c1caedc1fbb86a97cf2f059fc3f7effc85ed025f8cb",
+    "src/agentix/verification.py": "f1299bd707762ba1b7a8a015b8dcceeaf878adb70bd045b982310d2409633fd9",
+    "src/agentix/windows_process.py": "3f7905930df298aff696338b1fa10f9f79e3c3eb9d1f1742f853384920665cae",
+    "src/agentix/workflow_policy.py": "dad64a56fcbbbcbfef0e2f55c401994ca8fa5524a43427d567653862c7fd4a72",
+    "src/agentix/__init__.py": "63ad1c1f0d1da84ab44c7d073bafb9f30bac9e3148248946085aee4a5f0900d8",
+    "src/agentix/adapters/crewai.py": "8823da8efcc5f52ae44c8da9cca65783dc23fe95528e2aef64ffc3e40ac89e27",
+    "src/agentix/adapters/__init__.py": "644e02ebc83327e8b61abc644b15007a0e34d8e5df9cf4b8300c1e56514c3b73",
+    "src/agentix/ui/branding.py": "1f5dbfc695a03c0ddaba5fe125301f634c58753a07a7b0ab1a1297ee5f193a9a",
+    "src/agentix/ui/controller.py": "10eccba76610d409c0563d859d9be3dee5e60aa200e8677b34546ef81185d94e",
+    "src/agentix/ui/presentation.py": "d8153abff576a2d0cefb865917a6d3e7c0cdb8144cc1091fcc120a556e56117e",
+    "src/agentix/ui/sessions.py": "e818295bf47d00b5dc8e8ec269b1f097805c9ab10b0cd1cb6e9971a980dae871",
+    "src/agentix/ui/state.py": "6a875166a62f7610bc450927a2026fe73b70d17fc5f3afd639751c48533ce523",
+    "src/agentix/ui/view.py": "e0d8c9447edc77a774552de0da70dc17d7b395a10af08c97420117f77c01105a",
+    "src/agentix/ui/__init__.py": "04e76928475913bc67918b71a3ffdb7661fc8e19c938aa96bb7cab0e766fffd1",
+    "src/agentix/ui/assets/Agentix.png": "a5bf7d076d8edd4926829c8e7d6e38e5d5f3f3a95ef12dc21ff3261e6f792241",
+    "src/agentix/ui/assets/style.css": "7a4af1a17c963049331ef366a5567fd6129cab2fe2ea7a7f7265424008558965"
+  }
+}

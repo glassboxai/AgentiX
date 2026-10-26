@@ -1,0 +1,44 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_ test_durable_reuse_survives_reload_other_browser_restart_and_detects_drift __
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:57486', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-474/agentix-browser0/artifacts'), <function server.<locals>.restart at 0x000002751FEF2CA0>)
+
+    def test_durable_reuse_survives_reload_other_browser_restart_and_detects_drift(browser, server):
+        """Use actual GUI approval and native protected storage across runtime loss."""
+        from playwright.sync_api import expect
+    
+        context, other_context = browser.new_context(), browser.new_context()
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            page.get_by_role("checkbox", name="Auto-approve file writes for this session").check()
+            submit(page, "durable create")
+            editor = page.get_by_role("textbox", name=EDITOR)
+            expect(editor).to_be_visible(timeout=15000)
+            assert json.loads(editor.input_value())["cases"][0]["expect"]["value"] == 12
+            expect(
+                page.get_by_text("Approval will be remembered for future sessions", exact=False)
+            ).to_be_visible()
+            contrast = page.get_by_role("heading", name="Human acceptance review", exact=True).evaluate("""el => {
+                const rgb = text => text.match(/[0-9.]+/g).map(Number);
+                const luminance = values => values.slice(0,3).map(v => { v/=255; return v<=0.04045 ? v/12.92 : ((v+0.055)/1.055)**2.4; }).reduce((sum,v,i) => sum+v*[0.2126,0.7152,0.0722][i],0);
+                const foreground = luminance(rgb(getComputedStyle(el).color));
+                for (let node=el; node; node=node.parentElement) {
+                    const background=rgb(getComputedStyle(node).backgroundColor);
+                    if (background.length===3 || background[3]>=0.99) {
+                        const value=luminance(background);
+                        return (Math.max(foreground,value)+0.05)/(Math.min(foreground,value)+0.05);
+                    }
+                }
+                return 0;
+            }""")
+>           assert contrast >= 4.5, "Human review must remain readable after relocation"
+E           AssertionError: Human review must remain readable after relocation
+E           assert 1.1407151440208134 >= 4.5
+
+tests\e2e\test_browser_review.py:596: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_durable_reuse_survives_reload_other_browser_restart_and_detects_drift
+1 failed, 11 deselected in 9.44s

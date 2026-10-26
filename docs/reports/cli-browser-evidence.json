@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-19",
+  "requirements": [
+    "CLI-001",
+    "E2E-001"
+  ],
+  "results": {
+    "offline": 263,
+    "frameworks": 3,
+    "windows_isolation": 9,
+    "browser": 3,
+    "total_distinct": 278
+  },
+  "raw_logs": {
+    "cli-browser-offline.txt": "===================== 263 passed, 15 deselected in 12.15s =====================",
+    "cli-browser-frameworks.txt": "===================== 3 passed, 275 deselected in 25.93s ======================",
+    "cli-browser-native.txt": "===================== 9 passed, 269 deselected in 46.35s ======================",
+    "cli-browser-e2e.txt": "============================= 3 passed in 23.95s ==============================",
+    "cli-browser-ruff.txt": "65 files already formatted"
+  },
+  "application_sha256": {
+    "app.py": "1230cec93911a76a942a9e71cbfc0c1b4a6ecaafae4605d9287182bf56f0b4cc",
+    "main.py": "7f6adc2d30fdb440a8a593f3bb6830f06391b47b68cd39c17c000d50d8622308",
+    "config.py": "936baa272919cddc44de2a8a79c542b1f0e1fae22ee65cb43221d7680ea33cc0",
+    "security_manager.py": "486c6b44e42210f6fe943b58e234ac7af87c5e63197bdab744421f1cb09f2ad8",
+    "custom_tools.py": "9ec81fb368d2e57176c92c961fa3e38f85b096d3e478bbe39021174cd6370c05",
+    "_agentix_path.py": "91fe3463ed3d14d74ee19294c8db9f3df027701227223e37d64a33a188349499",
+    "src/agentix/__init__.py": "63ad1c1f0d1da84ab44c7d073bafb9f30bac9e3148248946085aee4a5f0900d8",
+    "src/agentix/acceptance.py": "0e423f8d61e8b4e159e939ff0dea26f43ff605a0a99fe69d953ce24728c3cf8a",
+    "src/agentix/adapters/__init__.py": "644e02ebc83327e8b61abc644b15007a0e34d8e5df9cf4b8300c1e56514c3b73",
+    "src/agentix/adapters/crewai.py": "0a48ff423adedd6659912831caa52849ff43acbad34ed1cd751ce1d4ee7ed2fb",
+    "src/agentix/approvals.py": "ba0ae4eea636511071cc46224772e2655ab10337ea02e4e9cd33455a67dc069e",
+    "src/agentix/bootstrap.py": "a6b27b4837d248f9319bf9de0f5e53a34247b4dfc1fd4a339215eadc7d56a38a",
+    "src/agentix/catalog.py": "2b72d2057196c3575c52dae9860424c3784089a5c3622e079827352e47803a2c",
+    "src/agentix/cli.py": "1f7fcaa2411122e64951f93afdf77601c619c5e9b679becffdc7cfeb59ba1174",
+    "src/agentix/contracts.py": "cf091700e0aa5f209c295e96dc1fdff378508253b73c6cfc246689b5a27f0b1e",
+    "src/agentix/decisions.py": "2faef8e005e13451b23531a7d0c206f8b15838d2db69c866b1f2717f19f60e35",
+    "src/agentix/diagnostics.py": "2d3e0e2011e041b94e494206f4769ab081fe64253f2d80d4d9f4b2820df9a59e",
+    "src/agentix/execution.py": "da3a912e7de9a2217ed5b5668faaf060cdc2a662d1eb55b952bee92c79f181c2",
+    "src/agentix/orchestration.py": "e438e6c074bbbb684d042d575d51409c38ef447d3f85f9967a7dbfe486eedeb3",
+    "src/agentix/paths.py": "bf8c04d21ec00634be69ea561ba06f8caeefc5872ca824b267103ed73379df2b",
+    "src/agentix/sandbox.py": "0e98fd8b4705f9dd42b6a4e362492b43ba7850a7c0e9466ff75166d23707fee6",
+    "src/agentix/sandbox_worker.py": "d6ce9f20338db5d6a61552073836f4d2cd50ba1b451b472604f6e1ee2c89964f",
+    "src/agentix/security.py": "f152d2ab14c94d066e1998bf4e7b81c1407f475ed3ffd58f421b5298cb1225d4",
+    "src/agentix/settings.py": "5676288c57407734f53c92d27ed97d4721c243951ba11344128f31c54210e624",
+    "src/agentix/storage.py": "a7e7074efcd1870edba097c2fc6b8ad53279834069298881a96570a4202b8f9d",
+    "src/agentix/testing.py": "3bfd0e28c6903dcfb0b2a035f906021cf5ef7e1faa3946fa95bdcf15a52ca50f",
+    "src/agentix/tools.py": "3fa67dd2322c206ac1c05c1caedc1fbb86a97cf2f059fc3f7effc85ed025f8cb",
+    "src/agentix/ui/__init__.py": "04e76928475913bc67918b71a3ffdb7661fc8e19c938aa96bb7cab0e766fffd1",
+    "src/agentix/ui/controller.py": "72ded46c14b779fd43d877713461e73189852246fcd08a42b30b578711626159",
+    "src/agentix/ui/sessions.py": "e818295bf47d00b5dc8e8ec269b1f097805c9ab10b0cd1cb6e9971a980dae871",
+    "src/agentix/ui/state.py": "38825d3443a8c64239a01d4bad100fb2732078381c71fadc4cc243870e2210fc",
+    "src/agentix/ui/view.py": "c72f103ea3e9e5c2d72501ddbaaaaefc9b3d8955c39fc68d7c645979afd584b0",
+    "src/agentix/verification.py": "f53da5c410e5fd83bd4727e0f039d72e9213107b047dee3ef73865f37bef967a",
+    "src/agentix/windows_process.py": "3f7905930df298aff696338b1fa10f9f79e3c3eb9d1f1742f853384920665cae"
+  },
+  "boundaries": [
+    "Browser tests use real Gradio with trusted workflow and OS doubles, temporary storage and installed Edge.",
+    "No Ollama model called by tests; no project generated artifact access; no live application restarted.",
+    "CLI interruption denies permissions but cannot forcibly cancel model I/O.",
+    "Finite reviewed cases do not prove universal correctness.",
+    "Installer remains deferred."
+  ],
+  "incidents": [
+    "CLI-ERR-001: terminal could not service pending review; coordinator-backed worker/main-input adapter added.",
+    "CLI-ERR-002: host verdict output missing; independent validation status added.",
+    "CLI-ERR-003: terminal control characters in review; escaped display preserving approved bytes.",
+    "E2E-TEST-001: file test missed directory approval; harness corrected, production rules unchanged."
+  ],
+  "report_model": "qwen3:8b selected to avoid known local memory pressure from larger models; prose only.",
+  "changed_application_files_since_acceptance": [
+    "src/agentix/cli.py"
+  ],
+  "test_source_sha256": {
+    "tests/unit/test_cli_review.py": "3d4642d047ee4c8d22f81efe4981caff273afff67e338c6c15af840b20ecf77e",
+    "tests/e2e/server.py": "27766729720b76668d587a740c2658bb235f50f2d9ede7956f0a766de49c5813",
+    "tests/e2e/test_browser_review.py": "c0949b8d90b2c70e918688f81751c8f9cdd85483c3e7da974d4d77b12adb559d"
+  },
+  "dependency_check": "No broken requirements found."
+}

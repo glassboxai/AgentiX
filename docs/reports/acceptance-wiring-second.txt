@@ -1,0 +1,30 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 246 items / 10 deselected / 236 selected
+
+tests\integration\test_artifact_workflow.py ..                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  6%]
+tests\integration\test_session_workflows.py ....                         [  8%]
+tests\unit\test_acceptance_ui.py ..                                      [  8%]
+tests\unit\test_app.py ......................                            [ 18%]
+tests\unit\test_approval_identity.py .............                       [ 23%]
+tests\unit\test_cli.py .......                                           [ 26%]
+tests\unit\test_compatibility.py ........                                [ 30%]
+tests\unit\test_composition.py ...                                       [ 31%]
+tests\unit\test_config.py ..                                             [ 32%]
+tests\unit\test_decision_security.py .................                   [ 39%]
+tests\unit\test_human_acceptance.py ......................               [ 48%]
+tests\unit\test_import_boundaries.py .                                   [ 49%]
+tests\unit\test_orchestration.py ................                        [ 55%]
+tests\unit\test_pipeline_verification.py ...................             [ 63%]
+tests\unit\test_sandbox_protocol.py .....                                [ 66%]
+tests\unit\test_security.py ............................................ [ 84%]
+.                                                                        [ 85%]
+tests\unit\test_sessions.py .....                                        [ 87%]
+tests\unit\test_tools.py .............................                   [ 99%]
+tests\unit\test_ui_runtime_isolation.py .                                [100%]
+
+===================== 236 passed, 10 deselected in 11.27s =====================

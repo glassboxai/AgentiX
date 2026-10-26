@@ -1,0 +1,19 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "local Ollama loopback",
+  "purpose": "Prose draft only; no engineering code or tests",
+  "facts": {
+    "project": "AgentiX v3",
+    "model_test": "qwen3-coder:30b through real GUI and native isolation",
+    "offline_passed": 448,
+    "first_query_result": 135.0,
+    "second_query_result": 80.0,
+    "second_query_approvals": 0,
+    "second_query_tests": 0,
+    "second_query_code_reads": 0,
+    "initial_creation": "Engineer corrected specification contradiction, float return, test import and arithmetic, expanded tests and acceptance to 12 cases.",
+    "limits": "Session-only trust; no permission expansion; finite cases not universal proof. Native cleanup serial repeat pending because live evaluation created concurrent profiles during global-resource counting."
+  },
+  "review": "The local model produced only an incomplete title. Final report independently written and verified against raw evidence.",
+  "final_native": "9 passed in a serial run after concurrent live workflow ended"
+}

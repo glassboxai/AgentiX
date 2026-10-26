@@ -1,0 +1,68 @@
+{
+  "model": "ollama/qwen3-coder:30b",
+  "browser": "Playwright/headless Edge",
+  "native_isolation": true,
+  "native_windows_dpapi": true,
+  "query_events": {
+    "1": {
+      "owner": "b0aec65b1b5f436e984bb44cb21d2163",
+      "operation": "5234e88fae8646648817a67891a602be",
+      "events": {
+        "approval_requested": 5,
+        "generated_tests_provisional_passed": 1,
+        "acceptance_pending_review": 1,
+        "artifact_read": 0,
+        "artifact_saved": 3,
+        "tool_reuse_prepared": 0,
+        "tool_execution_finished": 1,
+        "final_execution_observed": 1,
+        "durable_approval_saved": 1
+      }
+    },
+    "2": {
+      "owner": "7b5dfdf4221c4bfd8d4e024704aeb213",
+      "operation": "e7b48cf0770342c58b23222afd101606",
+      "events": {
+        "approval_requested": 0,
+        "generated_tests_provisional_passed": 0,
+        "acceptance_pending_review": 0,
+        "artifact_read": 0,
+        "artifact_saved": 0,
+        "tool_reuse_prepared": 1,
+        "tool_execution_finished": 1,
+        "final_execution_observed": 1,
+        "durable_approval_saved": 1
+      }
+    },
+    "3": {
+      "owner": "014a5d9b05d845e9963812159fa80ff7",
+      "operation": "910822f16d534501bf76d70d6b2b70b4",
+      "events": {
+        "approval_requested": 0,
+        "generated_tests_provisional_passed": 0,
+        "acceptance_pending_review": 0,
+        "artifact_read": 0,
+        "artifact_saved": 0,
+        "tool_reuse_prepared": 1,
+        "tool_execution_finished": 1,
+        "final_execution_observed": 1,
+        "durable_approval_saved": 1
+      }
+    }
+  },
+  "before_pid": 38712,
+  "after_pid": 34164,
+  "results": [
+    6.214,
+    15.534,
+    7.456
+  ],
+  "acceptance_cases": 11,
+  "creation_reviews": 5,
+  "reload_reviews": 0,
+  "restart_reviews": 0,
+  "protected_record_bytes": 2790,
+  "protected_record_sha256": "2eb8979c77856cb25d9c40d9884f5b76cceda60aa7c432ebfbb91f9d14c46b69",
+  "review_layout": "right column below Tool validation; model sidebar closed for initial reviews",
+  "historical_tools_migrated": false
+}

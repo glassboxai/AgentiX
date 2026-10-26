@@ -1,0 +1,280 @@
+........................................................................ [ 18%]
+....................FFF................................................. [ 36%]
+........................................................................ [ 55%]
+........................................................................ [ 73%]
+........................................................................ [ 92%]
+..............................                                           [100%]
+================================== FAILURES ===================================
+___________ test_view_binds_controller_and_preserves_launch_options ___________
+
+    def test_view_binds_controller_and_preserves_launch_options():
+        """Verify view binds controller and preserves launch options."""
+        from agentix.ui.view import build_view, launch
+    
+        events = []
+    
+        class Component:
+            """Provide Component for the enclosing trusted test fixture."""
+    
+            def __init__(self, *args, **kwargs):
+                """Provide init for the enclosing trusted test fixture."""
+                self.kwargs = kwargs
+    
+            def __enter__(self):
+                """Provide enter for the enclosing trusted test fixture."""
+                return self
+    
+            def __exit__(self, *args):
+                """Provide exit for the enclosing trusted test fixture."""
+                return False
+    
+            def __getattr__(self, name):
+                """Provide getattr for the enclosing trusted test fixture."""
+    
+                def event(**kwargs):
+                    """Provide event for the enclosing trusted test fixture."""
+                    events.append((name, kwargs))
+                    return self
+    
+                return event
+    
+        gr = SimpleNamespace(
+            **{
+                name: Component
+                for name in (
+                    "State",
+                    "Blocks",
+                    "Row",
+                    "Column",
+                    "Markdown",
+                    "HTML",
+                    "Chatbot",
+                    "Textbox",
+                    "Button",
+                    "Accordion",
+                    "Checkbox",
+                    "Group",
+                    "TextArea",
+                    "Timer",
+                )
+            },
+            themes=SimpleNamespace(Base=Component),
+            Request=type("Request", (), {}),
+        )
+        controller = Mock()
+        controller.get_installed_tools_catalog.return_value = "No tools installed yet."
+        from agentix.ui.sessions import SessionRegistry
+    
+>       view = build_view(SessionRegistry(lambda session_id: controller), gradio_module=gr)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_composition.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+sessions = <agentix.ui.sessions.SessionRegistry object at 0x00000279FF8DAED0>
+gradio_module = namespace(State=<class 'test_composition.test_view_binds_controller_and_preserves_launch_options.<locals>.Component'>,...t_view_binds_controller_and_preserves_launch_options.<locals>.Component'>), Request=<class 'test_composition.Request'>)
+
+    def build_view(sessions: SessionRegistry, gradio_module: Any = None) -> View:
+        """Build widgets/bindings on demand; importing this module never loads Gradio."""
+        if gradio_module is None:
+            import gradio as gradio_module
+        gr = gradio_module
+        callbacks = SessionCallbacks(sessions)
+    
+        def bind(method: Any, *, discard_result: bool = False) -> Any:
+            """Tell Gradio to inject Request instead of treating it as a user input."""
+    
+            @functools.wraps(method)
+            def callback(*args: Any, **kwargs: Any) -> Any:
+                """Dispatch only after the session callback checks token ownership."""
+                result = method(*args, **kwargs)
+                return None if discard_result else result
+    
+            callback.__annotations__ = dict(method.__annotations__, request=gr.Request)
+            signature = inspect.signature(method)
+            callback.__signature__ = signature.replace(
+                parameters=[
+                    parameter.replace(annotation=gr.Request)
+                    if parameter.name == "request"
+                    else parameter
+                    for parameter in signature.parameters.values()
+                ]
+            )
+            return callback
+    
+        theme = gr.themes.Base(
+            primary_hue="cyan",
+            secondary_hue="slate",
+            font=["Inter", "Arial", "sans-serif"],
+            font_mono=["Inter", "Arial", "sans-serif"],
+        )
+    
+        with gr.Blocks(title="AgentiX", fill_width=True) as demo:
+            # State values stay on the server; client submissions cannot choose owners.
+            session_state = gr.State(
+                value=None, time_to_live=1800, delete_callback=sessions.close_state
+            )
+            # The clicked ID must travel with the browser's displayed editor snapshot.
+            # Mutable server State could otherwise relabel a queued stale click.
+            # This identifier is not a secret; server ownership/expiry checks remain mandatory.
+            request_state = gr.Textbox(value="", visible=False, interactive=False)
+            gr.HTML(header())
+    
+>           with gr.Sidebar(label="Settings & Review", width=390, open=True, elem_id="agentix-sidebar"):
+                 ^^^^^^^^^^
+E           AttributeError: 'types.SimpleNamespace' object has no attribute 'Sidebar'
+
+src\agentix\ui\view.py:66: AttributeError
+____________ test_configuration_defaults_and_overrides[None-None] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000279FF637CD0>
+model = None, url = None
+
+    @pytest.mark.parametrize("model,url", [(None, None), ("ollama/custom", "http://127.0.0.1:11435")])
+    def test_configuration_defaults_and_overrides(monkeypatch, model, url):
+        """Retain model/provider values while deferring construction until requested."""
+        root = Path(__file__).resolve().parents[2]
+        values = {}
+        if model is not None:
+            values["OLLAMA_MODEL"] = model
+        if url is not None:
+            values["OLLAMA_BASE_URL"] = url
+        settings = Settings.from_environment(values, base_dir=root)
+        crew = ModuleType("crewai")
+        crew.LLM = Mock()
+        monkeypatch.setitem(sys.modules, "crewai", crew)
+        crew.LLM.assert_not_called()
+        create_llm(settings)
+>       crew.LLM.assert_called_once_with(
+            model=model or "ollama/qwen3-coder:30b",
+            base_url=url or "http://localhost:11434",
+            temperature=0.2,
+        )
+
+tests\unit\test_config.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py:951: in assert_called_once_with
+    return self.assert_called_with(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Mock id='2722999043920'>, args = ()
+kwargs = {'model': 'ollama/qwen3-coder:30b', 'base_url': 'http://localhost:11434', 'temperature': 0.2}
+
+    def assert_called_with(self, /, *args, **kwargs):
+        """assert that the last call was made with the specified arguments.
+    
+        Raises an AssertionError if the args and keyword args passed in are
+        different to the last call to the mock."""
+        if self.call_args is None:
+            expected = self._format_mock_call_signature(args, kwargs)
+            actual = 'not called.'
+            error_message = ('expected call not found.\nExpected: %s\n  Actual: %s'
+                    % (expected, actual))
+            raise AssertionError(error_message)
+    
+        def _error_message():
+            msg = self._format_mock_failure_message(args, kwargs)
+            return msg
+        expected = self._call_matcher(_Call((args, kwargs), two=True))
+        actual = self._call_matcher(self.call_args)
+        if actual != expected:
+            cause = expected if isinstance(expected, Exception) else None
+>           raise AssertionError(_error_message()) from cause
+E           AssertionError: expected call not found.
+E           Expected: mock(model='ollama/qwen3-coder:30b', base_url='http://localhost:11434', temperature=0.2)
+E             Actual: mock(model='ollama/qwen3-coder:30b', base_url='http://localhost:11434', temperature=0.2, timeout=120, max_tokens=8192, max_retries=0)
+
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py:939: AssertionError
+_ test_configuration_defaults_and_overrides[ollama/custom-http://127.0.0.1:11435] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000279FF989A90>
+model = 'ollama/custom', url = 'http://127.0.0.1:11435'
+
+    @pytest.mark.parametrize("model,url", [(None, None), ("ollama/custom", "http://127.0.0.1:11435")])
+    def test_configuration_defaults_and_overrides(monkeypatch, model, url):
+        """Retain model/provider values while deferring construction until requested."""
+        root = Path(__file__).resolve().parents[2]
+        values = {}
+        if model is not None:
+            values["OLLAMA_MODEL"] = model
+        if url is not None:
+            values["OLLAMA_BASE_URL"] = url
+        settings = Settings.from_environment(values, base_dir=root)
+        crew = ModuleType("crewai")
+        crew.LLM = Mock()
+        monkeypatch.setitem(sys.modules, "crewai", crew)
+        crew.LLM.assert_not_called()
+        create_llm(settings)
+>       crew.LLM.assert_called_once_with(
+            model=model or "ollama/qwen3-coder:30b",
+            base_url=url or "http://localhost:11434",
+            temperature=0.2,
+        )
+
+tests\unit\test_config.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py:951: in assert_called_once_with
+    return self.assert_called_with(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Mock id='2723002800528'>, args = ()
+kwargs = {'model': 'ollama/custom', 'base_url': 'http://127.0.0.1:11435', 'temperature': 0.2}
+
+    def assert_called_with(self, /, *args, **kwargs):
+        """assert that the last call was made with the specified arguments.
+    
+        Raises an AssertionError if the args and keyword args passed in are
+        different to the last call to the mock."""
+        if self.call_args is None:
+            expected = self._format_mock_call_signature(args, kwargs)
+            actual = 'not called.'
+            error_message = ('expected call not found.\nExpected: %s\n  Actual: %s'
+                    % (expected, actual))
+            raise AssertionError(error_message)
+    
+        def _error_message():
+            msg = self._format_mock_failure_message(args, kwargs)
+            return msg
+        expected = self._call_matcher(_Call((args, kwargs), two=True))
+        actual = self._call_matcher(self.call_args)
+        if actual != expected:
+            cause = expected if isinstance(expected, Exception) else None
+>           raise AssertionError(_error_message()) from cause
+E           AssertionError: expected call not found.
+E           Expected: mock(model='ollama/custom', base_url='http://127.0.0.1:11435', temperature=0.2)
+E             Actual: mock(model='ollama/custom', base_url='http://127.0.0.1:11435', temperature=0.2, timeout=120, max_tokens=8192, max_retries=0)
+
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py:939: AssertionError
+============================== warnings summary ===============================
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:425: DeprecationWarning: function_calling_llm is deprecated and will be removed in a future release.
+    if self.function_calling_llm and not isinstance(
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:433: DeprecationWarning: deprecated
+    if self.allow_code_execution:
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:444: DeprecationWarning: deprecated
+    if self.reasoning and self.planning_config is None:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/unit/test_composition.py::test_view_binds_controller_and_preserves_launch_options
+FAILED tests/unit/test_config.py::test_configuration_defaults_and_overrides[None-None]
+FAILED tests/unit/test_config.py::test_configuration_defaults_and_overrides[ollama/custom-http://127.0.0.1:11435]
+3 failed, 387 passed, 19 deselected, 15 warnings in 44.45s

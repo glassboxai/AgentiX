@@ -1,0 +1,30 @@
+.F.                                                                      [100%]
+================================== FAILURES ===================================
+_______ test_validation_status_uses_owned_evaluator_and_escapes_values ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{ba96d7ce-a444-4da1-87d8-3851123979bf}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000021D695E1A80>)
+
+    def test_validation_status_uses_owned_evaluator_and_escapes_values(system):
+        system.app.validation = SimpleNamespace(
+            status=lambda: {
+                "stage": "verified",
+                "tool": "adder",
+                "contract_digest": "abcd",
+                "cases": [{"id": "<unsafe>", "passed": True}],
+            }
+        )
+        rendered = system.app.validation_status()
+        assert "Verified against approved cases" in rendered
+>       assert "abcd" not in rendered and "SHA-256" not in rendered
+E       AssertionError: assert ('abcd' not in '### Tool va...fe&gt;: PASS'
+E         
+E         'abcd' is contained here:
+E            SHA-256: abcd
+E         ?           ++++
+E           
+E           &lt;unsafe&gt;: PASS)
+
+tests\unit\test_acceptance_ui.py:35: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_acceptance_ui.py::test_validation_status_uses_owned_evaluator_and_escapes_values
+1 failed, 2 passed in 0.46s

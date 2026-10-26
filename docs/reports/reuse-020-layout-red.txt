@@ -1,0 +1,33 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_reviewed_tool_reuse_has_fresh_result_without_review ___________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:50757', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-459/agentix-browser0/artifacts'))
+
+    def test_reviewed_tool_reuse_has_fresh_result_without_review(browser, server):
+        """Exercise first review and later new inputs through actual Gradio controls."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context()
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            page.get_by_role("checkbox", name="Auto-approve file writes for this session").check()
+            submit(page, "reuse create")
+            editor = page.get_by_role("textbox", name=EDITOR)
+            expect(editor).to_be_visible(timeout=10000)
+            # Review remains in the right workspace when model settings are closed.
+>           assert page.locator("#agentix-sidebar").get_by_role("textbox", name=EDITOR).count() == 0
+E           assert 1 == 0
+E            +  where 1 = count()
+E            +    where count = <Locator frame=<Frame name= url='http://127.0.0.1:50757/'> selector='#agentix-sidebar >> internal:role=textbox[name="Review and edit file content or acceptance cases before approving"i]'>.count
+E            +      where <Locator frame=<Frame name= url='http://127.0.0.1:50757/'> selector='#agentix-sidebar >> internal:role=textbox[name="Review and edit file content or acceptance cases before approving"i]'> = get_by_role('textbox', name='Review and edit file content or acceptance cases before approving')
+E            +        where get_by_role = <Locator frame=<Frame name= url='http://127.0.0.1:50757/'> selector='#agentix-sidebar'>.get_by_role
+E            +          where <Locator frame=<Frame name= url='http://127.0.0.1:50757/'> selector='#agentix-sidebar'> = locator('#agentix-sidebar')
+E            +            where locator = <Page url='http://127.0.0.1:50757/'>.locator
+
+tests\e2e\test_browser_review.py:526: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_reviewed_tool_reuse_has_fresh_result_without_review
+1 failed, 10 deselected in 29.44s

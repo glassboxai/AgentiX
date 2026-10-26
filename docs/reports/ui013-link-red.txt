@@ -1,0 +1,32 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 9 items / 8 deselected / 1 selected
+
+tests\unit\test_presentation.py F                                        [100%]
+
+================================== FAILURES ===================================
+_______________ test_brand_has_requested_order_and_local_assets _______________
+
+    def test_brand_has_requested_order_and_local_assets():
+        from agentix.ui.branding import header, launch_options
+    
+        brand = header()
+        assert (
+            brand.index("<img")
+            < brand.index("<h1>AgentiX</h1>")
+            < brand.index("Agentic Software Engineering.")
+        )
+        assert "Developer-in-the-Loop." in brand
+        assert "AI-generated code. Software engineer-supervised." in brand
+        options = launch_options()
+        assert "Inter" in options["css"] and "#050608" in options["css"]
+>       assert 'href="https://glassboxai.dev/"' in brand
+E       assert 'href="https://glassboxai.dev/"' in '<header class="agentix-brand"><div class="agentix-identity"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB...ed code. Software engineer-supervised. Built for secure, maintainable, production-quality software.</p></div></header>'
+
+tests\unit\test_presentation.py:92: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_presentation.py::test_brand_has_requested_order_and_local_assets
+======================= 1 failed, 8 deselected in 0.45s =======================

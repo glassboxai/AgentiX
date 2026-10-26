@@ -1,0 +1,93 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\unit\test_import_boundaries.py F                                   [100%]
+
+================================== FAILURES ===================================
+______________ test_legacy_imports_do_not_initialize_application ______________
+tests\unit\test_import_boundaries.py:29: in test_legacy_imports_do_not_initialize_application
+    assert result.returncode == 0, result.stderr
+E   AssertionError: Traceback (most recent call last):
+E       File "<string>", line 9, in <module>
+E       File "D:\AI\Agentix_v2\config.py", line 41, in <module>
+E         from crewai import LLM
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\__init__.py", line 8, in <module>
+E         from crewai.agent.core import Agent
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agent\__init__.py", line 1, in <module>
+E         from crewai.agent.core import Agent
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agent\core.py", line 36, in <module>
+E         from crewai.agent.planning_config import PlanningConfig
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agent\planning_config.py", line 7, in <module>
+E         from crewai.agents.agent_builder.base_agent import _validate_llm_ref
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agents\agent_builder\base_agent.py", line 35, in <module>
+E         from crewai.knowledge.knowledge import Knowledge, _resolve_knowledge_sources
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\knowledge\knowledge.py", line 6, in <module>
+E         from crewai.knowledge.source.base_knowledge_source import BaseKnowledgeSource
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\knowledge\source\base_knowledge_source.py", line 8, in <module>
+E         from crewai.knowledge.storage.knowledge_storage import KnowledgeStorage
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\knowledge\storage\knowledge_storage.py", line 10, in <module>
+E         from crewai.rag.chromadb.config import ChromaDBConfig
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\rag\chromadb\config.py", line 11, in <module>
+E         from crewai.rag.chromadb.constants import (
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\rag\chromadb\constants.py", line 11, in <module>
+E         DEFAULT_STORAGE_PATH: Final[str] = db_storage_path()
+E                                            ^^^^^^^^^^^^^^^^^
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai_core\paths.py", line 25, in db_storage_path
+E         data_dir.mkdir(parents=True, exist_ok=True)
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1124, in __call__
+E         return self._mock_call(*args, **kwargs)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1128, in _mock_call
+E         return self._execute_mock_call(*args, **kwargs)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1183, in _execute_mock_call
+E         raise effect
+E       File "D:\AI\Agentix_v2\config.py", line 15, in <module>
+E         from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\__init__.py", line 8, in <module>
+E         from crewai.agent.core import Agent
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agent\__init__.py", line 1, in <module>
+E         from crewai.agent.core import Agent
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agent\core.py", line 36, in <module>
+E         from crewai.agent.planning_config import PlanningConfig
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agent\planning_config.py", line 7, in <module>
+E         from crewai.agents.agent_builder.base_agent import _validate_llm_ref
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agents\agent_builder\base_agent.py", line 28, in <module>
+E         from crewai.agents.agent_builder.base_agent_executor import BaseAgentExecutor
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\agents\agent_builder\base_agent_executor.py", line 8, in <module>
+E         from crewai.memory.utils import sanitize_scope_name
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\memory\__init__.py", line 12, in <module>
+E         from crewai.memory.memory_scope import MemoryScope, MemorySlice
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\memory\memory_scope.py", line 17, in <module>
+E         from crewai.memory.unified_memory import Memory
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\memory\unified_memory.py", line 37, in <module>
+E         from crewai.rag.embeddings.factory import build_embedder
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\rag\__init__.py", line 8, in <module>
+E         from crewai.rag.config.types import RagConfigType
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\rag\config\types.py", line 20, in <module>
+E         from crewai.rag.chromadb.config import ChromaDBConfig
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\rag\chromadb\config.py", line 11, in <module>
+E         from crewai.rag.chromadb.constants import (
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai\rag\chromadb\constants.py", line 11, in <module>
+E         DEFAULT_STORAGE_PATH: Final[str] = db_storage_path()
+E                                            ^^^^^^^^^^^^^^^^^
+E       File "D:\AI\Agentix_v2\.autotool\Lib\site-packages\crewai_core\paths.py", line 25, in db_storage_path
+E         data_dir.mkdir(parents=True, exist_ok=True)
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1124, in __call__
+E         return self._mock_call(*args, **kwargs)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1128, in _mock_call
+E         return self._execute_mock_call(*args, **kwargs)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       File "C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1183, in _execute_mock_call
+E         raise effect
+E     AssertionError: import created storage
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['D:\\AI\\Agentix_v2\\.autotool\\Scripts\\python.exe', '-c', '\nimport os, sys\nfrom unittest.mo...Lib\\unittest\\mock.py", line 1183, in _execute_mock_call\n    raise effect\nAssertionError: import created storage\n').returncode
+=========================== short test summary info ===========================
+FAILED tests/unit/test_import_boundaries.py::test_legacy_imports_do_not_initialize_application
+============================== 1 failed in 4.44s ==============================

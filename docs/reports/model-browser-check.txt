@@ -1,0 +1,106 @@
+.....FF                                                                  [100%]
+================================== FAILURES ===================================
+_____________ test_model_sidebar_is_hideable_and_key_input_clears _____________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:58071', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-416/agentix-browser0/artifacts'))
+
+    def test_model_sidebar_is_hideable_and_key_input_clears(browser, server):
+        """Use the native sidebar toggle and validate session-owned model settings."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": 1440, "height": 1100})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            sidebar = page.locator("#agentix-sidebar")
+            expect(sidebar).to_be_visible()
+            expect(sidebar.get_by_text("Authorization & Test Review", exact=True)).to_be_visible()
+            assert page.get_by_text("Authorization & Test Review", exact=True).count() == 1
+            key = page.locator("#llm-api-key input")
+            expect(key).to_have_attribute("type", "password")
+            key.fill("temporary-browser-test-key")
+            page.locator("#apply-model").click()
+            expect(key).to_have_value("", timeout=15000)
+            expect(page.locator("#model-status")).to_contain_text("Ollama", timeout=15000)
+            page.screenshot(path=str(server[1].parent / "model-sidebar.png"), full_page=True)
+            toggle = sidebar.get_by_role("button", name="Toggle Sidebar")
+            toggle.click()
+>           expect(page.locator("#apply-model")).not_to_be_visible()
+E           AssertionError: Locator expected not to be visible
+E           Actual value: visible 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 5000ms
+E             - waiting for locator("#apply-model")
+E               9 � locator resolved to <button id="apply-model" class="lg secondary  svelte-xzq5jh">�</button>
+E                 - unexpected value "visible"
+
+tests\e2e\test_browser_review.py:306: AssertionError
+______________ test_saved_profile_lifecycle_and_session_consent _______________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:58071', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-416/agentix-browser0/artifacts'))
+
+    def test_saved_profile_lifecycle_and_session_consent(browser, server):
+        """Create/update/reload/delete a synthetic profile through actual browser UI."""
+        from playwright.sync_api import expect
+    
+        first = browser.new_context(viewport={"width": 1440, "height": 1100})
+        second = browser.new_context(viewport={"width": 1440, "height": 1100})
+    
+        def choose(page, selector, label):
+            """Select a visible native Gradio dropdown option by its accessible role."""
+            page.locator(selector).get_by_role("combobox").click()
+            page.get_by_role("option", name=label, exact=True).click()
+    
+        try:
+            page = first.new_page()
+            page.goto(server[0])
+            expect(page.locator("#model-status")).to_contain_text("refreshed", timeout=15000)
+            choose(page, "#llm-provider", "OpenAI")
+>           page.locator("#profile-name input").fill("Synthetic provider")
+
+tests\e2e\test_browser_review.py:330: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\sync_api\_generated.py:15919: in fill
+    self._sync(
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_locator.py:212: in fill
+    return await self._frame.fill(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_frame.py:590: in fill
+    await self._fill(**locals_to_params(locals()))
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_frame.py:602: in _fill
+    await self._channel.send("fill", self._timeout, locals_to_params(locals()))
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x000001C221BC2550>
+cb = <function Channel.send.<locals>.<lambda> at 0x000001C221C3C9A0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.fill: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("#profile-name input")
+
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_connection.py:559: TimeoutError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_model_sidebar_is_hideable_and_key_input_clears
+FAILED tests/e2e/test_browser_review.py::test_saved_profile_lifecycle_and_session_consent
+2 failed, 5 passed, 422 deselected in 74.13s (0:01:14)

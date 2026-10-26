@@ -1,0 +1,21 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 4 items / 3 deselected / 1 selected
+
+tests\integration\test_session_workflows.py F                            [100%]
+
+================================== FAILURES ===================================
+________ test_tool_adapter_restores_owner_context_in_provider_threads _________
+tests\integration\test_session_workflows.py:120: in test_tool_adapter_restores_owner_context_in_provider_threads
+    assert 'session_id=owner-id operation_id=run-id' in caplog.text
+E   AssertionError: assert 'session_id=owner-id operation_id=run-id' in 'INFO     agentix.approvals:diagnostics.py:49 event=approval_automatic session_id=legacy operation_id=- request_id=- e...tix.storage:diagnostics.py:49 event=artifact_saved session_id=legacy operation_id=- request_id=- error_type=- line=-\n'
+E    +  where 'INFO     agentix.approvals:diagnostics.py:49 event=approval_automatic session_id=legacy operation_id=- request_id=- e...tix.storage:diagnostics.py:49 event=artifact_saved session_id=legacy operation_id=- request_id=- error_type=- line=-\n' = <_pytest.logging.LogCaptureFixture object at 0x000001EE3993C0D0>.text
+------------------------------ Captured log call ------------------------------
+INFO     agentix.approvals:diagnostics.py:49 event=approval_automatic session_id=legacy operation_id=- request_id=- error_type=- line=-
+INFO     agentix.approvals:diagnostics.py:49 event=approval_automatic session_id=legacy operation_id=- request_id=- error_type=- line=-
+INFO     agentix.storage:diagnostics.py:49 event=artifact_saved session_id=legacy operation_id=- request_id=- error_type=- line=-
+=========================== short test summary info ===========================
+FAILED tests/integration/test_session_workflows.py::test_tool_adapter_restores_owner_context_in_provider_threads
+======================= 1 failed, 3 deselected in 0.28s =======================

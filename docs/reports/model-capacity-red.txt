@@ -1,0 +1,154 @@
+............................FF                                           [100%]
+================================== FAILURES ===================================
+_________ test_global_work_capacity_rejects_without_contacting_model __________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-407/test_global_work_capacity_rej...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001F868C628E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F868DDF210>
+
+    def test_global_work_capacity_rejects_without_contacting_model(system, monkeypatch):
+        """Overload is denied immediately instead of queueing unlimited model work."""
+        import agentix.orchestration as module
+        gate = SimpleNamespace(acquire=lambda **kw: False)
+        monkeypatch.setattr(module, "_WORK_CAPACITY", gate, raising=False)
+        with pytest.raises(ValueError, match="capacity"):
+>           system.main.run_system("hello")
+
+tests\unit\test_model_profiles.py:307: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\orchestration.py:186: in run_system
+    result = self._run_system(user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <agentix.orchestration.Orchestrator object at 0x000001F868DDF910>
+user_query = 'hello'
+
+    def _run_system(self, user_query: str) -> str:
+        """
+        Main manager orchestrator: checks existing tools or builds a new one.
+        """
+        # Payloads are passed to the model, never copied into routine diagnostics.
+        existing_tools = self.get_installed_tools_catalog()  # get_installed_tools()
+        decision_agent = (
+            self.creation_manager_agent
+            if existing_tools == "No tools installed yet."
+            else self.manager_agent
+        )
+    
+        manager_task = self.Task(
+            description=(
+                f"User Query: '{user_query}'\n"
+                f"Already installed tools on disk: {existing_tools}\n\n"
+                "Decision Rules:\n"
+                "Only verify a tool actually listed in the catalog. If the catalog is empty, "
+                "do not call Verify Existing Tool or guess a tool name: return CREATE_TOOL JSON.\n"
+                "1. If an installed tool can answer this query, first call 'Verify Existing Tool'. "
+                "After TESTS_PROVISIONAL_PASSED, read the requirements/code and call "
+                "'Read Artifact Tool' using the exact artifact filenames listed in the catalog. Then call "
+                "'Submit Acceptance Cases for Human Review' with version-1 declarative cases "
+                "(id, purpose, function, kwargs, expect), including expected values or exceptions. "
+                "Only after ACCEPTANCE_VERIFIED call 'Execute Generated Tool' and provide the final answer. "
+                "If verification fails, report the failure; never invent a successful result.\n"
+                "2. If NO installed tool is suitable, output STRICTLY a JSON block in this exact format and nothing else:\n"
+                "```json\n"
+                "{\n"
+                '  "action": "CREATE_TOOL",\n'
+                '  "tool_name": "<snake_case_tool_name>",\n'
+                '  "purpose": "<clear explanation of what calculation/function is needed>"\n'
+                "}\n"
+                "```"
+            ),
+            expected_output="Direct answer using existing tool OR JSON to trigger new tool creation.",
+            agent=decision_agent,
+        )
+    
+        manager_crew = self.Crew(
+            agents=[decision_agent],
+            tasks=[manager_task],
+            process=self.Process.sequential,
+            verbose=True,
+        )
+    
+>       manager_decision = str(manager_crew.kickoff())
+                               ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'kickoff'
+
+src\agentix\orchestration.py:239: AttributeError
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.orchestration:diagnostics.py:50 event=manager_failed session_id=legacy operation_id=8416d8a276ca4c1a8f88e57b641548e2 request_id=- error_type=AttributeError line=-
+__________________ test_cli_query_limit_precedes_model_work ___________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-407/test_cli_query_limit_precedes...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001F868C628E0>)
+
+    def test_cli_query_limit_precedes_model_work(system):
+        """The shared orchestration service also bounds terminal requests."""
+        with pytest.raises(ValueError, match="limit"):
+>           system.main.run_system("x" * 16001)
+
+tests\unit\test_model_profiles.py:314: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\orchestration.py:186: in run_system
+    result = self._run_system(user_query)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <agentix.orchestration.Orchestrator object at 0x000001F868D02A50>
+user_query = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+    def _run_system(self, user_query: str) -> str:
+        """
+        Main manager orchestrator: checks existing tools or builds a new one.
+        """
+        # Payloads are passed to the model, never copied into routine diagnostics.
+        existing_tools = self.get_installed_tools_catalog()  # get_installed_tools()
+        decision_agent = (
+            self.creation_manager_agent
+            if existing_tools == "No tools installed yet."
+            else self.manager_agent
+        )
+    
+        manager_task = self.Task(
+            description=(
+                f"User Query: '{user_query}'\n"
+                f"Already installed tools on disk: {existing_tools}\n\n"
+                "Decision Rules:\n"
+                "Only verify a tool actually listed in the catalog. If the catalog is empty, "
+                "do not call Verify Existing Tool or guess a tool name: return CREATE_TOOL JSON.\n"
+                "1. If an installed tool can answer this query, first call 'Verify Existing Tool'. "
+                "After TESTS_PROVISIONAL_PASSED, read the requirements/code and call "
+                "'Read Artifact Tool' using the exact artifact filenames listed in the catalog. Then call "
+                "'Submit Acceptance Cases for Human Review' with version-1 declarative cases "
+                "(id, purpose, function, kwargs, expect), including expected values or exceptions. "
+                "Only after ACCEPTANCE_VERIFIED call 'Execute Generated Tool' and provide the final answer. "
+                "If verification fails, report the failure; never invent a successful result.\n"
+                "2. If NO installed tool is suitable, output STRICTLY a JSON block in this exact format and nothing else:\n"
+                "```json\n"
+                "{\n"
+                '  "action": "CREATE_TOOL",\n'
+                '  "tool_name": "<snake_case_tool_name>",\n'
+                '  "purpose": "<clear explanation of what calculation/function is needed>"\n'
+                "}\n"
+                "```"
+            ),
+            expected_output="Direct answer using existing tool OR JSON to trigger new tool creation.",
+            agent=decision_agent,
+        )
+    
+        manager_crew = self.Crew(
+            agents=[decision_agent],
+            tasks=[manager_task],
+            process=self.Process.sequential,
+            verbose=True,
+        )
+    
+>       manager_decision = str(manager_crew.kickoff())
+                               ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'kickoff'
+
+src\agentix\orchestration.py:239: AttributeError
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.orchestration:diagnostics.py:50 event=manager_failed session_id=legacy operation_id=5082bbc0f3c74bdb9c9c87ece17ce317 request_id=- error_type=AttributeError line=-
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_global_work_capacity_rejects_without_contacting_model
+FAILED tests/unit/test_model_profiles.py::test_cli_query_limit_precedes_model_work
+2 failed, 28 passed in 0.34s

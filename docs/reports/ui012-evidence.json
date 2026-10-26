@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "requirement": "UI-012",
+  "status": "implemented and verified",
+  "observations": [
+    "Supplied logo, AgentiX identity, exact three-line description, local Inter font stack, dark/cyan palette and favicon.",
+    "Host-observed records displayed as bounded escaped fields and tables; raw evidence in collapsed disclosure.",
+    "Validation counts and case disclosures in bounded scrolling area; generated Python tests and provisional output available on demand.",
+    "UI catalog folds signatures per tool; original agent/CLI text unchanged.",
+    "Compact Send query button retains accessible name; decorative interface emoji removed.",
+    "Verbose output, technical diagnostics and mandatory approval behavior preserved."
+  ],
+  "verification": {
+    "offline": "316 passed, 19 deselected",
+    "real_frameworks": "5 passed without model/server; restricted initialization timed out, same-source unrestricted run passed",
+    "browser": "5 passed with trusted fixtures, no model or native-isolation claim; desktop 1440 and mobile 390; measured contrast >=4.5; disclosures survive timer updates; no page overflow",
+    "ruff": "lint and format passed, 78 active Python files"
+  },
+  "limitations": [
+    "Browser result screenshot is trusted display fixture data, not a fresh qwen3-coder tool-generation run.",
+    "The new real-model-capable GUI at localhost:7871 is open with an empty temporary catalog; it uses ollama/qwen3-coder:30b and native isolation but no new query was executed.",
+    "Inter uses locally installed fonts with Arial/sans-serif fallback; no remote font requests.",
+    "Display decoding has bounds and marks truncated text; unknown outputs remain escaped text.",
+    "No Docker, installer or execution/acceptance policy changes."
+  ],
+  "incidents": [
+    "Send glyph accessible-name regression fixed; browser failures retained.",
+    "Result contrast regression 1.07:1 fixed; final desktop/mobile >=4.5.",
+    "Finer rate 0.12345 preserved after failing precision regression.",
+    "Intermediate Unicode encoding edit corrected; currency regression passes."
+  ],
+  "evidence_files": [
+    "ui012-offline-verified.txt",
+    "ui012-frameworks-final.txt",
+    "ui012-browser-verified.txt",
+    "ui012-source-hashes.json",
+    "ui012-live.png",
+    "ui012-browser/ui012-1440.png",
+    "ui012-browser/ui012-390.png"
+  ]
+}

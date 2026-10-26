@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 187 items / 186 deselected / 1 selected
+
+tests\integration\test_framework_adapters.py F                           [100%]
+
+================================== FAILURES ===================================
+________________ test_real_crewai_schemas_and_gradio_bindings _________________
+tests\integration\test_framework_adapters.py:39: in test_real_crewai_schemas_and_gradio_bindings
+    assert result.returncode == 0, result.stdout + result.stderr
+E   AssertionError: Traceback (most recent call last):
+E       File "<string>", line 20, in <module>
+E     AssertionError: Displayed request ID must travel with the browser snapshot, not mutable server State
+E     
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['D:\\AI\\Agentix_v2\\.autotool\\Scripts\\python.exe', '-c', "\nimport os\nos.environ.update(OTE..., in <module>\nAssertionError: Displayed request ID must travel with the browser snapshot, not mutable server State\n').returncode
+=========================== short test summary info ===========================
+FAILED tests/integration/test_framework_adapters.py::test_real_crewai_schemas_and_gradio_bindings
+====================== 1 failed, 186 deselected in 7.30s ======================

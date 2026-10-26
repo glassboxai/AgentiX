@@ -1,0 +1,476 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 14 items
+
+tests\unit\test_iac.py FFFFFFFFFFFFFF                                    [100%]
+
+================================== FAILURES ===================================
+____________________ test_plan_is_read_only_and_idempotent ____________________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_plan_is_read_only_and_ide0')
+
+    def test_plan_is_read_only_and_idempotent(tmp_path):
+        """A converged inventory produces no changes and never invokes an actuator."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; "
+            "$p=Get-IacPlan -Config $c -State $s; "
+            "@{changes=@($p.changes).Count; valid=(Test-IacPlan $p $c $s)} | ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = '$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; $p=Get-IacPlan -Config $c -State $s; @{changes=@($p.changes).Count; valid=(Test-IacPlan $p $c $s)} | ConvertTo-Json'
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: Import-Module: The specified module 'D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...AgentiX_v3\\infra\\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+_________ test_configuration_rejects_unsafe_or_unknown_values[model] __________
+
+field = 'model'
+
+    @pytest.mark.parametrize("field", ["model", "pythonVersion", "port", "unknown"])
+    def test_configuration_rejects_unsafe_or_unknown_values(field):
+        """Models, Python, ports and configuration fields cannot silently widen scope."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $c['"
+            + field
+            + "']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration; $c['model']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: ParserError: 
+E         Line |
+E            1 |  … fe'; try {Assert-IacConfiguration $c; $false} catch {$true} | Convert …
+E              |                                                                ~
+E              | An empty pipe element is not allowed.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...   |                                                                ~\n     | An empty pipe element is not allowed.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+_____ test_configuration_rejects_unsafe_or_unknown_values[pythonVersion] ______
+
+field = 'pythonVersion'
+
+    @pytest.mark.parametrize("field", ["model", "pythonVersion", "port", "unknown"])
+    def test_configuration_rejects_unsafe_or_unknown_values(field):
+        """Models, Python, ports and configuration fields cannot silently widen scope."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $c['"
+            + field
+            + "']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration; $c['pythonVersion']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: ParserError: 
+E         Line |
+E            1 |  … fe'; try {Assert-IacConfiguration $c; $false} catch {$true} | Convert …
+E              |                                                                ~
+E              | An empty pipe element is not allowed.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...   |                                                                ~\n     | An empty pipe element is not allowed.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+__________ test_configuration_rejects_unsafe_or_unknown_values[port] __________
+
+field = 'port'
+
+    @pytest.mark.parametrize("field", ["model", "pythonVersion", "port", "unknown"])
+    def test_configuration_rejects_unsafe_or_unknown_values(field):
+        """Models, Python, ports and configuration fields cannot silently widen scope."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $c['"
+            + field
+            + "']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration; $c['port']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: ParserError: 
+E         Line |
+E            1 |  … fe'; try {Assert-IacConfiguration $c; $false} catch {$true} | Convert …
+E              |                                                                ~
+E              | An empty pipe element is not allowed.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...   |                                                                ~\n     | An empty pipe element is not allowed.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+________ test_configuration_rejects_unsafe_or_unknown_values[unknown] _________
+
+field = 'unknown'
+
+    @pytest.mark.parametrize("field", ["model", "pythonVersion", "port", "unknown"])
+    def test_configuration_rejects_unsafe_or_unknown_values(field):
+        """Models, Python, ports and configuration fields cannot silently widen scope."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $c['"
+            + field
+            + "']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration; $c['unknown']='unsafe'; try {Assert-IacConfiguration $c; $false} catch {$true} | ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: ParserError: 
+E         Line |
+E            1 |  … fe'; try {Assert-IacConfiguration $c; $false} catch {$true} | Convert …
+E              |                                                                ~
+E              | An empty pipe element is not allowed.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...   |                                                                ~\n     | An empty pipe element is not allowed.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+_________________ test_plan_rejects_state_drift_and_tampering _________________
+
+    def test_plan_rejects_state_drift_and_tampering():
+        """Changes to the configuration, planned actions or observed state invalidate review."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; "
+            "$p=Get-IacPlan -Config $c -State $s; $s.python.version='wrong'; "
+            "$drift=Test-IacPlan $p $c $s; $s=New-IacFixtureState -Config $c; "
+            "$p.changes=@('erase_data'); $tamper=Test-IacPlan $p $c $s; "
+            "@{drift=$drift;tamper=$tamper}|ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; $p=Get-IacPlan -Config $c -State $s; $s.python.version='...e -Config $c; $p.changes=@('erase_data'); $tamper=Test-IacPlan $p $c $s; @{drift=$drift;tamper=$tamper}|ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: Import-Module: The specified module 'D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...AgentiX_v3\\infra\\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+___ test_missing_model_requires_explicit_download_and_port_conflict_blocks ____
+
+    def test_missing_model_requires_explicit_download_and_port_conflict_blocks():
+        """Ordinary application of a plan cannot download models or replace listeners."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; $s.model.present=$false; "
+            "$p=Get-IacPlan -Config $c -State $s; "
+            "$allowed=Get-IacPlan -Config $c -State $s -DownloadModel; "
+            "$s.portFree=$false; $busy=Get-IacPlan -Config $c -State $s -DownloadModel; "
+            "@{blocked=@($p.blockers).Count;allowed=@($allowed.changes);busy=@($busy.blockers).Count}|ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = '$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; $s.model.present=$false; $p=Get-IacPlan -Config $c -Stat...DownloadModel; @{blocked=@($p.blockers).Count;allowed=@($allowed.changes);busy=@($busy.blockers).Count}|ConvertTo-Json'
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: Import-Module: The specified module 'D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...AgentiX_v3\\infra\\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+________________ test_failed_resource_stops_dependent_changes _________________
+
+    def test_failed_resource_stops_dependent_changes():
+        """A failed prerequisite is not masked and does not start dependent resources."""
+>       result = powershell(
+            "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; "
+            "$s.python.version='missing';$s.environment.present=$false;$s.launchers.present=$false; "
+            "$p=Get-IacPlan -Config $c -State $s; $calls=[Collections.Generic.List[string]]::new(); "
+            "try {Invoke-IacConverge -Config $c -Plan $p -Observe {$s} -Set {param($id,$cfg,$plan) "
+            "$calls.Add($id);throw 'fixture installation denied'};throw 'unexpected success'} "
+            "catch {@{calls=@($calls);error=$_.Exception.Message}|ConvertTo-Json}"
+        )
+
+tests\unit\test_iac.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; $s.python.version='missing';$s.environment.present=$fals...installation denied'};throw 'unexpected success'} catch {@{calls=@($calls);error=$_.Exception.Message}|ConvertTo-Json}"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: Import-Module: The specified module 'D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...AgentiX_v3\\infra\\Agentix.Iac.psm1' was not loaded because no valid module file was found in any module directory.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+______________________ test_paths_and_reparse_boundaries ______________________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_paths_and_reparse_boundar0')
+
+    def test_paths_and_reparse_boundaries(tmp_path):
+        """Managed paths accept spaces but reject siblings and existing links."""
+>       result = powershell(
+            "$root='" + str(tmp_path / "space root").replace("'", "''") + "'; "
+            "Assert-IacContained ($root+'\\child') $root; "
+            "try {Assert-IacContained ($root+'-sibling\\child') $root;$false} catch {$true}|ConvertTo-Json"
+        )
+
+tests\unit\test_iac.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$root='C:\\Users\\xpiku\\AppData\\Local\\Temp\\pytest-of-xpiku\\pytest-379\\test_paths_and_reparse_boundar0\\space ro...($root+'\\child') $root; try {Assert-IacContained ($root+'-sibling\\child') $root;$false} catch {$true}|ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; "
+            + body
+        )
+        result = subprocess.run(
+            [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+            capture_output=True,
+            text=True,
+            timeout=35,
+            check=False,
+        )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: ParserError: 
+E         Line |
+E            1 |  … ntained ($root+'-sibling\child') $root;$false} catch {$true}|ConvertT …
+E              |                                                                ~
+E              | An empty pipe element is not allowed.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...   |                                                                ~\n     | An empty pipe element is not allowed.\n").returncode
+
+tests\unit\test_iac.py:33: AssertionError
+________________ test_runtime_settings_support_managed_launch _________________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_settings_support_0')
+
+    def test_runtime_settings_support_managed_launch(tmp_path):
+        """Managed startup selects new storage and a port without changing legacy defaults."""
+        from agentix.settings import Settings
+    
+        path = tmp_path / "owned tools"
+        settings = Settings.from_environment(
+            {"AGENTIX_TOOLS_ROOT": str(path), "AGENTIX_SERVER_PORT": "7873", "AGENTIX_OPEN_BROWSER": "false"},
+            base_dir=tmp_path,
+        )
+>       assert settings.tools_root == path
+E       AssertionError: assert WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_settings_support_0/generated_tools') == WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_settings_support_0/owned tools')
+E        +  where WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_settings_support_0/generated_tools') = Settings(base_dir=WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_settings_supp...ings_support_0/generated_tools'), model='ollama/qwen3-coder:30b', ollama_url='http://localhost:11434', temperature=0.2).tools_root
+
+tests\unit\test_iac.py:117: AssertionError
+____________________ test_runtime_rejects_invalid_port[0] _____________________
+
+value = '0'
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_rejects_invalid_p0')
+
+    @pytest.mark.parametrize("value", ["0", "65536", "abc", "7860.5"])
+    def test_runtime_rejects_invalid_port(value, tmp_path):
+        """Invalid deployment configuration fails before network or storage startup."""
+        from agentix.settings import Settings
+    
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_iac.py:130: Failed
+__________________ test_runtime_rejects_invalid_port[65536] ___________________
+
+value = '65536'
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_rejects_invalid_p1')
+
+    @pytest.mark.parametrize("value", ["0", "65536", "abc", "7860.5"])
+    def test_runtime_rejects_invalid_port(value, tmp_path):
+        """Invalid deployment configuration fails before network or storage startup."""
+        from agentix.settings import Settings
+    
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_iac.py:130: Failed
+___________________ test_runtime_rejects_invalid_port[abc] ____________________
+
+value = 'abc'
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_rejects_invalid_p2')
+
+    @pytest.mark.parametrize("value", ["0", "65536", "abc", "7860.5"])
+    def test_runtime_rejects_invalid_port(value, tmp_path):
+        """Invalid deployment configuration fails before network or storage startup."""
+        from agentix.settings import Settings
+    
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_iac.py:130: Failed
+__________________ test_runtime_rejects_invalid_port[7860.5] __________________
+
+value = '7860.5'
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-379/test_runtime_rejects_invalid_p3')
+
+    @pytest.mark.parametrize("value", ["0", "65536", "abc", "7860.5"])
+    def test_runtime_rejects_invalid_port(value, tmp_path):
+        """Invalid deployment configuration fails before network or storage startup."""
+        from agentix.settings import Settings
+    
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_iac.py:130: Failed
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_plan_is_read_only_and_idempotent - Assert...
+FAILED tests/unit/test_iac.py::test_configuration_rejects_unsafe_or_unknown_values[model]
+FAILED tests/unit/test_iac.py::test_configuration_rejects_unsafe_or_unknown_values[pythonVersion]
+FAILED tests/unit/test_iac.py::test_configuration_rejects_unsafe_or_unknown_values[port]
+FAILED tests/unit/test_iac.py::test_configuration_rejects_unsafe_or_unknown_values[unknown]
+FAILED tests/unit/test_iac.py::test_plan_rejects_state_drift_and_tampering - ...
+FAILED tests/unit/test_iac.py::test_missing_model_requires_explicit_download_and_port_conflict_blocks
+FAILED tests/unit/test_iac.py::test_failed_resource_stops_dependent_changes
+FAILED tests/unit/test_iac.py::test_paths_and_reparse_boundaries - AssertionE...
+FAILED tests/unit/test_iac.py::test_runtime_settings_support_managed_launch
+FAILED tests/unit/test_iac.py::test_runtime_rejects_invalid_port[0] - Failed:...
+FAILED tests/unit/test_iac.py::test_runtime_rejects_invalid_port[65536] - Fai...
+FAILED tests/unit/test_iac.py::test_runtime_rejects_invalid_port[abc] - Faile...
+FAILED tests/unit/test_iac.py::test_runtime_rejects_invalid_port[7860.5] - Fa...
+============================= 14 failed in 3.84s ==============================

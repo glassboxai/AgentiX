@@ -1,0 +1,17 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 13 items / 12 deselected / 1 selected
+
+tests\unit\test_approval_identity.py F                                   [100%]
+
+================================== FAILURES ===================================
+______ test_owner_factory_does_not_inherit_parent_activity_or_operation _______
+tests\unit\test_approval_identity.py:112: in test_owner_factory_does_not_inherit_parent_activity_or_operation
+    assert child.activity_capture is None
+E   AssertionError: assert <object object at 0x00000244B5385C10> is None
+E    +  where <object object at 0x00000244B5385C10> = <class 'agentix.approvals.OwnedApproval'>.activity_capture
+=========================== short test summary info ===========================
+FAILED tests/unit/test_approval_identity.py::test_owner_factory_does_not_inherit_parent_activity_or_operation
+====================== 1 failed, 12 deselected in 0.24s =======================

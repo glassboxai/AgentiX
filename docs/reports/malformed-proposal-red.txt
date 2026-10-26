@@ -1,0 +1,60 @@
+.......FF..............................                                  [100%]
+================================== FAILURES ===================================
+_ test_human_can_repair_bounded_invalid_model_case_proposal[{"version":1,"cases":[] _
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{9b17c3d1-3de3-4315-8b8a-99253efe9978}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E0D37CDA80>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001E0D499C390>
+proposed = '{"version":1,"cases":['
+
+    @pytest.mark.parametrize("proposed", ['{"version":1,"cases":[', '{}'])
+    def test_human_can_repair_bounded_invalid_model_case_proposal(system, monkeypatch, proposed):
+        """Malformed model data must reach review without granting any authorization."""
+        prepare(system)
+        observed = []
+    
+        def approve(path, action, content, *, require_manual, review_context):
+            observed.append((action, content, require_manual, review_context))
+            assert not system.custom_tools.verification.is_verified("adder")
+            return True, contract(3)
+    
+        monkeypatch.setattr(system.security, "request_user_permission", approve)
+        result = system.custom_tools.submit_acceptance_cases_tool("adder", proposed)
+>       assert result.startswith("ACCEPTANCE_VERIFIED:")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x000001E0D37B46F0>('ACCEPTANCE_VERIFIED:')
+E        +    where <built-in method startswith of str object at 0x000001E0D37B46F0> = 'ACCEPTANCE_FAILED: Invalid cases, changed artifacts or isolated evaluation failure.'.startswith
+
+tests\unit\test_human_acceptance.py:114: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.acceptance:diagnostics.py:50 event=acceptance_error session_id=legacy operation_id=- request_id=- error_type=JSONDecodeError line=-
+________ test_human_can_repair_bounded_invalid_model_case_proposal[{}] ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{9b17c3d1-3de3-4315-8b8a-99253efe9978}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E0D37CDA80>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001E0D485CE50>
+proposed = '{}'
+
+    @pytest.mark.parametrize("proposed", ['{"version":1,"cases":[', '{}'])
+    def test_human_can_repair_bounded_invalid_model_case_proposal(system, monkeypatch, proposed):
+        """Malformed model data must reach review without granting any authorization."""
+        prepare(system)
+        observed = []
+    
+        def approve(path, action, content, *, require_manual, review_context):
+            observed.append((action, content, require_manual, review_context))
+            assert not system.custom_tools.verification.is_verified("adder")
+            return True, contract(3)
+    
+        monkeypatch.setattr(system.security, "request_user_permission", approve)
+        result = system.custom_tools.submit_acceptance_cases_tool("adder", proposed)
+>       assert result.startswith("ACCEPTANCE_VERIFIED:")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x000001E0D37B46F0>('ACCEPTANCE_VERIFIED:')
+E        +    where <built-in method startswith of str object at 0x000001E0D37B46F0> = 'ACCEPTANCE_FAILED: Invalid cases, changed artifacts or isolated evaluation failure.'.startswith
+
+tests\unit\test_human_acceptance.py:114: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.acceptance:diagnostics.py:50 event=acceptance_error session_id=legacy operation_id=- request_id=- error_type=ValueError line=-
+=========================== short test summary info ===========================
+FAILED tests/unit/test_human_acceptance.py::test_human_can_repair_bounded_invalid_model_case_proposal[{"version":1,"cases":[]
+FAILED tests/unit/test_human_acceptance.py::test_human_can_repair_bounded_invalid_model_case_proposal[{}]
+2 failed, 37 passed in 7.62s

@@ -1,0 +1,12 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 220 items / 218 deselected / 2 selected
+
+tests\integration\test_framework_adapters.py .                           [ 50%]
+tests\integration\test_gradio_session_routing.py .                       [100%]
+
+- generated xml file: D:\AI\Agentix_v2\docs\reports\isolation-frameworks.xml --
+===================== 2 passed, 218 deselected in 21.99s ======================

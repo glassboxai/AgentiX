@@ -1,0 +1,10 @@
+{
+  "model": "qwen3:8b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "Reviewed with corrections; authoritative report: LIVE_SMOKE.md.",
+  "rejected_claims": [
+    "The draft incorrectly says the 30B model was not fully unloaded; the unload request returned done_reason=unload.",
+    "The draft presents memory pressure causality as certain; measurements support a contributor, not an isolated root-cause proof."
+  ]
+}

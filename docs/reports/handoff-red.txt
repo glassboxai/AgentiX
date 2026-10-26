@@ -1,0 +1,185 @@
+FFFFFFFFFF                                                               [100%]
+================================== FAILURES ===================================
+_____ test_creation_final_answer_requires_actual_current_execution[False] _____
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B89029F290>
+execute = False
+
+    @pytest.mark.parametrize("execute", [False, True])
+    def test_creation_final_answer_requires_actual_current_execution(system, monkeypatch, execute):
+        stages = []
+    
+        def crew(**kwargs):
+            stages.append(kwargs["tasks"][0].description)
+            def kickoff():
+                if len(stages) == 1:
+                    return '{"action":"CREATE_TOOL","tool_name":"adder","purpose":"Add"}'
+                if execute:
+                    assert system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}') == "Tool Execution Result: 42"
+                return "Fabricated answer: 999"
+            return SimpleNamespace(kickoff=kickoff)
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", lambda **kw: authorize_fixture(system))
+        result = system.main.run_system("Add two to 40")
+        if execute:
+            assert "42" in result and '"a": 40' in result and "999" not in result
+        else:
+>           assert result.startswith("EXECUTION_NOT_VERIFIED:") and "999" not in result
+E           AssertionError: assert (False)
+E            +  where False = <built-in method startswith of str object at 0x000001B8901DDFC0>('EXECUTION_NOT_VERIFIED:')
+E            +    where <built-in method startswith of str object at 0x000001B8901DDFC0> = 'Fabricated answer: 999'.startswith
+
+tests\unit\test_execution_handoff.py:47: AssertionError
+_____ test_creation_final_answer_requires_actual_current_execution[True] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B890291B50>
+execute = True
+
+    @pytest.mark.parametrize("execute", [False, True])
+    def test_creation_final_answer_requires_actual_current_execution(system, monkeypatch, execute):
+        stages = []
+    
+        def crew(**kwargs):
+            stages.append(kwargs["tasks"][0].description)
+            def kickoff():
+                if len(stages) == 1:
+                    return '{"action":"CREATE_TOOL","tool_name":"adder","purpose":"Add"}'
+                if execute:
+                    assert system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}') == "Tool Execution Result: 42"
+                return "Fabricated answer: 999"
+            return SimpleNamespace(kickoff=kickoff)
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", lambda **kw: authorize_fixture(system))
+        result = system.main.run_system("Add two to 40")
+        if execute:
+>           assert "42" in result and '"a": 40' in result and "999" not in result
+E           AssertionError: assert ('42' in 'Fabricated answer: 999')
+
+tests\unit\test_execution_handoff.py:45: AssertionError
+________ test_execution_context_is_defensive_and_receipt_is_call_bound ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+
+    def test_execution_context_is_defensive_and_receipt_is_call_bound(system):
+        ledger = authorize_fixture(system)
+>       context = ledger.acceptance_context("adder")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'acceptance_context'
+
+tests\unit\test_execution_handoff.py:54: AttributeError
+______ test_stale_or_failed_call_cannot_supply_final_evidence[operation] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+invalidate = 'operation'
+
+    @pytest.mark.parametrize("invalidate", ["operation", "code", "tests", "acceptance", "closed", "failed_call"])
+    def test_stale_or_failed_call_cannot_supply_final_evidence(system, invalidate):
+        ledger = authorize_fixture(system)
+        system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert ledger.execution_result() is not None
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'execution_result'
+
+tests\unit\test_execution_handoff.py:70: AttributeError
+________ test_stale_or_failed_call_cannot_supply_final_evidence[code] _________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+invalidate = 'code'
+
+    @pytest.mark.parametrize("invalidate", ["operation", "code", "tests", "acceptance", "closed", "failed_call"])
+    def test_stale_or_failed_call_cannot_supply_final_evidence(system, invalidate):
+        ledger = authorize_fixture(system)
+        system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert ledger.execution_result() is not None
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'execution_result'
+
+tests\unit\test_execution_handoff.py:70: AttributeError
+________ test_stale_or_failed_call_cannot_supply_final_evidence[tests] ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+invalidate = 'tests'
+
+    @pytest.mark.parametrize("invalidate", ["operation", "code", "tests", "acceptance", "closed", "failed_call"])
+    def test_stale_or_failed_call_cannot_supply_final_evidence(system, invalidate):
+        ledger = authorize_fixture(system)
+        system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert ledger.execution_result() is not None
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'execution_result'
+
+tests\unit\test_execution_handoff.py:70: AttributeError
+_____ test_stale_or_failed_call_cannot_supply_final_evidence[acceptance] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+invalidate = 'acceptance'
+
+    @pytest.mark.parametrize("invalidate", ["operation", "code", "tests", "acceptance", "closed", "failed_call"])
+    def test_stale_or_failed_call_cannot_supply_final_evidence(system, invalidate):
+        ledger = authorize_fixture(system)
+        system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert ledger.execution_result() is not None
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'execution_result'
+
+tests\unit\test_execution_handoff.py:70: AttributeError
+_______ test_stale_or_failed_call_cannot_supply_final_evidence[closed] ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+invalidate = 'closed'
+
+    @pytest.mark.parametrize("invalidate", ["operation", "code", "tests", "acceptance", "closed", "failed_call"])
+    def test_stale_or_failed_call_cannot_supply_final_evidence(system, invalidate):
+        ledger = authorize_fixture(system)
+        system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert ledger.execution_result() is not None
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'execution_result'
+
+tests\unit\test_execution_handoff.py:70: AttributeError
+_____ test_stale_or_failed_call_cannot_supply_final_evidence[failed_call] _____
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+invalidate = 'failed_call'
+
+    @pytest.mark.parametrize("invalidate", ["operation", "code", "tests", "acceptance", "closed", "failed_call"])
+    def test_stale_or_failed_call_cannot_supply_final_evidence(system, invalidate):
+        ledger = authorize_fixture(system)
+        system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+>       assert ledger.execution_result() is not None
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'VerificationLedger' object has no attribute 'execution_result'
+
+tests\unit\test_execution_handoff.py:70: AttributeError
+_________ test_reuse_cannot_replace_observed_result_with_model_prose __________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{927ec290-4f46-4063-8416-aa7b88dd3253}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001B88F1914E0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B890268CD0>
+
+    def test_reuse_cannot_replace_observed_result_with_model_prose(system, monkeypatch):
+        def kickoff():
+            authorize_fixture(system)
+            system.custom_tools.execute_generated_tool_tool("adder", "add", '{"a":40}')
+            return "Invented 999"
+        monkeypatch.setattr(system.main, "Crew", lambda **kw: SimpleNamespace(kickoff=kickoff))
+        result = system.main.run_system("Add two to 40")
+>       assert "42" in result and "999" not in result
+E       AssertionError: assert ('42' in 'Invented 999')
+
+tests\unit\test_execution_handoff.py:92: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_execution_handoff.py::test_creation_final_answer_requires_actual_current_execution[False]
+FAILED tests/unit/test_execution_handoff.py::test_creation_final_answer_requires_actual_current_execution[True]
+FAILED tests/unit/test_execution_handoff.py::test_execution_context_is_defensive_and_receipt_is_call_bound
+FAILED tests/unit/test_execution_handoff.py::test_stale_or_failed_call_cannot_supply_final_evidence[operation]
+FAILED tests/unit/test_execution_handoff.py::test_stale_or_failed_call_cannot_supply_final_evidence[code]
+FAILED tests/unit/test_execution_handoff.py::test_stale_or_failed_call_cannot_supply_final_evidence[tests]
+FAILED tests/unit/test_execution_handoff.py::test_stale_or_failed_call_cannot_supply_final_evidence[acceptance]
+FAILED tests/unit/test_execution_handoff.py::test_stale_or_failed_call_cannot_supply_final_evidence[closed]
+FAILED tests/unit/test_execution_handoff.py::test_stale_or_failed_call_cannot_supply_final_evidence[failed_call]
+FAILED tests/unit/test_execution_handoff.py::test_reuse_cannot_replace_observed_result_with_model_prose
+10 failed in 1.84s

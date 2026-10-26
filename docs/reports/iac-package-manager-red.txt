@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 37 items / 36 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+_____________ test_missing_package_manager_blocks_missing_python ______________
+
+    def test_missing_package_manager_blocks_missing_python():
+        """A missing Windows package manager is diagnosed before dependent installation."""
+        result = powershell("$c=Read-IacConfiguration;$s=New-IacFixtureState $c;$s.python.version='missing';$s.packageManager.available=$false;$p=Get-IacPlan $c $s;@{blocked=@($p.blockers).Count}|ConvertTo-Json")
+>       assert result["blocked"] > 0
+E       assert 0 > 0
+
+tests\unit\test_iac.py:313: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_missing_package_manager_blocks_missing_python
+====================== 1 failed, 36 deselected in 0.69s =======================

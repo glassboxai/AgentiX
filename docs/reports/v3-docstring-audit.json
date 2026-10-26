@@ -1,0 +1,5 @@
+{
+  "maintained_python_files": 81,
+  "missing_module_class_callable_docstrings": [],
+  "limit": "Presence audit only; source references and architectural contracts require semantic review."
+}

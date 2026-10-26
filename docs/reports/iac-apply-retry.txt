@@ -1,0 +1,12 @@
+Write-Error: 
+Line |
+  10 |  & ./infra/Invoke-AgentiXIac.ps1 -Action Apply -PlanFile docs/reports/ …
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Process failed (2): 2026-10-24T08:53:37.815382Z ERROR Failed to run process 'powershell.exe': Command: Resource 'powershell.exe' [exit code 1] Reviewed plan is stale or modified. Generate and review a fresh plan.
+en Invoke-IacConverge, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 388
+en <ScriptBlock>, D:\AI\AgentiX_v3\infra\resource.ps1: línea 19
+
+2026-10-24T08:53:37.816371Z ERROR Error: Command: Resource 'powershell.exe' [exit code 1] Reviewed plan is stale or modified. Generate and review a fresh plan.
+en Invoke-IacConverge, D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: línea 388
+en <ScriptBlock>, D:\AI\AgentiX_v3\infra\resource.ps1: línea 19
+

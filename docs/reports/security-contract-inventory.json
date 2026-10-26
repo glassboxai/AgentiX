@@ -1,0 +1,7 @@
+{
+  "files": 29,
+  "classes": 24,
+  "functions_and_methods": 107,
+  "missing_contract_elements": [],
+  "note": "Structural inventory, not semantic documentation or static type-checker certification."
+}

@@ -1,0 +1,7 @@
+{
+  "files": 26,
+  "classes": 17,
+  "functions_and_methods": 74,
+  "missing_contract_elements": [],
+  "note": "Structural docstring/annotation inventory, not a semantic documentation or static type checker certification."
+}

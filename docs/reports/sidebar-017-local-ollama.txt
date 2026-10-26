@@ -1,0 +1,1 @@
+{"endpoint": "http://127.0.0.1:11434/api/tags", "installed_count": 13, "default_present": true, "inference": false}

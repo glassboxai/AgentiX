@@ -1,0 +1,12 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "unverified draft",
+  "reviewed_by": "Codex, against source and fresh raw evidence",
+  "authoritative_report": "VERBOSE_ACTIVITY.md",
+  "rejected_inferences": [
+    "Pre-fix failures do not establish outstanding defects after passing regressions.",
+    "Excluding project generated artifacts and not restarting the live app do not invalidate the explicitly scoped adapter/routing checks."
+  ]
+}

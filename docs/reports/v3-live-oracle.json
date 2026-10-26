@@ -1,0 +1,25 @@
+{
+  "case": "Warehouse dispatch quote",
+  "query": "I run a small warehouse. Preparing the first 10 boxes costs EUR 2 per box, the next 10 cost EUR 1.50 each, and any additional boxes cost EUR 1 each. These are progressive rates: each rate applies only to its own portion. Add a single EUR 5 shipping charge when there is at least one box. With no boxes, charge nothing. Only whole, non-negative numbers of boxes are allowed; reject fractions, negative amounts and entries that are not numbers of boxes. How much should I charge to prepare and ship 27 boxes?",
+  "expected_eur": {
+    "0": 0,
+    "1": 7,
+    "9": 23,
+    "10": 25,
+    "11": 26.5,
+    "19": 38.5,
+    "20": 40,
+    "21": 41,
+    "27": 47,
+    "50": 70
+  },
+  "invalid": [
+    -1,
+    1.5,
+    true,
+    "27",
+    null
+  ],
+  "calculation": "10*2 + 10*1.5 + 7*1 + 5 = 47 EUR",
+  "status": "Independent expected values recorded before submitting query"
+}

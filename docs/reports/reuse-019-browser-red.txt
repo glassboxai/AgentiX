@@ -1,0 +1,29 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_reviewed_tool_reuse_has_fresh_result_without_review ___________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:63228', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-452/agentix-browser0/artifacts'))
+
+    def test_reviewed_tool_reuse_has_fresh_result_without_review(browser, server):
+        """Exercise first review and later new inputs through actual Gradio controls."""
+        from playwright.sync_api import expect
+        context = browser.new_context()
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            page.get_by_role("checkbox", name="Auto-approve file writes for this session").check()
+            submit(page, "reuse create")
+            editor = page.get_by_role("textbox", name=EDITOR)
+>           expect(editor).to_be_visible(timeout=10000)
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 10000ms
+E             - waiting for get_by_role("textbox", name="Review and edit file content or acceptance cases before approving")
+
+tests\e2e\test_browser_review.py:524: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_reviewed_tool_reuse_has_fresh_result_without_review
+1 failed, 10 deselected in 24.74s

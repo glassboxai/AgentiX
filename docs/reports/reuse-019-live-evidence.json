@@ -1,0 +1,24 @@
+{
+  "model": "ollama/qwen3-coder:30b",
+  "queries": [
+    "277cc498c6464b94a9b09b734adfb5ab",
+    "9cb99b429b624e21b9d280fe598656ee"
+  ],
+  "second_query_events": {
+    "approval_requested": 0,
+    "generated_tests_provisional_passed": 0,
+    "acceptance_pending_review": 0,
+    "artifact_read": 0,
+    "artifact_saved": 0,
+    "tool_reuse_prepared": 1,
+    "tool_execution_finished": 1,
+    "final_execution_observed": 1
+  },
+  "first_expected": 135.0,
+  "second_expected": 80.0,
+  "manual_initial_reviews": 5,
+  "reuse_reviews": 0,
+  "native_isolation": true,
+  "browser": "Playwright / headless Edge",
+  "storage": "independent temporary directory; project generated_tools untouched"
+}

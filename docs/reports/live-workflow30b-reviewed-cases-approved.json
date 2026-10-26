@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "kwh_0",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 0
+      },
+      "expect": {
+        "kind": "value",
+        "value": 0
+      }
+    },
+    {
+      "id": "kwh_300",
+      "purpose": "Independent arithmetic check for the reviewer-corrected QA expectation",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 300
+      },
+      "expect": {
+        "kind": "value",
+        "value": 5500
+      }
+    },
+    {
+      "id": "kwh_99",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 99
+      },
+      "expect": {
+        "kind": "value",
+        "value": 1188
+      }
+    },
+    {
+      "id": "kwh_100",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 100
+      },
+      "expect": {
+        "kind": "value",
+        "value": 1200
+      }
+    },
+    {
+      "id": "kwh_101",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 101
+      },
+      "expect": {
+        "kind": "value",
+        "value": 1218
+      }
+    },
+    {
+      "id": "kwh_199",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 199
+      },
+      "expect": {
+        "kind": "value",
+        "value": 2982
+      }
+    },
+    {
+      "id": "kwh_200",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 200
+      },
+      "expect": {
+        "kind": "value",
+        "value": 3000
+      }
+    },
+    {
+      "id": "kwh_201",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 201
+      },
+      "expect": {
+        "kind": "value",
+        "value": 3025
+      }
+    },
+    {
+      "id": "kwh_250",
+      "purpose": "Independent literal oracle: normal value or exact tier boundary",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 250
+      },
+      "expect": {
+        "kind": "value",
+        "value": 4250
+      }
+    },
+    {
+      "id": "kwh_150",
+      "purpose": "Independent arithmetic check for the reviewed specification example",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 150
+      },
+      "expect": {
+        "kind": "value",
+        "value": 2100
+      }
+    },
+    {
+      "id": "negative",
+      "purpose": "Reject invalid type or negative consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": -1
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "integral_float",
+      "purpose": "Reject invalid type or negative consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 1.0
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "true",
+      "purpose": "Reject invalid type or negative consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": true
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "false",
+      "purpose": "Reject invalid type or negative consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": false
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "string",
+      "purpose": "Reject invalid type or negative consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": "100"
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "null",
+      "purpose": "Reject invalid type or negative consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": null
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    }
+  ]
+}

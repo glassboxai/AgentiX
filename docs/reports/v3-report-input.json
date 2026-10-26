@@ -1,0 +1,26 @@
+{
+  "release": "AgentiX v3 3.0.0",
+  "date": "2026-10-23",
+  "implemented": [
+    "Explicit Ruff and design-principle engineering rules",
+    "ExecutionBackend injection shared across execution, tests and acceptance",
+    "Startup Gradio analytics disabled",
+    "AST source reference inventory and freshness regression",
+    "Curated source copy preserving v2 and excluding generated_tools and nonportable environment"
+  ],
+  "verified": {
+    "baseline_offline_passed": 316,
+    "v3_offline_passed": 322,
+    "v3_offline_deselected": 19,
+    "red_regressions": "Three quality tests and reference-generation failures retained"
+  },
+  "limits": [
+    "No new widget or assembler agents implemented",
+    "No installer or Docker",
+    "No clean-machine installation proof",
+    "No real model run in this block",
+    "Finite tests do not prove arbitrary code correctness",
+    "Integration results recorded separately after completion"
+  ],
+  "provenance": "Local report draft only; engineering code and tests are independently authored."
+}

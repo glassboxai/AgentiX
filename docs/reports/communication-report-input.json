@@ -1,0 +1,100 @@
+{
+  "verification": {
+    "offline": 307,
+    "frameworks": 5,
+    "windows_isolation": 9,
+    "browser": 3,
+    "ruff_files": 75
+  },
+  "application_model": "ollama/qwen3-coder:30b",
+  "query_language": "English",
+  "live_status": "Passed complete creation/review/acceptance/execution with manual corrections in one final operation",
+  "live_provisional_tests": 7,
+  "live_host_acceptance_cases_passed": 16,
+  "live_final_kwargs": {
+    "kwh": 250
+  },
+  "live_observed_result": "4250",
+  "manual_changes": [
+    "Correct specification examples 150 from1950 to2100 and250 from3750 to4250.",
+    "Reject bool by exact input type and remove demonstration main block.",
+    "Correct QA expectation101 from1212 to1218, enforce exact return types, add independent literal table.",
+    "Expand seven proposed acceptance cases to16 independently checked cases."
+  ],
+  "earlier_attempts": [
+    "Guessed verification with empty catalog: rejected/stopped.",
+    "Repeated erroneous specification overwrite: rejected/stopped.",
+    "Invalid reviewer hyphenated IDs: acceptance failed closed.",
+    "Pending Spanish specification operation ended without approved artifact when English query requested.",
+    "English generated malformed acceptance JSON: stopped before review.",
+    "Reuse attempted unapproved execution after guessed package reads: host blocked."
+  ],
+  "limitations": [
+    "Supervised success, not autonomous generation success or universal correctness.",
+    "Generated unittest reports remain provisional.",
+    "Malformed-proposal repair tested offline; final successful live proposal was valid JSON.",
+    "Successful final live run covers creation path; no post-fix live reuse success is claimed.",
+    "No project generated artifacts inspected; no Docker, installer or existing-live-app restart.",
+    "Native counterexamples only; generated source was never executed on the host."
+  ],
+  "negative_regressions": [
+    {
+      "scenario": "original_boolean_defect",
+      "isolated": true,
+      "exit_code": 1,
+      "report": {
+        "kind": "tests",
+        "run": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0,
+        "successful": false
+      }
+    },
+    {
+      "scenario": "corrected_boolean_regression",
+      "isolated": true,
+      "exit_code": 0,
+      "report": {
+        "kind": "tests",
+        "run": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true
+      }
+    },
+    {
+      "scenario": "original_wrong_test_oracle",
+      "isolated": true,
+      "exit_code": 1,
+      "report": {
+        "kind": "tests",
+        "run": 6,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "successful": false
+      }
+    },
+    {
+      "scenario": "approved_full_suite",
+      "isolated": true,
+      "exit_code": 0,
+      "report": {
+        "kind": "tests",
+        "run": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true
+      }
+    }
+  ],
+  "evidence_files": [
+    "communication-evidence.json",
+    "live-workflow30b-reviewed-final-dom.txt",
+    "live-workflow30b-reviewed-result.png",
+    "live-workflow30b-reviewed-server.log"
+  ]
+}

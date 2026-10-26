@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 16 items
+
+tests\unit\test_approval_identity.py ..........FF                        [ 75%]
+tests\unit\test_sessions.py ...F                                         [100%]
+
+================================== FAILURES ===================================
+___________ test_invalid_decision_types_do_not_authorize[yes-text] ____________
+tests\unit\test_approval_identity.py:139: in test_invalid_decision_types_do_not_authorize
+    assert not boundary.resolve_pending_request(decision, content, request_id=pending['request_id'], owner_id='alice')
+E   AssertionError: assert not True
+E    +  where True = resolve_pending_request('yes', 'text', request_id='2a15eab7a8244ba98c64eef5f5c6cbe7', owner_id='alice')
+E    +    where resolve_pending_request = <class 'agentix.approvals.OwnedApproval'>.resolve_pending_request
+___________ test_invalid_decision_types_do_not_authorize[True-123] ____________
+tests\unit\test_approval_identity.py:139: in test_invalid_decision_types_do_not_authorize
+    assert not boundary.resolve_pending_request(decision, content, request_id=pending['request_id'], owner_id='alice')
+E   AssertionError: assert not True
+E    +  where True = resolve_pending_request(True, 123, request_id='af0027c9efed4783b0c5014bd63be355', owner_id='alice')
+E    +    where resolve_pending_request = <class 'agentix.approvals.OwnedApproval'>.resolve_pending_request
+_______________________ test_activity_buffer_is_bounded _______________________
+tests\unit\test_sessions.py:68: in test_activity_buffer_is_bounded
+    assert len(capture.logs_buffer) <= 256
+E   AssertionError: assert 300 <= 256
+E    +  where 300 = len(['0:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', ...])
+E    +    where ['0:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', ...] = <agentix.ui.state.ConsoleThoughtsCapture object at 0x000001C991B6E2D0>.logs_buffer
+=========================== short test summary info ===========================
+FAILED tests/unit/test_approval_identity.py::test_invalid_decision_types_do_not_authorize[yes-text]
+FAILED tests/unit/test_approval_identity.py::test_invalid_decision_types_do_not_authorize[True-123]
+FAILED tests/unit/test_sessions.py::test_activity_buffer_is_bounded - Asserti...
+======================== 3 failed, 13 passed in 0.30s =========================

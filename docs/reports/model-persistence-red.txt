@@ -1,0 +1,490 @@
+FFFFFFFFFFF                                                              [100%]
+================================== FAILURES ===================================
+_______ test_profiles_survive_repository_restart_without_plaintext_keys _______
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_profiles_survive_reposito0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355DF5C680>, read=<function vault.<locals>.<lambda> at 0x000002355DF5CEA0>, delete=<function vault.<locals>.<lambda> at 0x000002355DF5CF40>)
+
+    def test_profiles_survive_repository_restart_without_plaintext_keys(tmp_path, vault):
+        """Persist metadata and reload it without exposing API key bytes."""
+>       store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+__________ test_key_update_failure_retains_original_profile_and_key ___________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_key_update_failure_retain0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355DF05D00>, read=<function vault.<locals>.<lambda> at 0x000002355DF06020>, delete=<function vault.<locals>.<lambda> at 0x000002355E004040>)
+
+    def test_key_update_failure_retains_original_profile_and_key(tmp_path, vault):
+        """A rejected vault update cannot invalidate a working saved credential."""
+>       store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+____________ test_stale_profile_edit_does_not_overwrite_newer_key _____________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_stale_profile_edit_does_n0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355E004720>, read=<function vault.<locals>.<lambda> at 0x000002355E004400>, delete=<function vault.<locals>.<lambda> at 0x000002355E004540>)
+
+    def test_stale_profile_edit_does_not_overwrite_newer_key(tmp_path, vault):
+        """Reject a stale browser edit before changing any credential."""
+>       store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+_______________ test_delete_removes_only_selected_owned_profile _______________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_delete_removes_only_selec0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355E0040E0>, read=<function vault.<locals>.<lambda> at 0x000002355E004180>, delete=<function vault.<locals>.<lambda> at 0x000002355E004F40>)
+
+    def test_delete_removes_only_selected_owned_profile(tmp_path, vault):
+        """Never enumerate or remove unrelated Windows credentials."""
+>       store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+_____________ test_profile_identifier_cannot_escape_store[../bad] _____________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_profile_identifier_cannot0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355E005120>, read=<function vault.<locals>.<lambda> at 0x000002355E0042C0>, delete=<function vault.<locals>.<lambda> at 0x000002355E004FE0>)
+profile_id = '../bad'
+
+    @pytest.mark.parametrize("profile_id", ["../bad", "x"*32, "", "C:/anything"])
+    def test_profile_identifier_cannot_escape_store(tmp_path, vault, profile_id):
+        """Use only closed UUID filenames, never browser-provided paths."""
+>       store = feature().SavedProfiles(tmp_path, vault)
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+_ test_profile_identifier_cannot_escape_store[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_profile_identifier_cannot1')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355DF5CF40>, read=<function vault.<locals>.<lambda> at 0x000002355DF5CEA0>, delete=<function vault.<locals>.<lambda> at 0x000002355DF5C680>)
+profile_id = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+    @pytest.mark.parametrize("profile_id", ["../bad", "x"*32, "", "C:/anything"])
+    def test_profile_identifier_cannot_escape_store(tmp_path, vault, profile_id):
+        """Use only closed UUID filenames, never browser-provided paths."""
+>       store = feature().SavedProfiles(tmp_path, vault)
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+________________ test_profile_identifier_cannot_escape_store[] ________________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_profile_identifier_cannot2')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355E005620>, read=<function vault.<locals>.<lambda> at 0x000002355E005300>, delete=<function vault.<locals>.<lambda> at 0x000002355E005760>)
+profile_id = ''
+
+    @pytest.mark.parametrize("profile_id", ["../bad", "x"*32, "", "C:/anything"])
+    def test_profile_identifier_cannot_escape_store(tmp_path, vault, profile_id):
+        """Use only closed UUID filenames, never browser-provided paths."""
+>       store = feature().SavedProfiles(tmp_path, vault)
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+__________ test_profile_identifier_cannot_escape_store[C:/anything] ___________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_profile_identifier_cannot3')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355E0047C0>, read=<function vault.<locals>.<lambda> at 0x000002355E0040E0>, delete=<function vault.<locals>.<lambda> at 0x000002355E0058A0>)
+profile_id = 'C:/anything'
+
+    @pytest.mark.parametrize("profile_id", ["../bad", "x"*32, "", "C:/anything"])
+    def test_profile_identifier_cannot_escape_store(tmp_path, vault, profile_id):
+        """Use only closed UUID filenames, never browser-provided paths."""
+>       store = feature().SavedProfiles(tmp_path, vault)
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+____________ test_corrupt_metadata_is_denied_not_silently_replaced ____________
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+>           return importlib.import_module("agentix.profile_store")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.profile_store'
+import_ = <function _gcd_import at 0x000002355A443D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.profile_store'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-409/test_corrupt_metadata_is_denie0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000002355E004540>, read=<function vault.<locals>.<lambda> at 0x000002355E005800>, delete=<function vault.<locals>.<lambda> at 0x000002355E005A80>)
+
+    def test_corrupt_metadata_is_denied_not_silently_replaced(tmp_path, vault):
+        """A mismatched credential namespace cannot authorize a key lookup."""
+>       store = feature().SavedProfiles(tmp_path, vault, resolver=lambda host: ["93.184.216.34"])
+                ^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def feature():
+        """Produce an explicit missing-feature assertion before implementation."""
+        try:
+            return importlib.import_module("agentix.profile_store")
+        except ModuleNotFoundError:
+>           pytest.fail("Persistent nonsecret profile repository is not implemented")
+E           Failed: Persistent nonsecret profile repository is not implemented
+
+tests\unit\test_saved_model_profiles.py:15: Failed
+_______ test_ollama_discovery_reads_tags_only_and_filters_invalid_names _______
+
+    def test_ollama_discovery_reads_tags_only_and_filters_invalid_names():
+        """Discover installed models without model downloads or inference."""
+        from agentix import model_profiles
+        calls = []
+        def read(url):
+            """Return a bounded deterministic Ollama response fixture."""
+            calls.append(url)
+            return {"models": [{"name": "qwen3-coder:30b"}, {"name": "qwen3:14b"}, {"name": "../invalid"}]}
+>       assert model_profiles.installed_models("http://127.0.0.1:11434", read) == ["qwen3-coder:30b", "qwen3:14b"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'installed_models'
+
+tests\unit\test_saved_model_profiles.py:96: AttributeError
+___________________ test_ollama_unavailable_is_payload_free ___________________
+
+    def test_ollama_unavailable_is_payload_free():
+        """Network exceptions cannot leak configuration or response bodies."""
+        from agentix import model_profiles
+        with pytest.raises(ValueError) as failure:
+>           model_profiles.installed_models("http://127.0.0.1:11434", lambda url: (_ for _ in ()).throw(RuntimeError("sensitive-body")))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: module 'agentix.model_profiles' has no attribute 'installed_models'
+
+tests\unit\test_saved_model_profiles.py:104: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_saved_model_profiles.py::test_profiles_survive_repository_restart_without_plaintext_keys
+FAILED tests/unit/test_saved_model_profiles.py::test_key_update_failure_retains_original_profile_and_key
+FAILED tests/unit/test_saved_model_profiles.py::test_stale_profile_edit_does_not_overwrite_newer_key
+FAILED tests/unit/test_saved_model_profiles.py::test_delete_removes_only_selected_owned_profile
+FAILED tests/unit/test_saved_model_profiles.py::test_profile_identifier_cannot_escape_store[../bad]
+FAILED tests/unit/test_saved_model_profiles.py::test_profile_identifier_cannot_escape_store[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]
+FAILED tests/unit/test_saved_model_profiles.py::test_profile_identifier_cannot_escape_store[]
+FAILED tests/unit/test_saved_model_profiles.py::test_profile_identifier_cannot_escape_store[C:/anything]
+FAILED tests/unit/test_saved_model_profiles.py::test_corrupt_metadata_is_denied_not_silently_replaced
+FAILED tests/unit/test_saved_model_profiles.py::test_ollama_discovery_reads_tags_only_and_filters_invalid_names
+FAILED tests/unit/test_saved_model_profiles.py::test_ollama_unavailable_is_payload_free
+11 failed in 0.98s

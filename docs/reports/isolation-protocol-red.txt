@@ -1,0 +1,65 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 5 items
+
+tests\unit\test_sandbox_protocol.py FFFFF                                [100%]
+
+================================== FAILURES ===================================
+__________ test_plain_text_cannot_become_a_test_report[TESTS_PASSED] __________
+
+output = 'TESTS_PASSED'
+
+    @pytest.mark.parametrize("output", ["TESTS_PASSED", "{}", '{"kind":"tests"}', "[]"])
+    def test_plain_text_cannot_become_a_test_report(output):
+>       from agentix.sandbox import decode_report
+E       ModuleNotFoundError: No module named 'agentix.sandbox'
+
+tests\unit\test_sandbox_protocol.py:8: ModuleNotFoundError
+_______________ test_plain_text_cannot_become_a_test_report[{}] _______________
+
+output = '{}'
+
+    @pytest.mark.parametrize("output", ["TESTS_PASSED", "{}", '{"kind":"tests"}', "[]"])
+    def test_plain_text_cannot_become_a_test_report(output):
+>       from agentix.sandbox import decode_report
+E       ModuleNotFoundError: No module named 'agentix.sandbox'
+
+tests\unit\test_sandbox_protocol.py:8: ModuleNotFoundError
+________ test_plain_text_cannot_become_a_test_report[{"kind":"tests"}] ________
+
+output = '{"kind":"tests"}'
+
+    @pytest.mark.parametrize("output", ["TESTS_PASSED", "{}", '{"kind":"tests"}', "[]"])
+    def test_plain_text_cannot_become_a_test_report(output):
+>       from agentix.sandbox import decode_report
+E       ModuleNotFoundError: No module named 'agentix.sandbox'
+
+tests\unit\test_sandbox_protocol.py:8: ModuleNotFoundError
+_______________ test_plain_text_cannot_become_a_test_report[[]] _______________
+
+output = '[]'
+
+    @pytest.mark.parametrize("output", ["TESTS_PASSED", "{}", '{"kind":"tests"}', "[]"])
+    def test_plain_text_cannot_become_a_test_report(output):
+>       from agentix.sandbox import decode_report
+E       ModuleNotFoundError: No module named 'agentix.sandbox'
+
+tests\unit\test_sandbox_protocol.py:8: ModuleNotFoundError
+____________ test_runtime_is_never_started_on_unsupported_platform ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000134173CC8D0>
+
+    def test_runtime_is_never_started_on_unsupported_platform(monkeypatch):
+>       from agentix import sandbox
+E       ImportError: cannot import name 'sandbox' from 'agentix' (D:\AI\Agentix_v2\src\agentix\__init__.py)
+
+tests\unit\test_sandbox_protocol.py:15: ImportError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_sandbox_protocol.py::test_plain_text_cannot_become_a_test_report[TESTS_PASSED]
+FAILED tests/unit/test_sandbox_protocol.py::test_plain_text_cannot_become_a_test_report[{}]
+FAILED tests/unit/test_sandbox_protocol.py::test_plain_text_cannot_become_a_test_report[{"kind":"tests"}]
+FAILED tests/unit/test_sandbox_protocol.py::test_plain_text_cannot_become_a_test_report[[]]
+FAILED tests/unit/test_sandbox_protocol.py::test_runtime_is_never_started_on_unsupported_platform
+============================== 5 failed in 0.23s ==============================

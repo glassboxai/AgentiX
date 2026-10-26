@@ -1,0 +1,43 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 9 items / 8 deselected / 1 selected
+
+tests\unit\test_creation_stage_gates.py F                                [100%]
+
+================================== FAILURES ===================================
+__________ test_receipt_cannot_adopt_an_intervening_unapproved_write __________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{871ef8d1-c64a-49a6-ae45-1d971b30a931}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001C0EA42D3A0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C0EB572010>
+
+    def test_receipt_cannot_adopt_an_intervening_unapproved_write(system, monkeypatch):
+        """A concurrent replacement between save and observation must fail closed."""
+        import builtins
+        system.security.auto_approve = True
+        actual_open = builtins.open
+        replaced = []
+    
+        def intervening_open(path, mode="r", *args, **kwargs):
+            if mode == "rb" and str(path).endswith("adder_specifications.md") and not replaced:
+                replaced.append(True)
+                with actual_open(path, "wb") as output:
+                    output.write(b"intervening unapproved bytes")
+            return actual_open(path, mode, *args, **kwargs)
+    
+        monkeypatch.setattr(builtins, "open", intervening_open)
+        system.security.safe_write_file("adder", "adder_specifications.md", "approved")
+        path = system.security.validate_and_resolve_path("adder", "adder_specifications.md")
+        assert replaced
+>       assert system.security.get_artifact_receipt(path) is None
+E       AssertionError: assert ('25b6e9f5efa9417594532bb7f9082e79', '592e787177be085cdb862df7ce894497467dad55a0f1951f6887fc4b43bfc649') is None
+E        +  where ('25b6e9f5efa9417594532bb7f9082e79', '592e787177be085cdb862df7ce894497467dad55a0f1951f6887fc4b43bfc649') = get_artifact_receipt('C:\\Users\\xpiku\\AppData\\Local\\Packages\\sandbox.{871ef8d1-c64a-49a6-ae45-1d971b30a931}\\AC\\Temp\\pytest-of-xpiku\\pytest-0\\test_receipt_cannot_adopt_an_i0\\generated_tools\\adder\\adder_specifications.md')
+E        +    where get_artifact_receipt = <class 'conftest.TestSecurity'>.get_artifact_receipt
+E        +      where <class 'conftest.TestSecurity'> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{871ef8d1-c64a-49a6-ae45-1d971b30a931}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001C0EA42D3A0>).security
+
+tests\unit\test_creation_stage_gates.py:113: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_creation_stage_gates.py::test_receipt_cannot_adopt_an_intervening_unapproved_write
+======================= 1 failed, 8 deselected in 0.41s =======================

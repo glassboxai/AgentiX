@@ -1,0 +1,18 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 45 items / 44 deselected / 1 selected
+
+tests\unit\test_security.py F                                            [100%]
+
+================================== FAILURES ===================================
+____ test_python_alias_cannot_bypass_validation_by_resolving_to_text_file _____
+tests\unit\test_security.py:188: in test_python_alias_cannot_bypass_validation_by_resolving_to_text_file
+    assert result.startswith('Error validating Python:')
+E   AssertionError: assert False
+E    +  where False = <built-in method startswith of str object at 0x0000029611FDC9C0>('Error validating Python:')
+E    +    where <built-in method startswith of str object at 0x0000029611FDC9C0> = 'Success: Content written to C:\\Users\\xpiku\\AppData\\Local\\Packages\\sandbox.{9a7578ef-b9c8-4bee-b65e-302155cbc78b}\\AC\\Temp\\pytest-of-xpiku\\pytest-0\\test_python_alias_cannot_bypas0\\generated_tools\\safe\\stored.txt'.startswith
+=========================== short test summary info ===========================
+FAILED tests/unit/test_security.py::test_python_alias_cannot_bypass_validation_by_resolving_to_text_file
+====================== 1 failed, 44 deselected in 0.28s =======================

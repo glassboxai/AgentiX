@@ -1,0 +1,102 @@
+import unittest
+from electricity_bill_calculator_code import calculate_electricity_bill
+
+class TestElectricityBillCalculator(unittest.TestCase):
+    
+    def test_zero_consumption(self):
+        """Test calculation with zero consumption"""
+        result = calculate_electricity_bill(0)
+        self.assertEqual(result['total_cost_euros'], 0.0)
+        self.assertEqual(len(result['breakdown']), 3)
+        self.assertEqual(result['breakdown'][0]['cost_euros'], 0.0)
+        self.assertEqual(result['breakdown'][1]['cost_euros'], 0.0)
+        self.assertEqual(result['breakdown'][2]['cost_euros'], 0.0)
+    
+    def test_exact_tier_boundaries(self):
+        """Test consumption at exact tier boundaries"""
+        # Test exactly 100 kWh
+        result = calculate_electricity_bill(100)
+        self.assertAlmostEqual(result['total_cost_euros'], 12.0, places=2)
+        self.assertEqual(result['breakdown'][0]['cost_euros'], 12.0)
+        self.assertEqual(result['breakdown'][1]['cost_euros'], 0.0)
+        self.assertEqual(result['breakdown'][2]['cost_euros'], 0.0)
+        
+        # Test exactly 200 kWh
+        result = calculate_electricity_bill(200)
+        self.assertAlmostEqual(result['total_cost_euros'], 30.0, places=2)
+        self.assertEqual(result['breakdown'][0]['cost_euros'], 12.0)
+        self.assertEqual(result['breakdown'][1]['cost_euros'], 18.0)
+        self.assertEqual(result['breakdown'][2]['cost_euros'], 0.0)
+    
+    def test_normal_consumption(self):
+        """Test normal consumption values"""
+        # Test 350 kWh as specified in task
+        result = calculate_electricity_bill(350)
+        self.assertAlmostEqual(result['total_cost_euros'], 67.5, places=2)
+        self.assertEqual(result['breakdown'][0]['cost_euros'], 12.0)
+        self.assertEqual(result['breakdown'][1]['cost_euros'], 18.0)
+        self.assertEqual(result['breakdown'][2]['cost_euros'], 37.5)
+        
+        # Test 150 kWh
+        result = calculate_electricity_bill(150)
+        self.assertAlmostEqual(result['total_cost_euros'], 27.0, places=2)
+        self.assertEqual(result['breakdown'][0]['cost_euros'], 12.0)
+        self.assertEqual(result['breakdown'][1]['cost_euros'], 9.0)
+        self.assertEqual(result['breakdown'][2]['cost_euros'], 0.0)
+    
+    def test_decimal_consumption(self):
+        """Test with decimal consumption values"""
+        result = calculate_electricity_bill(150.5)
+        self.assertAlmostEqual(result['total_cost_euros'], 27.15, places=2)
+        self.assertEqual(result['breakdown'][0]['cost_euros'], 12.0)
+        self.assertEqual(result['breakdown'][1]['cost_euros'], 9.09)
+        self.assertEqual(result['breakdown'][2]['cost_euros'], 0.06)
+    
+    def test_invalid_types(self):
+        """Test with invalid input types"""
+        with self.assertRaises(TypeError):
+            calculate_electricity_bill("350")
+            
+        with self.assertRaises(TypeError):
+            calculate_electricity_bill(None)
+            
+        with self.assertRaises(TypeError):
+            calculate_electricity_bill([350])
+    
+    def test_negative_consumption(self):
+        """Test with negative consumption"""
+        with self.assertRaises(ValueError):
+            calculate_electricity_bill(-10)
+    
+    def test_infinite_consumption(self):
+        """Test with infinite consumption"""
+        with self.assertRaises(ValueError):
+            calculate_electricity_bill(float('inf'))
+    
+    def test_nan_consumption(self):
+        """Test with NaN consumption"""
+        with self.assertRaises(ValueError):
+            calculate_electricity_bill(float('nan'))
+    
+    def test_return_types(self):
+        """Test that return types are correct"""
+        result = calculate_electricity_bill(350)
+        self.assertIsInstance(result, dict)
+        self.assertIn('total_cost_euros', result)
+        self.assertIn('breakdown', result)
+        self.assertIsInstance(result['total_cost_euros'], float)
+        self.assertIsInstance(result['breakdown'], list)
+        self.assertEqual(len(result['breakdown']), 3)
+        for item in result['breakdown']:
+            self.assertIsInstance(item, dict)
+            self.assertIn('tier', item)
+            self.assertIn('range_kwh', item)
+            self.assertIn('rate_euros_per_kwh', item)
+            self.assertIn('consumption_kwh', item)
+            self.assertIn('cost_euros', item)
+            self.assertIsInstance(item['rate_euros_per_kwh'], float)
+            self.assertIsInstance(item['consumption_kwh'], float)
+            self.assertIsInstance(item['cost_euros'], float)
+
+if __name__ == '__main__':
+    unittest.main()

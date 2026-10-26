@@ -1,0 +1,1 @@
+Use the tiered_energy_bill tool to calculate the cost for 250 kWh. Its progressive rates are 12 cents per kWh for the first 100 kWh, 18 for the next 100, and 25 thereafter. The result must be an exact integer number of cents. Only non-negative int inputs are valid; bool, float (including 1.0), str, None and negative values must raise ValueError.

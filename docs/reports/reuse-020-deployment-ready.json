@@ -1,0 +1,9 @@
+{
+  "url": "http://127.0.0.1:7873/",
+  "http_status": 200,
+  "review_editor_count": 1,
+  "review_outside_sidebar": true,
+  "review_in_validation_column": true,
+  "updated_review_id_present": true,
+  "verification": "Static public Gradio configuration only; no user sessions, prompts, keys or tool artifacts queried"
+}

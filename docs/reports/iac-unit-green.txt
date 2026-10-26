@@ -1,0 +1,10 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 15 items
+
+tests\unit\test_iac.py ...............                                   [100%]
+
+============================= 15 passed in 4.37s ==============================

@@ -1,0 +1,11 @@
+# PROFILE-001: unified local/remote profiles and safe save diagnostics
+
+Approved by the user on 2026-10-25. Current external-only storage rejects Ollama, and a generic UI message hides the phase/cause of a recorded external save failure. The original external failure is not reproduced with a valid synthetic key and the real Windows vault; do not invent its cause or claim it fixed without evidence.
+
+Persist Ollama metadata without credential access, alongside backward-compatible external profile records. Rename the selector Saved profiles. Preserve remote credentials, per-session consent, stale revision/selection checks, containment, bounded metadata and explicit deletion. Local records have an empty credential_ref. Switching provider on an existing profile safely retires obsolete owned credential references; moving to external requires a key. Local storage must work even when the native vault is unavailable. Accept readable Unicode profile names and model-style punctuation within 64 characters, excluding controls/markup.
+
+Introduce fixed-code, secret-free errors for invalid/missing key, Windows credential write/read/delete, metadata/directory failure, stale records and invalid settings. Never forward vendor exceptions or key data. Retain the previous working profile on failed precommit updates. Refresh must not hide the last failed save diagnostic; preserve valid choices/selection when possible. Record exception type, phase and numeric Windows code only when applicable. Existing external JSON/UTF-16 credential encoding stays compatible.
+
+Tests first: local create/select/apply/reload/update/delete and no vault dependency; external create with real disposable vault, plus failed-key/disk/credential boundaries; UI Save then Refresh across sessions; typed error persists through refresh; password/consent security, migrations, and external-only regressions. Use temporary metadata, synthetic keys and disposable servers. No existing profiles/keys or generated artifacts are modified. Keep documentation English and synchronized; no live restart in automated tests.
+
+Status: implemented; final verification and unresolved historical-cause limits are recorded in ../reports/PROFILES_018_VALIDATION.md.

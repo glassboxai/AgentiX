@@ -1,0 +1,24 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 40 items / 39 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+____________ test_launcher_preserves_absent_environment_variables _____________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-398/test_launcher_preserves_absent0')
+
+    def test_launcher_preserves_absent_environment_variables(tmp_path):
+        """IAC-ERR-009: unset legacy settings must remain absent, not empty strings."""
+        result = powershell("$env:LOCALAPPDATA='"+str(tmp_path)+"';Remove-Item Env:AGENTIX_SERVER_PORT -ErrorAction SilentlyContinue;& (Get-Module Agentix.Iac) {function script:Test-IacDeployment {@{inDesiredState=$true}};function script:Get-IacState {@{portFree=$true}}};Start-IacApplication -Config (Read-IacConfiguration) -Mode Cli -Run {};Test-Path Env:AGENTIX_SERVER_PORT|ConvertTo-Json")
+>       assert result is False
+E       assert True is False
+
+tests\unit\test_iac.py:414: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_launcher_preserves_absent_environment_variables
+====================== 1 failed, 39 deselected in 0.76s =======================

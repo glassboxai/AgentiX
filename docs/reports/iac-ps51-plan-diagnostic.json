@@ -1,0 +1,50 @@
+{
+    "schema":  1,
+    "config":  "e1919ca9f10f977c1e0375dcd9dac75f5e21876146bf3867c590392e4472c7da",
+    "source":  "737b1d5afaeafe9feeb31a6dd60214828da708e38222df09b0fe158d6c2881c8",
+    "state":  {
+                  "python":  {
+                                 "path":  "C:\\Users\\xpiku\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+                                 "version":  "3.11.9",
+                                 "hash":  "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec"
+                             },
+                  "ollama":  {
+                                 "path":  "C:\\Users\\xpiku\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+                                 "version":  "0.40.6",
+                                 "hash":  "71d2002d3ae572d5fa8c1d368ce9d1b9a39c7187cf169e8b330c55410bf6c58e"
+                             },
+                  "environment":  {
+                                      "lock":  "7d6df7e204a38b636944818ef22ceaf8d78a3e91eb15a5e668fbd5768e1aa374",
+                                      "owned":  false,
+                                      "packages":  "",
+                                      "present":  false
+                                  },
+                  "dsc":  {
+                              "path":  "C:\\Users\\xpiku\\AppData\\Local\\AgentiX\\v3\\tooling\\dsc\\3.3.0\\dsc.exe",
+                              "version":  "3.3.0",
+                              "hash":  "a0b9a7ca2652e02e2435f9acae1af1cfd4baa61b87d0cf3909dc2d437a306078"
+                          },
+                  "launchers":  {
+                                    "present":  false
+                                },
+                  "model":  {
+                                "version":  "0.40.6",
+                                "server":  true,
+                                "digest":  "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+                                "present":  true
+                            },
+                  "portFree":  true
+              },
+    "changes":  [
+                    "environment",
+                    "launchers"
+                ],
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "downloadModel":  false,
+    "digest":  "595024011d60058fae2cecb1e26d95b49dc3d3e95f1bfa676e9df3b03f6bc8d7"
+}

@@ -1,0 +1,24 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 9 items / 8 deselected / 1 selected
+
+tests\unit\test_presentation.py F                                        [100%]
+
+================================== FAILURES ===================================
+____________ test_presentation_never_rounds_away_an_observed_rate _____________
+
+    def test_presentation_never_rounds_away_an_observed_rate():
+        rendered = format_result(
+            "Host-observed execution: f\nArguments: {}\nResult: {'rate': 0.12345}",
+            "Show the rate in euros",
+        )
+>       assert "�0.12345" in rendered
+E       assert '�0.12345' in '<div class="execution-result"><h3>Result</h3><p><strong>Rate</strong>: €0.12</p><details><summary>Execution details</summary><pre>Host-observed execution: f\nArguments: {}\nResult: {&#x27;rate&#x27;: 0.12345}</pre></details></div>'
+
+tests\unit\test_presentation.py:30: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_presentation.py::test_presentation_never_rounds_away_an_observed_rate
+======================= 1 failed, 8 deselected in 0.39s =======================

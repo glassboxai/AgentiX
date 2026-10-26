@@ -1,0 +1,43 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 9 items / 8 deselected / 1 selected
+
+tests\unit\test_verbose_activity.py F                                    [100%]
+
+================================== FAILURES ===================================
+________ test_unicode_verbose_message_survives_legacy_windows_console _________
+
+    def test_unicode_verbose_message_survives_legacy_windows_console():
+        """A narrow host encoding must not prevent the GUI from seeing SDK messages."""
+        class LegacyConsole(io.StringIO):
+            def write(self, text):
+                text.encode("cp1252")
+                return super().write(text)
+    
+        host = LegacyConsole()
+        capture = ConsoleThoughtsCapture(host)
+>       capture.write("\U0001f916 Agent: Architect \u2014 approved result\\n")
+
+tests\unit\test_verbose_activity.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\ui\state.py:28: in write
+    self.original_stdout.write(text)
+tests\unit\test_verbose_activity.py:107: in write
+    text.encode("cp1252")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.Codec object at 0x0000019FE1B71850>
+input = '\U0001f916 Agent: Architect \u2014 approved result\\n', errors = 'strict'
+
+    def encode(self,input,errors='strict'):
+>       return codecs.charmap_encode(input,errors,encoding_table)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f916' in position 0: character maps to <undefined>
+
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py:12: UnicodeEncodeError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_verbose_activity.py::test_unicode_verbose_message_survives_legacy_windows_console
+======================= 1 failed, 8 deselected in 0.37s =======================

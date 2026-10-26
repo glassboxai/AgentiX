@@ -1,0 +1,152 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 9 items
+
+tests\unit\test_pipeline_verification.py FFFFFFFFF                       [100%]
+
+================================== FAILURES ===================================
+______ test_invalid_observed_results_never_authorize_execution[changes0] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+changes = {'run': 0}
+
+    @pytest.mark.parametrize("changes", [{"run": 0}, {"skipped": 2}, {"errors": 1},
+                                        {"run": True}, {"successful": "true"}])
+    def test_invalid_observed_results_never_authorize_execution(system, changes):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:26: AttributeError
+______ test_invalid_observed_results_never_authorize_execution[changes1] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+changes = {'skipped': 2}
+
+    @pytest.mark.parametrize("changes", [{"run": 0}, {"skipped": 2}, {"errors": 1},
+                                        {"run": True}, {"successful": "true"}])
+    def test_invalid_observed_results_never_authorize_execution(system, changes):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:26: AttributeError
+______ test_invalid_observed_results_never_authorize_execution[changes2] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+changes = {'errors': 1}
+
+    @pytest.mark.parametrize("changes", [{"run": 0}, {"skipped": 2}, {"errors": 1},
+                                        {"run": True}, {"successful": "true"}])
+    def test_invalid_observed_results_never_authorize_execution(system, changes):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:26: AttributeError
+______ test_invalid_observed_results_never_authorize_execution[changes3] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+changes = {'run': True}
+
+    @pytest.mark.parametrize("changes", [{"run": 0}, {"skipped": 2}, {"errors": 1},
+                                        {"run": True}, {"successful": "true"}])
+    def test_invalid_observed_results_never_authorize_execution(system, changes):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:26: AttributeError
+______ test_invalid_observed_results_never_authorize_execution[changes4] ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+changes = {'successful': 'true'}
+
+    @pytest.mark.parametrize("changes", [{"run": 0}, {"skipped": 2}, {"errors": 1},
+                                        {"run": True}, {"successful": "true"}])
+    def test_invalid_observed_results_never_authorize_execution(system, changes):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:26: AttributeError
+______ test_evidence_requires_isolation_success_and_unchanged_artifacts _______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+
+    def test_evidence_requires_isolation_success_and_unchanged_artifacts(system):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:34: AttributeError
+_______ test_evidence_is_operation_bound_and_new_attempt_invalidates_it _______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+
+    def test_evidence_is_operation_bound_and_new_attempt_invalidates_it(system):
+        artifacts(system)
+>       ledger = system.custom_tools.verification
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'ArtifactTools' object has no attribute 'verification'
+
+tests\unit\test_pipeline_verification.py:46: AttributeError
+______ test_creation_claim_without_service_evidence_blocks_final_manager ______
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000178979FE810>
+
+    def test_creation_claim_without_service_evidence_blocks_final_manager(system, monkeypatch):
+        calls = []
+    
+        def crew(**kwargs):
+            calls.append(kwargs)
+            return SimpleNamespace(kickoff=lambda: (
+                '{"action":"CREATE_TOOL","tool_name":"adder","purpose":"addition"}'
+                if len(calls) == 1 else "TESTS_PASSED: trust me"
+            ))
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+>       assert "PIPELINE_NOT_VERIFIED" in system.main.run_system("add")
+E       AssertionError: assert 'PIPELINE_NOT_VERIFIED' in 'TESTS_PASSED: trust me'
+E        +  where 'TESTS_PASSED: trust me' = run_system('add')
+E        +    where run_system = <agentix.orchestration.Orchestrator object at 0x00000178979FDD90>.run_system
+E        +      where <agentix.orchestration.Orchestrator object at 0x00000178979FDD90> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>).main
+
+tests\unit\test_pipeline_verification.py:67: AssertionError
+___________________ test_unverified_source_is_not_imported ____________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>)
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Temp/pytest-of-xpiku/pytest-0/test_unverified_source_is_not_0')
+
+    def test_unverified_source_is_not_imported(system, tmp_path):
+        artifacts(system)
+        canary = tmp_path / "must-not-exist"
+        system.security.safe_write_file("adder", "adder_code.py",
+                                        f"from pathlib import Path\nPath({str(canary)!r}).touch()")
+>       assert "NOT_VERIFIED" in system.custom_tools.execute_generated_tool_tool("adder", "add")
+E       assert 'NOT_VERIFIED' in "Error: Function 'add' not found. Available functions in module: []"
+E        +  where "Error: Function 'add' not found. Available functions in module: []" = execute_generated_tool_tool('adder', 'add')
+E        +    where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x00000178979ED790>.execute_generated_tool_tool
+E        +      where <agentix.tools.ArtifactTools object at 0x00000178979ED790> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{6b1813af-78d8-44bd-93c2-6f829ed62e02}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000178978FDDA0>).custom_tools
+
+tests\unit\test_pipeline_verification.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_pipeline_verification.py::test_invalid_observed_results_never_authorize_execution[changes0]
+FAILED tests/unit/test_pipeline_verification.py::test_invalid_observed_results_never_authorize_execution[changes1]
+FAILED tests/unit/test_pipeline_verification.py::test_invalid_observed_results_never_authorize_execution[changes2]
+FAILED tests/unit/test_pipeline_verification.py::test_invalid_observed_results_never_authorize_execution[changes3]
+FAILED tests/unit/test_pipeline_verification.py::test_invalid_observed_results_never_authorize_execution[changes4]
+FAILED tests/unit/test_pipeline_verification.py::test_evidence_requires_isolation_success_and_unchanged_artifacts
+FAILED tests/unit/test_pipeline_verification.py::test_evidence_is_operation_bound_and_new_attempt_invalidates_it
+FAILED tests/unit/test_pipeline_verification.py::test_creation_claim_without_service_evidence_blocks_final_manager
+FAILED tests/unit/test_pipeline_verification.py::test_unverified_source_is_not_imported
+============================== 9 failed in 0.51s ==============================

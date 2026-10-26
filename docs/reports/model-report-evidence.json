@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-24",
+  "project": "D:\\AI\\AgentiX_v3",
+  "offline": {
+    "passed": 412,
+    "deselected": 23,
+    "warnings": 15
+  },
+  "explicit_integrations": {
+    "passed": 23,
+    "deselected": 412,
+    "browser": 7,
+    "framework_transport": 6,
+    "windows_isolation": 9,
+    "windows_credentials": 1
+  },
+  "ruff": "passed",
+  "format": "89 files already formatted",
+  "references": "fresh",
+  "powershell": "5 parser/policy checks passed; not Pester/PSScriptAnalyzer",
+  "ollama_report": "attempt failed, loopback connection refused; reviewed manual fallback",
+  "inference": "not performed; no paid calls or real credentials",
+  "limitations_document": "docs/LLM_SECURITY_2026.md"
+}

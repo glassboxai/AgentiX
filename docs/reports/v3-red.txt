@@ -1,0 +1,62 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 3 items
+
+tests\unit\test_v3_quality.py FFF                                        [100%]
+
+================================== FAILURES ===================================
+_______________ test_explicit_startup_disables_gradio_analytics _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001352E9EE450>
+
+    def test_explicit_startup_disables_gradio_analytics(monkeypatch):
+        """Apply the same no-analytics policy to normal startup and test launchers."""
+        from agentix.bootstrap import configure_process
+        monkeypatch.setenv("GRADIO_ANALYTICS_ENABLED", "True")
+        configure_process()
+>       assert __import__("os").environ["GRADIO_ANALYTICS_ENABLED"] == "False"
+E       AssertionError: assert 'True' == 'False'
+E         
+E         - False
+E         + True
+
+tests\unit\test_v3_quality.py:12: AssertionError
+______ test_composition_injects_one_execution_boundary_into_all_services ______
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-374/test_composition_injects_one_e0')
+
+    def test_composition_injects_one_execution_boundary_into_all_services(tmp_path):
+        """Use a caller-provided boundary instead of constructing an implicit backend."""
+        from agentix.bootstrap import create_runtime
+        from agentix.settings import Settings
+        agents = SimpleNamespace(manager=object(), architect=object(), coder=object(),
+                                 tester=object(), creation_manager=object())
+        boundary = object()
+>       runtime = create_runtime(Settings.from_environment({}, base_dir=tmp_path),
+            llm=object(), tool_factory=lambda operations: SimpleNamespace(),
+            agent_factory=lambda model, tools: agents,
+            backend=SimpleNamespace(Task=Mock(), Crew=Mock(), Process=SimpleNamespace(sequential="sequential")),
+            sandbox=boundary)
+E       TypeError: create_runtime() got an unexpected keyword argument 'sandbox'
+
+tests\unit\test_v3_quality.py:22: TypeError
+_________________________ test_release_identity_is_v3 _________________________
+
+    def test_release_identity_is_v3():
+        """Identify the curated release while retaining its public import package."""
+        from agentix import __version__
+>       assert __version__ == "3.0.0"
+E       AssertionError: assert '0.1.0' == '3.0.0'
+E         
+E         - 3.0.0
+E         + 0.1.0
+
+tests\unit\test_v3_quality.py:35: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_v3_quality.py::test_explicit_startup_disables_gradio_analytics
+FAILED tests/unit/test_v3_quality.py::test_composition_injects_one_execution_boundary_into_all_services
+FAILED tests/unit/test_v3_quality.py::test_release_identity_is_v3 - Assertion...
+============================= 3 failed in 13.00s ==============================

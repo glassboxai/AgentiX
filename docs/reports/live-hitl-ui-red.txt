@@ -1,0 +1,54 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 1 item
+
+tests\integration\test_live_review_ui_contract.py F                      [100%]
+
+================================== FAILURES ===================================
+_________ test_approval_callback_respects_real_gradio_output_contract _________
+
+    @pytest.mark.frameworks
+    @pytest.mark.known_issue
+    @pytest.mark.xfail(strict=True, reason="LIVE-UI-001: approval returns bool with no output")
+    def test_approval_callback_respects_real_gradio_output_contract():
+        """Exercise the registered callback rather than matching its source text."""
+        script = """
+    import os
+    os.environ['GRADIO_ANALYTICS_ENABLED'] = 'False'
+    import _agentix_path
+    import gradio as gr
+    from agentix.approvals import ApprovalCoordinator
+    from agentix.ui.controller import UiController
+    from agentix.ui.sessions import SessionRegistry
+    from agentix.ui.view import build_view
+    def create(identity):
+        return UiController(lambda query:'unused', lambda:'temporary catalog',
+                            ApprovalCoordinator.for_owner(identity), gr.update)
+    view = build_view(SessionRegistry(create), gradio_module=gr)
+    approval = next(f for f in view.demo.fns.values() if f.fn.__name__ == 'approve')
+    result = approval.fn('', 'expired-request', None, gr.Request(session_hash='temporary-owner'))
+    assert approval.outputs == []
+    assert result is None, 'Gradio no-output approval callback returned an ignored value: ' + repr(result)
+    """
+        result = subprocess.run(
+            [sys.executable, "-c", script],
+>           cwd=Path(__file__).resolve().parents[2],
+            capture_output=True,
+            text=True,
+            timeout=90,
+        )
+E       AssertionError: event=approval_response_rejected session_id=c17c711198904afaa840216c0d77e23f operation_id=d91e19d8350c4da6a98ce7f1d543c597 request_id=- error_type=- line=-
+E         Traceback (most recent call last):
+E           File "<string>", line 17, in <module>
+E         AssertionError: Gradio no-output approval callback returned an ignored value: False
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['D:\\AI\\Agentix_v2\\.autotool\\Scripts\\python.exe', '-c', "\nimport os\nos.environ['GRADIO_AN...string>", line 17, in <module>\nAssertionError: Gradio no-output approval callback returned an ignored value: False\n').returncode
+
+tests\integration\test_live_review_ui_contract.py:35: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_live_review_ui_contract.py::test_approval_callback_respects_real_gradio_output_contract
+============================== 1 failed in 9.27s ==============================

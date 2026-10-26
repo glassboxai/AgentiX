@@ -1,0 +1,37 @@
+{
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "dependencies": {
+    "pytest": "9.1.1",
+    "gradio": "6.30.0",
+    "crewai": "1.15.28",
+    "litellm": "distribution metadata unavailable"
+  },
+  "tests": {
+    "collected": 105,
+    "passed": 100,
+    "failures": 0,
+    "errors": 0,
+    "expected_failures": [
+      "test_execution_states_have_independent_histories",
+      "test_reject_sibling_tool_prefix_escape",
+      "test_reject_sibling_root_prefix_escape",
+      "test_pending_request_is_defensive_copy",
+      "test_edited_python_is_validated_before_save"
+    ]
+  },
+  "production_unchanged": true,
+  "production_sha256": {
+    "app.py": "6CFAB1FEDA0DBE1BD0B4B8878DE58F19BAC9E2E69D22A4C4C536D25ED0DB0450",
+    "security_manager.py": "4A05BBBD35F4D77B1BBD7F1B75898DD25844D26C5044A0F0687A9B1F620F82A5",
+    "custom_tools.py": "A490AFB6AE013967F884DDB3DBBC01696DD5DFDCC22743308CCE86EDBF0665DA",
+    "main.py": "F936EC132AB494D32F830FD46F86DF074298D01567F97A20F87860EA59F9B5B2",
+    "config.py": "30CC677F0B2857BADE2342F6337AFCD564170FE0B2182C917C67AF3E3D788889"
+  },
+  "limitations": [
+    "Framework and LLM boundaries are doubled in unit tests.",
+    "Component tests execute trusted temporary Python only.",
+    "No coverage percentage, live browser, live agent, installer or OS isolation validation.",
+    "Known defects remain open; fixes and refactoring are not authorized yet."
+  ]
+}

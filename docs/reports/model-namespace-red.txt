@@ -1,0 +1,34 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_namespaced_installed_model_identifiers_are_supported __________
+
+    def test_namespaced_installed_model_identifiers_are_supported():
+        """Accept ordinary Ollama/provider namespaces without permitting traversal."""
+>       profiles().ModelProfile(model="namespace/qwen3-coder:30b").validate()
+
+tests\unit\test_model_profiles.py:335: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ModelProfile(provider='Ollama', model='namespace/qwen3-coder:30b', endpoint='http://127.0.0.1:11434', remote_consent=False)
+resolver = <function resolve_addresses at 0x0000020B02E69620>
+
+    def validate(self, resolver: Callable = resolve_addresses) -> None:
+        """Reject malformed choices and unsafe URLs before any credential lookup.
+    
+        DNS inspection is needed only for remote configuration. Raises ValueError
+        with fixed, secret-free messages. The caller controls explicit activation.
+        """
+        if self.provider not in ("Ollama", "OpenAI", "OpenAI-compatible"):
+            raise ValueError("Unsupported model provider")
+        if (
+            not isinstance(self.model, str)
+            or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}", self.model)
+            or ".." in self.model
+        ):
+>           raise ValueError("Invalid model name")
+E           ValueError: Invalid model name
+
+src\agentix\model_profiles.py:53: ValueError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_namespaced_installed_model_identifiers_are_supported
+1 failed, 30 deselected in 0.20s

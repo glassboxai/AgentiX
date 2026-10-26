@@ -1,0 +1,29 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 14 items
+
+tests\unit\test_iac.py ......F.......                                    [100%]
+
+================================== FAILURES ===================================
+___ test_missing_model_requires_explicit_download_and_port_conflict_blocks ____
+
+    def test_missing_model_requires_explicit_download_and_port_conflict_blocks():
+        """Ordinary application of a plan cannot download models or replace listeners."""
+        result = powershell(
+            "$c=Read-IacConfiguration; $s=New-IacFixtureState -Config $c; $s.model.present=$false; "
+            "$p=Get-IacPlan -Config $c -State $s; "
+            "$allowed=Get-IacPlan -Config $c -State $s -DownloadModel; "
+            "$s.portFree=$false; $busy=Get-IacPlan -Config $c -State $s -DownloadModel; "
+            "@{blocked=@($p.blockers).Count;allowed=@($allowed.changes);busy=@($busy.blockers).Count}|ConvertTo-Json"
+        )
+        assert result["blocked"] > 0
+>       assert "model" in result["allowed"]
+E       AssertionError: assert 'model' in []
+
+tests\unit\test_iac.py:85: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_missing_model_requires_explicit_download_and_port_conflict_blocks
+======================== 1 failed, 13 passed in 4.64s =========================

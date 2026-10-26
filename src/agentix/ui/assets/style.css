@@ -1,0 +1,148 @@
+/* UI-012: reference palette adapted to application controls, not page resets. */
+:root, .gradio-container {
+  --bg: #050608; --bg-soft: #0b0d11; --text: #f1f3f5;
+  --muted: #8d949d; --line: rgba(255,255,255,.10);
+  --accent: #7ee7ff; --glass: rgba(255,255,255,.035);
+  font-family: Inter, Arial, sans-serif !important;
+  background: var(--bg) !important; color: var(--text) !important;
+  --body-background-fill: #050608; --body-background-fill-dark: #050608;
+  --body-text-color: #f1f3f5; --body-text-color-dark: #f1f3f5;
+  --block-background-fill: #0b0d11; --block-background-fill-dark: #0b0d11;
+  --input-background-fill: #10141b; --input-background-fill-dark: #10141b;
+  --block-border-color: #29303b; --block-border-color-dark: #29303b;
+  --input-border-color: #394352; --input-border-color-dark: #394352;
+  --block-label-text-color: #c8cdd3; --block-label-text-color-dark: #c8cdd3;
+  --block-title-text-color: #f1f3f5; --block-title-text-color-dark: #f1f3f5;
+  --input-text-color: #f1f3f5; --input-text-color-dark: #f1f3f5;
+  --background-fill-primary: #0b0d11; --background-fill-primary-dark: #0b0d11;
+  --background-fill-secondary: #111720; --background-fill-secondary-dark: #111720;
+  --block-label-background-fill: #0b0d11; --block-label-background-fill-dark: #0b0d11;
+}
+body { background: #050608; }
+.gradio-container { width: 100% !important; max-width: 1560px !important;
+  box-sizing: border-box; padding: 28px 36px !important; }
+.gradio-container * { font-family: Inter, Arial, sans-serif !important; }
+.agentix-brand { display: flex; align-items: center; gap: 24px; padding: 8px 0 28px;
+  margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.agentix-identity { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.agentix-identity img { width: 64px; height: 64px; object-fit: contain; }
+.agentix-identity h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 500; letter-spacing: -.035em;
+  margin: 0; color: var(--text); }
+.agentix-tagline { border-left: 1px solid var(--line); padding-left: 24px; }
+.agentix-tagline p { margin: 2px 0; font-size: 14px; color: var(--muted); }
+.agentix-tagline .brand-focus { color: var(--accent); font-size: 19px; font-weight: 600; }
+#agentix-workspace { gap: 24px; align-items: start; }
+#agentix-chat { border: 1px solid var(--line); border-radius: 12px; }
+#agentix-chat .bot { background: #111720 !important; color: var(--text) !important; }
+#agentix-chat .user { background: #15323b !important; color: var(--text) !important; }
+#agentix-chat .prose { opacity: 1 !important; }
+#agentix-chat .icon-button-wrapper, #agentix-chat label svg { display: none !important; }
+.gradio-container .prose, .gradio-container .prose p,
+.gradio-container .prose h3, .gradio-container .prose li { color: var(--text); }
+.gradio-container label, .gradio-container textarea { color: var(--text) !important; }
+.gradio-container textarea { background: #10141b !important; }
+.gradio-container button { border-radius: 8px; }
+.gradio-container button.primary { background: var(--accent) !important; color: #061016 !important; }
+.gradio-container :focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; }
+#query-composer { align-items: end; flex-wrap: nowrap; gap: 10px; }
+#send-query { flex: 0 0 46px !important; min-width: 46px !important; width: 46px;
+  height: 46px; font-size: 0 !important; padding: 0; margin-bottom: 3px; }
+#send-query::after { content: '➤' / ''; font-size: 22px; line-height: 1; }
+.gradio-container details { border-bottom: 1px solid var(--line); padding: 12px 2px; }
+.gradio-container summary { cursor: pointer; color: var(--text); font-weight: 500; }
+.gradio-container details[open] summary { color: var(--accent); margin-bottom: 12px; }
+.gradio-container pre { white-space: pre-wrap !important; overflow-wrap: anywhere;
+  max-height: 320px; overflow: auto; font-size: 12px; background: #080b0f !important; }
+.validation-cases, .catalog-list { max-height: 360px; overflow: auto; scrollbar-gutter: stable; }
+.case-count { color: var(--accent) !important; font-weight: 600; }
+#validation-panel { border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+.result-table { max-width: 100%; overflow-x: auto; }
+.gradio-container table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.gradio-container th, .gradio-container td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.gradio-container th { color: var(--accent); }
+.result-table table { min-width: 360px; }
+.result-table th, .result-table td { white-space: nowrap; overflow-wrap: normal; }
+.execution-result > p:first-of-type { font-size: 24px; margin: 16px 0; }
+@media (max-width: 900px) {
+  .gradio-container { padding: 18px !important; }
+  .agentix-brand { align-items: start; flex-wrap: wrap; gap: 16px; }
+  .agentix-tagline { border-left: 0; padding-left: 0; }
+  #agentix-workspace { flex-direction: column; }
+  #agentix-workspace > div { width: 100%; min-width: 0 !important; }
+  .validation-cases { max-height: 280px; }
+  #agentix-chat .bubble { margin: 10px !important; max-width: calc(100% - 20px) !important; }
+  #agentix-chat .message { min-width: 0; max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* UI-013: match the observed reference without changing widget semantics. */
+.gradio-container { font-size: 14px; font-weight: 400; line-height: 1.6; }
+.gradio-container *, .gradio-container *::before, .gradio-container *::after {
+  border-radius: 0 !important;
+}
+.gradio-container h2, .gradio-container h3 { font-weight: 500; letter-spacing: -.035em; }
+.gradio-container textarea, .gradio-container input, .gradio-container label {
+  font-size: 14px !important; font-weight: 400; line-height: 1.4;
+}
+.gradio-container button { font-size: 16px; font-weight: 600; line-height: 24px; }
+.project-link { display: inline-block; color: var(--accent) !important;
+  font-size: 12px; font-weight: 400; text-underline-offset: 4px; }
+.gradio-container input[type="checkbox"] {
+  appearance: none !important; min-width: 20px; flex-shrink: 0;
+  width: 20px !important; height: 20px !important; padding: 0 !important;
+  border: 2px solid var(--muted) !important; background-color: var(--bg-soft) !important;
+  background-image: none !important; background-position: center !important;
+  background-repeat: no-repeat !important; background-size: 16px 16px !important;
+  cursor: pointer; vertical-align: middle;
+}
+.gradio-container input[type="checkbox"]:checked {
+  border-color: var(--accent) !important; background-color: var(--accent) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10l4 4 8-9' fill='none' stroke='%23061016' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+.gradio-container input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent) !important; outline-offset: 3px;
+}
+.gradio-container input[type="checkbox"]:disabled { opacity: .5; cursor: not-allowed; }
+@media (forced-colors: active) {
+  .gradio-container input[type="checkbox"] {
+    forced-color-adjust: auto; appearance: auto !important; background-image: none !important;
+  }
+}
+
+/* UI-MODEL-001: scroll the native sidebar independently of the conversation. */
+#agentix-sidebar { border-right: 1px solid var(--line); }
+#agentix-sidebar .sidebar-content { overflow-y: auto; max-height: 100dvh; }
+#agentix-sidebar textarea { max-height: 48dvh; overflow-y: auto; }
+#agentix-sidebar button { font-size: 14px; }
+#model-status { overflow-wrap: anywhere; font-size: 12px; }
+
+@media (max-width: 700px) { #agentix-sidebar { max-width: calc(100vw - 36px); } }
+
+/* Hidden sidebar controls must also leave keyboard and accessibility navigation. */
+#agentix-sidebar:not(.open) .sidebar-content { visibility: hidden; pointer-events: none; }
+
+/* UI-MODEL-002: match NexisNodes/aXiom Glass Box sidebar secondary buttons. */
+#agentix-sidebar button.secondary {
+  background: var(--glass) !important; color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+}
+#agentix-sidebar button.secondary:hover:not(:disabled) {
+  background: rgba(255,255,255,.07) !important; border-color: var(--accent) !important;
+}
+#agentix-sidebar button.secondary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+#agentix-sidebar button.secondary:disabled { opacity: .5; cursor: not-allowed; }
+
+/* UI-REVIEW-020: keep relocated human-review text readable in the dark workspace. */
+#authorization-review {
+  background: var(--bg-soft) !important; color: var(--text) !important;
+  --panel-background-fill: var(--bg-soft);
+  --panel-background-fill-dark: var(--bg-soft);
+}
+#authorization-review .prose {
+  background: transparent !important; color: var(--text) !important;
+}
+
+/* Gradio's nested group styler owns an opaque default fill independently of the group. */
+#authorization-review .styler { background: var(--bg-soft) !important; }

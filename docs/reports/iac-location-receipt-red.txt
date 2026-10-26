@@ -1,0 +1,57 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 41 items / 40 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+______ test_location_receipt_keeps_deployment_independent_of_host_alias _______
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-401/test_location_receipt_keeps_de0')
+
+    def test_location_receipt_keeps_deployment_independent_of_host_alias(tmp_path):
+        """IAC-ERR-007: a normal terminal must find the physical deployment created by a packaged host."""
+>       result = powershell("$c=Read-IacConfiguration;$physical=Join-Path $env:LOCALAPPDATA 'host-cache\\AgentiX\\v3';New-Item -ItemType Directory -Path $physical -Force|Out-Null;$fixture=Join-Path $env:LOCALAPPDATA 'infra';New-Item -ItemType Directory -Path $fixture|Out-Null;Copy-Item '"+str(ROOT / "infra/runtime.lock.txt")+"' (Join-Path $fixture 'runtime.lock.txt');& (Get-Module Agentix.Iac) {param($directory)$script:InfraRoot=$directory} $fixture;Save-IacLocation -Root $physical;$actual=Get-IacPaths $c;@{actual=$actual.root;expected=$physical}|ConvertTo-Json")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_iac.py:423: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+body = "$c=Read-IacConfiguration;$physical=Join-Path $env:LOCALAPPDATA 'host-cache\\AgentiX\\v3';New-Item -ItemType Directory...ture;Save-IacLocation -Root $physical;$actual=Get-IacPaths $c;@{actual=$actual.root;expected=$physical}|ConvertTo-Json"
+
+    def powershell(body):
+        """Evaluate a trusted test body, failing on PowerShell errors and malformed JSON."""
+        command = (
+            "$ErrorActionPreference='Stop'; Import-Module '"
+            + str(MODULE).replace("'", "''")
+            + "' -Force; function New-IacFixtureState { param($Config) "
+            + "@{packageManager=@{available=$true;version='fixture';path='fixture'};python=@{version=$Config.pythonVersion;path='fixture';hash='x'};"
+            + "ollama=@{version=$Config.ollamaVersion;path='fixture';hash='x'};"
+            + "dsc=@{version=$Config.dscVersion;path='fixture';hash='x'};"
+            + "environment=@{present=$true};launchers=@{present=$true};location=@{present=$true};"
+            + "model=@{present=$true;server=$true;digest=$Config.modelDigest;version=$Config.ollamaVersion};portFree=$true}}; "
+            + body
+        )
+        with tempfile.TemporaryDirectory(prefix="agentix-iac-unit-") as local:
+            command = "$env:LOCALAPPDATA='" + local.replace("'", "''") + "';" + command
+            result = subprocess.run(
+                [PWSH, "-NoProfile", "-NonInteractive", "-Command", command],
+                capture_output=True,
+                text=True,
+                timeout=35,
+                check=False,
+            )
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: Save-IacLocation: The term 'Save-IacLocation' is not recognized as a name of a cmdlet, function, script file, or executable program.
+E         Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powersh...program.\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\n").returncode
+
+tests\unit\test_iac.py:43: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_location_receipt_keeps_deployment_independent_of_host_alias
+====================== 1 failed, 40 deselected in 1.63s =======================

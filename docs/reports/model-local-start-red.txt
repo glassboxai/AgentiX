@@ -1,0 +1,37 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_______ test_gui_sessions_start_local_despite_legacy_remote_environment _______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000223921F21D0>
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-426/test_gui_sessions_start_local_0')
+
+    def test_gui_sessions_start_local_despite_legacy_remote_environment(monkeypatch, tmp_path):
+        """Legacy configuration cannot activate an external GUI model without consent."""
+        from agentix.settings import Settings
+        bootstrap.get_default_ui.cache_clear()
+        settings = Settings(tmp_path, tmp_path / "trusted-fixture-tools", model="openai/remote-model", ollama_url="https://external.example")
+        legacy = SimpleNamespace(settings=settings, security=SimpleNamespace(), orchestrator=SimpleNamespace(run_system=lambda query: "legacy"), catalog=SimpleNamespace(render=lambda: "catalog"), operations=SimpleNamespace(acceptance=object()))
+        calls = []
+        def create(settings, **kwargs):
+            """Capture the provider settings handed to each actual session factory."""
+            calls.append(settings)
+            return SimpleNamespace(security=SimpleNamespace(), orchestrator=SimpleNamespace(run_system=lambda query: "local"), catalog=SimpleNamespace(render=lambda: "catalog"), operations=SimpleNamespace(acceptance=object()))
+        monkeypatch.setattr(bootstrap, "get_default_runtime", lambda: legacy)
+        monkeypatch.setattr(bootstrap, "create_runtime", create)
+        gradio = ModuleType("gradio")
+        gradio.update = lambda **kwargs: kwargs
+        monkeypatch.setitem(sys.modules, "gradio", gradio)
+        monkeypatch.setattr("agentix.ui.view.build_view", lambda registry, **kwargs: registry)
+        try:
+            _, registry = bootstrap.get_default_ui()
+            registry.resolve(None, "fresh-browser")
+>           assert calls[0].model == "ollama/qwen3-coder:30b"
+E           AssertionError: assert 'openai/remote-model' == 'ollama/qwen3-coder:30b'
+E             
+E             - ollama/qwen3-coder:30b
+E             + openai/remote-model
+
+tests\unit\test_ui_runtime_isolation.py:69: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_ui_runtime_isolation.py::test_gui_sessions_start_local_despite_legacy_remote_environment
+1 failed, 1 deselected in 0.19s

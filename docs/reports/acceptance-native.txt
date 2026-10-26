@@ -1,0 +1,11 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 263 items / 254 deselected / 9 selected
+
+tests\integration\test_windows_isolation.py .........                    [100%]
+
+--- generated xml file: D:\AI\Agentix_v2\docs\reports\acceptance-native.xml ---
+===================== 9 passed, 254 deselected in 56.38s ======================

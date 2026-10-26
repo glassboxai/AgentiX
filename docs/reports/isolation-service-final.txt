@@ -1,0 +1,9 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\integration\test_windows_isolation.py .                            [100%]
+
+============================= 1 passed in 11.41s ==============================

@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 29 items / 28 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+__________ test_windows_process_adapter_accepts_stderr_with_success ___________
+
+    def test_windows_process_adapter_accepts_stderr_with_success():
+        """IAC-ERR-005: Windows PowerShell stderr records do not override a native zero exit."""
+        executable = Path(os.environ["SystemRoot"]) / "System32/WindowsPowerShell/v1.0/powershell.exe"
+        command = "$ErrorActionPreference='Stop';Import-Module '" + str(MODULE) + "' -Force;$r=Invoke-IacProcess '" + sys.executable + '\' @(\'-I\',\'-c\',\'import sys;sys.stderr.write("fixture warning");print("ready")\');@{output=$r}|ConvertTo-Json'
+        result = subprocess.run([str(executable),"-NoProfile","-NonInteractive","-Command",command],capture_output=True,text=True,timeout=35)
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: python.exe :   File "<string>", line 1
+E         En D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: 126 Carácter: 17
+E         +     $output = @(& $Executable @Arguments 2>&1)
+E         +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E             + CategoryInfo          : NotSpecified: (  File "<string>", line 1:String) [], RemoteException
+E             + FullyQualifiedErrorId : NativeCommandError
+E          
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-NonInteractiv...cified: (  File "<string>", line 1:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \n').returncode
+
+tests\unit\test_iac.py:279: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_windows_process_adapter_accepts_stderr_with_success
+====================== 1 failed, 28 deselected in 1.64s =======================

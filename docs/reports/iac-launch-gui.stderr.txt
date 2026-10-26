@@ -1,0 +1,12 @@
+2026-10-24 11:18:38 [INFO] [crewai_core.settings]: Using config path: C:\Users\xpiku\.config\crewai\settings.json
+2026-10-24 11:18:39 [INFO] [agentix.bootstrap]: event=model_adapter_constructing session_id=legacy operation_id=- request_id=- error_type=- line=-
+2026-10-24 11:18:39 [INFO] [agentix.bootstrap]: event=runtime_composed session_id=legacy operation_id=- request_id=- error_type=- line=-
+2026-10-24 11:18:43 [INFO] [agentix.bootstrap]: event=ui_launching session_id=legacy operation_id=- request_id=- error_type=- line=-
+2026-10-24 11:18:45 [INFO] [agentix.bootstrap]: event=model_adapter_constructing session_id=35d5a47c892344a2b64cfac7aefa16f8 operation_id=02d3272cc52e4fe891d322b58c7ed967 request_id=- error_type=- line=-
+2026-10-24 11:18:46 [INFO] [agentix.bootstrap]: event=runtime_composed session_id=35d5a47c892344a2b64cfac7aefa16f8 operation_id=02d3272cc52e4fe891d322b58c7ed967 request_id=- error_type=- line=-
+2026-10-24 11:18:58 [INFO] [agentix.bootstrap]: event=model_adapter_constructing session_id=a828f40234e14afca6fb524074cd8cb1 operation_id=8b0b53aa6c6e446bbd1b9a9c1317b55f request_id=- error_type=- line=-
+2026-10-24 11:18:58 [INFO] [agentix.bootstrap]: event=runtime_composed session_id=a828f40234e14afca6fb524074cd8cb1 operation_id=8b0b53aa6c6e446bbd1b9a9c1317b55f request_id=- error_type=- line=-
+D:\AI\AgentiX_v3\infra\Invoke-AgentiXIac.ps1 : Application exited with code 1
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Invoke-AgentiXIac.ps1
+ 

@@ -1,0 +1,31 @@
+{
+  "before": "Five original reproducers failed; expanded targeted run had 25 failures and 71 passes before implementation.",
+  "tests": {
+    "collected": 131,
+    "passed": 131,
+    "failures": 0,
+    "expected_failures": 0
+  },
+  "fixed_issues": [
+    "SEC-001",
+    "SEC-002",
+    "SEC-003",
+    "SEC-004",
+    "UI-001"
+  ],
+  "production_sha256": {
+    "custom_tools.py": "35317DEED17B1C92774E95D694700DA8B9197F66946238A1A908DBF4ADE7690E",
+    "app.py": "53E933811FEAA4E436CBAFC9BB5F723F194C8773949298E6634F6CCE83346BF7",
+    "config.py": "30CC677F0B2857BADE2342F6337AFCD564170FE0B2182C917C67AF3E3D788889",
+    "main.py": "F936EC132AB494D32F830FD46F86DF074298D01567F97A20F87860EA59F9B5B2",
+    "security_manager.py": "9FD847978DDDF02D7C9A0E20C4B8AE13429A1479C0E6395C2A4994DAE18144C5"
+  },
+  "scope": "Approved SEC-001, SEC-002, SEC-003, SEC-004 and UI-001 corrections",
+  "limitations": [
+    "Global UI state remains; per-browser isolation is not fixed.",
+    "Resolved path validation does not eliminate hostile filesystem races.",
+    "Syntax validation is not OS isolation or crash-atomic persistence.",
+    "No live application restart or browser/LLM compatibility test.",
+    "Project generated_tools content was excluded."
+  ]
+}

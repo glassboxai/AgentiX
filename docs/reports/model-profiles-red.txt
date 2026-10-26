@@ -1,0 +1,842 @@
+FFFFFFFFFFFFFFFFF                                                        [100%]
+================================== FAILURES ===================================
+_____________ test_default_local_profile_preserves_required_model _____________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_default_local_profile_preserves_required_model():
+        """Keep the validated local model as the default."""
+>       profile = profiles().ModelProfile()
+                  ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+____ test_remote_endpoint_rejects_unsafe_destinations[http://evil.example] ____
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+url = 'http://evil.example'
+
+    @pytest.mark.parametrize("url", ["http://evil.example", "https://user:pass@example.com", "https://127.0.0.1/v1", "https://example.com/v1?key=secret", "https://example.com/#x"])
+    def test_remote_endpoint_rejects_unsafe_destinations(url):
+        """Reject plaintext, private targets, embedded credentials and URL payloads."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile("OpenAI-compatible", "model", url, remote_consent=True).validate(lambda host: ["93.184.216.34"])
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_ test_remote_endpoint_rejects_unsafe_destinations[https://user:pass@example.com] _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+url = 'https://user:pass@example.com'
+
+    @pytest.mark.parametrize("url", ["http://evil.example", "https://user:pass@example.com", "https://127.0.0.1/v1", "https://example.com/v1?key=secret", "https://example.com/#x"])
+    def test_remote_endpoint_rejects_unsafe_destinations(url):
+        """Reject plaintext, private targets, embedded credentials and URL payloads."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile("OpenAI-compatible", "model", url, remote_consent=True).validate(lambda host: ["93.184.216.34"])
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+___ test_remote_endpoint_rejects_unsafe_destinations[https://127.0.0.1/v1] ____
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+url = 'https://127.0.0.1/v1'
+
+    @pytest.mark.parametrize("url", ["http://evil.example", "https://user:pass@example.com", "https://127.0.0.1/v1", "https://example.com/v1?key=secret", "https://example.com/#x"])
+    def test_remote_endpoint_rejects_unsafe_destinations(url):
+        """Reject plaintext, private targets, embedded credentials and URL payloads."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile("OpenAI-compatible", "model", url, remote_consent=True).validate(lambda host: ["93.184.216.34"])
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_ test_remote_endpoint_rejects_unsafe_destinations[https://example.com/v1?key=secret] _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+url = 'https://example.com/v1?key=secret'
+
+    @pytest.mark.parametrize("url", ["http://evil.example", "https://user:pass@example.com", "https://127.0.0.1/v1", "https://example.com/v1?key=secret", "https://example.com/#x"])
+    def test_remote_endpoint_rejects_unsafe_destinations(url):
+        """Reject plaintext, private targets, embedded credentials and URL payloads."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile("OpenAI-compatible", "model", url, remote_consent=True).validate(lambda host: ["93.184.216.34"])
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+__ test_remote_endpoint_rejects_unsafe_destinations[https://example.com/#x] ___
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+url = 'https://example.com/#x'
+
+    @pytest.mark.parametrize("url", ["http://evil.example", "https://user:pass@example.com", "https://127.0.0.1/v1", "https://example.com/v1?key=secret", "https://example.com/#x"])
+    def test_remote_endpoint_rejects_unsafe_destinations(url):
+        """Reject plaintext, private targets, embedded credentials and URL payloads."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile("OpenAI-compatible", "model", url, remote_consent=True).validate(lambda host: ["93.184.216.34"])
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+____________________ test_remote_requires_explicit_consent ____________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_remote_requires_explicit_consent():
+        """Never enable remote data transfer implicitly."""
+        with pytest.raises(ValueError, match="consent"):
+>           profiles().ModelProfile("OpenAI", "gpt-test", "https://api.openai.com/v1").validate()
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+____________________ test_dns_private_resolution_rejected _____________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_dns_private_resolution_rejected():
+        """Reject a public-looking name that resolves to a private address."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile("OpenAI-compatible", "model", "https://example.com/v1", remote_consent=True).validate(lambda host: ["10.0.0.1"])
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_______________________ test_secret_not_in_profile_repr _______________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_secret_not_in_profile_repr():
+        """Profile data contains a credential reference rather than the API key."""
+>       profile = profiles().ModelProfile(credential_ref="opaque-reference")
+                  ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+____________________ test_local_endpoint_must_be_loopback _____________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_local_endpoint_must_be_loopback():
+        """Ollama configuration cannot become an arbitrary HTTP request destination."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile(endpoint="http://192.168.1.2:11434").validate()
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+____________ test_session_configuration_denies_running_and_pending ____________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_session_configuration_denies_running_and_pending():
+        """A model change cannot replace an active or awaiting-review workflow."""
+>       module = profiles()
+                 ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_______________ test_remote_client_uses_explicit_key_and_limits _______________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_remote_client_uses_explicit_key_and_limits():
+        """Inject the key without process environment mutation or unbounded retries."""
+>       module = profiles()
+                 ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_____________________ test_client_failure_is_secret_free ______________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_client_failure_is_secret_free():
+        """Do not expose provider exceptions that may contain Authorization headers."""
+>       module = profiles()
+                 ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+____________________ test_model_identifiers_are_bounded[] _____________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+model = ''
+
+    @pytest.mark.parametrize("model", ["", "../file", "bad\nmodel", "x" * 201])
+    def test_model_identifiers_are_bounded(model):
+        """Reject control characters, path traversal and oversized names."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile(model=model).validate()
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_________________ test_model_identifiers_are_bounded[../file] _________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+model = '../file'
+
+    @pytest.mark.parametrize("model", ["", "../file", "bad\nmodel", "x" * 201])
+    def test_model_identifiers_are_bounded(model):
+        """Reject control characters, path traversal and oversized names."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile(model=model).validate()
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_______________ test_model_identifiers_are_bounded[bad\nmodel] ________________
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+model = 'bad\nmodel'
+
+    @pytest.mark.parametrize("model", ["", "../file", "bad\nmodel", "x" * 201])
+    def test_model_identifiers_are_bounded(model):
+        """Reject control characters, path traversal and oversized names."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile(model=model).validate()
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+_ test_model_identifiers_are_bounded[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+>           return importlib.import_module("agentix.model_profiles")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'agentix.model_profiles'
+import_ = <function _gcd_import at 0x0000019B55DF3D80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'agentix.model_profiles'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+model = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+    @pytest.mark.parametrize("model", ["", "../file", "bad\nmodel", "x" * 201])
+    def test_model_identifiers_are_bounded(model):
+        """Reject control characters, path traversal and oversized names."""
+        with pytest.raises(ValueError):
+>           profiles().ModelProfile(model=model).validate()
+            ^^^^^^^^^^
+
+tests\unit\test_model_profiles.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def profiles():
+        """Load the feature with an actionable failure before implementation."""
+        try:
+            return importlib.import_module("agentix.model_profiles")
+        except ModuleNotFoundError:
+>           pytest.fail("Approved session model-profile service is missing")
+E           Failed: Approved session model-profile service is missing
+
+tests\unit\test_model_profiles.py:14: Failed
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_default_local_profile_preserves_required_model
+FAILED tests/unit/test_model_profiles.py::test_remote_endpoint_rejects_unsafe_destinations[http://evil.example]
+FAILED tests/unit/test_model_profiles.py::test_remote_endpoint_rejects_unsafe_destinations[https://user:pass@example.com]
+FAILED tests/unit/test_model_profiles.py::test_remote_endpoint_rejects_unsafe_destinations[https://127.0.0.1/v1]
+FAILED tests/unit/test_model_profiles.py::test_remote_endpoint_rejects_unsafe_destinations[https://example.com/v1?key=secret]
+FAILED tests/unit/test_model_profiles.py::test_remote_endpoint_rejects_unsafe_destinations[https://example.com/#x]
+FAILED tests/unit/test_model_profiles.py::test_remote_requires_explicit_consent
+FAILED tests/unit/test_model_profiles.py::test_dns_private_resolution_rejected
+FAILED tests/unit/test_model_profiles.py::test_secret_not_in_profile_repr - F...
+FAILED tests/unit/test_model_profiles.py::test_local_endpoint_must_be_loopback
+FAILED tests/unit/test_model_profiles.py::test_session_configuration_denies_running_and_pending
+FAILED tests/unit/test_model_profiles.py::test_remote_client_uses_explicit_key_and_limits
+FAILED tests/unit/test_model_profiles.py::test_client_failure_is_secret_free
+FAILED tests/unit/test_model_profiles.py::test_model_identifiers_are_bounded[]
+FAILED tests/unit/test_model_profiles.py::test_model_identifiers_are_bounded[../file]
+FAILED tests/unit/test_model_profiles.py::test_model_identifiers_are_bounded[bad\nmodel]
+FAILED tests/unit/test_model_profiles.py::test_model_identifiers_are_bounded[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]
+17 failed in 0.43s

@@ -1,0 +1,36 @@
+def tiered_energy_bill(kwh: int) -> int:
+    """
+    Calculate progressive electricity tariff based on consumption in kWh.
+    
+    Tier structure:
+    - First 100 kWh: 12 cents per kWh
+    - Next 100 kWh (101-200): 18 cents per kWh  
+    - Remaining consumption (201+): 25 cents per kWh
+    
+    Args:
+        kwh (int): Non-negative integer representing electricity consumption in kWh
+        
+    Returns:
+        int: Total cost in cents
+        
+    Raises:
+        ValueError: If input is not a non-negative integer
+    """
+    # Validate input type
+    if type(kwh) is not int:
+        raise ValueError("Input must be an integer")
+        
+    # Validate non-negative
+    if kwh < 0:
+        raise ValueError("Input must be non-negative")
+    
+    # Calculate cost based on tiers
+    if kwh <= 100:
+        # Only Tier 1 applies
+        return kwh * 12
+    elif kwh <= 200:
+        # Tier 1 (100 kWh) + Tier 2 (remaining kWh)
+        return 100 * 12 + (kwh - 100) * 18
+    else:
+        # Tier 1 (100 kWh) + Tier 2 (100 kWh) + Tier 3 (remaining kWh)
+        return 100 * 12 + 100 * 18 + (kwh - 200) * 25

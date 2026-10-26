@@ -1,0 +1,25 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 39 items / 37 deselected / 2 selected
+
+tests\unit\test_iac.py F.                                                [100%]
+
+================================== FAILURES ===================================
+_____ test_dependency_install_cannot_inherit_pip_target_or_extra_sources ______
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-396/test_dependency_install_cannot0')
+
+    def test_dependency_install_cannot_inherit_pip_target_or_extra_sources(tmp_path):
+        """IAC-ERR-008: ambient pip variables cannot redirect writes outside the owned environment."""
+        body = "$env:LOCALAPPDATA='"+str(tmp_path)+"';$env:PIP_TARGET='outside-fixture';$env:PIP_FIND_LINKS='https://unapproved.invalid';$env:PIP_USER='1';& (Get-Module Agentix.Iac) {function script:Invoke-IacProcess {param($Executable,$Arguments)if ('install' -in $Arguments) {$script:observed=@{target=$env:PIP_TARGET;links=$env:PIP_FIND_LINKS;user=$env:PIP_USER;index=$env:PIP_INDEX_URL;hashes=('--require-hashes' -in $Arguments)}};return ''}};$c=Read-IacConfiguration;Set-IacResource 'environment' $c @{};$o=& (Get-Module Agentix.Iac) {$script:observed};@{observed=$o;restored=$env:PIP_TARGET}|ConvertTo-Json -Depth 5"
+        result = powershell(body)
+>       assert result["observed"]["target"] is None
+E       AssertionError: assert 'outside-fixture' is None
+
+tests\unit\test_iac.py:380: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_dependency_install_cannot_inherit_pip_target_or_extra_sources
+================= 1 failed, 1 passed, 37 deselected in 1.36s ==================

@@ -1,0 +1,23 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "local loopback Ollama only",
+  "purpose": "Engineering prose draft only; no engineering code or tests",
+  "facts": {
+    "project": "AgentiX v3",
+    "fixed": "Approvals now survive browser reload, another browser session and process restart using user/machine-protected Windows DPAPI records bound to exact code/tests/root/functions/security policy. Review panel is below Tool validation in the right column.",
+    "gui_fixture_checks": "Playwright passed reload/new-browser/server-restart reuse and source-drift reapproval; actual native DPAPI.",
+    "live_model": "qwen3-coder:30b, real Gradio GUI, Playwright Edge, native isolation, fresh temporary tool storage",
+    "live_results": [
+      "10 km -> 6.214 miles after creation and five initial manual reviews",
+      "after page reload, 25 km -> 15.534 miles without review or tests",
+      "after actual disposable-server restart, 12 km -> 7.456 miles without review or tests"
+    ],
+    "evidence": "three distinct session owners; two reuse queries each had zero approval/test/acceptance/code-read/write events and one successful native call",
+    "human_interventions": "clarified bool/nonfinite behavior; corrected generated code, test import/type assertions and expanded acceptance to eleven cases",
+    "verification": "22 non-native integrations passed; final offline and native totals must be taken from raw logs, not guessed",
+    "limitations": "old tools without protected records need one first review; sensitive/unclassified calls retain permission; no native capability escalation; finite cases not universal proof; same-user host malware outside boundary; user live 7873 not restarted"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "review": "Reviewed against raw logs. Clarified that zero artifact-write events excludes host protected approval metadata updates; exact final totals come from test logs. Final report additionally records the discovered/fixed contrast defect."
+}

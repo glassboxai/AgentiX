@@ -1,0 +1,136 @@
+import unittest
+from electricity_bill_calculator_code import calculate_electricity_bill
+
+class TestElectricityBillCalculator(unittest.TestCase):
+    
+    def test_normal_case_350_kwh(self):
+        """Test normal case with 350 kWh consumption"""
+        result = calculate_electricity_bill(350)
+        expected_total = 67.50
+        self.assertEqual(result['total_cost'], expected_total)
+        
+        # Check breakdown
+        breakdown = result['breakdown']
+        self.assertEqual(len(breakdown), 3)
+        
+        # Tier 1: 100 kWh at €0.12
+        self.assertEqual(breakdown[0]['kwh'], 100)
+        self.assertEqual(breakdown[0]['rate'], 0.12)
+        self.assertEqual(breakdown[0]['cost'], 12.00)
+        
+        # Tier 2: 100 kWh at €0.18
+        self.assertEqual(breakdown[1]['kwh'], 100)
+        self.assertEqual(breakdown[1]['rate'], 0.18)
+        self.assertEqual(breakdown[1]['cost'], 18.00)
+        
+        # Tier 3: 150 kWh at €0.25
+        self.assertEqual(breakdown[2]['kwh'], 150)
+        self.assertEqual(breakdown[2]['rate'], 0.25)
+        self.assertEqual(breakdown[2]['cost'], 37.50)
+    
+    def test_boundary_case_100_kwh(self):
+        """Test boundary case with exactly 100 kWh consumption"""
+        result = calculate_electricity_bill(100)
+        expected_total = 12.00
+        self.assertEqual(result['total_cost'], expected_total)
+        
+        breakdown = result['breakdown']
+        self.assertEqual(len(breakdown), 3)
+        
+        # Only Tier 1 should be used
+        self.assertEqual(breakdown[0]['kwh'], 100)
+        self.assertEqual(breakdown[0]['cost'], 12.00)
+        self.assertEqual(breakdown[1]['kwh'], 0)
+        self.assertEqual(breakdown[2]['kwh'], 0)
+    
+    def test_boundary_case_200_kwh(self):
+        """Test boundary case with exactly 200 kWh consumption"""
+        result = calculate_electricity_bill(200)
+        expected_total = 30.00
+        self.assertEqual(result['total_cost'], expected_total)
+        
+        breakdown = result['breakdown']
+        self.assertEqual(len(breakdown), 3)
+        
+        # Tier 1: 100 kWh at €0.12
+        self.assertEqual(breakdown[0]['kwh'], 100)
+        self.assertEqual(breakdown[0]['cost'], 12.00)
+        
+        # Tier 2: 100 kWh at €0.18
+        self.assertEqual(breakdown[1]['kwh'], 100)
+        self.assertEqual(breakdown[1]['cost'], 18.00)
+        
+        # Tier 3: 0 kWh at €0.25
+        self.assertEqual(breakdown[2]['kwh'], 0)
+        self.assertEqual(breakdown[2]['cost'], 0.00)
+    
+    def test_edge_case_0_kwh(self):
+        """Test edge case with 0 kWh consumption"""
+        result = calculate_electricity_bill(0)
+        expected_total = 0.00
+        self.assertEqual(result['total_cost'], expected_total)
+        
+        breakdown = result['breakdown']
+        self.assertEqual(len(breakdown), 3)
+        
+        # All tiers should have 0 kWh
+        for item in breakdown:
+            self.assertEqual(item['kwh'], 0)
+    
+    def test_invalid_negative_value(self):
+        """Test invalid input with negative consumption"""
+        with self.assertRaises(ValueError) as context:
+            calculate_electricity_bill(-50)
+        self.assertIn("Consumption cannot be negative", str(context.exception))
+    
+    def test_invalid_non_numeric(self):
+        """Test invalid input with non-numeric value"""
+        with self.assertRaises(TypeError) as context:
+            calculate_electricity_bill("350")
+        self.assertIn("Consumption must be a number", str(context.exception))
+        
+        with self.assertRaises(TypeError) as context:
+            calculate_electricity_bill(None)
+        self.assertIn("Consumption must be a number", str(context.exception))
+    
+    def test_invalid_nan_value(self):
+        """Test invalid input with NaN value"""
+        import math
+        with self.assertRaises(ValueError) as context:
+            calculate_electricity_bill(float('nan'))
+        self.assertIn("Consumption cannot be NaN", str(context.exception))
+    
+    def test_invalid_infinite_value(self):
+        """Test invalid input with infinite value"""
+        with self.assertRaises(ValueError) as context:
+            calculate_electricity_bill(float('inf'))
+        self.assertIn("Consumption cannot be infinite", str(context.exception))
+        
+        with self.assertRaises(ValueError) as context:
+            calculate_electricity_bill(float('-inf'))
+        self.assertIn("Consumption cannot be infinite", str(context.exception))
+    
+    def test_return_types(self):
+        """Test that return types are correct"""
+        result = calculate_electricity_bill(150)
+        self.assertIsInstance(result, dict)
+        self.assertIn('total_cost', result)
+        self.assertIn('breakdown', result)
+        self.assertIsInstance(result['total_cost'], float)
+        self.assertIsInstance(result['breakdown'], list)
+        
+        # Check breakdown items
+        for item in result['breakdown']:
+            self.assertIsInstance(item, dict)
+            self.assertIn('tier', item)
+            self.assertIn('range', item)
+            self.assertIn('kwh', item)
+            self.assertIn('rate', item)
+            self.assertIn('cost', item)
+            self.assertIsInstance(item['tier'], int)
+            self.assertIsInstance(item['kwh'], (int, float))
+            self.assertIsInstance(item['rate'], (int, float))
+            self.assertIsInstance(item['cost'], (int, float))
+
+if __name__ == '__main__':
+    unittest.main()

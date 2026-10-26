@@ -1,0 +1,9 @@
+{
+  "storage": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-live-hitl-mc2pj2ut",
+  "port": 7872,
+  "model": "ollama/qwen3-coder:30b",
+  "pid": 22824,
+  "real_model": true,
+  "native_isolation": true,
+  "manual_approvals": true
+}

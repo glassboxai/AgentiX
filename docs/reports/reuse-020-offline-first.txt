@@ -1,0 +1,67 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 47%]
+............................F........................................... [ 63%]
+........................................................................ [ 78%]
+........................................................................ [ 94%]
+.........................                                                [100%]
+================================== FAILURES ===================================
+_____________ test_sidebar_and_review_use_native_gradio_container _____________
+
+    def test_sidebar_and_review_use_native_gradio_container():
+        """Locate review within a single native Sidebar in the maintained source."""
+        import ast
+        from pathlib import Path
+    
+        source = Path(__file__).resolve().parents[2] / "src/agentix/ui/view.py"
+        tree = ast.parse(source.read_text(encoding="utf-8"))
+        sidebars = [
+            node
+            for node in ast.walk(tree)
+            if isinstance(node, ast.With)
+            and any(
+                isinstance(item.context_expr, ast.Call)
+                and getattr(item.context_expr.func, "attr", "") == "Sidebar"
+                for item in node.items
+            )
+        ]
+        assert len(sidebars) == 1
+>       assert "Authorization & Test Review" in ast.get_source_segment(
+            source.read_text(encoding="utf-8"), sidebars[0]
+        )
+E       assert 'Authorization & Test Review' in 'with gr.Sidebar(label="Model settings", width=390, open=True, elem_id="agentix-sidebar"):\n            with gr.Accord...d again. Save external settings before applying them; activation requires consent in this session."\n                )'
+E        +  where 'with gr.Sidebar(label="Model settings", width=390, open=True, elem_id="agentix-sidebar"):\n            with gr.Accord...d again. Save external settings before applying them; activation requires consent in this session."\n                )' = <function get_source_segment at 0x0000023C43F565C0>('"""Gradio view with server-owned sessions and browser-snapshot approval IDs."""\n\nimport functools\nimport inspect\n...er_port=server_port,\n        theme=view.theme,\n        inbrowser=open_browser,\n        **launch_options(),\n    )\n', <ast.With object at 0x0000023C76CB9B40>)
+E        +    where <function get_source_segment at 0x0000023C43F565C0> = <module 'ast' from 'C:\\Users\\xpiku\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\ast.py'>.get_source_segment
+E        +    and   '"""Gradio view with server-owned sessions and browser-snapshot approval IDs."""\n\nimport functools\nimport inspect\n...er_port=server_port,\n        theme=view.theme,\n        inbrowser=open_browser,\n        **launch_options(),\n    )\n' = read_text(encoding='utf-8')
+E        +      where read_text = WindowsPath('D:/AI/AgentiX_v3/src/agentix/ui/view.py').read_text
+
+tests\unit\test_model_profiles.py:226: AssertionError
+============================== warnings summary ===============================
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:425: DeprecationWarning: function_calling_llm is deprecated and will be removed in a future release.
+    if self.function_calling_llm and not isinstance(
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:433: DeprecationWarning: deprecated
+    if self.allow_code_execution:
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:444: DeprecationWarning: deprecated
+    if self.reasoning and self.planning_config is None:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_sidebar_and_review_use_native_gradio_container
+1 failed, 456 passed, 30 deselected, 15 warnings in 71.16s (0:01:11)

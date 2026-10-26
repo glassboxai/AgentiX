@@ -1,0 +1,13 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0 -- D:\AI\Agentix_v2\.autotool\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collecting ... collected 4 items
+
+tests/integration/test_windows_isolation.py::test_native_python_isolated_execution_and_unittest PASSED [ 25%]
+tests/integration/test_windows_isolation.py::test_native_denies_host_write_read_and_network PASSED [ 50%]
+tests/integration/test_windows_isolation.py::test_native_terminates_endless_execution PASSED [ 75%]
+tests/integration/test_windows_isolation.py::test_native_bounds_output PASSED [100%]
+
+============================= 4 passed in 23.23s ==============================

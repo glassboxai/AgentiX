@@ -1,0 +1,10 @@
+Conversation
+
+Please use the same conversion to express a distance of 12 kilometres in miles, rounded to three decimal places.
+
+Agent Thoughts & Activity (Click to expand)
+Result
+
+7.456
+
+Execution details

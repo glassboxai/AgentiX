@@ -1,0 +1,44 @@
+{
+  "omit_shipping": {
+    "exit_code": 1,
+    "output": "FF...FF.\r\n======================================================================\r\nFAIL: test_boundary_values (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_boundary_values)\r\nTest exact boundary values\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-14h7ba85\\work\\warehouse_box_shipping_calculator_tests.py\", line 30, in test_boundary_values\r\n    self.assertEqual(calculate_total_cost(9), 23.0)\r\nAssertionError: 18.0 != 23.0\r\n\r\n======================================================================\r\nFAIL: test_first_tier (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_first_tier)\r\nTest first tier: 1-10 boxes at EUR 2.00 each\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-14h7ba85\\work\\warehouse_box_shipping_calculator_tests.py\", line 12, in test_first_tier\r\n    self.assertEqual(calculate_total_cost(1), 7.0)   # 1*2 + 5 = 7\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: 2.0 != 7.0\r\n\r\n======================================================================\r\nFAIL: test_second_tier (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_second_tier)\r\nTest second tier: 11-20 boxes at EUR 1.50 each\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-14h7ba85\\work\\warehouse_box_shipping_calculator_tests.py\", line 18, in test_second_tier\r\n    self.assertEqual(calculate_total_cost(11), 26.5) # (10*2 + 1*1.5) + 5 = 26.5\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: 21.5 != 26.5\r\n\r\n======================================================================\r\nFAIL: test_third_tier (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_third_tier)\r\nTest third tier: 21+ boxes at EUR 1.00 each\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-14h7ba85\\work\\warehouse_box_shipping_calculator_tests.py\", line 24, in test_third_tier\r\n    self.assertEqual(calculate_total_cost(21), 41.0) # (10*2 + 10*1.5 + 1*1) + 5 = 41\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: 36.0 != 41.0\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.005s\r\n\r\nFAILED (failures=4)\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 8, \"failures\": 4, \"errors\": 0, \"skipped\": 0, \"successful\": false}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 8,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "successful": false
+    },
+    "isolated": true,
+    "failure": ""
+  },
+  "wrong_second_tier_rate": {
+    "exit_code": 1,
+    "output": "F....FF.\r\n======================================================================\r\nFAIL: test_boundary_values (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_boundary_values)\r\nTest exact boundary values\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-nc37d17j\\work\\warehouse_box_shipping_calculator_tests.py\", line 32, in test_boundary_values\r\n    self.assertEqual(calculate_total_cost(19), 38.5)\r\nAssertionError: 34.0 != 38.5\r\n\r\n======================================================================\r\nFAIL: test_second_tier (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_second_tier)\r\nTest second tier: 11-20 boxes at EUR 1.50 each\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-nc37d17j\\work\\warehouse_box_shipping_calculator_tests.py\", line 18, in test_second_tier\r\n    self.assertEqual(calculate_total_cost(11), 26.5) # (10*2 + 1*1.5) + 5 = 26.5\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: 26.0 != 26.5\r\n\r\n======================================================================\r\nFAIL: test_third_tier (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_third_tier)\r\nTest third tier: 21+ boxes at EUR 1.00 each\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-nc37d17j\\work\\warehouse_box_shipping_calculator_tests.py\", line 24, in test_third_tier\r\n    self.assertEqual(calculate_total_cost(21), 41.0) # (10*2 + 10*1.5 + 1*1) + 5 = 41\r\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: 36.0 != 41.0\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.001s\r\n\r\nFAILED (failures=3)\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 8, \"failures\": 3, \"errors\": 0, \"skipped\": 0, \"successful\": false}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 8,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "successful": false
+    },
+    "isolated": true,
+    "failure": ""
+  },
+  "accept_boolean": {
+    "exit_code": 1,
+    "output": "..F.....\r\n======================================================================\r\nFAIL: test_invalid_types (warehouse_box_shipping_calculator_tests.TestCalculateTotalCost.test_invalid_types)\r\nTest that invalid types raise TypeError\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-isolated-jpp2gz7a\\work\\warehouse_box_shipping_calculator_tests.py\", line 52, in test_invalid_types\r\n    with self.assertRaises(TypeError):\r\nAssertionError: TypeError not raised\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.001s\r\n\r\nFAILED (failures=1)\r\n\r\nAGENTIX_REPORT:{\"kind\": \"tests\", \"run\": 8, \"failures\": 1, \"errors\": 0, \"skipped\": 0, \"successful\": false}\r\n",
+    "report": {
+      "kind": "tests",
+      "run": 8,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "successful": false
+    },
+    "isolated": true,
+    "failure": ""
+  }
+}

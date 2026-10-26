@@ -1,0 +1,22 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+______________ ERROR collecting tests/unit/test_presentation.py _______________
+ImportError while importing test module 'D:\AI\Agentix_v2\tests\unit\test_presentation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\xpiku\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\unit\test_presentation.py:3: in <module>
+    from agentix.ui.presentation import format_catalog, format_result, render_validation
+E   ModuleNotFoundError: No module named 'agentix.ui.presentation'
+=========================== short test summary info ===========================
+ERROR tests/unit/test_presentation.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.70s ===============================

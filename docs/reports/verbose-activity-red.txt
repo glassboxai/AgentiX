@@ -1,0 +1,147 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 8 items
+
+tests\unit\test_verbose_activity.py FFFFFFFF                             [100%]
+
+================================== FAILURES ===================================
+_________ test_every_application_agent_keeps_verbose_enabled[manager] _________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{879b11b3-43cd-47ba-8bb2-775327da4f37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E01F97D3A0>)
+role = 'manager'
+
+    @pytest.mark.parametrize("role", ["manager", "architect", "coder", "tester"])
+    def test_every_application_agent_keeps_verbose_enabled(system, role):
+        agent = getattr(system.main, role + "_agent")
+>       assert agent.verbose is True
+E       AssertionError: assert False is True
+E        +  where False = namespace(role='Engineering Manager', goal='Evaluate user queries and decide whether to reuse an existing tool or orch...1E01FA267A0>, <function ArtifactTools.execute_generated_tool_tool at 0x000001E01FA26840>], verbose=False, memory=False).verbose
+
+tests\unit\test_verbose_activity.py:18: AssertionError
+________ test_every_application_agent_keeps_verbose_enabled[architect] ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{879b11b3-43cd-47ba-8bb2-775327da4f37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E01F97D3A0>)
+role = 'architect'
+
+    @pytest.mark.parametrize("role", ["manager", "architect", "coder", "tester"])
+    def test_every_application_agent_keeps_verbose_enabled(system, role):
+        agent = getattr(system.main, role + "_agent")
+>       assert agent.verbose is True
+E       AssertionError: assert False is True
+E        +  where False = namespace(role='Software Architect', goal='Design comprehensive software specifications (classes, methods, parameters,... 0x000001E01FA993A0>, <function ArtifactTools.log_specifications_incidence_tool at 0x000001E01FA994E0>], verbose=False).verbose
+
+tests\unit\test_verbose_activity.py:18: AssertionError
+__________ test_every_application_agent_keeps_verbose_enabled[coder] __________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{879b11b3-43cd-47ba-8bb2-775327da4f37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E01F97D3A0>)
+role = 'coder'
+
+    @pytest.mark.parametrize("role", ["manager", "architect", "coder", "tester"])
+    def test_every_application_agent_keeps_verbose_enabled(system, role):
+        agent = getattr(system.main, role + "_agent")
+>       assert agent.verbose is True
+E       AssertionError: assert False is True
+E        +  where False = namespace(role='Senior Python Coder', goal='Implement robust Python code adhering strictly to architectural specificat...cidence_tool at 0x000001E01FA99F80>, <function ArtifactTools.read_artifact_tool at 0x000001E01FA9A160>], verbose=False).verbose
+
+tests\unit\test_verbose_activity.py:18: AssertionError
+_________ test_every_application_agent_keeps_verbose_enabled[tester] __________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{879b11b3-43cd-47ba-8bb2-775327da4f37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E01F97D3A0>)
+role = 'tester'
+
+    @pytest.mark.parametrize("role", ["manager", "architect", "coder", "tester"])
+    def test_every_application_agent_keeps_verbose_enabled(system, role):
+        agent = getattr(system.main, role + "_agent")
+>       assert agent.verbose is True
+E       AssertionError: assert False is True
+E        +  where False = namespace(role='QA Automation Engineer', goal='Develop comprehensive unit tests matching specifications and code, exec...cidence_tool at 0x000001E01FA98F40>, <function ArtifactTools.read_artifact_tool at 0x000001E01FA99BC0>], verbose=False).verbose
+
+tests\unit\test_verbose_activity.py:18: AssertionError
+_______________ test_gated_creation_crews_keep_verbose_enabled ________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{879b11b3-43cd-47ba-8bb2-775327da4f37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E01F97D3A0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001E01FA44090>
+
+    def test_gated_creation_crews_keep_verbose_enabled(system, monkeypatch):
+        observed = []
+        system.security.auto_approve = True
+    
+        def crew(**kwargs):
+            observed.append(kwargs["verbose"])
+            stage = len(observed)
+    
+            def kickoff():
+                if stage == 1:
+                    system.security.safe_write_file("adder", "adder_specifications.md", "Approved spec")
+                elif stage == 2:
+                    system.custom_tools.compile_and_save_code_tool("adder", "def adder(): return 3")
+                return "Completed"
+    
+            return SimpleNamespace(kickoff=kickoff)
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+        assert "PIPELINE_STAGE_FAILED: acceptance" in system.main.build_tool_pipeline("adder", "Add")
+>       assert observed == [True, True, True]
+E       assert [False, False, False] == [True, True, True]
+E         
+E         At index 0 diff: False != True
+E         Use -v to get more diff
+
+tests\unit\test_verbose_activity.py:40: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:diagnostics.py:49 event=pipeline_acceptance_failed session_id=legacy operation_id=- request_id=- error_type=ValueError line=-
+_________ test_manager_and_final_execution_crews_keep_verbose_enabled _________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{879b11b3-43cd-47ba-8bb2-775327da4f37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001E01F97D3A0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001E01FA63B90>
+
+    def test_manager_and_final_execution_crews_keep_verbose_enabled(system, monkeypatch):
+        """Check constructor policy only; this fixture does not validate execution."""
+        observed = []
+    
+        def crew(**kwargs):
+            observed.append(kwargs["verbose"])
+            response = ('{"action":"CREATE_TOOL","tool_name":"adder","purpose":"Add"}'
+                        if len(observed) == 1 else "Final answer")
+            return SimpleNamespace(kickoff=lambda: response)
+    
+        monkeypatch.setattr(system.main, "Crew", crew)
+        monkeypatch.setattr(system.main, "build_tool_pipeline", lambda **kwargs: None)
+        monkeypatch.setattr(system.custom_tools.verification, "is_verified", lambda name: True)
+        assert system.main.run_system("Add") == "Final answer"
+>       assert observed == [True, True]
+E       assert [False, False] == [True, True]
+E         
+E         At index 0 diff: False != True
+E         Use -v to get more diff
+
+tests\unit\test_verbose_activity.py:57: AssertionError
+_________ test_verbose_output_and_technical_events_remain_owner_bound _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001E01FA1D990>
+
+    def test_verbose_output_and_technical_events_remain_owner_bound(monkeypatch):
+>       from agentix.diagnostics import activity_output
+E       ImportError: cannot import name 'activity_output' from 'agentix.diagnostics' (D:\AI\Agentix_v2\src\agentix\diagnostics.py)
+
+tests\unit\test_verbose_activity.py:61: ImportError
+_________ test_activity_output_restores_original_stream_after_failure _________
+
+    def test_activity_output_restores_original_stream_after_failure():
+>       from agentix.diagnostics import activity_output
+E       ImportError: cannot import name 'activity_output' from 'agentix.diagnostics' (D:\AI\Agentix_v2\src\agentix\diagnostics.py)
+
+tests\unit\test_verbose_activity.py:94: ImportError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_verbose_activity.py::test_every_application_agent_keeps_verbose_enabled[manager]
+FAILED tests/unit/test_verbose_activity.py::test_every_application_agent_keeps_verbose_enabled[architect]
+FAILED tests/unit/test_verbose_activity.py::test_every_application_agent_keeps_verbose_enabled[coder]
+FAILED tests/unit/test_verbose_activity.py::test_every_application_agent_keeps_verbose_enabled[tester]
+FAILED tests/unit/test_verbose_activity.py::test_gated_creation_crews_keep_verbose_enabled
+FAILED tests/unit/test_verbose_activity.py::test_manager_and_final_execution_crews_keep_verbose_enabled
+FAILED tests/unit/test_verbose_activity.py::test_verbose_output_and_technical_events_remain_owner_bound
+FAILED tests/unit/test_verbose_activity.py::test_activity_output_restores_original_stream_after_failure
+============================== 8 failed in 0.61s ==============================

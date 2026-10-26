@@ -1,0 +1,7 @@
+# Unverified local-model report draft
+
+Observations: The requirement UI-013 was implemented and verified as of 2026-10-20. The project link https://glassboxai.dev/ is provided for reference. The UI implementation aligns with the specified typography guidelines, including desktop h1 at 44px with weight 500, body/fields at 14px with weight 400, and buttons at 16px with weight 600. All corners are square, and the checkbox design adheres to the reference specifications, including dimensions, border, colors, keyboard focus, and Space toggling functionality. Verification results indicate that 316 tests passed offline with 19 deselected. Browser testing confirmed successful outcomes across multiple resolutions, including 1440px and 390px, with verification of link target, h1 weight, computed radii, checkbox dimensions, border, colors, and keyboard toggle/focus. Ruff linting and formatting checks passed for 78 active Python files.
+
+Unresolved Defects: No unresolved defects are reported in the verification results. All tests that were executed passed, and no new regressions were identified in existing approval or session functionality.
+
+Limitations: The browser testing environment uses authored trusted fixtures and does not include verification of new models or native isolation. Existing live applications were not restarted during verification. A separate real-model-capable localhost7872 instance is running with qwen3-coder:30b, but no new queries were submitted. The reference configuration was viewed without saving or modifying any settings.

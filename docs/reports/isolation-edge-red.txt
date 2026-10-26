@@ -1,0 +1,28 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 15 items
+
+tests\unit\test_pipeline_verification.py .........F...F.                 [100%]
+
+================================== FAILURES ===================================
+__________ test_previous_query_evidence_cannot_authorize_a_new_query __________
+tests\unit\test_pipeline_verification.py:87: in test_previous_query_evidence_cannot_authorize_a_new_query
+    assert not ledger.is_verified("adder")
+E   AssertionError: assert not True
+E    +  where True = is_verified('adder')
+E    +    where is_verified = <agentix.verification.VerificationLedger object at 0x0000019102A164D0>.is_verified
+_ test_nonpassing_only_suites_do_not_grant_evidence[import unittest\nclass Checks(unittest.TestCase):\n @unittest.expectedFailure\n def test_expected(self): self.fail()\n] _
+tests\unit\test_pipeline_verification.py:103: in test_nonpassing_only_suites_do_not_grant_evidence
+    assert system.custom_tools.run_and_save_tests_tool("adder", source).startswith("TESTS_FAILED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x000001910202F340>('TESTS_FAILED:')
+E    +    where <built-in method startswith of str object at 0x000001910202F340> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": t...------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK (expected failures=1)\n'.startswith
+E    +      where 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": t...------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK (expected failures=1)\n' = run_and_save_tests_tool('adder', 'import unittest\nclass Checks(unittest.TestCase):\n @unittest.expectedFailure\n def test_expected(self): self.fail()\n')
+E    +        where run_and_save_tests_tool = <agentix.tools.ArtifactTools object at 0x00000191029EFD50>.run_and_save_tests_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x00000191029EFD50> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{239ede13-0f90-406b-8d08-697238dbf61c}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x0000019102086F20>).custom_tools
+=========================== short test summary info ===========================
+FAILED tests/unit/test_pipeline_verification.py::test_previous_query_evidence_cannot_authorize_a_new_query
+FAILED tests/unit/test_pipeline_verification.py::test_nonpassing_only_suites_do_not_grant_evidence[import unittest\nclass Checks(unittest.TestCase):\n @unittest.expectedFailure\n def test_expected(self): self.fail()\n]
+======================== 2 failed, 13 passed in 1.35s =========================

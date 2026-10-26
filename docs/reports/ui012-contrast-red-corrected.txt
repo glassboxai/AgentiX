@@ -1,0 +1,64 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 335 items / 334 deselected / 1 selected
+
+tests\e2e\test_browser_review.py F                                       [100%]
+
+================================== FAILURES ===================================
+__________ test_brand_readable_result_and_bounded_disclosures[1440] ___________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=155.0.4283.62>
+server = ('http://127.0.0.1:50263', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-361/agentix-browser0/artifacts'))
+width = 1440
+
+    @pytest.mark.parametrize("width", [1440, 390])
+    def test_brand_readable_result_and_bounded_disclosures(browser, server, width):
+        """Verify actual layout, accessible send control and timer-stable disclosures."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": width, "height": 1000})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            expect(page.get_by_role("heading", name="AgentiX", exact=True)).to_be_visible()
+            expect(page.get_by_text("Developer-in-the-Loop.", exact=True)).to_be_visible()
+            expect(page.get_by_role("img", name="AgentiX logo")).to_be_visible()
+            send = page.get_by_role("button", name="Send query", exact=True)
+            expect(send).to_be_visible()
+            assert send.bounding_box()["width"] < 65
+            submit(page, "presentation in euros (�)")
+            expect(page.get_by_text("�67.50", exact=False)).to_be_visible(timeout=15000)
+            expect(page.locator(".execution-result table")).to_be_visible()
+            colors = page.locator(".execution-result > p").first.evaluate("""el => {
+                const foreground = getComputedStyle(el).color;
+                let node = el, background = '';
+                const ancestors = [];
+                while (node) {
+                    const style = getComputedStyle(node);
+                    ancestors.push({tag:node.tagName, classes:node.className, width:node.clientWidth,
+                        background:style.backgroundColor});
+                    if (!background && style.backgroundColor !== 'rgba(0, 0, 0, 0)') background = style.backgroundColor;
+                    node = node.parentElement;
+                }
+                return {foreground, background, ancestors};
+            }""")
+            if output := os.environ.get("AGENTIX_E2E_ARTIFACTS"):
+                Path(output).mkdir(parents=True, exist_ok=True)
+                Path(output, f"ui012-colors-{width}.json").write_text(json.dumps(colors, indent=2), encoding="utf-8")
+            def luminance(color):
+                channels = [int(x) / 255 for x in re.findall(r"\d+", color)[:3]]
+                values = [x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4 for x in channels]
+                return sum(a * b for a, b in zip(values, (0.2126, 0.7152, 0.0722), strict=True))
+            lights = sorted([luminance(colors['foreground']), luminance(colors['background'])])
+>           assert (lights[1] + 0.05) / (lights[0] + 0.05) >= 4.5, colors
+E           AssertionError: {'foreground': 'rgb(241, 243, 245)', 'background': 'rgb(250, 250, 250)', 'ancestors': [{'tag': 'P', 'classes': '', 'wi...': 'DIV', 'classes': 'message  svelte-1nr59td panel-full-width', 'width': 360, 'background': 'rgba(0, 0, 0, 0)'}, ...]}
+E           assert ((0.9559733532492862 + 0.05) / (0.8939452857711131 + 0.05)) >= 4.5
+
+tests\e2e\test_browser_review.py:225: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_brand_readable_result_and_bounded_disclosures[1440]
+====================== 1 failed, 334 deselected in 9.41s ======================

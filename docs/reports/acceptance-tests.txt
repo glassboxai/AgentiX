@@ -1,0 +1,31 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+collected 263 items / 12 deselected / 251 selected
+
+tests\integration\test_artifact_workflow.py ..                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  5%]
+tests\integration\test_session_workflows.py ....                         [  7%]
+tests\unit\test_acceptance_ui.py ...                                     [  8%]
+tests\unit\test_app.py ......................                            [ 17%]
+tests\unit\test_approval_identity.py .............                       [ 22%]
+tests\unit\test_cli.py .......                                           [ 25%]
+tests\unit\test_compatibility.py ........                                [ 28%]
+tests\unit\test_composition.py ...                                       [ 29%]
+tests\unit\test_config.py ..                                             [ 30%]
+tests\unit\test_decision_security.py .................                   [ 37%]
+tests\unit\test_human_acceptance.py ...................................  [ 51%]
+tests\unit\test_import_boundaries.py .                                   [ 51%]
+tests\unit\test_orchestration.py ................                        [ 58%]
+tests\unit\test_pipeline_verification.py ...................             [ 65%]
+tests\unit\test_sandbox_protocol.py ......                               [ 68%]
+tests\unit\test_security.py ............................................ [ 85%]
+.                                                                        [ 86%]
+tests\unit\test_sessions.py .....                                        [ 88%]
+tests\unit\test_tools.py .............................                   [ 99%]
+tests\unit\test_ui_runtime_isolation.py .                                [100%]
+
+--- generated xml file: D:\AI\Agentix_v2\docs\reports\acceptance-tests.xml ----
+===================== 251 passed, 12 deselected in 15.82s =====================

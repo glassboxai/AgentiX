@@ -1,0 +1,32 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 10 items / 9 deselected / 1 selected
+
+tests\unit\test_verbose_activity.py F                                    [100%]
+
+================================== FAILURES ===================================
+_______ test_fragmented_verbose_output_preserves_logical_lines_and_ansi _______
+
+    def test_fragmented_verbose_output_preserves_logical_lines_and_ansi():
+        capture = ConsoleThoughtsCapture(io.StringIO())
+        for fragment in ["\x1b[3", "1mAgent: ", "Architect", "\x1b[0m\n", "Task: ", "Create tool\n"]:
+            capture.write(fragment)
+>       assert capture.get_logs() == "Agent: Architect\nTask: Create tool"
+E       AssertionError: assert '\x1b[3\n1mAg...\nCreate tool' == 'Agent: Archi...: Create tool'
+E         
+E         - Agent: Architect
+E         + [3
+E         + 1mAgent:
+E         + Architect
+E         + Task:
+E         - Task: Create tool
+E         ? ------
+E         + Create tool
+
+tests\unit\test_verbose_activity.py:121: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_verbose_activity.py::test_fragmented_verbose_output_preserves_logical_lines_and_ansi
+======================= 1 failed, 9 deselected in 0.37s =======================

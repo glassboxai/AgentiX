@@ -1,0 +1,9 @@
+{
+  "storage": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-live-hitl-xekod9sy",
+  "port": 7861,
+  "model": "ollama/qwen3:8b",
+  "pid": 25256,
+  "real_model": true,
+  "native_isolation": true,
+  "manual_approvals": true
+}

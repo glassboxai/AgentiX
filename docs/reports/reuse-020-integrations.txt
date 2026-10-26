@@ -1,0 +1,91 @@
+.....F......F........                                                    [100%]
+================================== FAILURES ===================================
+_____________ test_model_sidebar_is_hideable_and_key_input_clears _____________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:60223', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-466/agentix-browser0/artifacts'), <function server.<locals>.restart at 0x000002EB40B92CA0>)
+
+    def test_model_sidebar_is_hideable_and_key_input_clears(browser, server):
+        """Use the native sidebar toggle and validate session-owned model settings."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": 1440, "height": 1100})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            sidebar = page.locator("#agentix-sidebar")
+            expect(sidebar).to_be_visible()
+>           expect(sidebar.get_by_text("Authorization & Test Review", exact=True)).to_be_visible()
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 5000ms
+E             - waiting for locator("#agentix-sidebar").get_by_text("Authorization & Test Review", exact=True)
+
+tests\e2e\test_browser_review.py:312: AssertionError
+________________ test_real_crewai_schemas_and_gradio_bindings _________________
+
+    @pytest.mark.frameworks
+    def test_real_crewai_schemas_and_gradio_bindings():
+        """Catch bound-method schema errors and invalid real widget registrations."""
+        root = Path(__file__).resolve().parents[2]
+        script = """
+    import os
+    os.environ.update(OTEL_SDK_DISABLED='true', CREWAI_DISABLE_TELEMETRY='true', CREWAI_DISABLE_TRACKING='true', CREWAI_TRACING_ENABLED='false', GRADIO_ANALYTICS_ENABLED='False')
+    import _agentix_path
+    from types import SimpleNamespace
+    from agentix.adapters.crewai import register_tools, build_agents
+    from agentix.tools import ArtifactTools
+    from agentix.ui.controller import UiController
+    from agentix.ui.view import build_view
+    from agentix.ui.sessions import SessionRegistry
+    import gradio as gr
+    operations = ArtifactTools(SimpleNamespace())
+    tools = register_tools(operations)
+    assert tools.save_specifications_tool.result_as_answer is True
+    assert tools.compile_and_save_code_tool.result_as_answer is True
+    assert tools.run_and_save_tests_tool.result_as_answer is False
+    assert tools.execute_generated_tool_tool.result_as_answer is True
+    assert tools.finish_acceptance_tool.result_as_answer is True
+    assert tools.submit_acceptance_cases_tool.result_as_answer is False
+    schema = tools.execute_generated_tool_tool.args_schema.model_json_schema()
+    assert set(schema['properties']) == {'tool_name', 'function_name', 'kwargs_json'}, schema
+    assert set(tools.compile_and_save_code_tool.args_schema.model_json_schema()['properties']) == {'tool_name', 'code'}
+    from crewai import LLM
+    from crewai.utilities.prompts import Prompts
+    agents = build_agents(LLM(model='ollama/qwen3-coder:30b', base_url='http://127.0.0.1:11434'), tools)
+    assert agents.creation_manager.tools == [] and agents.manager.tools
+    for agent in (agents.manager, agents.architect, agents.coder, agents.tester, agents.creation_manager):
+        system = Prompts(agent=agent, has_tools=True, use_system_prompt=True).task_execution().system
+        assert 'APPLICATION WORKFLOW POLICY' in system
+        assert 'exact tier boundaries' in system and 'invalid types' in system
+        assert 'human review' in system and 'EXECUTE' in system
+    view = build_view(SessionRegistry(lambda session_id: UiController(lambda query: 'unused', lambda: 'No tools installed yet.', SimpleNamespace(), gr.update)), gradio_module=gr)
+    assert len(view.demo.get_config_file()['components']) > 0
+    approval = next(function for function in view.demo.fns.values() if function.fn.__name__ == 'approve')
+    assert not approval.inputs[1].stateful, 'Displayed request ID must travel with the browser snapshot, not mutable server State'
+    print('real-adapters-ok')
+    """
+        result = subprocess.run(
+            [sys.executable, "-c", script], cwd=root, capture_output=True, text=True, timeout=90
+        )
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "<string>", line 12, in <module>
+E           File "D:\AI\AgentiX_v3\src\agentix\tools.py", line 38, in __init__
+E             self.verification = VerificationLedger(security, store=approval_store)
+E                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "D:\AI\AgentiX_v3\src\agentix\verification.py", line 32, in __init__
+E             self._owner = security.owner_id
+E                           ^^^^^^^^^^^^^^^^^
+E         AttributeError: 'types.SimpleNamespace' object has no attribute 'owner_id'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\Age...                  ^^^^^^^^^^^^^^^^^\nAttributeError: \'types.SimpleNamespace\' object has no attribute \'owner_id\'\n').returncode
+
+tests\integration\test_framework_adapters.py:54: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_model_sidebar_is_hideable_and_key_input_clears
+FAILED tests/integration/test_framework_adapters.py::test_real_crewai_schemas_and_gradio_bindings
+2 failed, 19 passed, 466 deselected in 134.26s (0:02:14)

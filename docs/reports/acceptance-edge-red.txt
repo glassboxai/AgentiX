@@ -1,0 +1,25 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 2 items
+
+tests\unit\test_human_acceptance.py F                                    [ 50%]
+tests\unit\test_sandbox_protocol.py F                                    [100%]
+
+================================== FAILURES ===================================
+_________ test_revocation_between_execution_checks_prevents_the_call __________
+tests\unit\test_human_acceptance.py:213: in test_revocation_between_execution_checks_prevents_the_call
+    assert "NOT_VERIFIED" in system.custom_tools.execute_generated_tool_tool("adder", "add")
+E   AssertionError: assert 'NOT_VERIFIED' in 'Tool Execution Result: 3'
+E    +  where 'Tool Execution Result: 3' = execute_generated_tool_tool('adder', 'add')
+E    +    where execute_generated_tool_tool = <agentix.tools.ArtifactTools object at 0x000002404912CAD0>.execute_generated_tool_tool
+E    +      where <agentix.tools.ArtifactTools object at 0x000002404912CAD0> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{9dec6ead-4f34-40d4-b4fc-e17d0815d2ea}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000240487F0220>).custom_tools
+_______________ test_duplicate_observation_values_are_rejected ________________
+tests\unit\test_sandbox_protocol.py:25: in test_duplicate_observation_values_are_rejected
+    with pytest.raises(ValueError):
+E   Failed: DID NOT RAISE ValueError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_human_acceptance.py::test_revocation_between_execution_checks_prevents_the_call
+FAILED tests/unit/test_sandbox_protocol.py::test_duplicate_observation_values_are_rejected
+============================== 2 failed in 0.89s ==============================

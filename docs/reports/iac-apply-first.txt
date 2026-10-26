@@ -1,0 +1,8 @@
+Write-Error: 
+Line |
+   4 |  & ./infra/Invoke-AgentiXIac.ps1 -Action Apply -PlanFile docs/reports/ …
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Process failed (2): 2026-10-24T08:50:05.987540Z ERROR Failed to run process 'powershell.exe': Command: Resource 'powershell.exe' [exit code 1] El término 'Get-FileHash' no se reconoce como nombre de un cmdlet, función, archivo de script o programa ejecutable. Compruebe si escribió correctamente el nombre o, si incluyó una ruta de acceso, compruebe que dicha ruta es correcta e inténtelo de nuevo.
+
+2026-10-24T08:50:05.988485Z ERROR Error: Command: Resource 'powershell.exe' [exit code 1] El término 'Get-FileHash' no se reconoce como nombre de un cmdlet, función, archivo de script o programa ejecutable. Compruebe si escribió correctamente el nombre o, si incluyó una ruta de acceso, compruebe que dicha ruta es correcta e inténtelo de nuevo.
+

@@ -1,0 +1,6 @@
+{
+  "powershellFiles": 5,
+  "syntax": "passed",
+  "commandPolicy": "passed",
+  "limitations": "Static policy, not a full security proof."
+}

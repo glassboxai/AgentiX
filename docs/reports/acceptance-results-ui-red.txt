@@ -1,0 +1,16 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\unit\test_acceptance_ui.py F                                       [100%]
+
+================================== FAILURES ===================================
+_____________ test_final_status_shows_expected_and_observed_data ______________
+tests\unit\test_acceptance_ui.py:44: in test_final_status_shows_expected_and_observed_data
+    assert "&lt;expected&gt;" in rendered and "99" in rendered
+E   AssertionError: assert ('&lt;expected&gt;' in '### Tool validation\n\nAcceptance failed\n\nTool: adder\n\nsum: FAIL')
+=========================== short test summary info ===========================
+FAILED tests/unit/test_acceptance_ui.py::test_final_status_shows_expected_and_observed_data
+============================== 1 failed in 0.26s ==============================

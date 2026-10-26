@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "boxes_0",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 0
+      },
+      "expect": {
+        "kind": "value",
+        "value": 0.0
+      }
+    },
+    {
+      "id": "boxes_1",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 1
+      },
+      "expect": {
+        "kind": "value",
+        "value": 7.0
+      }
+    },
+    {
+      "id": "boxes_9",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 9
+      },
+      "expect": {
+        "kind": "value",
+        "value": 23.0
+      }
+    },
+    {
+      "id": "boxes_10",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 10
+      },
+      "expect": {
+        "kind": "value",
+        "value": 25.0
+      }
+    },
+    {
+      "id": "boxes_11",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 11
+      },
+      "expect": {
+        "kind": "value",
+        "value": 26.5
+      }
+    },
+    {
+      "id": "boxes_19",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 19
+      },
+      "expect": {
+        "kind": "value",
+        "value": 38.5
+      }
+    },
+    {
+      "id": "boxes_20",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 20
+      },
+      "expect": {
+        "kind": "value",
+        "value": 40.0
+      }
+    },
+    {
+      "id": "boxes_21",
+      "purpose": "Check zero, normal quantity or progressive tier boundary",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 21
+      },
+      "expect": {
+        "kind": "value",
+        "value": 41.0
+      }
+    },
+    {
+      "id": "boxes_27",
+      "purpose": "Independently checked requested warehouse order",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 27
+      },
+      "expect": {
+        "kind": "value",
+        "value": 47.0
+      }
+    },
+    {
+      "id": "negative",
+      "purpose": "Reject invalid box quantity: negative",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": -1
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "fraction",
+      "purpose": "Reject invalid box quantity: fraction",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 1.5
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "integral_float",
+      "purpose": "Reject invalid box quantity: integral_float",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": 1.0
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "boolean_true",
+      "purpose": "Reject invalid box quantity: boolean_true",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": true
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "boolean_false",
+      "purpose": "Reject invalid box quantity: boolean_false",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": false
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "text_quantity",
+      "purpose": "Reject invalid box quantity: text_quantity",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": "27"
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "missing_quantity",
+      "purpose": "Reject invalid box quantity: missing_quantity",
+      "function": "calculate_total_cost",
+      "kwargs": {
+        "number_of_boxes": null
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    }
+  ]
+}

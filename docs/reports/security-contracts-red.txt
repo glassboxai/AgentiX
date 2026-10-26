@@ -1,0 +1,185 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 22 items
+
+tests\unit\test_decision_security.py FFFFFFFFFFFFF                       [ 59%]
+tests\unit\test_approval_identity.py FFFFFFF                             [ 90%]
+tests\unit\test_sessions.py FF                                           [100%]
+
+================================== FAILURES ===================================
+__ test_invalid_manager_decision_never_starts_creation[CREATE_TOOL bad json] __
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'compound_interest_calculator' for purpose: 'query'
+
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.orchestration:orchestration.py:154 Error parsing manager JSON (Expecting value: line 1 column 1 (char 0)). Falling back to safe defaults.
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL"}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'compound_interest_calculator' for purpose: 'query'
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"DELETE_TOOL","tool_name":"adder","purpose":"add"}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"../outside","purpose":"add"}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: '../outside' for purpose: 'add'
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"My Adder","purpose":"add"}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'my_adder' for purpose: 'add'
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"con","purpose":"add"}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'con' for purpose: 'add'
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"adder","purpose":""}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'adder' for purpose: ''
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"adder","purpose":42}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'adder' for purpose: '42'
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"adder","purpose":"add","extra":true}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'adder' for purpose: 'add'
+
+_ test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","action":"CREATE_TOOL","tool_name":"adder","purpose":"add"}] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'adder' for purpose: 'add'
+
+_ test_invalid_manager_decision_never_starts_creation[prefix {"action":"CREATE_TOOL","tool_name":"adder","purpose":"add"} suffix] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'adder' for purpose: 'add'
+
+_ test_invalid_manager_decision_never_starts_creation[[{"action":"CREATE_TOOL","tool_name":"adder","purpose":"add"}]] _
+tests\unit\test_decision_security.py:27: in test_invalid_manager_decision_never_starts_creation
+    with pytest.raises(ValueError, match='Manager'):
+E   Failed: DID NOT RAISE ValueError
+---------------------------- Captured stdout call -----------------------------
+
+[MANAGER] Creating tool: 'adder' for purpose: 'add'
+
+___________ test_manager_query_and_decision_payload_are_not_logged ____________
+tests\unit\test_decision_security.py:38: in test_manager_query_and_decision_payload_are_not_logged
+    assert secret not in caplog.text
+E   AssertionError: assert 'private-query-token-1234' not in 'INFO     ag...alled yet.\n'
+E     
+E     'private-query-token-1234' is contained here:
+E       er query: private-query-token-1234
+E       DEBUG    agentix.catalog:catalog.py:23 Rendering AST catalog for configured storage
+E       INFO     agentix.orchestration:orchestration.py:102 Currently installed tools in disk: No tools installed yet.
+------------------------------ Captured log call ------------------------------
+INFO     agentix.orchestration:orchestration.py:100 Received user query: private-query-token-1234
+DEBUG    agentix.catalog:catalog.py:23 Rendering AST catalog for configured storage
+INFO     agentix.orchestration:orchestration.py:102 Currently installed tools in disk: No tools installed yet.
+________ test_wrong_or_missing_identity_does_not_authorize[None-alice] ________
+tests\unit\test_approval_identity.py:23: in test_wrong_or_missing_identity_does_not_authorize
+    boundary = ApprovalCoordinator.for_owner('alice')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+_______ test_wrong_or_missing_identity_does_not_authorize[wrong-alice] ________
+tests\unit\test_approval_identity.py:23: in test_wrong_or_missing_identity_does_not_authorize
+    boundary = ApprovalCoordinator.for_owner('alice')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+_______ test_wrong_or_missing_identity_does_not_authorize[correct-bob] ________
+tests\unit\test_approval_identity.py:23: in test_wrong_or_missing_identity_does_not_authorize
+    boundary = ApprovalCoordinator.for_owner('alice')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+____________ test_duplicate_response_cannot_change_first_decision _____________
+tests\unit\test_approval_identity.py:38: in test_duplicate_response_cannot_change_first_decision
+    boundary = ApprovalCoordinator.for_owner('alice')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+_______________________ test_expired_response_is_denied _______________________
+tests\unit\test_approval_identity.py:51: in test_expired_response_is_denied
+    boundary = ApprovalCoordinator.for_owner('alice')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+____________ test_second_request_cannot_overwrite_pending_request _____________
+tests\unit\test_approval_identity.py:66: in test_second_request_cannot_overwrite_pending_request
+    boundary = ApprovalCoordinator.for_owner('alice')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+_____________ test_owners_have_independent_auto_approval_settings _____________
+tests\unit\test_approval_identity.py:80: in test_owners_have_independent_auto_approval_settings
+    first, second = ApprovalCoordinator.for_owner('alice'), ApprovalCoordinator.for_owner('bob')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'ApprovalCoordinator' has no attribute 'for_owner'
+_________________ test_session_registry_binds_token_to_owner __________________
+tests\unit\test_sessions.py:11: in test_session_registry_binds_token_to_owner
+    from agentix.ui.sessions import SessionAccessError, SessionRegistry
+E   ModuleNotFoundError: No module named 'agentix.ui.sessions'
+____________ test_activity_routing_is_context_local_across_threads ____________
+tests\unit\test_sessions.py:22: in test_activity_routing_is_context_local_across_threads
+    from agentix.diagnostics import ActivityRouter, operation_scope
+E   ModuleNotFoundError: No module named 'agentix.diagnostics'
+=========================== short test summary info ===========================
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[CREATE_TOOL bad json]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL"}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"DELETE_TOOL","tool_name":"adder","purpose":"add"}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"../outside","purpose":"add"}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"My Adder","purpose":"add"}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"con","purpose":"add"}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"adder","purpose":""}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"adder","purpose":42}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","tool_name":"adder","purpose":"add","extra":true}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[{"action":"CREATE_TOOL","action":"CREATE_TOOL","tool_name":"adder","purpose":"add"}]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[prefix {"action":"CREATE_TOOL","tool_name":"adder","purpose":"add"} suffix]
+FAILED tests/unit/test_decision_security.py::test_invalid_manager_decision_never_starts_creation[[{"action":"CREATE_TOOL","tool_name":"adder","purpose":"add"}]]
+FAILED tests/unit/test_decision_security.py::test_manager_query_and_decision_payload_are_not_logged
+FAILED tests/unit/test_approval_identity.py::test_wrong_or_missing_identity_does_not_authorize[None-alice]
+FAILED tests/unit/test_approval_identity.py::test_wrong_or_missing_identity_does_not_authorize[wrong-alice]
+FAILED tests/unit/test_approval_identity.py::test_wrong_or_missing_identity_does_not_authorize[correct-bob]
+FAILED tests/unit/test_approval_identity.py::test_duplicate_response_cannot_change_first_decision
+FAILED tests/unit/test_approval_identity.py::test_expired_response_is_denied
+FAILED tests/unit/test_approval_identity.py::test_second_request_cannot_overwrite_pending_request
+FAILED tests/unit/test_approval_identity.py::test_owners_have_independent_auto_approval_settings
+FAILED tests/unit/test_sessions.py::test_session_registry_binds_token_to_owner
+FAILED tests/unit/test_sessions.py::test_activity_routing_is_context_local_across_threads
+============================= 22 failed in 0.55s ==============================

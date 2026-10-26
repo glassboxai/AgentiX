@@ -1,0 +1,9 @@
+
+======================================================================
+   AUTONOMOUS MULTI-AGENT TOOL BUILDER SYSTEM
+   Type 'quit', 'exit' or 'q' to stop the program.
+======================================================================
+
+
+Enter your query: 
+[INFO] Exiting session. Goodbye!

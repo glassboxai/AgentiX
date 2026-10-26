@@ -1,0 +1,107 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 1 item
+
+tests\integration\test_verbose_activity_framework.py F                   [100%]
+
+================================== FAILURES ===================================
+____ test_real_verbose_messages_and_diagnostics_reach_separate_controllers ____
+
+    @pytest.mark.frameworks
+    def test_real_verbose_messages_and_diagnostics_reach_separate_controllers():
+        """Use the SDK event renderer and workers, without a model or HTTP server."""
+        script = r'''
+    import os
+    os.environ.update(OTEL_SDK_DISABLED='true', CREWAI_DISABLE_TELEMETRY='true',
+        CREWAI_DISABLE_TRACKING='true', CREWAI_TRACING_ENABLED='false',
+        CREWAI_DISABLE_VERSION_CHECK='true', GRADIO_ANALYTICS_ENABLED='False')
+    import _agentix_path
+    import threading, time
+    from agentix.bootstrap import configure_process
+    configure_process()
+    from agentix.diagnostics import activity_output
+    from agentix.approvals import ApprovalCoordinator
+    from agentix.ui.controller import UiController
+    from crewai.events.event_bus import crewai_event_bus
+    from crewai.events.event_listener import EventListener
+    from crewai.events.types.logging_events import AgentLogsStartedEvent, AgentLogsExecutionEvent
+    from crewai.agents.parser import AgentAction, AgentFinish
+    listener = EventListener()
+    barrier = threading.Barrier(2)
+    def create(owner):
+        def workflow(query):
+            barrier.wait(5)
+            events = [
+                AgentLogsStartedEvent(agent_role=owner+' Architect', task_description=owner+' task', verbose=True),
+                AgentLogsExecutionEvent(agent_role=owner+' Architect', verbose=True,
+                    formatted_answer=AgentAction(thought='', tool='fixture',tool_input='{}',text='',result=owner+' tool result')),
+                AgentLogsExecutionEvent(agent_role=owner+' Architect', verbose=True,
+                    formatted_answer=AgentFinish(thought='',output=owner+' final answer',text='')),
+            ]
+            for event in events:
+                future = crewai_event_bus.emit(None, event)
+                assert future is not None
+                future.result(timeout=10)
+            return owner+' completed'
+        return UiController(workflow, lambda:'Temporary catalog', ApprovalCoordinator.for_owner(owner), lambda **kw:kw)
+    with activity_output():
+        alice, bob = create('Alice'), create('Bob')
+        alice.process_user_query('Alice query')
+        bob.process_user_query('Bob query')
+        deadline=time.monotonic()+30
+        while (alice.state.is_running or bob.state.is_running) and time.monotonic()<deadline:
+            time.sleep(.02)
+        assert not alice.state.is_running and not bob.state.is_running
+        for owner, other, controller in [('Alice','Bob',alice),('Bob','Alice',bob)]:
+            content=controller.poll_system_status()[0][-1]['content']
+            for expected in [owner+' Architect',owner+' task',owner+' tool result',owner+' final answer','workflow_started',owner+' completed']:
+                assert expected in content, (expected,content)
+            assert other not in content, content
+            assert '\x1b' not in content
+    print('real-verbose-owned-output-ok')
+    '''
+        result = subprocess.run([sys.executable, "-c", script],
+            cwd=Path(__file__).resolve().parents[2], capture_output=True, text=True, timeout=90)
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: workflow_started | operation=bdfa3754abfc45f6b6c6094a116814fb
+E         workflow_started | operation=e67deced055c4c4f8e1465518758c52d
+E         +-----------------------------[CrewAIEventsBus] Sync handler error in on_agent_logs_started: 'charmap' codec 
+E         can't encode character '\U0001f916' in position 1+-: character maps to ----------------------------
+E         <undefined>
+E         [CrewAIEventsBus+-----------------------------] Sync handler error in on_agent_logs_started: 'charmap' codec 
+E         can't encode character '\U0001f916' in position 1: character maps to 
+E         <undefined>
+E         +-----------------------------[CrewAIEventsBus] Sync handler error in on_agent_logs_execution: 'charmap' 
+E         codec can't encode character '\U0001f916' in position 1: character maps to 
+E         <undefined>
+E         [CrewAIEventsBus+-] Sync handler error in on_agent_logs_execution: ----------------------------'charmap' 
+E         codec can't encode character '\U0001f916' in position 1: character maps to 
+E         <undefined>
+E         [CrewAIEventsBus] Sync handler error in on_agent_logs_execution: +-'charmap' ----------------------------
+E         codec can't encode character '\U0001f916' in position 1: character maps to 
+E         <undefined>
+E         [CrewAIEventsBusworkflow_finished | operation=e67deced055c4c4f8e1465518758c52d
+E         ] Sync handler error in on_agent_logs_execution: 'charmap' 
+E         codec can't encode character '\U0001f916' in position 1: character maps to 
+E         <undefined>
+E         workflow_finished | operation=bdfa3754abfc45f6b6c6094a116814fb
+E         2026-10-19 18:37:51 [INFO] [crewai_core.settings]: Using config path: C:\Users\xpiku\.config\crewai\settings.json
+E         2026-10-19 18:37:52 [INFO] [agentix.ui.controller]: event=workflow_started session_id=8eb3a9fdf32f4a818b3f5fdb72c24e0a operation_id=bdfa3754abfc45f6b6c6094a116814fb request_id=- error_type=- line=-
+E         2026-10-19 18:37:52 [INFO] [agentix.ui.controller]: event=workflow_started session_id=bfaa0868a2dd47a194344722942aec82 operation_id=e67deced055c4c4f8e1465518758c52d request_id=- error_type=- line=-
+E         2026-10-19 18:37:52 [INFO] [agentix.ui.controller]: event=workflow_finished session_id=bfaa0868a2dd47a194344722942aec82 operation_id=e67deced055c4c4f8e1465518758c52d request_id=- error_type=- line=-
+E         2026-10-19 18:37:52 [INFO] [agentix.ui.controller]: event=workflow_finished session_id=8eb3a9fdf32f4a818b3f5fdb72c24e0a operation_id=bdfa3754abfc45f6b6c6094a116814fb request_id=- error_type=- line=-
+E         2026-10-19 18:37:52 [INFO] [agentix.ui.controller]: Rendered final answer with collapsed thoughts accordion.
+E         Traceback (most recent call last):
+E           File "<string>", line 46, in <module>
+E         AssertionError: ('Alice Architect', "<details>\n<summary>\U0001f9e0 <b>Agent Thoughts & Activity</b> <i>(Click to expand)</i></summary>\n\n```text\nworkflow_started | operation=bdfa3754abfc45f6b6c6094a116814fb\n+-\n----------------------------\n[\nCrewAIEventsBus\n]\nSync handler error in on_agent_logs_started:\n'charmap'\ncodec\ncan't encode character\n'\\U0001f916'\nin position\n1\n: character maps to\n<\nundefined\n>\n+-\n----------------------------\n[\nCrewAIEventsBus\n]\nSync handler error in on_agent_logs_execution:\n'charmap'\ncodec can't encode character\n'\\U0001f916'\nin position\n1\n: character maps to\n<\nundefined\n>\n+-\n----------------------------\n[\nCrewAIEventsBus\n]\nSync handler error in on_agent_logs_execution:\n'charmap'\ncodec can't encode character\n'\\U0001f916'\nin position\n1\n: character maps to\n<\nundefined\n>\nworkflow_finished | operation=bdfa3754abfc45f6b6c6094a116814fb\n```\n</details>\n\nAlice completed")
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['D:\\AI\\Agentix_v2\\.autotool\\Scripts\\python.exe', '-c', "\nimport os\nos.environ.update(OTE...ined\\n>\\nworkflow_finished | operation=bdfa3754abfc45f6b6c6094a116814fb\\n```\\n</details>\\n\\nAlice completed")\n').returncode
+
+tests\integration\test_verbose_activity_framework.py:65: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_verbose_activity_framework.py::test_real_verbose_messages_and_diagnostics_reach_separate_controllers
+============================== 1 failed in 8.76s ==============================

@@ -1,0 +1,4 @@
+# Direct runtime versions observed during v3 validation; not a transitive lock.
+crewai==1.15.28
+gradio==6.30.0
+pydantic==2.12.5

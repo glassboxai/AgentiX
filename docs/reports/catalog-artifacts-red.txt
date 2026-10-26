@@ -1,0 +1,22 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_______ test_catalog_extracts_public_function_and_first_docstring_line ________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{f85588c9-101b-4338-87d4-ac0f94c6c982}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001A86089DBC0>)
+
+    def test_catalog_extracts_public_function_and_first_docstring_line(system):
+        install(
+            system,
+            "adder",
+            'def add(a, b=1):\n    """Add numbers.\n    Details."""\n    return a+b\ndef _hidden(): pass',
+        )
+        catalog = system.main.get_installed_tools_catalog()
+        assert "add(a, b)" in catalog and "Add numbers." in catalog
+        assert "_hidden" not in catalog and "Details." not in catalog
+>       assert "adder_code.py" in catalog and "adder_specifications.md" in catalog
+E       AssertionError: assert ('adder_code.py' in '- Tool Name: `adder`\n    * Function: `add(a, b)`\n      Description: Add numbers.')
+
+tests\unit\test_orchestration.py:34: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_orchestration.py::test_catalog_extracts_public_function_and_first_docstring_line
+1 failed in 0.47s

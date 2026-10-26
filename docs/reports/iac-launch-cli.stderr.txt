@@ -1,0 +1,3 @@
+2026-10-24 11:18:38 [INFO] [crewai_core.settings]: Using config path: C:\Users\xpiku\.config\crewai\settings.json
+2026-10-24 11:18:39 [INFO] [agentix.bootstrap]: event=model_adapter_constructing session_id=legacy operation_id=- request_id=- error_type=- line=-
+2026-10-24 11:18:39 [INFO] [agentix.bootstrap]: event=runtime_composed session_id=legacy operation_id=- request_id=- error_type=- line=-

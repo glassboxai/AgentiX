@@ -1,0 +1,24 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 27 items / 26 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+_________ test_launcher_restores_process_configuration_after_failure __________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-388/test_launcher_restores_process0')
+
+    def test_launcher_restores_process_configuration_after_failure(tmp_path):
+        """IAC-ERR-003: a closed/failed managed launcher must not change later legacy launches."""
+        result = powershell("$env:LOCALAPPDATA='"+str(tmp_path)+"';$env:OLLAMA_MODEL='prior-model';& (Get-Module Agentix.Iac) {function script:Test-IacDeployment {@{inDesiredState=$true}};function script:Get-IacState {@{portFree=$true}}};$c=Read-IacConfiguration;$message=try {Start-IacApplication -Config $c -Mode Cli -Run {throw 'trusted fixture failure'};'unexpected'} catch {$_.Exception.Message};@{restored=($env:OLLAMA_MODEL -eq 'prior-model');error=$message}|ConvertTo-Json")
+>       assert result["restored"] is True
+E       assert False is True
+
+tests\unit\test_iac.py:257: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_launcher_restores_process_configuration_after_failure
+====================== 1 failed, 26 deselected in 0.81s =======================

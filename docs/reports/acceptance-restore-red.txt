@@ -1,0 +1,20 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\unit\test_human_acceptance.py F                                    [100%]
+
+================================== FAILURES ===================================
+____ test_observed_source_change_cannot_revive_old_approval_after_restore _____
+tests\unit\test_human_acceptance.py:256: in test_observed_source_change_cannot_revive_old_approval_after_restore
+    assert not system.custom_tools.verification.is_verified("adder")
+E   AssertionError: assert not True
+E    +  where True = is_verified('adder')
+E    +    where is_verified = <agentix.verification.VerificationLedger object at 0x000001F92397C610>.is_verified
+E    +      where <agentix.verification.VerificationLedger object at 0x000001F92397C610> = <agentix.tools.ArtifactTools object at 0x000001F92397CDD0>.verification
+E    +        where <agentix.tools.ArtifactTools object at 0x000001F92397CDD0> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{e81f8d3a-b9a6-4e5b-bb78-ac3b2d60a014}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001F922FEC5E0>).custom_tools
+=========================== short test summary info ===========================
+FAILED tests/unit/test_human_acceptance.py::test_observed_source_change_cannot_revive_old_approval_after_restore
+============================== 1 failed in 0.67s ==============================

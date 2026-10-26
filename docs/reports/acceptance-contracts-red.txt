@@ -1,0 +1,155 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 20 items
+
+tests\unit\test_human_acceptance.py FFFFFFFFFFFFFFFFFFFF                 [100%]
+
+================================== FAILURES ===================================
+______________ test_provisional_tests_cannot_authorize_execution ______________
+tests\unit\test_human_acceptance.py:42: in test_provisional_tests_cannot_authorize_execution
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FF99B0>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FF99B0> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+__ test_human_review_and_host_comparison_control_authorization[True-3-True] ___
+tests\unit\test_human_acceptance.py:49: in test_human_review_and_host_comparison_control_authorization
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFA010>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFA010> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+_ test_human_review_and_host_comparison_control_authorization[True-99-False] __
+tests\unit\test_human_acceptance.py:49: in test_human_review_and_host_comparison_control_authorization
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFA560>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFA560> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+_ test_human_review_and_host_comparison_control_authorization[False-3-False] __
+tests\unit\test_human_acceptance.py:49: in test_human_review_and_host_comparison_control_authorization
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFAAB0>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFAAB0> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+______ test_human_edited_expectation_is_used_instead_of_generated_value _______
+tests\unit\test_human_acceptance.py:60: in test_human_edited_expectation_is_used_instead_of_generated_value
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFB000>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFB000> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+_____________ test_invalid_human_edits_do_not_grant_authorization _____________
+tests\unit\test_human_acceptance.py:69: in test_invalid_human_edits_do_not_grant_authorization
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFB550>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFB550> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+__________ test_review_cannot_authorize_changed_or_closed_work[code] __________
+tests\unit\test_human_acceptance.py:79: in test_review_cannot_authorize_changed_or_closed_work
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFBAA0>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFBAA0> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+_________ test_review_cannot_authorize_changed_or_closed_work[tests] __________
+tests\unit\test_human_acceptance.py:79: in test_review_cannot_authorize_changed_or_closed_work
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFA9A0>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFA9A0> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+_______ test_review_cannot_authorize_changed_or_closed_work[operation] ________
+tests\unit\test_human_acceptance.py:79: in test_review_cannot_authorize_changed_or_closed_work
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FFA450>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FFA450> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+_________ test_review_cannot_authorize_changed_or_closed_work[close] __________
+tests\unit\test_human_acceptance.py:79: in test_review_cannot_authorize_changed_or_closed_work
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FF9F00>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FF9F00> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+__________ test_only_functions_covered_by_approved_cases_can_execute __________
+tests\unit\test_human_acceptance.py:95: in test_only_functions_covered_by_approved_cases_can_execute
+    prepare(system)
+tests\unit\test_human_acceptance.py:21: in prepare
+    assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x0000017928FF9790>('TESTS_PROVISIONAL_PASSED:')
+E    +    where <built-in method startswith of str object at 0x0000017928FF9790> = 'TESTS_PASSED:\n\nAGENTIX_REPORT:{"kind": "tests", "run": 1, "failures": 0, "errors": 0, "skipped": 0, "successful": true}\n\n.\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n'.startswith
+____________ test_invalid_contracts_are_rejected_before_review[{}] ____________
+tests\unit\test_human_acceptance.py:107: in test_invalid_contracts_are_rejected_before_review
+    from agentix.acceptance import parse_contract
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+_ test_invalid_contracts_are_rejected_before_review[{"version":1,"cases":[]}] _
+tests\unit\test_human_acceptance.py:107: in test_invalid_contracts_are_rejected_before_review
+    from agentix.acceptance import parse_contract
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+_ test_invalid_contracts_are_rejected_before_review[{"version":1,"version":1,"cases":[]}] _
+tests\unit\test_human_acceptance.py:107: in test_invalid_contracts_are_rejected_before_review
+    from agentix.acceptance import parse_contract
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+_ test_invalid_contracts_are_rejected_before_review[{"version":true,"cases":[]}] _
+tests\unit\test_human_acceptance.py:107: in test_invalid_contracts_are_rejected_before_review
+    from agentix.acceptance import parse_contract
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+_ test_invalid_contracts_are_rejected_before_review[{"version":1,"cases":[],"execute":"os.system"}] _
+tests\unit\test_human_acceptance.py:107: in test_invalid_contracts_are_rejected_before_review
+    from agentix.acceptance import parse_contract
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+____________ test_host_comparison_uses_typed_data[3-expect0-True] _____________
+tests\unit\test_human_acceptance.py:116: in test_host_comparison_uses_typed_data
+    from agentix.acceptance import matches_expectation
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+__________ test_host_comparison_uses_typed_data[True-expect1-False] ___________
+tests\unit\test_human_acceptance.py:116: in test_host_comparison_uses_typed_data
+    from agentix.acceptance import matches_expectation
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+____________ test_host_comparison_uses_typed_data[3-expect2-False] ____________
+tests\unit\test_human_acceptance.py:116: in test_host_comparison_uses_typed_data
+    from agentix.acceptance import matches_expectation
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+______ test_host_comparison_uses_typed_data[0.30000000001-expect3-True] _______
+tests\unit\test_human_acceptance.py:116: in test_host_comparison_uses_typed_data
+    from agentix.acceptance import matches_expectation
+E   ModuleNotFoundError: No module named 'agentix.acceptance'
+=========================== short test summary info ===========================
+FAILED tests/unit/test_human_acceptance.py::test_provisional_tests_cannot_authorize_execution
+FAILED tests/unit/test_human_acceptance.py::test_human_review_and_host_comparison_control_authorization[True-3-True]
+FAILED tests/unit/test_human_acceptance.py::test_human_review_and_host_comparison_control_authorization[True-99-False]
+FAILED tests/unit/test_human_acceptance.py::test_human_review_and_host_comparison_control_authorization[False-3-False]
+FAILED tests/unit/test_human_acceptance.py::test_human_edited_expectation_is_used_instead_of_generated_value
+FAILED tests/unit/test_human_acceptance.py::test_invalid_human_edits_do_not_grant_authorization
+FAILED tests/unit/test_human_acceptance.py::test_review_cannot_authorize_changed_or_closed_work[code]
+FAILED tests/unit/test_human_acceptance.py::test_review_cannot_authorize_changed_or_closed_work[tests]
+FAILED tests/unit/test_human_acceptance.py::test_review_cannot_authorize_changed_or_closed_work[operation]
+FAILED tests/unit/test_human_acceptance.py::test_review_cannot_authorize_changed_or_closed_work[close]
+FAILED tests/unit/test_human_acceptance.py::test_only_functions_covered_by_approved_cases_can_execute
+FAILED tests/unit/test_human_acceptance.py::test_invalid_contracts_are_rejected_before_review[{}]
+FAILED tests/unit/test_human_acceptance.py::test_invalid_contracts_are_rejected_before_review[{"version":1,"cases":[]}]
+FAILED tests/unit/test_human_acceptance.py::test_invalid_contracts_are_rejected_before_review[{"version":1,"version":1,"cases":[]}]
+FAILED tests/unit/test_human_acceptance.py::test_invalid_contracts_are_rejected_before_review[{"version":true,"cases":[]}]
+FAILED tests/unit/test_human_acceptance.py::test_invalid_contracts_are_rejected_before_review[{"version":1,"cases":[],"execute":"os.system"}]
+FAILED tests/unit/test_human_acceptance.py::test_host_comparison_uses_typed_data[3-expect0-True]
+FAILED tests/unit/test_human_acceptance.py::test_host_comparison_uses_typed_data[True-expect1-False]
+FAILED tests/unit/test_human_acceptance.py::test_host_comparison_uses_typed_data[3-expect2-False]
+FAILED tests/unit/test_human_acceptance.py::test_host_comparison_uses_typed_data[0.30000000001-expect3-True]
+============================= 20 failed in 2.80s ==============================

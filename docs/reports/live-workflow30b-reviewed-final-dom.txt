@@ -1,0 +1,278 @@
+Autonomous Multi-Agent Tool Builder
+
+Dynamic software tool creation with live expandable Thoughts and on-the-fly code editing.
+
+Agent Interaction Chat
+
+I need a reusable tool named tiered_energy_bill with a function tiered_energy_bill(kwh: int) -> int to calculate a progressive electricity tariff. The first 100 kWh cost 12 cents per kWh; the next 100 kWh cost 18 cents per kWh; all remaining consumption costs 25 cents per kWh. Return the total in cents as an exact int, with no rounding. Accept only non-negative integers. Booleans, floats (including 1.0), strings, None, and negative integers must raise ValueError. What is the cost for 250 kWh?
+
+🧠 Agent Thoughts & Activity (Click to expand)
+
+Host-observed execution: tiered_energy_bill.tiered_energy_bill
+Arguments: {"kwh": 250}
+Result: 4250
+
+User Query
+Submit Query
+🔒 Authorization & Test Review
+▼
+Auto-approve file writes for this session
+If checked, file writes within generated_tools/ are authorized automatically.
+📚 Installed Tools Catalog (Live AST)
+▼
+Tool Name: tiered_energy_bill
+Function: tiered_energy_bill(kwh) Description: Calculate progressive electricity tariff based on consumption in kWh. Conventional artifact filenames: tiered_energy_bill_specifications.md, tiered_energy_bill_code.py, tiered_energy_bill_tests.py. Use these exact names with Read Artifact Tool; do not guess package files.
+Tool validation
+
+Verified against approved cases
+
+Tool: tiered_energy_bill
+
+Approved contract SHA-256: 2d23e91c702108e4a09574eb08eb9fdc65702729f9369adceae1143530ed976a
+
+kwh_0: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 0
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 0
+  },
+  "process_failure": ""
+}
+
+kwh_300: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 5500
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 5500
+  },
+  "process_failure": ""
+}
+
+kwh_99: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 1188
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 1188
+  },
+  "process_failure": ""
+}
+
+kwh_100: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 1200
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 1200
+  },
+  "process_failure": ""
+}
+
+kwh_101: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 1218
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 1218
+  },
+  "process_failure": ""
+}
+
+kwh_199: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 2982
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 2982
+  },
+  "process_failure": ""
+}
+
+kwh_200: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 3000
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 3000
+  },
+  "process_failure": ""
+}
+
+kwh_201: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 3025
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 3025
+  },
+  "process_failure": ""
+}
+
+kwh_250: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 4250
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 4250
+  },
+  "process_failure": ""
+}
+
+kwh_150: PASS
+
+{
+  "expected": {
+    "kind": "value",
+    "value": 2100
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "returned",
+    "value": 2100
+  },
+  "process_failure": ""
+}
+
+negative: PASS
+
+{
+  "expected": {
+    "kind": "raises",
+    "type": "ValueError"
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "raised",
+    "exception_type": "ValueError"
+  },
+  "process_failure": ""
+}
+
+integral_float: PASS
+
+{
+  "expected": {
+    "kind": "raises",
+    "type": "ValueError"
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "raised",
+    "exception_type": "ValueError"
+  },
+  "process_failure": ""
+}
+
+true: PASS
+
+{
+  "expected": {
+    "kind": "raises",
+    "type": "ValueError"
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "raised",
+    "exception_type": "ValueError"
+  },
+  "process_failure": ""
+}
+
+false: PASS
+
+{
+  "expected": {
+    "kind": "raises",
+    "type": "ValueError"
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "raised",
+    "exception_type": "ValueError"
+  },
+  "process_failure": ""
+}
+
+string: PASS
+
+{
+  "expected": {
+    "kind": "raises",
+    "type": "ValueError"
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "raised",
+    "exception_type": "ValueError"
+  },
+  "process_failure": ""
+}
+
+null: PASS
+
+{
+  "expected": {
+    "kind": "raises",
+    "type": "ValueError"
+  },
+  "observed": {
+    "kind": "observation",
+    "status": "raised",
+    "exception_type": "ValueError"
+  },
+  "process_failure": ""
+}
+Runs
+·
+Usar vía API
+·
+Construido con Gradio
+·
+Configuración

@@ -1,0 +1,57 @@
+{
+  "run": "V3-LIVE-001 supervised real GUI run",
+  "date": "2026-10-23",
+  "model": "ollama/qwen3-coder:30b",
+  "url": "http://127.0.0.1:7872/",
+  "storage": "Fresh temporary directory outside project generated_tools",
+  "operation_id": "c3f4e7d9fbda4714ad00e5843a47408f",
+  "problem": "Warehouse progressive box preparation cost with conditional EUR 5 shipping, order of 27 boxes",
+  "independent_expected_eur": 47.0,
+  "host_observed_final_result": 47.0,
+  "provisional_unittest_methods_passed": 8,
+  "host_compared_acceptance_cases": 16,
+  "host_case_failures": 0,
+  "reviewer_edits": [
+    "Corrected wrong specification examples for 20 and 27 boxes and conflicting 39.5 example comment",
+    "Unified None exception contract and explicitly excluded booleans",
+    "Added 9/19 boundaries, fractional input and exact return-type checks to generated tests",
+    "Replaced invalid JSON Python True with valid boolean and expanded acceptance to 16 independently checked cases"
+  ],
+  "code_edited": false,
+  "mutation_probes": {
+    "omit_shipping": {
+      "isolated": true,
+      "exit_code": 1,
+      "test_failures": 4
+    },
+    "wrong_second_tier_rate": {
+      "isolated": true,
+      "exit_code": 1,
+      "test_failures": 3
+    },
+    "accept_boolean": {
+      "isolated": true,
+      "exit_code": 1,
+      "test_failures": 1
+    }
+  },
+  "open_observations": [
+    {
+      "issue": "V3-LIVE-004",
+      "status": "Open; no runtime failure in sampled GUI run",
+      "protocol_has_evaluate": false,
+      "native_has_evaluate": true,
+      "consumer_uses_evaluate": true,
+      "proposed": "Declare the evaluate contract in ExecutionBackend and add a contract regression in a separately approved TDD block."
+    },
+    "Final GUI displays 47.0 without EUR; user-facing units could be clearer"
+  ],
+  "unchanged_production_python_files": 81,
+  "limits": [
+    "One sampled supervised model run, not universal correctness",
+    "Existing project generated_tools never inspected or executed",
+    "No production fixes implemented in this test block",
+    "Mutation probes supplement GUI evidence and ran in native isolated processes, not through the GUI",
+    "Final charge manually calculated before generation; no real financial transaction"
+  ]
+}

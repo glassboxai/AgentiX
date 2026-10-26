@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "tier_1_boundary",
+      "purpose": "Test boundary of first tier",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 100
+      },
+      "expect": {
+        "kind": "value",
+        "value": 1200
+      }
+    },
+    {
+      "id": "tier_2_boundary",
+      "purpose": "Test boundary of second tier",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 200
+      },
+      "expect": {
+        "kind": "value",
+        "value": 3000
+      }
+    },
+    {
+      "id": "tier_3_consumption",
+      "purpose": "Test third tier consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 250
+      },
+      "expect": {
+        "kind": "value",
+        "value": 4250
+      }
+    },
+    {
+      "id": "zero_consumption",
+      "purpose": "Test zero consumption",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 0
+      },
+      "expect": {
+        "kind": "value",
+        "value": 0
+      }
+    },
+    {
+      "id": "invalid_float",
+      "purpose": "Test invalid float input",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": 1.0
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "invalid_string",
+      "purpose": "Test invalid string input",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": "50"
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "invalid_negative",
+      "purpose": "Test invalid negative input",
+      "function": "tiered_energy_bill",
+      "kwargs": {
+        "kwh": -1
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Write-Error: 
+Line |
+   5 |  & ./infra/Invoke-AgentiXIac.ps1 -Action LaunchGui *> docs/reports/iac …
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Configured GUI port is occupied; no process will be stopped.

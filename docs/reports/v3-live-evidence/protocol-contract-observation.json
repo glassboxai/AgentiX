@@ -1,0 +1,8 @@
+{
+  "issue": "V3-LIVE-004",
+  "status": "Open; no runtime failure in sampled GUI run",
+  "protocol_has_evaluate": false,
+  "native_has_evaluate": true,
+  "consumer_uses_evaluate": true,
+  "proposed": "Declare the evaluate contract in ExecutionBackend and add a contract regression in a separately approved TDD block."
+}

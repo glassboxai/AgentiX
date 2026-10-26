@@ -1,0 +1,37 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 9 items / 8 deselected / 1 selected
+
+tests\unit\test_cli_review.py F                                          [100%]
+
+================================== FAILURES ===================================
+__________________ test_cli_shows_independent_host_verdicts ___________________
+
+system = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{a88a2064-0b82-4f1b-8e0f-ca2843c4dc37}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x000001F377FD0FE0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F3790A2F10>
+capsys = <_pytest.capture.CaptureFixture object at 0x000001F3790A2D10>
+
+    def test_cli_shows_independent_host_verdicts(system, monkeypatch, capsys):
+        service = system.custom_tools
+        system.security.auto_approve = True
+        edited = json.dumps({"version": 1, "cases": [{"id": "sum", "purpose": "Check sum",
+            "function": "add", "kwargs": {}, "expect": {"kind": "value", "value": 3}}]})
+        inputs = iter(["query", "edit", edited, ".end", "approve", "q"])
+        monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+        def workflow(query):
+            service.compile_and_save_code_tool("adder", "def add(): return 3")
+            result = service.run_and_save_tests_tool("adder", "import unittest\nclass Checks(unittest.TestCase):\n def test_one(self): self.assertEqual(1,1)\n")
+            assert result.startswith("TESTS_PROVISIONAL_PASSED:")
+            original = edited.replace('"value": 3', '"value": 99')
+            return service.submit_acceptance_cases_tool("adder", original)
+        with pytest.raises(SystemExit):
+>           run_cli(workflow, security=system.security, validation=service.acceptance)
+E           TypeError: run_cli() got an unexpected keyword argument 'validation'
+
+tests\unit\test_cli_review.py:84: TypeError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_cli_review.py::test_cli_shows_independent_host_verdicts
+======================= 1 failed, 8 deselected in 0.40s =======================

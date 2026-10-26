@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "project": "D:\\AI\\AgentiX_v3",
+  "config": "e1919ca9f10f977c1e0375dcd9dac75f5e21876146bf3867c590392e4472c7da",
+  "source": "5557bae4ccde90a07c340c53ec4da21d81bf7d6de5c47e3a237492205a8b70c4",
+  "state": {
+    "dsc": {
+      "hash": "a0b9a7ca2652e02e2435f9acae1af1cfd4baa61b87d0cf3909dc2d437a306078",
+      "version": "3.3.0",
+      "path": "C:\\Users\\xpiku\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\AgentiX\\v3\\tooling\\dsc\\3.3.0\\dsc.exe"
+    },
+    "packageManager": {
+      "available": true,
+      "version": "not_required",
+      "path": ""
+    },
+    "ollama": {
+      "hash": "71d2002d3ae572d5fa8c1d368ce9d1b9a39c7187cf169e8b330c55410bf6c58e",
+      "version": "0.40.6",
+      "path": "C:\\Users\\xpiku\\AppData\\Local\\Programs\\Ollama\\ollama.exe"
+    },
+    "model": {
+      "present": true,
+      "version": "0.40.6",
+      "server": true,
+      "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca"
+    },
+    "environment": {
+      "present": true,
+      "lock": "7d6df7e204a38b636944818ef22ceaf8d78a3e91eb15a5e668fbd5768e1aa374",
+      "owned": true,
+      "packages": "4ec2552fc7fa49fcdc23d327eeea6302b033754ff385b5ec8c7aaab016a53c16"
+    },
+    "python": {
+      "hash": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "version": "3.11.9",
+      "path": "C:\\Users\\xpiku\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+    },
+    "location": {
+      "present": false
+    },
+    "portFree": true,
+    "launchers": {
+      "present": true
+    }
+  },
+  "changes": [
+    "location"
+  ],
+  "blockers": [],
+  "warnings": [],
+  "downloadModel": false,
+  "digest": "bf8a34435cd9deb79b15b2bf7dbbe02e60da92c722ef58c6ef8d2c4c30d609a0"
+}

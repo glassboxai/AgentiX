@@ -1,0 +1,95 @@
+import math
+from decimal import Decimal, ROUND_HALF_UP
+from typing import Dict, List
+
+def calculate_electricity_bill(consumption_kwh: float) -> dict:
+    """
+    Calculates the electricity bill based on tiered pricing.
+    
+    Args:
+        consumption_kwh (float): Total electricity consumption in kilowatt-hours (kWh)
+        
+    Returns:
+        dict: A dictionary containing total cost and breakdown by tier
+        
+    Raises:
+        TypeError: If input is not a number
+        ValueError: If input is negative, infinite, or NaN
+    """
+    # Input validation
+    if not isinstance(consumption_kwh, (int, float)):
+        raise TypeError("Consumption must be a number")
+    
+    if consumption_kwh < 0:
+        raise ValueError("Consumption cannot be negative")
+    
+    if math.isinf(consumption_kwh):
+        raise ValueError("Consumption cannot be infinite")
+    
+    if math.isnan(consumption_kwh):
+        raise ValueError("Consumption cannot be NaN")
+    
+    # Convert to Decimal for precise arithmetic
+    consumption = Decimal(str(consumption_kwh))
+    
+    # Define tier rates and thresholds
+    tier1_threshold = Decimal('100')
+    tier2_threshold = Decimal('200')
+    
+    tier1_rate = Decimal('0.12')
+    tier2_rate = Decimal('0.18')
+    tier3_rate = Decimal('0.25')
+    
+    # Calculate consumption for each tier
+    tier1_consumption = min(consumption, tier1_threshold)
+    tier2_consumption = max(Decimal('0'), min(consumption - tier1_threshold, tier2_threshold - tier1_threshold))
+    tier3_consumption = max(Decimal('0'), consumption - tier2_threshold)
+    
+    # Calculate costs for each tier
+    tier1_cost = tier1_consumption * tier1_rate
+    tier2_cost = tier2_consumption * tier2_rate
+    tier3_cost = tier3_consumption * tier3_rate
+    
+    # Total cost
+    total_cost = tier1_cost + tier2_cost + tier3_cost
+    
+    # Prepare breakdown
+    breakdown = [
+        {
+            'tier': 'First 100 kWh',
+            'range_kwh': '0-100',
+            'rate_euros_per_kwh': float(tier1_rate),
+            'consumption_kwh': float(tier1_consumption),
+            'cost_euros': float(tier1_cost)
+        },
+        {
+            'tier': 'Next 100 kWh (101-200)',
+            'range_kwh': '101-200',
+            'rate_euros_per_kwh': float(tier2_rate),
+            'consumption_kwh': float(tier2_consumption),
+            'cost_euros': float(tier2_cost)
+        },
+        {
+            'tier': 'Additional consumption (201+)',
+            'range_kwh': '201+',
+            'rate_euros_per_kwh': float(tier3_rate),
+            'consumption_kwh': float(tier3_consumption),
+            'cost_euros': float(tier3_cost)
+        }
+    ]
+    
+    # Round total cost to 2 decimal places
+    total_cost_rounded = total_cost.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    
+    return {
+        'total_cost_euros': float(total_cost_rounded),
+        'breakdown': breakdown
+    }
+
+# Example usage
+if __name__ == "__main__":
+    result = calculate_electricity_bill(350)
+    print(f"Total cost: €{result['total_cost_euros']}")
+    print("Breakdown:")
+    for item in result['breakdown']:
+        print(f"  {item['tier']}: {item['consumption_kwh']} kWh at €{item['rate_euros_per_kwh']}/kWh = €{item['cost_euros']}")

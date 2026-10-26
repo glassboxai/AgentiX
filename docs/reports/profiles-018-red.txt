@@ -1,0 +1,161 @@
+...............FFFFFF                                                    [100%]
+================================== FAILURES ===================================
+________ test_local_profiles_persist_without_any_credential_operations ________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-437/test_local_profiles_persist_wi0')
+
+    def test_local_profiles_persist_without_any_credential_operations(tmp_path):
+        """Local metadata supports full lifecycle even when Windows credentials are blocked."""
+        def deny(*args):
+            """Fail if local operations touch a credential boundary."""
+            pytest.fail("Local profiles must not access credentials")
+        store = feature().SavedProfiles(tmp_path, SimpleNamespace(write=deny, read=deny, delete=deny))
+>       saved = store.save("Qwen3-coder:30b", "Ollama", "qwen3-coder:30b", "http://127.0.0.1:11434", "")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:274: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\profile_store.py:194: in save
+    self._validate_name(name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'Qwen3-coder:30b'
+
+    @staticmethod
+    def _validate_name(name: str) -> None:
+        """Limit display names to readable nonmarkup characters."""
+        if not isinstance(name, str) or not re.fullmatch(
+            r"[A-Za-z0-9][A-Za-z0-9 _().-]{0,63}", name
+        ):
+>           raise ValueError("Profile name must contain 1 to 64 plain characters")
+E           ValueError: Profile name must contain 1 to 64 plain characters
+
+src\agentix\profile_store.py:111: ValueError
+_____________ test_local_session_profile_does_not_construct_vault _____________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-437/test_local_session_profile_doe0')
+
+    def test_local_session_profile_does_not_construct_vault(tmp_path):
+        """Opening and saving local profiles does not require native credential availability."""
+        from agentix.model_profiles import SessionModelConfiguration
+        def deny():
+            """Represent blocked Windows Credential Manager initialization."""
+            pytest.fail("Vault factory must stay lazy for local metadata")
+        controller = SimpleNamespace(state=SimpleNamespace(is_running=False),security=SimpleNamespace(get_pending_request=lambda: None))
+        config = SessionModelConfiguration(controller, lambda llm: None, vault_factory=deny, store_factory=lambda vault: feature().SavedProfiles(tmp_path,vault))
+>       config.saved_choices()
+
+tests\unit\test_saved_model_profiles.py:291: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\model_profiles.py:267: in saved_choices
+    (record["name"], record["id"]) for record in self._repository().list()
+                                                 ^^^^^^^^^^^^^^^^^^
+src\agentix\model_profiles.py:260: in _repository
+    self.vault = self.vault or self.vault_factory()
+                               ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def deny():
+        """Represent blocked Windows Credential Manager initialization."""
+>       pytest.fail("Vault factory must stay lazy for local metadata")
+E       Failed: Vault factory must stay lazy for local metadata
+
+tests\unit\test_saved_model_profiles.py:288: Failed
+_____________ test_remote_to_local_conversion_retires_credentials _____________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-437/test_remote_to_local_conversio0')
+vault = namespace(data={'AgentiX/v3/6d829bbd103e43fcb0e86bb40b369845/768004efe81c4573afa2edfe77595346': 'synthetic-key'}, writ...nction vault.<locals>.<lambda> at 0x000001F55A302200>, delete=<function vault.<locals>.<lambda> at 0x000001F55A3027A0>)
+
+    def test_remote_to_local_conversion_retires_credentials(tmp_path, vault):
+        """Provider changes cannot leave an active local credential or lose the old record on failure."""
+        store = feature().SavedProfiles(tmp_path,vault,resolver=lambda host:["93.184.216.34"])
+        saved=store.save("Remote", "OpenAI", "model", "https://api.openai.com/v1", "synthetic-key")
+>       local=store.save("Local", "Ollama", "qwen3-coder:30b", "http://127.0.0.1:11434", "", saved["id"],saved["version"])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\unit\test_saved_model_profiles.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <agentix.profile_store.SavedProfiles object at 0x000001F55A34FD50>
+name = 'Local', provider = 'Ollama', model = 'qwen3-coder:30b'
+endpoint = 'http://127.0.0.1:11434', key = ''
+identity = '6d829bbd103e43fcb0e86bb40b369845', version = 1
+
+    def save(
+        self,
+        name: str,
+        provider: str,
+        model: str,
+        endpoint: str,
+        key: str,
+        identity: str = "",
+        version: int | None = None,
+    ) -> dict[str, Any]:
+        """Create/update metadata and credentials, rejecting stale edits before IO.
+    
+        Empty keys retain an existing credential. New keys get new opaque targets;
+        a failed commit removes the candidate and leaves the original untouched.
+        Cleanup failures retain old references for retry on update or deletion.
+        """
+        self._validate_name(name)
+        if provider not in ("OpenAI", "OpenAI-compatible"):
+>           raise ValueError("Only external provider profiles can be saved")
+E           ValueError: Only external provider profiles can be saved
+
+src\agentix\profile_store.py:196: ValueError
+_________________ test_credential_failure_has_safe_phase_code _________________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-437/test_credential_failure_has_sa0')
+vault = namespace(data={}, write=<function test_credential_failure_has_safe_phase_code.<locals>.<lambda> at 0x000001F55A3028E0...nction vault.<locals>.<lambda> at 0x000001F55A303100>, delete=<function vault.<locals>.<lambda> at 0x000001F55A302FC0>)
+
+    def test_credential_failure_has_safe_phase_code(tmp_path,vault):
+        """Distinguish a native-vault write failure without publishing its exception body."""
+        store=feature().SavedProfiles(tmp_path,vault,resolver=lambda host:["93.184.216.34"])
+        vault.write=lambda *args: (_ for _ in ()).throw(RuntimeError("private-key-value"))
+        with pytest.raises(ValueError) as caught:
+            store.save("Remote", "OpenAI", "model", "https://api.openai.com/v1", "synthetic-key")
+>       assert getattr(caught.value,"code",None) == "credential_write"
+E       AssertionError: assert None == 'credential_write'
+E        +  where None = getattr(ValueError('Profile could not be saved; previous profile is retained'), 'code', None)
+E        +    where ValueError('Profile could not be saved; previous profile is retained') = <ExceptionInfo ValueError('Profile could not be saved; previous profile is retained') tblen=2>.value
+
+tests\unit\test_saved_model_profiles.py:312: AssertionError
+_____________ test_metadata_failure_has_distinct_safe_phase_code ______________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-437/test_metadata_failure_has_dist0')
+vault = namespace(data={}, write=<function vault.<locals>.<lambda> at 0x000001F55A303380>, read=<function vault.<locals>.<lambda> at 0x000001F55A302A20>, delete=<function vault.<locals>.<lambda> at 0x000001F55A302C00>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F55A2BDED0>
+
+    def test_metadata_failure_has_distinct_safe_phase_code(tmp_path,vault,monkeypatch):
+        """A file-write failure is distinguishable from the credential boundary."""
+        store=feature().SavedProfiles(tmp_path,vault,resolver=lambda host:["93.184.216.34"])
+        monkeypatch.setattr(store,"_commit",lambda record: (_ for _ in ()).throw(OSError("sensitive-path")))
+        with pytest.raises(ValueError) as caught:
+            store.save("Remote", "OpenAI", "model", "https://api.openai.com/v1", "synthetic-key")
+>       assert getattr(caught.value,"code",None) == "metadata_write"
+E       AssertionError: assert None == 'metadata_write'
+E        +  where None = getattr(ValueError('Profile could not be saved; previous profile is retained'), 'code', None)
+E        +    where ValueError('Profile could not be saved; previous profile is retained') = <ExceptionInfo ValueError('Profile could not be saved; previous profile is retained') tblen=2>.value
+
+tests\unit\test_saved_model_profiles.py:322: AssertionError
+____________ test_invalid_key_error_is_classified_without_key_echo ____________
+
+    def test_invalid_key_error_is_classified_without_key_echo():
+        """Key validation has a fixed code rather than an unstructured native error."""
+        from agentix.credentials import register_secret
+        with pytest.raises(ValueError) as caught:
+            register_secret("bad key")
+>       assert getattr(caught.value,"code",None) == "key_format"
+E       AssertionError: assert None == 'key_format'
+E        +  where None = getattr(ValueError('Invalid API key format'), 'code', None)
+E        +    where ValueError('Invalid API key format') = <ExceptionInfo ValueError('Invalid API key format') tblen=2>.value
+
+tests\unit\test_saved_model_profiles.py:332: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_saved_model_profiles.py::test_local_profiles_persist_without_any_credential_operations
+FAILED tests/unit/test_saved_model_profiles.py::test_local_session_profile_does_not_construct_vault
+FAILED tests/unit/test_saved_model_profiles.py::test_remote_to_local_conversion_retires_credentials
+FAILED tests/unit/test_saved_model_profiles.py::test_credential_failure_has_safe_phase_code
+FAILED tests/unit/test_saved_model_profiles.py::test_metadata_failure_has_distinct_safe_phase_code
+FAILED tests/unit/test_saved_model_profiles.py::test_invalid_key_error_is_classified_without_key_echo
+6 failed, 15 passed in 0.54s

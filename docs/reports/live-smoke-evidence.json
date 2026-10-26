@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-19",
+  "application_url": "http://127.0.0.1:7860",
+  "active_process_model_override": "ollama/qwen3:8b",
+  "persisted_default_unchanged": "ollama/qwen3-coder:30b",
+  "production_source_changed": false,
+  "production_hashes_checked": 34,
+  "browser_smoke": {
+    "playwright_controls_used": true,
+    "response_visible": true,
+    "validation_panel_visible": true,
+    "submit_enabled": true,
+    "automatic_file_approval": false,
+    "response": "INTERFAZ OPERATIVA",
+    "generation_or_tool_execution_requested": false,
+    "approvals_accepted": false,
+    "screenshot": "agentix-live.png",
+    "scope": "Live browser input -> Agentix manager -> local Ollama -> visible response. Not full generated-tool creation/acceptance E2E."
+  },
+  "workflow_events": [
+    "2026-10-19 11:55:21 workflow_started",
+    "2026-10-19 11:56:23 manager_finished",
+    "2026-10-19 11:56:23 workflow_finished"
+  ],
+  "cli": {
+    "entrypoint": "main.py",
+    "startup_and_q_exit": true,
+    "exit_code": 0,
+    "evidence": "cli-live-smoke-retry.txt",
+    "interactive_approval_client": "Not implemented; core loop retained, approval-requiring work cannot bypass human review."
+  },
+  "resource_incident": {
+    "model": "qwen3-coder:30b",
+    "system_ram_KiB": 16697356,
+    "observed_free_ram_KiB": 866120,
+    "resident_model_vram_bytes": 10685975100,
+    "browser_and_http_timeouts": true,
+    "first_cli_attempt": "Cancelled during memory pressure; not passed.",
+    "mitigation": "Cancelled own test, stopped only Agentix/test CLI processes; unloaded the model loaded by the cancelled test; restarted Agentix with temporary qwen3:8b override.",
+    "free_ram_after_unload_KiB": 9523840,
+    "free_ram_during_8b_query_KiB": 6743416
+  },
+  "direct_ollama_probe": {
+    "model": "qwen3:8b",
+    "think": false,
+    "num_predict": 16,
+    "completed": true,
+    "response": "OK.",
+    "seconds": 0.54,
+    "scope": "Direct bounded health probe, not Agentix round-trip duration."
+  },
+  "not_implemented": [
+    "Dedicated terminal human-review dialogs",
+    "Committed standalone Playwright E2E suite",
+    "LLM-driven browser agent",
+    "Persistent model default changes",
+    "Model memory admission checks / model inference deadline / cancellation UI"
+  ]
+}

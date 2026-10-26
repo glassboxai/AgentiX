@@ -1,0 +1,24 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+collected 1 item
+
+tests\unit\test_human_acceptance.py F                                    [100%]
+
+================================== FAILURES ===================================
+__ test_human_rejection_cannot_be_automatically_reprompted_in_same_operation __
+tests\unit\test_human_acceptance.py:241: in test_human_rejection_cannot_be_automatically_reprompted_in_same_operation
+    assert system.custom_tools.submit_acceptance_cases_tool("adder", contract()).startswith("ACCEPTANCE_REJECTED:")
+E   assert False
+E    +  where False = <built-in method startswith of str object at 0x00000196D2F21BC0>('ACCEPTANCE_REJECTED:')
+E    +    where <built-in method startswith of str object at 0x00000196D2F21BC0> = 'ACCEPTANCE_FAILED: Invalid cases, changed artifacts or isolated evaluation failure.'.startswith
+E    +      where 'ACCEPTANCE_FAILED: Invalid cases, changed artifacts or isolated evaluation failure.' = submit_acceptance_cases_tool('adder', '{"version": 1, "cases": [{"id": "sum", "purpose": "Adds numbers", "function": "add", "kwargs": {}, "expect": {"kind": "value", "value": 3}}]}')
+E    +        where submit_acceptance_cases_tool = <agentix.tools.ArtifactTools object at 0x00000196D393A110>.submit_acceptance_cases_tool
+E    +          where <agentix.tools.ArtifactTools object at 0x00000196D393A110> = namespace(root=WindowsPath('C:/Users/xpiku/AppData/Local/Packages/sandbox.{fd0a89fc-9561-4123-a202-7a50e1d817f4}/AC/Te...'agentix.ui.state.ExecutionState'>, format_thoughts_markdown=<function format_thoughts_markdown at 0x00000196D2FAC360>).custom_tools
+E    +        and   '{"version": 1, "cases": [{"id": "sum", "purpose": "Adds numbers", "function": "add", "kwargs": {}, "expect": {"kind": "value", "value": 3}}]}' = contract()
+------------------------------ Captured log call ------------------------------
+WARNING  agentix.acceptance:diagnostics.py:49 event=acceptance_error session_id=legacy operation_id=- request_id=- error_type=AssertionError line=-
+=========================== short test summary info ===========================
+FAILED tests/unit/test_human_acceptance.py::test_human_rejection_cannot_be_automatically_reprompted_in_same_operation
+============================== 1 failed in 0.67s ==============================

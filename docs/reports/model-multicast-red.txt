@@ -1,0 +1,28 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+________ test_remote_resolution_rejects_multicast_addresses[224.0.0.1] ________
+
+address = '224.0.0.1'
+
+    @pytest.mark.parametrize("address", ["224.0.0.1", "ff0e::1"])
+    def test_remote_resolution_rejects_multicast_addresses(address):
+        """Python is_global alone includes multicast, which is not a public API host."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_model_profiles.py:341: Failed
+_________ test_remote_resolution_rejects_multicast_addresses[ff0e::1] _________
+
+address = 'ff0e::1'
+
+    @pytest.mark.parametrize("address", ["224.0.0.1", "ff0e::1"])
+    def test_remote_resolution_rejects_multicast_addresses(address):
+        """Python is_global alone includes multicast, which is not a public API host."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_model_profiles.py:341: Failed
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_remote_resolution_rejects_multicast_addresses[224.0.0.1]
+FAILED tests/unit/test_model_profiles.py::test_remote_resolution_rejects_multicast_addresses[ff0e::1]
+2 failed, 31 deselected in 0.18s

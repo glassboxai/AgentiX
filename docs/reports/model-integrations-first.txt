@@ -1,0 +1,314 @@
+...FFF....F...........                                                   [100%]
+================================== FAILURES ===================================
+__________ test_brand_readable_result_and_bounded_disclosures[1440] ___________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:57649', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-415/agentix-browser0/artifacts'))
+width = 1440
+
+    @pytest.mark.parametrize("width", [1440, 390])
+    def test_brand_readable_result_and_bounded_disclosures(browser, server, width):
+        """Verify actual layout, accessible send control and timer-stable disclosures."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": width, "height": 1000})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            expect(page.get_by_role("heading", name="AgentiX", exact=True)).to_be_visible()
+            expect(page.get_by_text("Developer-in-the-Loop.", exact=True)).to_be_visible()
+            expect(page.get_by_role("img", name="AgentiX logo")).to_be_visible()
+            project = page.get_by_role("link", name="The Glass Box AI Project", exact=True)
+            expect(project).to_have_attribute("href", "https://glassboxai.dev/")
+            expect(project).to_be_visible()
+            assert page.locator("h1").evaluate("el => getComputedStyle(el).fontWeight") == "500"
+            for selector in ("#agentix-chat", "#send-query", "#validation-panel", "textarea"):
+                assert (
+                    page.locator(selector).first.evaluate("el => getComputedStyle(el).borderRadius")
+                    == "0px"
+                )
+            checkbox = page.get_by_role("checkbox", name="Auto-approve file writes for this session")
+            expect(checkbox).not_to_be_checked()
+            assert checkbox.evaluate("el => getComputedStyle(el).width") == "20px"
+            assert checkbox.evaluate("el => getComputedStyle(el).borderWidth") == "2px"
+            assert checkbox.evaluate("el => getComputedStyle(el).backgroundColor") == "rgb(11, 13, 17)"
+            checkbox.press("Space")
+            expect(checkbox).to_be_checked()
+            assert (
+                checkbox.evaluate("el => getComputedStyle(el).backgroundColor") == "rgb(126, 231, 255)"
+            )
+            assert checkbox.evaluate("el => getComputedStyle(el).outlineWidth") == "2px"
+            checkbox.press("Space")
+            expect(checkbox).not_to_be_checked()
+            send = page.get_by_role("button", name="Send query", exact=True)
+            expect(send).to_be_visible()
+            assert send.bounding_box()["width"] < 65
+            submit(page, "presentation in euros (€)")
+>           expect(page.get_by_text("€67.50", exact=False)).to_be_visible(timeout=15000)
+E           AssertionError: Locator expected to be visible
+E           Actual value: None
+E           Error: element(s) not found 
+E           Call log:
+E             - Expect "to_be_visible" with timeout 15000ms
+E             - waiting for get_by_text("€67.50")
+
+tests\e2e\test_browser_review.py:227: AssertionError
+___________ test_brand_readable_result_and_bounded_disclosures[390] ___________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:57649', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-415/agentix-browser0/artifacts'))
+width = 390
+
+    @pytest.mark.parametrize("width", [1440, 390])
+    def test_brand_readable_result_and_bounded_disclosures(browser, server, width):
+        """Verify actual layout, accessible send control and timer-stable disclosures."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": width, "height": 1000})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            expect(page.get_by_role("heading", name="AgentiX", exact=True)).to_be_visible()
+            expect(page.get_by_text("Developer-in-the-Loop.", exact=True)).to_be_visible()
+            expect(page.get_by_role("img", name="AgentiX logo")).to_be_visible()
+            project = page.get_by_role("link", name="The Glass Box AI Project", exact=True)
+            expect(project).to_have_attribute("href", "https://glassboxai.dev/")
+            expect(project).to_be_visible()
+            assert page.locator("h1").evaluate("el => getComputedStyle(el).fontWeight") == "500"
+            for selector in ("#agentix-chat", "#send-query", "#validation-panel", "textarea"):
+                assert (
+                    page.locator(selector).first.evaluate("el => getComputedStyle(el).borderRadius")
+                    == "0px"
+                )
+            checkbox = page.get_by_role("checkbox", name="Auto-approve file writes for this session")
+            expect(checkbox).not_to_be_checked()
+            assert checkbox.evaluate("el => getComputedStyle(el).width") == "20px"
+            assert checkbox.evaluate("el => getComputedStyle(el).borderWidth") == "2px"
+            assert checkbox.evaluate("el => getComputedStyle(el).backgroundColor") == "rgb(11, 13, 17)"
+            checkbox.press("Space")
+            expect(checkbox).to_be_checked()
+            assert (
+                checkbox.evaluate("el => getComputedStyle(el).backgroundColor") == "rgb(126, 231, 255)"
+            )
+            assert checkbox.evaluate("el => getComputedStyle(el).outlineWidth") == "2px"
+            checkbox.press("Space")
+            expect(checkbox).not_to_be_checked()
+            send = page.get_by_role("button", name="Send query", exact=True)
+            expect(send).to_be_visible()
+            assert send.bounding_box()["width"] < 65
+>           submit(page, "presentation in euros (€)")
+
+tests\e2e\test_browser_review.py:226: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\e2e\test_browser_review.py:96: in submit
+    page.get_by_role("button", name="Send query", exact=True).click()
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\sync_api\_generated.py:15573: in click
+    self._sync(
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_locator.py:160: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_frame.py:549: in click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x000002750B7E7810>
+cb = <function Channel.send.<locals>.<lambda> at 0x000002750B830EA0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for get_by_role("button", name="Send query", exact=True)
+E               - locator resolved to <button id="send-query" class="lg primary  svelte-xzq5jh">�</button>
+E             - attempting click action
+E               - waiting for element to be visible, enabled and stable
+E               - element is visible, enabled and stable
+E               - scrolling into view if needed
+E               - done scrolling
+E               - <p>Saved keys are protected by Windows Credential Ma�</p> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E             - retrying click action
+E               - waiting for element to be visible, enabled and stable
+E               - element is visible, enabled and stable
+E               - scrolling into view if needed
+E               - done scrolling
+E               - <div id="" dir="ltr" class="block gr-accordion svelte-1plpy97 padded auto-margin">�</div> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E             - retrying click action
+E               - waiting 20ms
+E               2 � waiting for element to be visible, enabled and stable
+E                 - element is visible, enabled and stable
+E                 - scrolling into view if needed
+E                 - done scrolling
+E                 - <p>Saved keys are protected by Windows Credential Ma�</p> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E               - retrying click action
+E                 - waiting 100ms
+E               14 � waiting for element to be visible, enabled and stable
+E                  - element is visible, enabled and stable
+E                  - scrolling into view if needed
+E                  - done scrolling
+E                  - <p>Saved keys are protected by Windows Credential Ma�</p> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E                - retrying click action
+E                  - waiting 500ms
+E                  - waiting for element to be visible, enabled and stable
+E                  - element is visible, enabled and stable
+E                  - scrolling into view if needed
+E                  - done scrolling
+E                  - <div id="" dir="ltr" class="block gr-accordion svelte-1plpy97 padded auto-margin">�</div> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E                - retrying click action
+E                  - waiting 500ms
+E                  - waiting for element to be visible, enabled and stable
+E                  - element is visible, enabled and stable
+E                  - scrolling into view if needed
+E                  - done scrolling
+E                  - <p>Saved keys are protected by Windows Credential Ma�</p> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E                - retrying click action
+E                  - waiting 500ms
+E                  - waiting for element to be visible, enabled and stable
+E                  - element is visible, enabled and stable
+E                  - scrolling into view if needed
+E                  - done scrolling
+E                  - <p>Saved keys are protected by Windows Credential Ma�</p> from <div id="agentix-sidebar" class="sidebar svelte-1uruprb open">�</div> subtree intercepts pointer events
+E                - retrying click action
+E                  - waiting 500ms
+
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_connection.py:559: TimeoutError
+_____________ test_model_sidebar_is_hideable_and_key_input_clears _____________
+
+browser = <Browser type=<BrowserType name=chromium executable_path=C:\Users\xpiku\AppData\Local\ms-playwright\chromium-1194\chrome-win\chrome.exe> version=156.0.4314.42>
+server = ('http://127.0.0.1:57649', WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-415/agentix-browser0/artifacts'))
+
+    def test_model_sidebar_is_hideable_and_key_input_clears(browser, server):
+        """Use the native sidebar toggle and validate session-owned model settings."""
+        from playwright.sync_api import expect
+    
+        context = browser.new_context(viewport={"width": 1440, "height": 1100})
+        try:
+            page = context.new_page()
+            page.goto(server[0])
+            sidebar = page.locator("#agentix-sidebar")
+            expect(sidebar).to_be_visible()
+            expect(sidebar.get_by_text("Authorization & Test Review", exact=True)).to_be_visible()
+            assert page.get_by_text("Authorization & Test Review", exact=True).count() == 1
+            key = page.locator("#llm-api-key input")
+            expect(key).to_have_attribute("type", "password")
+            key.fill("temporary-browser-test-key")
+            page.locator("#apply-model").click()
+            expect(key).to_have_value("", timeout=15000)
+            expect(page.locator("#model-status")).to_contain_text("Ollama", timeout=15000)
+            page.screenshot(path=str(server[1].parent / "model-sidebar.png"), full_page=True)
+            toggle = sidebar.get_by_role("button", name="Close sidebar")
+>           toggle.click()
+
+tests\e2e\test_browser_review.py:301: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\sync_api\_generated.py:15573: in click
+    self._sync(
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_locator.py:160: in click
+    return await self._frame.click(self._selector, strict=True, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_frame.py:549: in click
+    await self._channel.send("click", self._timeout, locals_to_params(locals()))
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x000002750B9A6750>
+cb = <function Channel.send.<locals>.<lambda> at 0x000002750B90A5C0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        st: List[inspect.FrameInfo] = getattr(
+            task, "__pw_stack__", None
+        ) or inspect.stack(0)
+    
+        parsed_st = _extract_stack_trace_information_from_stack(st, is_internal, title)
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded.
+E           Call log:
+E             - waiting for locator("#agentix-sidebar").get_by_role("button", name="Close sidebar")
+
+C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v3\environments\7d6df7e204a38b63\Lib\site-packages\playwright\_impl\_connection.py:559: TimeoutError
+______ test_native_remote_client_enforces_sync_and_async_request_guards _______
+
+    def test_native_remote_client_enforces_sync_and_async_request_guards():
+        """Use synthetic credentials and check installed CrewAI transport contracts."""
+        code = r"""
+    import asyncio
+    import httpx
+    from types import SimpleNamespace
+    from agentix.model_profiles import ModelProfile, create_profile_llm
+    profile = ModelProfile('OpenAI', 'test-model', 'https://api.openai.com/v1', 'synthetic-ref', True)
+    client = create_profile_llm(profile, SimpleNamespace(read=lambda ref: 'synthetic-never-sent-key'), resolver=lambda host: ['93.184.216.34'])
+    assert client.max_tokens == 8192 and client.timeout == 120 and client.max_retries == 0
+    assert client.interceptor is not None
+    request = httpx.Request('POST', 'https://api.openai.com/v1/chat/completions')
+    assert client.interceptor.on_outbound(request) is request
+    for url in ('http://api.openai.com/v1/chat/completions', 'https://elsewhere.example/v1/chat/completions'):
+        try:
+            client.interceptor.on_outbound(httpx.Request('POST', url))
+        except ValueError:
+            pass
+        else:
+            raise AssertionError('Changed request destination accepted')
+    try:
+        client.interceptor.on_inbound(httpx.Response(302))
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Redirect accepted')
+    assert asyncio.run(client.interceptor.aon_outbound(request)) is request
+    sync = client._get_sync_client()
+    assert sync.max_retries == 0
+    assert not sync._client.follow_redirects
+    assert not sync._client._mounts, 'Environment proxies must not bypass explicit transport'
+    sync.close()
+    asyncio.run(client._get_async_client().close())
+    print('remote-transport-contract-ok')
+    """
+        result = subprocess.run(
+            [sys.executable, "-c", code],
+            cwd=Path(__file__).resolve().parents[2],
+            capture_output=True,
+            text=True,
+            timeout=90,
+        )
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "<string>", line 5, in <module>
+E         ModuleNotFoundError: No module named 'agentix'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\xpiku\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\Age... (most recent call last):\n  File "<string>", line 5, in <module>\nModuleNotFoundError: No module named \'agentix\'\n').returncode
+
+tests\integration\test_model_provider_transport.py:54: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_browser_review.py::test_brand_readable_result_and_bounded_disclosures[1440]
+FAILED tests/e2e/test_browser_review.py::test_brand_readable_result_and_bounded_disclosures[390]
+FAILED tests/e2e/test_browser_review.py::test_model_sidebar_is_hideable_and_key_input_clears
+FAILED tests/integration/test_model_provider_transport.py::test_native_remote_client_enforces_sync_and_async_request_guards
+4 failed, 18 passed, 406 deselected in 197.41s (0:03:17)

@@ -1,0 +1,447 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "bill_0",
+      "purpose": "Human-checked total and complete three-tier breakdown for 0 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 0
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 0.0,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_1",
+      "purpose": "Human-checked total and complete three-tier breakdown for 50.5 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 50.5
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 6.06,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 50.5,
+              "cost_euros": 6.06
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_2",
+      "purpose": "Human-checked total and complete three-tier breakdown for 99 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 99
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 11.88,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 99.0,
+              "cost_euros": 11.88
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_3",
+      "purpose": "Human-checked total and complete three-tier breakdown for 100 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 100
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 12.0,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_4",
+      "purpose": "Human-checked total and complete three-tier breakdown for 100.5 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 100.5
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 12.09,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 0.5,
+              "cost_euros": 0.09
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_5",
+      "purpose": "Human-checked total and complete three-tier breakdown for 199 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 199
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 29.82,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 99.0,
+              "cost_euros": 17.82
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_6",
+      "purpose": "Human-checked total and complete three-tier breakdown for 200 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 200
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 30.0,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 100.0,
+              "cost_euros": 18.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.0,
+              "cost_euros": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_7",
+      "purpose": "Human-checked total and complete three-tier breakdown for 200.5 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 200.5
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 30.13,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 100.0,
+              "cost_euros": 18.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 0.5,
+              "cost_euros": 0.13
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_8",
+      "purpose": "Human-checked total and complete three-tier breakdown for 201 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 201
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 30.25,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 100.0,
+              "cost_euros": 18.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 1.0,
+              "cost_euros": 0.25
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bill_9",
+      "purpose": "Human-checked total and complete three-tier breakdown for 350 kWh",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": 350
+      },
+      "expect": {
+        "kind": "value",
+        "value": {
+          "total_cost_euros": 67.5,
+          "breakdown": [
+            {
+              "tier": "First 100 kWh",
+              "range_kwh": "0-100",
+              "rate_euros_per_kwh": 0.12,
+              "consumption_kwh": 100.0,
+              "cost_euros": 12.0
+            },
+            {
+              "tier": "Next 100 kWh (above 100 to 200)",
+              "range_kwh": "(100, 200]",
+              "rate_euros_per_kwh": 0.18,
+              "consumption_kwh": 100.0,
+              "cost_euros": 18.0
+            },
+            {
+              "tier": "Additional consumption (above 200)",
+              "range_kwh": "(200, infinity)",
+              "rate_euros_per_kwh": 0.25,
+              "consumption_kwh": 150.0,
+              "cost_euros": 37.5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "negative",
+      "purpose": "Reject invalid consumption input",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": -1
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "ValueError"
+      }
+    },
+    {
+      "id": "true",
+      "purpose": "Reject invalid consumption input",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": true
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "false",
+      "purpose": "Reject invalid consumption input",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": false
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "text",
+      "purpose": "Reject invalid consumption input",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": "350"
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "null",
+      "purpose": "Reject invalid consumption input",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": null
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    },
+    {
+      "id": "list",
+      "purpose": "Reject invalid consumption input",
+      "function": "calculate_electricity_bill",
+      "kwargs": {
+        "consumption_kwh": []
+      },
+      "expect": {
+        "kind": "raises",
+        "type": "TypeError"
+      }
+    }
+  ]
+}

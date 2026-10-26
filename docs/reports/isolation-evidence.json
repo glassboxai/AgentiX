@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-19",
+  "python": "3.11.9",
+  "checks": {
+    "isolation-tests": {
+      "tests": 212,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "isolation-native": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "isolation-frameworks": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "scope": "Native Windows isolation and application-owned pipeline gate; installer deferred; Docker rejected. No project generated_tools content accessed or live app restarted.",
+  "security_limits": [
+    "Generated code and unittest share an interpreter: child counts can be forged; no semantic correctness attestation.",
+    "AppContainer shares the host kernel; OS resources already accessible to AppContainers remain accessible.",
+    "Profile private storage is writable; no disk quota; staging time is outside execution deadline.",
+    "Only CPython standard library is staged; no third-party tool dependencies.",
+    "Unsupported hosts or setup/cleanup failures deny execution; no ordinary host fallback."
+  ],
+  "implemented": [
+    "Native AppContainer no network capabilities; explicit inherited handles; minimal environment.",
+    "Job memory 512 MiB, eight processes, wall timeout 30 s, bounded combined output 256 KiB.",
+    "Read-only disposable staging; unique profile and copied runtime per invocation; cleanup.",
+    "Ledger owner, operation and length-framed source/test SHA256; independent non-executing syntax checks.",
+    "No empty, skipped, expected-failure, failed, changed, stale or missing observations accepted.",
+    "Manager final-stage and execution gates; explicit existing-tool reverification action."
+  ],
+  "incidents": [
+    "EXEC-ERR-001 missing LOCALAPPDATA caused native Windows error 203; allowlisted required path.",
+    "FLOW-ERR-001 old CLI operation identity; bind new run ID.",
+    "FLOW-ERR-002 expected failures counted successful; reject.",
+    "FLOW-ERR-003 late result identity change; capture and compare.",
+    "FLOW-ERR-004 invalid source with unrelated tests; independent compile.",
+    "VERIFY-001 network test strengthened with live listener and parent connectivity control."
+  ],
+  "source_hashes": {
+    "_agentix_path.py": "91fe3463ed3d14d74ee19294c8db9f3df027701227223e37d64a33a188349499",
+    "app.py": "1230cec93911a76a942a9e71cbfc0c1b4a6ecaafae4605d9287182bf56f0b4cc",
+    "config.py": "936baa272919cddc44de2a8a79c542b1f0e1fae22ee65cb43221d7680ea33cc0",
+    "custom_tools.py": "9ec81fb368d2e57176c92c961fa3e38f85b096d3e478bbe39021174cd6370c05",
+    "main.py": "7f6adc2d30fdb440a8a593f3bb6830f06391b47b68cd39c17c000d50d8622308",
+    "security_manager.py": "486c6b44e42210f6fe943b58e234ac7af87c5e63197bdab744421f1cb09f2ad8",
+    "src/agentix/__init__.py": "63ad1c1f0d1da84ab44c7d073bafb9f30bac9e3148248946085aee4a5f0900d8",
+    "src/agentix/adapters/__init__.py": "644e02ebc83327e8b61abc644b15007a0e34d8e5df9cf4b8300c1e56514c3b73",
+    "src/agentix/adapters/crewai.py": "3f610e262ed8e0d1f69423ffa9e67bbd0465611471083b2eff92e5cea26ed3d1",
+    "src/agentix/approvals.py": "06ac9540422a62b0dfb829c487cca6acd0e80e60559c38c488a3f753d6f11301",
+    "src/agentix/bootstrap.py": "bfda8c56a6b40c44309e911d79acd831c2cd91f8f7592646fe9d3d8417705117",
+    "src/agentix/catalog.py": "2b72d2057196c3575c52dae9860424c3784089a5c3622e079827352e47803a2c",
+    "src/agentix/cli.py": "85dbfbd091af37f3dae4ca1c1f9c8773a13a8303a0cafc3dc0a92fc20b28f1b7",
+    "src/agentix/contracts.py": "43b9c301bde88a3466e43dd5725d60cb1348907fd1723884d228ab6e27213e40",
+    "src/agentix/decisions.py": "2faef8e005e13451b23531a7d0c206f8b15838d2db69c866b1f2717f19f60e35",
+    "src/agentix/diagnostics.py": "2d3e0e2011e041b94e494206f4769ab081fe64253f2d80d4d9f4b2820df9a59e",
+    "src/agentix/execution.py": "f3c550aab9aa22765f1d609970c39fcf97faaac6c9fc0ff4e7f8bd5045c212ce",
+    "src/agentix/orchestration.py": "76d3d2efd87e34e14338b54b90763dc2af51efb0f44924c4e0f9ade9f8eda404",
+    "src/agentix/paths.py": "bf8c04d21ec00634be69ea561ba06f8caeefc5872ca824b267103ed73379df2b",
+    "src/agentix/sandbox.py": "010eef897164036571543d1cafec4e7107c698b31c58db1916b79d45bb2709d5",
+    "src/agentix/sandbox_worker.py": "f8202d443ae3d6594e62aa78b27f72ccadcd64752168c4c77b747b8ad2f43dd0",
+    "src/agentix/security.py": "f152d2ab14c94d066e1998bf4e7b81c1407f475ed3ffd58f421b5298cb1225d4",
+    "src/agentix/settings.py": "5676288c57407734f53c92d27ed97d4721c243951ba11344128f31c54210e624",
+    "src/agentix/storage.py": "a7e7074efcd1870edba097c2fc6b8ad53279834069298881a96570a4202b8f9d",
+    "src/agentix/testing.py": "b74cdb2cd262055f307d0aadd54ee258803e1c38dafe17cbbe73dbaf8014a2fd",
+    "src/agentix/tools.py": "1c6c8af2d14b42bd6b9c0fb8b104b3f5b04bcabac3eb6ca1771205259abd18db",
+    "src/agentix/ui/__init__.py": "04e76928475913bc67918b71a3ffdb7661fc8e19c938aa96bb7cab0e766fffd1",
+    "src/agentix/ui/controller.py": "94483126011831568d8a742ac28cbd474a36b1f4eb0e8a26411e8096c3dd4c8d",
+    "src/agentix/ui/sessions.py": "fc9898087e92f3db040b1f51568539aa29360d1fbd80b6639a69a1b2f4e9d501",
+    "src/agentix/ui/state.py": "38825d3443a8c64239a01d4bad100fb2732078381c71fadc4cc243870e2210fc",
+    "src/agentix/ui/view.py": "6b02e353ec3c146ad1d754c0a9b4d27ab4a0711947cc4c94b221973a380c281c",
+    "src/agentix/verification.py": "39c3dd1aa68076780fa35fc4e85c220e91f6d42317cb8882225f42509c6b89ef",
+    "src/agentix/windows_process.py": "3f7905930df298aff696338b1fa10f9f79e3c3eb9d1f1742f853384920665cae"
+  }
+}

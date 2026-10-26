@@ -1,0 +1,9 @@
+# Unverified local-model report draft
+
+On 2026-10-19, a baseline engineering report was conducted using Python 3.11.9. The scope of the report included human-reviewed declarative acceptance, host comparisons, and mandatory final authorization. Installer execution was deferred, and Docker was explicitly rejected. No existing generated_tools contents were inspected, modified, tested, or executed, and no live application was restarted.
+
+A total of 251 acceptance-tests, 9 acceptance-native, and 3 acceptance-frameworks tests were executed, with no failures, errors, or skipped tests reported. The implemented features include provisional unittest results that cannot authorize execution, mandatory human review with editable case JSON, exact typed JSON comparisons, and final authorization that binds owner, operation, and other parameters. Rejection and expiry mechanisms prevent reprompting, and session-owned UI status displays expected and observed data separately from model replies.
+
+Several implementation incidents were resolved, including distinguishing serialization failures from expected exceptions, atomic rechecking of acceptance/function/snapshot, rejecting duplicate JSON child report keys, preventing automatic reprompting after human rejection, revoking old approvals upon observed content changes, and including escaped expected/observed data in the final UI.
+
+Limitations include finite approved cases that establish observed agreement for specific inputs but not general correctness, lack of internal execution-provenance attestation, runtime memory storage of approval contracts/receipts requiring re-review, reliance on Gradio for interactive review, and existing AppContainer limitations. Real framework checks use process_api in memory without model, browser, or HTTP server, and native tests use trusted temporary fixtures.

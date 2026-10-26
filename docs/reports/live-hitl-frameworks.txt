@@ -1,0 +1,16 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 280 items / 276 deselected / 4 selected
+
+tests\integration\test_framework_adapters.py .                           [ 25%]
+tests\integration\test_gradio_acceptance.py .                            [ 50%]
+tests\integration\test_gradio_session_routing.py .                       [ 75%]
+tests\integration\test_live_review_ui_contract.py x                      [100%]
+
+=========================== short test summary info ===========================
+XFAIL tests/integration/test_live_review_ui_contract.py::test_approval_callback_respects_real_gradio_output_contract - LIVE-UI-001: approval returns bool with no output
+================ 3 passed, 276 deselected, 1 xfailed in 26.15s ================

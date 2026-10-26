@@ -1,0 +1,27 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_ui_retains_safe_failed_save_reason_after_refresh ____________
+
+tmp_path = WindowsPath('C:/Users/xpiku/AppData/Local/Temp/pytest-of-xpiku/pytest-439/test_ui_retains_safe_failed_sa0')
+vault = namespace(data={}, write=<function test_ui_retains_safe_failed_save_reason_after_refresh.<locals>.<lambda> at 0x000001...nction vault.<locals>.<lambda> at 0x000001E98BF4A7A0>, delete=<function vault.<locals>.<lambda> at 0x000001E98BF4A840>)
+
+    def test_ui_retains_safe_failed_save_reason_after_refresh(tmp_path,vault):
+        """The reported Save-then-Refresh path must not erase the useful failure reason."""
+        from agentix.model_profiles import SessionModelConfiguration
+        from agentix.ui.controller import UiController
+        security=SimpleNamespace(get_pending_request=lambda:None)
+        controller=UiController(lambda query:"",lambda:"",security,lambda **kw:kw)
+        store=feature().SavedProfiles(tmp_path,vault,resolver=lambda host:["93.184.216.34"])
+        controller.model_configuration=SessionModelConfiguration(controller,lambda llm:None,vault_factory=lambda:vault,store_factory=lambda boundary:store)
+        vault.write=lambda *args: (_ for _ in ()).throw(RuntimeError("private-provider-key"))
+        first=controller.profile_action("save","","Remote","OpenAI","model","https://api.openai.com/v1","synthetic-key")
+>       assert "[credential_write]" in first[-1]
+E       AssertionError: assert '[credential_write]' in 'Profile action was not completed. Check saved selection, name, key and pending work; reload after concurrent edits. Switch to Ollama before deleting an active profile.'
+
+tests\unit\test_saved_model_profiles.py:347: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    agentix.profile_store:diagnostics.py:50 event=profile_save_failed session_id=legacy operation_id=- request_id=credential_write error_type=RuntimeError line=-
+ERROR    agentix.ui.controller:diagnostics.py:50 event=model_profile_action_failed session_id=legacy operation_id=- request_id=- error_type=ValueError line=247
+=========================== short test summary info ===========================
+FAILED tests/unit/test_saved_model_profiles.py::test_ui_retains_safe_failed_save_reason_after_refresh
+1 failed, 21 deselected in 0.22s

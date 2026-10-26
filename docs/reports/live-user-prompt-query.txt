@@ -1,0 +1,1 @@
+Calculate the electricity bill for a household that used 350 kWh this month. The first 100 kWh cost €0.12 each, the next 100 cost €0.18 each, and any additional consumption costs €0.25 per kWh. Show the total in euros and explain the breakdown.

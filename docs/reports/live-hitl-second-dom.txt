@@ -1,0 +1,53 @@
+- main:
+  - heading "Autonomous Multi-Agent Tool Builder" [level=1]
+  - paragraph: Dynamic software tool creation with live expandable Thoughts and on-the-fly code editing.
+  - text: Agent Interaction Chat
+  - button:
+  - button "Limpiar chat":
+  - button "Copy conversation":
+  - log "chatbot conversation":
+    - paragraph: "Create a NEW reusable tool named tiered_energy_bill, with one pure public function tiered_energy_bill(kwh: int) -> int. Calculate a fictional progressive electricity bill in integer cents: the first 100 kWh cost 12 cents each, the next 100 cost 18 cents each, and all remaining kWh cost 25 cents each. Input must be a nonnegative Python integer, excluding booleans. Negative integers, floats, bool, strings and None must raise ValueError. Use standard library only, no filesystem/network access in the generated function. Generate English specifications, implementation, meaningful unittest tests for normal values, exact tier boundaries and invalid types, and declarative acceptance cases for human review. Do not bypass review or invent results. After approved tests and acceptance, EXECUTE the new tool for 250 kWh and report the result in cents and euros. The task requires actually creating, testing and executing the tool, not merely answering the arithmetic."
+    - button "Copy message":
+    - 'generic "bot''s message: <details> <summary>🧠 <b>Agent Thoughts & Activity</b> <i>(Click to expand)</i></summary> ```text workflow_started | operation=21ad63603b274e92ba82663ee01e5cef manager_started | operation=21ad63603b274e92ba82663ee01e5cef catalog_rendering | operation=21ad63603b274e92ba82663ee01e5cef catalog_rendered | operation=21ad63603b274e92ba82663ee01e5cef manager_failed | operation=21ad63603b274e92ba82663ee01e5cef workflow_failed | operation=21ad63603b274e92ba82663ee01e5cef workflow_finished | operation=21ad63603b274e92ba82663ee01e5cef ``` </details> ❌ **Error during execution:** ```text Invalid response from LLM call - None or empty. ```"':
+      - generic "🧠 Agent Thoughts & Activity (Click to expand)"
+      - paragraph:
+        - text: ❌
+        - strong: "Error during execution:"
+      - button "copy":
+      - code: Invalid response from LLM call - None or empty.
+    - button "Copy message":
+  - generic: User Query
+  - textbox "User Query":
+    - /placeholder: Enter your calculation or query here...
+  - button "Submit Query" [active]
+  - button "🔒 Authorization & Test Review ▼":
+    - generic: 🔒 Authorization & Test Review
+    - generic: ▼
+  - checkbox "Auto-approve file writes for this session"
+  - generic: Auto-approve file writes for this session
+  - generic: If checked, file writes within generated_tools/ are authorized automatically.
+  - button "📚 Installed Tools Catalog (Live AST) ▼":
+    - generic: 📚 Installed Tools Catalog (Live AST)
+    - generic: ▼
+  - paragraph: No tools installed yet.
+  - heading "Tool validation" [level=3]
+  - paragraph: No validation started
+- status
+- contentinfo "Gradio footer navigation":
+  - link "Runs Runs":
+    - /url: http://127.0.0.1:7862/gradio_api/runs
+    - text: Runs
+    - img "Runs"
+  - generic: ·
+  - button "Usar vía API logo":
+    - text: Usar vía API
+    - img "logo"
+  - generic: ·
+  - link "Construido con Gradio logo":
+    - /url: https://gradio.app
+    - text: Construido con Gradio
+    - img "logo"
+  - generic: ·
+  - button "Configuración Configuración":
+    - text: Configuración
+    - img "Configuración"

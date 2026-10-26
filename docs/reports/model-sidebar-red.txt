@@ -1,0 +1,64 @@
+.................FF.FF                                                   [100%]
+================================== FAILURES ===================================
+_______ test_model_switch_is_transactional_and_invalidates_old_services _______
+
+    def test_model_switch_is_transactional_and_invalidates_old_services():
+        """Commit fresh services only after successful provider initialization."""
+        module = profiles()
+        values = {}
+        vault = SimpleNamespace(write=lambda ref, key: values.update({ref: key}), read=lambda ref: values[ref], delete=lambda ref: values.pop(ref, None))
+        security = SimpleNamespace(get_pending_request=lambda: None)
+        controller = SimpleNamespace(state=SimpleNamespace(is_running=False, session_id="a"*32), security=security,
+            run_system="old", validation="old-verdict", get_installed_tools_catalog="old-catalog")
+        runtime = SimpleNamespace(orchestrator=SimpleNamespace(run_system="new"), operations=SimpleNamespace(acceptance="fresh-verdict"), catalog=SimpleNamespace(render="new-catalog"))
+>       service = module.SessionModelConfiguration(controller, lambda llm: runtime, vault_factory=lambda: vault, llm_factory=lambda **kw: object(), resolver=lambda host: ["93.184.216.34"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'SessionModelConfiguration'
+
+tests\unit\test_model_profiles.py:108: AttributeError
+___ test_failed_model_switch_removes_new_credential_and_retains_old_runtime ___
+
+    def test_failed_model_switch_removes_new_credential_and_retains_old_runtime():
+        """A provider failure cannot leave a stored key or partially swap services."""
+        module = profiles()
+        values = {}
+        vault = SimpleNamespace(write=lambda ref, key: values.update({ref: key}), read=lambda ref: values[ref], delete=lambda ref: values.pop(ref, None))
+        controller = SimpleNamespace(state=SimpleNamespace(is_running=False, session_id="b"*32), security=SimpleNamespace(get_pending_request=lambda: None), run_system="old")
+        def fail(llm):
+            """Deny runtime composition after client creation."""
+            raise RuntimeError("test-private-key")
+>       service = module.SessionModelConfiguration(controller, fail, vault_factory=lambda: vault, llm_factory=lambda **kw: object(), resolver=lambda host: ["93.184.216.34"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'agentix.model_profiles' has no attribute 'SessionModelConfiguration'
+
+tests\unit\test_model_profiles.py:126: AttributeError
+_____________ test_sidebar_and_review_use_native_gradio_container _____________
+
+    def test_sidebar_and_review_use_native_gradio_container():
+        """Locate review within a single native Sidebar in the maintained source."""
+        import ast
+        from pathlib import Path
+        source = Path(__file__).resolve().parents[2] / "src/agentix/ui/view.py"
+        tree = ast.parse(source.read_text(encoding="utf-8"))
+        sidebars = [node for node in ast.walk(tree) if isinstance(node, ast.With) and any(isinstance(item.context_expr, ast.Call) and getattr(item.context_expr.func, "attr", "") == "Sidebar" for item in node.items)]
+>       assert len(sidebars) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\unit\test_model_profiles.py:151: AssertionError
+__________________ test_oversized_query_cannot_start_worker ___________________
+
+    def test_oversized_query_cannot_start_worker():
+        """Deny oversized task data before logging, history retention or model work."""
+        from agentix.ui.controller import UiController
+        controller = UiController(lambda query: pytest.fail("must not call model"), lambda: "", SimpleNamespace(), lambda **kw: kw)
+>       with pytest.raises(ValueError, match="limit"):
+E       Failed: DID NOT RAISE ValueError
+
+tests\unit\test_model_profiles.py:159: Failed
+=========================== short test summary info ===========================
+FAILED tests/unit/test_model_profiles.py::test_model_switch_is_transactional_and_invalidates_old_services
+FAILED tests/unit/test_model_profiles.py::test_failed_model_switch_removes_new_credential_and_retains_old_runtime
+FAILED tests/unit/test_model_profiles.py::test_sidebar_and_review_use_native_gradio_container
+FAILED tests/unit/test_model_profiles.py::test_oversized_query_cannot_start_worker
+4 failed, 18 passed in 0.26s

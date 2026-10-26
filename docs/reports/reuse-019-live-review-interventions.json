@@ -1,0 +1,6 @@
+{
+  "specification": "Resolved contradictory negative-input behavior; specified nonfinite/type validation and money rounding.",
+  "implementation": "Enforced promised float return for integer inputs.",
+  "tests": "Corrected wrong module import and 100.125 discount arithmetic, removed misleading comment and unused import, added exact type and additional invalid/boundary tests.",
+  "acceptance": "Corrected 100.123 expected value from 90.12 to 90.11 and expanded five cases to twelve with independent boundaries and invalid-type/negative expectations."
+}

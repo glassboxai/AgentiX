@@ -1,0 +1,35 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\Agentix_v2
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 280 items / 16 deselected / 264 selected
+
+tests\integration\test_artifact_workflow.py ..                           [  0%]
+tests\integration\test_evidence_collection.py .............              [  5%]
+tests\integration\test_session_workflows.py ....                         [  7%]
+tests\unit\test_acceptance_ui.py ...                                     [  8%]
+tests\unit\test_app.py ......................                            [ 16%]
+tests\unit\test_approval_identity.py .............                       [ 21%]
+tests\unit\test_cli.py .......                                           [ 24%]
+tests\unit\test_cli_review.py ............                               [ 28%]
+tests\unit\test_compatibility.py ........                                [ 31%]
+tests\unit\test_composition.py ...                                       [ 32%]
+tests\unit\test_config.py ..                                             [ 33%]
+tests\unit\test_decision_security.py .................                   [ 40%]
+tests\unit\test_human_acceptance.py ...................................  [ 53%]
+tests\unit\test_import_boundaries.py .                                   [ 53%]
+tests\unit\test_live_review_findings.py x                                [ 54%]
+tests\unit\test_orchestration.py ................                        [ 60%]
+tests\unit\test_pipeline_verification.py ...................             [ 67%]
+tests\unit\test_sandbox_protocol.py ......                               [ 69%]
+tests\unit\test_security.py ............................................ [ 86%]
+.                                                                        [ 86%]
+tests\unit\test_sessions.py .....                                        [ 88%]
+tests\unit\test_tools.py .............................                   [ 99%]
+tests\unit\test_ui_runtime_isolation.py .                                [100%]
+
+=========================== short test summary info ===========================
+XFAIL tests/unit/test_live_review_findings.py::test_creation_pipeline_retains_original_user_contract - LIVE-FLOW-001: creation receives only model summary
+=============== 263 passed, 16 deselected, 1 xfailed in 13.53s ================

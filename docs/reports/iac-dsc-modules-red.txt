@@ -1,0 +1,35 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.7.0
+rootdir: D:\AI\AgentiX_v3
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.14.11, platformdirs-4.13.3
+collected 26 items / 25 deselected / 1 selected
+
+tests\unit\test_iac.py F                                                 [100%]
+
+================================== FAILURES ===================================
+___________ test_windows_powershell_adapter_without_ambient_modules ___________
+
+    def test_windows_powershell_adapter_without_ambient_modules():
+        """IAC-ERR-002: DSC resources load OS modules without trusting an inherited module path."""
+        executable = Path(os.environ["SystemRoot"]) / "System32/WindowsPowerShell/v1.0/powershell.exe"
+        command = "$ErrorActionPreference='Stop';$env:PSModulePath='missing-fixture-modules';$PSModuleAutoLoadingPreference='None';Import-Module '"+str(MODULE)+"' -Force;$c=Read-IacConfiguration;$p=Get-IacPaths $c;@{lock=$p.lock}|ConvertTo-Json"
+        result = subprocess.run([str(executable), "-NoProfile", "-NonInteractive", "-Command", command], capture_output=True, text=True, timeout=35)
+>       assert result.returncode == 0, result.stderr
+E       AssertionError: Split-Path : El término 'Split-Path' no se reconoce como nombre de un cmdlet, función, archivo de script o programa 
+E         ejecutable. Compruebe si escribió correctamente el nombre o, si incluyó una ruta de acceso, compruebe que dicha ruta 
+E         es correcta e inténtelo de nuevo.
+E         En D:\AI\AgentiX_v3\infra\Agentix.Iac.psm1: 12 Carácter: 23
+E         + $script:ProjectRoot = Split-Path $PSScriptRoot -Parent
+E         +                       ~~~~~~~~~~
+E             + CategoryInfo          : ObjectNotFound: (Split-Path:String) [], ParentContainsErrorRecordException
+E             + FullyQualifiedErrorId : CommandNotFoundException
+E          
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-NonInteractiv...plit-Path:String) [], ParentContainsErrorRecordException\n    + FullyQualifiedErrorId : CommandNotFoundException\n \n").returncode
+
+tests\unit\test_iac.py:250: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/unit/test_iac.py::test_windows_powershell_adapter_without_ambient_modules
+====================== 1 failed, 25 deselected in 1.30s =======================

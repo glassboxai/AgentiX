@@ -1,0 +1,14 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "reviewed and rejected as final report",
+  "review_findings": [
+    "Did not follow requested report structure; asked what to do with the evidence.",
+    "Incorrectly replaced EUR with dollar currency.",
+    "Added unsupported speculative interpretations of the evidence."
+  ],
+  "final_report": "USER_PROMPT_LIVE30B.md",
+  "final_report_authorship": "Engineer-reviewed report grounded in raw GUI, native counterexample and regression evidence; local draft not adopted.",
+  "initial_restricted_attempt": "Loopback socket denied with WinError 10013; authorized local report retry succeeded."
+}

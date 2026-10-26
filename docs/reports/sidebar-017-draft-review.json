@@ -1,0 +1,6 @@
+{
+  "draft": "SIDEBAR_017_DRAFT.md",
+  "model": "qwen3:14b",
+  "review": "Claims checked against raw evidence; final reviewed report is SIDEBAR_017_VALIDATION.md",
+  "correction": "No inference/paid API calls were exercised by the functional tests; their implementation is not absent. Prose drafting used local inference."
+}

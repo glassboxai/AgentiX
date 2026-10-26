@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "pythonVersion": "3.11.9",
+  "ollamaVersion": "0.40.6",
+  "dscVersion": "3.3.0",
+  "model": "ollama/qwen3-coder:30b",
+  "modelDigest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+  "port": 7873,
+  "openBrowser": true,
+  "ollamaUrl": "http://127.0.0.1:11434"
+}

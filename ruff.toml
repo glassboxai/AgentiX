@@ -1,0 +1,14 @@
+target-version = "py311"
+line-length = 100
+extend-exclude = ["generated_tools", ".autotool", ".venv", "SKILLS"]
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
+
+[lint.per-file-ignores]
+# Compatibility modules intentionally re-export names and import the src locator.
+"app.py" = ["F401"]
+"main.py" = ["F401"]
+"config.py" = ["F401"]
+"custom_tools.py" = ["F401"]
+"security_manager.py" = ["F401"]
