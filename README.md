@@ -1,3 +1,15 @@
+<p align="center">
+  <img src="assets/agentix-logo.png"
+       alt="AgentiX Logo"
+       width="180">
+</p>
+
+<h1 align="center">AgentiX</h1>
+
+<p align="center">
+  Agentic Software Development — Human in the Loop
+</p>
+
 # AgentiX v3: Infrastructure as Code
 
 For reproducible Windows-user setup, use [Plan/Apply/Test](infra/README.md).
