@@ -15,7 +15,7 @@
 
 > 🚧 **Under Active Development**
 >
-> This aaplication is currently under active development. Its architecture, features, and documentation are evolving and may change as research and implementation progress. *Not yet recommended for production use*.
+> This aaplication is currently under active development. Its architecture, features, and documentation are evolving and may change as research and implementation progress. **Not yet recommended for production use**.
   
 
 ## About AgentiX
