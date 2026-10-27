@@ -10,6 +10,14 @@
   Agentic Software Development — Human in the Loop
 </p>
 
+
+![Status: Under Active Development](https://img.shields.io/badge/Status-Under%20Active%20Development-orange)
+
+> 🚧 **Under Active Development**
+>
+> This aaplication is currently under active development. Its architecture, features, and documentation are evolving and may change as research and implementation progress. *Not yet recommended for production use*.
+  
+
 ## About AgentiX
 
 **AgentiX** is an open-source, AI-powered software development system designed **for software developers, not end users**.
