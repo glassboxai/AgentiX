@@ -1,0 +1,6 @@
+/* Component-local styles for Gradio HTML's isolated candidate content. */
+.agentix-candidate-list { list-style: decimal; margin: 0; padding-left: 1.4em; overflow-wrap: anywhere; }
+.agentix-candidate-list li { display: list-item; margin: 0 0 0.8em; }
+.agentix-candidate-list strong { display: block; font-weight: 600; }
+.agentix-candidate-list p { display: block; margin: 0.3em 0; line-height: 1.4; }
+.agentix-candidate-list small { display: block; color: var(--muted, #8d949d); font-size: 0.85em; }

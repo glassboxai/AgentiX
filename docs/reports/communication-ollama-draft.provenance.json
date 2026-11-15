@@ -1,0 +1,16 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "Reviewed; retained as nonauthoritative prose draft",
+  "accepted_claims": [
+    "Observed live model, counts, call/result and manual corrections match raw evidence.",
+    "Supervised/finite-case/provisional and no-post-fix-live-reuse limitations match evidence."
+  ],
+  "rejected_claims": [
+    "Historical failures do not establish unresolved production defects after implemented fixes.",
+    "No language-specific defect or causal language comparison was established."
+  ],
+  "authoritative_report": "COMMUNICATION_LIVE30B.md",
+  "engineering_code_or_tests_generated": false
+}

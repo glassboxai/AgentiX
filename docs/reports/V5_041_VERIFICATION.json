@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-30",
+  "requirement": "V5-041",
+  "incidents": [
+    "V5-ERR-041-01",
+    "V5-ERR-041-02"
+  ],
+  "fixture_package_sha256": "85a309a64a2e3768b7e0596a3b44b2719bd09d8ec08fc979c749818522830466",
+  "fixture_scope": "Independently authored temporary fixture; final native-browser pass; not a live installed artifact.",
+  "source_sha256": {
+    "src/agentix/application/templates/app.py": "396e68258f69df9bc8500eabe6ebceb05c128aae25ad192cf69dc1bbb08431f8",
+    "src/agentix/application/templates/operation.py": "a2605827259bc4184d0de8b2d25a7f6c760deb8b722f309e94574e6f5ab6f0ab",
+    "src/agentix/application/templates/v1/app.py": "9dee3d516510f0374b0a35a135a7b82053da138f72df10f78d0255e3be6c9bd6",
+    "src/agentix/application/templates/v1/operation.py": "3629493564a9b585f976d47892f449f2810f251743d0fa7095d36bfd32d6f06b",
+    "src/agentix/application/templates/bindings.py": "4414fade78e14e7a9e130b5c859b3c7676d92b487018faf2b9c3f76b3cff761b"
+  },
+  "browser": {
+    "status": "passed",
+    "widgets": 5,
+    "standalone_widgets": 1,
+    "connected_widgets_verified_in_graph": 4,
+    "expectations": "host-held reviewed tool cases",
+    "repeated_combined_runs": 2,
+    "fresh_completed_events": 4
+  },
+  "offline": {
+    "passed": 798,
+    "deselected": 77
+  },
+  "frameworks_suite": {
+    "passed": 9
+  },
+  "final_framework_and_native_browser": {
+    "passed": 2,
+    "deselected": 21
+  },
+  "final_focused_regression_and_reference_gate": {
+    "passed": 39,
+    "deselected": 6
+  },
+  "ruff_lint": "passed",
+  "ruff_format": {
+    "result": "passed",
+    "files": 310
+  },
+  "reference_freshness": "passed",
+  "live_restart": false,
+  "model_inference": false
+}

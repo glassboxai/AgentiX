@@ -1,0 +1,152 @@
+{
+  "sources": [
+    {
+      "repository": "https://github.com/obra/superpowers",
+      "skills": [
+        "test-driven-development",
+        "systematic-debugging",
+        "verification-before-completion"
+      ],
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "license": "SUPERPOWERS-LICENSE.txt"
+    },
+    {
+      "repository": "https://github.com/openai/skills",
+      "skills": [
+        "security-best-practices"
+      ],
+      "revision": "49f948faa9258a0c61caceaf225e179651397431",
+      "license": "security-best-practices/LICENSE.txt"
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "E7F063B40A7881F3C6C6D164E76246380A4C1FC15D44C51AFC492ED112EE88BB"
+    },
+    {
+      "path": "SUPERPOWERS-LICENSE.txt",
+      "sha256": "A37E0E9697144819E1D965176AC4AE5BC3FA02D11E7812036BBCADF6DAFE2400"
+    },
+    {
+      "path": "agentix-documentation/SKILL.md",
+      "sha256": "79D27E2AFCE185C97E93DE22C627A5460B52F55A8D8A5DAFE7D3BF425967CD3E"
+    },
+    {
+      "path": "agentix-sdd/SKILL.md",
+      "sha256": "198BA4AE109AE025031ABE16991067B64702A46ADB578E229E23F4E31936D899"
+    },
+    {
+      "path": "security-best-practices/LICENSE.txt",
+      "sha256": "4DD13869245E356246A5B770723247BBB80A8F07A181D1D3D873A1734297CDB9"
+    },
+    {
+      "path": "security-best-practices/SKILL.md",
+      "sha256": "7B3DAE1FFC5434D890F3C65C8F552AF52D0307FAB3B35DEC13013C9CA3844C4F"
+    },
+    {
+      "path": "security-best-practices/agents/openai.yaml",
+      "sha256": "6E9C6F2EDCE448EB2B589F81AD6E3F722665021785513BCBFD0BF7B86B529171"
+    },
+    {
+      "path": "security-best-practices/references/golang-general-backend-security.md",
+      "sha256": "A73C47C34497B120672D48411FE51DC90D426A571801A0B3F649E2CE4EC658B4"
+    },
+    {
+      "path": "security-best-practices/references/javascript-express-web-server-security.md",
+      "sha256": "427835CBB5BE7BA96172EA6CA9AF80DDD4419C833E9EBF870996740C80D8406C"
+    },
+    {
+      "path": "security-best-practices/references/javascript-general-web-frontend-security.md",
+      "sha256": "3A7BC7B3F6E7FF043DB9DBAA8933894D7A19D987D0607E4DDAE5D70184A63D63"
+    },
+    {
+      "path": "security-best-practices/references/javascript-jquery-web-frontend-security.md",
+      "sha256": "BCBAD2FA6C2A02709E47E889E70102C76886BF36BC798624D27DB570ECCF40DA"
+    },
+    {
+      "path": "security-best-practices/references/javascript-typescript-nextjs-web-server-security.md",
+      "sha256": "71C773F7A97CE60C853ADFA100B3D88B3B7BC4C6B8ACAEF1432FFABD923EE182"
+    },
+    {
+      "path": "security-best-practices/references/javascript-typescript-react-web-frontend-security.md",
+      "sha256": "D3030C0F24BDDB56B9BBB91BBEC1EE49EB7778BCE4D3E0297B2641B2FC6B0D9C"
+    },
+    {
+      "path": "security-best-practices/references/javascript-typescript-vue-web-frontend-security.md",
+      "sha256": "77C6A747F9F17E3DF03AAD0FCB20D99AC7898001B81AEF8B80908E45AC14A688"
+    },
+    {
+      "path": "security-best-practices/references/python-django-web-server-security.md",
+      "sha256": "4FB69B5D45F10E588D1A8C35CDC5F59E18910F6B46A93E2D342D90F286F8DFD2"
+    },
+    {
+      "path": "security-best-practices/references/python-fastapi-web-server-security.md",
+      "sha256": "7383C7F4FC271190B05E562ADA7E825982A2C76B6C79A9F95A1DA7687B65A616"
+    },
+    {
+      "path": "security-best-practices/references/python-flask-web-server-security.md",
+      "sha256": "9606D69190C04C167FDEAC57E61297547A57B0542FD89DEDE36F355970446929"
+    },
+    {
+      "path": "systematic-debugging/condition-based-waiting-example.ts",
+      "sha256": "40AE5EBE497FDF310200E43FE986552546D0A22837C0D39E855DB1CFD33EB88E"
+    },
+    {
+      "path": "systematic-debugging/condition-based-waiting.md",
+      "sha256": "E89FEC8400D6CD50F43407CEC9FAB50976BA4D55D0EC2EB51C0BD68036B54C26"
+    },
+    {
+      "path": "systematic-debugging/CREATION-LOG.md",
+      "sha256": "C24733A5B1821BD6BED1FC950261F0B9F4E90097E0BBB96459D8179713730789"
+    },
+    {
+      "path": "systematic-debugging/defense-in-depth.md",
+      "sha256": "1E175FB86FC357E58C6AEBF5441E481E1B7868B4380C0456B63A17EEFBD18BA7"
+    },
+    {
+      "path": "systematic-debugging/find-polluter.sh",
+      "sha256": "DD7B8F13C4CC2A24B33FF87B18DA9248F3E1C80A085C3316224F69FF0FA5C43C"
+    },
+    {
+      "path": "systematic-debugging/root-cause-tracing.md",
+      "sha256": "75B933B6A8C40BDB2031B10F21654395B56EC6AB6BC7B018C18D3FE57AEB7FB8"
+    },
+    {
+      "path": "systematic-debugging/SKILL.md",
+      "sha256": "51C6435D98C83C42C96BA7C35725A0B2C376CD487FB1A4E6BD0DDBE7E33EF202"
+    },
+    {
+      "path": "systematic-debugging/test-academic.md",
+      "sha256": "FE2BA480D78AC0D686DC025F41C2A32A43D642BF533F91B0C6053A04D35D6486"
+    },
+    {
+      "path": "systematic-debugging/test-pressure-1.md",
+      "sha256": "0B6A915DB0054577819834C79BE9EB614E97BDDBA10D73768E1FBE91CFED048A"
+    },
+    {
+      "path": "systematic-debugging/test-pressure-2.md",
+      "sha256": "B2030AEFFBA07050E8AD573DDF87486457C4A016A786BB326235BEBD856F2016"
+    },
+    {
+      "path": "systematic-debugging/test-pressure-3.md",
+      "sha256": "96B50A52E2C7989C9CF20FB752C47C1E9A3A70DC362F8F7989F8F5B64DAC7708"
+    },
+    {
+      "path": "test-driven-development/SKILL.md",
+      "sha256": "64B03FCE4AEE5A97A93160CEA8111F3BA13A17B7C001DB4BD5836D67FD10705D"
+    },
+    {
+      "path": "test-driven-development/writing-good-tests.md",
+      "sha256": "51471C853306FF92CA8BB41DCAEA05F31C0E46B03651F8F3C99754B7172F4AE1"
+    },
+    {
+      "path": "verification-before-completion/SKILL.md",
+      "sha256": "2BEFE7FC55BCADAA3D97DD9E8EFEB633D2561C0EBE74C5A8B17C4D9E7E4520B3"
+    }
+  ],
+  "local_skills": [
+    "agentix-sdd",
+    "agentix-documentation"
+  ]
+}

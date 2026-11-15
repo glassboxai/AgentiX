@@ -1,0 +1,41 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 37%]
+........................................................................ [ 46%]
+........................................................................ [ 55%]
+........................................................................ [ 64%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+........................................................................ [ 92%]
+..........................................................               [100%]
+============================== warnings summary ===============================
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:425: DeprecationWarning: function_calling_llm is deprecated and will be removed in a future release.
+    if self.function_calling_llm and not isinstance(
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:433: DeprecationWarning: deprecated
+    if self.allow_code_execution:
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:444: DeprecationWarning: deprecated
+    if self.reasoning and self.planning_config is None:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+778 passed, 74 deselected, 18 warnings in 86.42s (0:01:26)

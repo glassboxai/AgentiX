@@ -1,0 +1,13 @@
+{
+  "candidate_limits": [
+    5,
+    5,
+    4,
+    5
+  ],
+  "candidate_generation_tools": [
+    [
+      "calculator"
+    ]
+  ]
+}

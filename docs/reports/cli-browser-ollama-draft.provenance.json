@@ -1,0 +1,13 @@
+{
+  "model": "qwen3:8b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "unverified draft",
+  "reviewed_by": "Codex, against raw test evidence",
+  "authoritative_reviewed_report": "CLI_BROWSER.md",
+  "rejected_draft_claims": [
+    "Fixed CLI incidents incorrectly labelled unresolved",
+    "Read-only Ruff format check described as formatting changes",
+    "Passing regressions incorrectly described as providing no fixes"
+  ]
+}

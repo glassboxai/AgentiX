@@ -1,0 +1,144 @@
+{
+  "foreground": "rgb(241, 243, 245)",
+  "background": "rgb(17, 23, 32)",
+  "ancestors": [
+    {
+      "tag": "P",
+      "classes": "",
+      "width": 210,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "execution-result",
+      "width": 210,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "SPAN",
+      "classes": "md svelte-1hf8a14 chatbot prose",
+      "width": 0,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "message-content",
+      "width": 210,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "svelte-1nr59td latest",
+      "width": 210,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "message  svelte-1nr59td panel-full-width",
+      "width": 210,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "bot svelte-1nr59td message",
+      "width": 230,
+      "background": "rgb(17, 23, 32)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "flex-wrap svelte-1nr59td role",
+      "width": 232,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "message-row bubble bot-row svelte-1nr59td",
+      "width": 232,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "message-wrap svelte-kpz1",
+      "width": 252,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "bubble-wrap svelte-kpz1",
+      "width": 252,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "wrapper svelte-1wizwbi",
+      "width": 252,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "block  svelte-1plpy97 flex auto-margin",
+      "width": 252,
+      "background": "rgb(11, 13, 17)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "column  svelte-siq5d6",
+      "width": 254,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "row  svelte-7xavid unequal-height",
+      "width": 254,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "column  svelte-siq5d6",
+      "width": 254,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "MAIN",
+      "classes": "contain svelte-zxu34v",
+      "width": 254,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "wrap svelte-zxu34v sidebar-parent",
+      "width": 254,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "main fillable svelte-99kmwu app fill_width",
+      "width": 318,
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    {
+      "tag": "DIV",
+      "classes": "gradio-container gradio-container-6-30-0 svelte-99kmwu fill_width",
+      "width": 390,
+      "background": "rgb(5, 6, 8)"
+    },
+    {
+      "tag": "GRADIO-APP",
+      "classes": "",
+      "width": 390,
+      "background": "rgb(5, 6, 8)"
+    },
+    {
+      "tag": "BODY",
+      "classes": "",
+      "width": 390,
+      "background": "rgb(5, 6, 8)"
+    },
+    {
+      "tag": "HTML",
+      "classes": "",
+      "width": 390,
+      "background": "rgb(5, 6, 8)"
+    }
+  ]
+}

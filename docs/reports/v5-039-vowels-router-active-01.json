@@ -1,0 +1,6 @@
+{
+  "url": "http://127.0.0.1:7879/",
+  "chat": "Conversation\n\nI need to count the English vowels a, e, i, o and u in a piece of text, ignoring letter case and counting repeated occurrences. Accented letters do not count as these five vowels. Empty text should give zero; non-text values should be rejected. Please count the vowels in Hello World!\n\nAgent Thoughts & Activity (In Progress...)\nworkflow_started | operation=91e445e5941e4ab3ac6b0fa17d7d5802\nmanager_started | operation=91e445e5941e4ab3ac6b0fa17d7d5802\ncatalog_rendering | operation=91e445e5941e4ab3ac6b0fa17d7d5802\ncatalog_rendered | operation=91e445e5941e4ab3ac6b0fa17d7d5802\n\nAgents are actively solving your request...\n\n(Check the Security Panel if authorization is required)",
+  "validation": "Tool validation\n\nNo validation started",
+  "pending": null
+}

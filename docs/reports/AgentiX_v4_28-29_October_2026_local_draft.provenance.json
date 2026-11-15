@@ -1,0 +1,16 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "human-reviewed and rewritten against retained evidence",
+  "final_report": "AgentiX_v4_Progress_Report_2026-10-28_to_2026-10-29.md",
+  "review_date": "2026-10-29",
+  "review_notes": [
+    "Replaced technical terminology with plain-language explanations.",
+    "Separated model defects, application defects and reviewer/test-harness errors.",
+    "Retained the limits of the word/vowel pilot and the provisional nature of generated tests.",
+    "Did not present reused widget proposals as a fresh autonomous generation success."
+  ],
+  "report_model_release_requested": true,
+  "release_request_completed": true
+}

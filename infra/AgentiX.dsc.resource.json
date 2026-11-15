@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/dsc/schemas/v3/bundled/resource/manifest.json",
+  "type": "AgentiX.Local/Deployment",
+  "version": "1.0.0",
+  "description": "Reviewed per-user AgentiX deployment; no automatic application startup.",
+  "get": {"executable": "powershell.exe", "args": ["-NoProfile", "-NonInteractive", "-File", "resource.ps1", "-Operation", "get"], "input": "stdin"},
+  "test": {"executable": "powershell.exe", "args": ["-NoProfile", "-NonInteractive", "-File", "resource.ps1", "-Operation", "test"], "input": "stdin", "returns": "state"},
+  "set": {"executable": "powershell.exe", "args": ["-NoProfile", "-NonInteractive", "-File", "resource.ps1", "-Operation", "set"], "input": "stdin", "returns": "state", "implementsPretest": false},
+  "schema": {"embedded": {"type": "object", "additionalProperties": false, "required": ["profile"], "properties": {"profile": {"type": "string", "const": "windows-user"}, "inDesiredState": {"type": "boolean"}, "_inDesiredState": {"type": "boolean"}}}}
+}

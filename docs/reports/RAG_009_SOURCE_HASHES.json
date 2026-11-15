@@ -1,0 +1,23 @@
+{
+  "evidence": [
+    "RAG_009_INITIAL_SYNC.json",
+    "RAG_009_REOPEN_SYNC.json",
+    "RAG_009_REAL_QUERY.json"
+  ],
+  "scope": "Optional authoritative catalog binding, initial load, incremental refresh before search; no GUI/agent execution integration",
+  "requirement": "RAG-009",
+  "baseline_manifest": "RAG_008_SOURCE_HASHES.json",
+  "final_sources": {
+    "src/agentix/retrieval/__init__.py": "62d1ff29667bb68d8f7a4a6f19ef3c17da8ee13ea8883a844d47b92efa493e06",
+    "src/agentix/retrieval/catalog.py": "910985675bab64c248cc4cf86e59b763f517be2b56487d8894007d1ee0bc4f6f",
+    "src/agentix/retrieval/contracts.py": "5287d0bf51b4e580fdffd57930336715077ccff352bec9eb548e278e4a0c824e",
+    "src/agentix/retrieval/lexical.py": "bacb3e539fecad13da50d31f1157111735adc86d31b765571e7c049bea090ee4",
+    "src/agentix/retrieval/ollama.py": "345dadc7b3c2f57bab8fecd9dcf868e6e004c1b3c1164aa2606768d70942839c",
+    "src/agentix/retrieval/policy.py": "49a61d164e796a6a1ad14b8d64dfc616465e25109855eecc593c565f326665f7",
+    "src/agentix/retrieval/service.py": "53f987fa870d6349b63c64a91ee7061ac402287eb7554daa2aa475a9ecb49e14",
+    "tests/test_retrieval_catalog.py": "115a8592043d81339c61fc4c62a972a550f4ead0f85e95aa1bb4d1498b64fed2",
+    "tools/sync_tool_registry.py": "249953208e5ea322e83480859d56c562b06542dd46262eb559ffe22fe0879185"
+  },
+  "date": "2026-11-03",
+  "historical_evidence": "Prior source hashes and reports preserved"
+}

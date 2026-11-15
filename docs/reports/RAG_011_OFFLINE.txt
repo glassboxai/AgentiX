@@ -1,0 +1,194 @@
+........................................................................ [  7%]
+........................................................................ [ 14%]
+........................................................................ [ 22%]
+........................................................................ [ 29%]
+........................................................................ [ 36%]
+........................................................................ [ 44%]
+........................................................................ [ 51%]
+........................................................................ [ 58%]
+.........F.............................................................. [ 66%]
+........................................................................ [ 73%]
+........................................................................ [ 80%]
+..................................F..................................... [ 88%]
+........................................................................ [ 95%]
+............................................                             [100%]
+================================== FAILURES ===================================
+___________ test_view_binds_controller_and_preserves_launch_options ___________
+
+    def test_view_binds_controller_and_preserves_launch_options():
+        """Verify view binds controller and preserves launch options."""
+        from agentix.ui.view import build_view, launch
+    
+        events = []
+    
+        class Component:
+            """Provide Component for the enclosing trusted test fixture."""
+    
+            def __init__(self, *args, **kwargs):
+                """Provide init for the enclosing trusted test fixture."""
+                self.kwargs = kwargs
+    
+            def __enter__(self):
+                """Provide enter for the enclosing trusted test fixture."""
+                return self
+    
+            def __exit__(self, *args):
+                """Provide exit for the enclosing trusted test fixture."""
+                return False
+    
+            def __getattr__(self, name):
+                """Provide getattr for the enclosing trusted test fixture."""
+    
+                def event(**kwargs):
+                    """Provide event for the enclosing trusted test fixture."""
+                    events.append((name, kwargs))
+                    return self
+    
+                return event
+    
+        gr = SimpleNamespace(
+            **{
+                name: Component
+                for name in (
+                    "State",
+                    "Sidebar",
+                    "Tabs",
+                    "Tab",
+                    "JSON",
+                    "Dropdown",
+                    "InputHTMLAttributes",
+                    "Blocks",
+                    "Row",
+                    "Column",
+                    "Markdown",
+                    "HTML",
+                    "Chatbot",
+                    "Textbox",
+                    "Button",
+                    "Accordion",
+                    "Checkbox",
+                    "Group",
+                    "TextArea",
+                    "Code",
+                    "Number",
+                    "Dataframe",
+                    "Timer",
+                )
+            },
+            themes=SimpleNamespace(Base=Component),
+            Request=type("Request", (), {}),
+        )
+        controller = Mock()
+        controller.get_installed_tools_catalog.return_value = "No tools installed yet."
+        from agentix.controllers.sessions import SessionRegistry
+    
+>       view = build_view(SessionRegistry(lambda session_id: controller), gradio_module=gr)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+..\AgentiX_v5\tests\unit\test_composition.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\agentix\ui\shell.py:113: in build_view
+    build_applications_frontend(
+src\agentix\ui\applications_front.py:420: in build_applications_frontend
+    build_apps_catalog(gr, backend, bind, session_state, workspace, progress, maintenance)
+src\agentix\ui\apps_catalog_frontend.py:56: in build_apps_catalog
+    build_candidate_panel(gr, backend, bind, session_state, workspace, progress)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+gr = namespace(State=<class 'test_composition.test_view_binds_controller_and_preserves_launch_options.<locals>.Component'>,...t_view_binds_controller_and_preserves_launch_options.<locals>.Component'>), Request=<class 'test_composition.Request'>)
+backend = <agentix.controllers.applications_back.ApplicationsBackend object at 0x00000174AA588F90>
+bind = <function build_view.<locals>.bind at 0x00000174AA50D760>
+session_state = <test_composition.test_view_binds_controller_and_preserves_launch_options.<locals>.Component object at 0x00000174AA5883D0>
+workspace = {'status': <test_composition.test_view_binds_controller_and_preserves_launch_options.<locals>.Component object at 0x00...position.test_view_binds_controller_and_preserves_launch_options.<locals>.Component object at 0x00000174AA591F50>, ...}
+progress = <test_composition.test_view_binds_controller_and_preserves_launch_options.<locals>.Component object at 0x00000174AA5884D0>
+
+    def build_candidate_panel(
+        gr: Any, backend: Any, bind: Any, session_state: Any, workspace: dict, progress: Any
+    ) -> None:
+        """Wire search, integer spinner and owner-checked acceptance without starting agents early."""
+        dialog = workspace["dialog"]
+        operation = (
+            {"show_progress": "full", "show_progress_on": progress} if progress is not None else {}
+        )
+        with gr.Column(elem_id="application-candidates-panel"):
+            gr.Markdown("### Application tool candidates")
+            status = gr.Markdown(
+                backend.retrieval.startup_message, elem_id="application-candidates-status"
+            )
+            limit = gr.Number(
+                value=policy.DEFAULT_SEARCH_LIMIT,
+                minimum=policy.MIN_SEARCH_LIMIT,
+                maximum=policy.MAX_SEARCH_LIMIT,
+                step=1,
+                precision=0,
+                label="Candidate limit",
+                interactive=True,
+                elem_id="application-candidate-limit",
+            )
+>           candidates = gr.CheckboxGroup(
+                         ^^^^^^^^^^^^^^^^
+                choices=[],
+                value=[],
+                label="Tools to use",
+                interactive=True,
+                elem_id="application-candidates-list",
+            )
+E           AttributeError: 'types.SimpleNamespace' object has no attribute 'CheckboxGroup'
+
+src\agentix\ui\application_candidates_front.py:44: AttributeError
+______________________ test_release_reference_is_current ______________________
+
+    def test_release_reference_is_current():
+        """Fail the offline suite whenever source and maintained reference diverge."""
+        root = Path(__file__).resolve().parents[2]
+>       assert build_documents(root, check=True) == []
+E       AssertionError: assert ['tests__test...s_browser.md'] == []
+E         
+E         Left contains one more item: 'tests__test_application_candidates_browser.md'
+E         Use -v to get more diff
+
+..\AgentiX_v5\tests\unit\test_reference_freshness.py:49: AssertionError
+============================== warnings summary ===============================
+tests/test_retrieval_adapters.py: 8 warnings
+tests/test_retrieval_catalog.py: 18 warnings
+tests/test_retrieval_policy.py: 2 warnings
+tests/test_tool_retrieval.py: 12 warnings
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\chromadb\api\models\CollectionCommon.py:155: DeprecationWarning: legacy embedding function config
+    return load_collection_configuration_from_json(self._model.configuration_json)
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:425: DeprecationWarning: function_calling_llm is deprecated and will be removed in a future release.
+    if self.function_calling_llm and not isinstance(
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:433: DeprecationWarning: deprecated
+    if self.allow_code_execution:
+
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+tests/unit/test_compatibility.py::test_ui_startup_restores_stdout_on_launch_error
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\crewai\agent\core.py:444: DeprecationWarning: deprecated
+    if self.reasoning and self.planning_config is None:
+
+tests/unit/test_message_dialog.py::test_wrappers_preserve_the_handler_signature_for_request_injection
+  C:\Users\xpiku\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\AgentiX\v5\environments\7d6df7e204a38b63\Lib\site-packages\gradio\helpers.py:1193: UserWarning: Unexpected argument. Filling with None.
+    warnings.warn("Unexpected argument. Filling with None.")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/unit/test_composition.py::test_view_binds_controller_and_preserves_launch_options
+FAILED tests/unit/test_reference_freshness.py::test_release_reference_is_current
+2 failed, 978 passed, 91 deselected, 59 warnings in 86.34s (0:01:26)

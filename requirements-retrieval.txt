@@ -1,0 +1,2 @@
+# Optional independent tool-retrieval component; not an agent runtime integration.
+chromadb==1.5.9

@@ -1,0 +1,12 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "reviewed against raw evidence",
+  "review_notes": [
+    "The project link is implemented in the header, not merely report reference.",
+    "No unresolved defects reported means none observed in this scoped check; it is not a global correctness guarantee.",
+    "Typography values are observed reference targets; the browser specifically asserts h1 weight and local font family in addition to control geometry."
+  ],
+  "final_report": "UI013_REFERENCE_CONTROLS.md"
+}

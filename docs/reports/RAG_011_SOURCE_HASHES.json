@@ -1,0 +1,18 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "src/agentix/controllers/application_candidates.py": "dd037acb3dadb1463ddd7ab9b3683db06c9a7d60bdf90241aec98560823e7f70",
+    "src/agentix/controllers/applications_back.py": "b009862932d0c36084a6d9194559bb1120f9eabbbad0233dac7967f0a1aed1fe",
+    "src/agentix/ui/application_candidates_front.py": "88d245a37c69681bddffd11f67e57f6c7406012f0bbe8dc2206e5589e8c72d26",
+    "src/agentix/ui/assets/style.css": "661616947c6dacd18a27a6cbc1cc6016fdbaa31885f9a89e77828bcff5db8a66",
+    "tests/test_application_candidates.py": "0a0a5a4b8446ed2a74df06703ebde0bda08143ff7cb8a544c6680350f69046d4",
+    "tests/test_application_candidates_browser.py": "e1377f2150c540ec76f28683cbeee3ef2540e4a900dd7743685279ec8b542df0",
+    "tests/unit/test_composition.py": "f44f8dfeb23fad4e16ace6dc53bc83d0bb9c9ee3d8103154030695148cfb6af2",
+    "docs/specs/053-candidate-checkboxes.md": "03c1808d0a6e42ec54f8949bb5f3512d35b2e560148528c42a4abea8955fb8cd"
+  },
+  "unchanged_tools_source_sha256": {
+    "src/agentix/ui/tools_front.py": "f84384cc6af6ad0ad2cbd8ad9d792c445708f21e3d4aac8a2745342ca7ef34c3",
+    "src/agentix/ui/message_dialog.py": "a9682495eb880ff0204731730ad8060e7936ed25bad3d25d2be5dff003a2a642",
+    "src/agentix/controllers/tools_back.py": "848a2d5bc69f14909c0be1f3a1660f377fedee3d636c9e1dcf6d7632d14a750e"
+  }
+}

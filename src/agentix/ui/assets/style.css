@@ -1,0 +1,477 @@
+/* UI-012: reference palette adapted to application controls, not page resets. */
+:root, .gradio-container {
+  --bg: #050608; --bg-soft: #0b0d11; --text: #f1f3f5;
+  --muted: #8d949d; --line: rgba(255,255,255,.10);
+  --accent: #7ee7ff; --glass: rgba(255,255,255,.035);
+  font-family: Inter, Arial, sans-serif !important;
+  background: var(--bg) !important; color: var(--text) !important;
+  --body-background-fill: #050608; --body-background-fill-dark: #050608;
+  --body-text-color: #f1f3f5; --body-text-color-dark: #f1f3f5;
+  --block-background-fill: #0b0d11; --block-background-fill-dark: #0b0d11;
+  --input-background-fill: #10141b; --input-background-fill-dark: #10141b;
+  --block-border-color: #29303b; --block-border-color-dark: #29303b;
+  --input-border-color: #394352; --input-border-color-dark: #394352;
+  --block-label-text-color: #c8cdd3; --block-label-text-color-dark: #c8cdd3;
+  --block-title-text-color: #f1f3f5; --block-title-text-color-dark: #f1f3f5;
+  --input-text-color: #f1f3f5; --input-text-color-dark: #f1f3f5;
+  --background-fill-primary: #0b0d11; --background-fill-primary-dark: #0b0d11;
+  --background-fill-secondary: #111720; --background-fill-secondary-dark: #111720;
+  --block-label-background-fill: #0b0d11; --block-label-background-fill-dark: #0b0d11;
+  --code-background-fill: #10141b; --code-background-fill-dark: #10141b;
+  --panel-border-color: #29303b; --panel-border-color-dark: #29303b;
+}
+body { background: #050608; }
+.gradio-container { width: 100% !important; max-width: none !important;
+  box-sizing: border-box; padding: 14px 18px !important; }
+.gradio-container * { font-family: Inter, Arial, sans-serif !important; }
+.agentix-brand { display: flex; align-items: center; gap: 24px; padding: 8px 0 28px;
+  margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.agentix-identity { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.agentix-identity img { width: 64px; height: 64px; object-fit: contain; }
+.agentix-identity h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 500; letter-spacing: -.035em;
+  margin: 0; color: var(--text); }
+.agentix-tagline { border-left: 1px solid var(--line); padding-left: 24px; }
+.agentix-tagline p { margin: 2px 0; font-size: 14px; color: var(--muted); }
+.agentix-tagline .brand-focus { color: var(--accent); font-size: 19px; font-weight: 600; }
+#agentix-workspace { gap: 24px; align-items: start; }
+#agentix-chat { border: 1px solid var(--line); border-radius: 12px; }
+#agentix-chat .bot { background: #111720 !important; color: var(--text) !important; }
+#agentix-chat .user { background: #15323b !important; color: var(--text) !important; }
+#agentix-chat .prose { opacity: 1 !important; }
+#agentix-chat .icon-button-wrapper, #agentix-chat label svg { display: none !important; }
+.gradio-container .prose, .gradio-container .prose p,
+.gradio-container .prose h3, .gradio-container .prose li { color: var(--text); }
+.gradio-container .prose :not(pre) > code { color: var(--text) !important;
+  background: var(--code-background-fill) !important;
+  border: 1px solid var(--panel-border-color) !important; }
+.gradio-container .prose pre { background: var(--code-background-fill) !important;
+  border: 1px solid var(--panel-border-color) !important; }
+.gradio-container label, .gradio-container textarea { color: var(--text) !important; }
+.gradio-container textarea { background: #10141b !important; }
+.gradio-container button { border-radius: 8px; }
+.gradio-container button.primary { background: var(--accent) !important; color: #061016 !important; }
+.gradio-container :focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; }
+#query-composer { align-items: end; flex-wrap: nowrap; gap: 10px; }
+#send-query { flex: 0 0 46px !important; min-width: 46px !important; width: 46px;
+  height: 46px; font-size: 0 !important; padding: 0; margin-bottom: 3px; }
+#send-query::after { content: '➤' / ''; font-size: 22px; line-height: 1; }
+.gradio-container details { border-bottom: 1px solid var(--line); padding: 12px 2px; }
+.gradio-container summary { cursor: pointer; color: var(--text); font-weight: 500; }
+.gradio-container details[open] summary { color: var(--accent); margin-bottom: 12px; }
+.gradio-container pre { white-space: pre-wrap !important; overflow-wrap: anywhere;
+  max-height: 320px; overflow: auto; font-size: 12px; background: #080b0f !important; }
+.validation-cases, .catalog-list { max-height: 360px; overflow: auto; scrollbar-gutter: stable; }
+.case-count { color: var(--accent) !important; font-weight: 600; }
+#validation-panel { border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+.result-table { max-width: 100%; overflow-x: auto; }
+.gradio-container table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.gradio-container th, .gradio-container td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.gradio-container th { color: var(--accent); }
+.result-table table { min-width: 360px; }
+.result-table th, .result-table td { white-space: nowrap; overflow-wrap: normal; }
+.execution-result > p:first-of-type { font-size: 24px; margin: 16px 0; }
+@media (max-width: 900px) {
+  .gradio-container { padding: 18px !important; }
+  .agentix-brand { align-items: start; flex-wrap: wrap; gap: 16px; }
+  .agentix-tagline { border-left: 0; padding-left: 0; }
+  #agentix-workspace { flex-direction: column; }
+  #agentix-workspace > div { width: 100%; min-width: 0 !important; }
+  .validation-cases { max-height: 280px; }
+  #agentix-chat .bubble { margin: 10px !important; max-width: calc(100% - 20px) !important; }
+  #agentix-chat .message { min-width: 0; max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* UI-013: match the observed reference without changing widget semantics. */
+.gradio-container { font-size: 14px; font-weight: 400; line-height: 1.6; }
+.gradio-container *, .gradio-container *::before, .gradio-container *::after {
+  border-radius: 0 !important;
+}
+.gradio-container h2, .gradio-container h3 { font-weight: 500; letter-spacing: -.035em; }
+.gradio-container textarea, .gradio-container input, .gradio-container label {
+  font-size: 14px !important; font-weight: 400; line-height: 1.4;
+}
+.gradio-container button { font-size: 16px; font-weight: 600; line-height: 24px; }
+.project-link { display: inline-block; color: var(--accent) !important;
+  font-size: 12px; font-weight: 400; text-underline-offset: 4px; }
+.gradio-container input[type="checkbox"] {
+  appearance: none !important; min-width: 20px; flex-shrink: 0;
+  width: 20px !important; height: 20px !important; padding: 0 !important;
+  border: 2px solid var(--muted) !important; background-color: var(--bg-soft) !important;
+  background-image: none !important; background-position: center !important;
+  background-repeat: no-repeat !important; background-size: 16px 16px !important;
+  cursor: pointer; vertical-align: middle;
+}
+.gradio-container input[type="checkbox"]:checked {
+  border-color: var(--accent) !important; background-color: var(--accent) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10l4 4 8-9' fill='none' stroke='%23061016' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+.gradio-container input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent) !important; outline-offset: 3px;
+}
+.gradio-container input[type="checkbox"]:disabled { opacity: .5; cursor: not-allowed; }
+@media (forced-colors: active) {
+  .gradio-container input[type="checkbox"] {
+    forced-color-adjust: auto; appearance: auto !important; background-image: none !important;
+  }
+}
+
+/* UI-MODEL-001: scroll each native sidebar independently of the conversation. */
+#agentix-sidebar { border-right: 1px solid var(--line); }
+#agentix-sidebar .sidebar-content,
+#tools-sidebar .sidebar-content,
+#applications-sidebar .sidebar-content { overflow-y: auto; max-height: 100dvh; }
+#agentix-sidebar textarea,
+#tools-sidebar textarea,
+#applications-sidebar textarea { max-height: 48dvh; overflow-y: auto; }
+#agentix-sidebar button,
+#tools-sidebar button,
+#applications-sidebar button { font-size: 14px; }
+#model-status { overflow-wrap: anywhere; font-size: 12px; }
+
+@media (max-width: 700px) {
+  #agentix-sidebar { max-width: calc(100vw - 36px); }
+}
+
+/* Hidden sidebar controls must also leave keyboard and accessibility navigation. */
+#agentix-sidebar:not(.open) .sidebar-content,
+#tools-sidebar:not(.open) .sidebar-content,
+#applications-sidebar:not(.open) .sidebar-content { visibility: hidden; pointer-events: none; }
+
+/* UI-MODEL-002: match NexisNodes/aXiom Glass Box sidebar secondary buttons. */
+#agentix-sidebar button.secondary,
+#tools-sidebar button.secondary,
+#applications-sidebar button.secondary {
+  background: var(--glass) !important; color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+}
+#agentix-sidebar button.secondary:hover:not(:disabled),
+#tools-sidebar button.secondary:hover:not(:disabled),
+#applications-sidebar button.secondary:hover:not(:disabled) {
+  background: rgba(255,255,255,.07) !important; border-color: var(--accent) !important;
+}
+#agentix-sidebar button.secondary:focus-visible,
+#tools-sidebar button.secondary:focus-visible,
+#applications-sidebar button.secondary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+#agentix-sidebar button.secondary:disabled,
+#tools-sidebar button.secondary:disabled,
+#applications-sidebar button.secondary:disabled { opacity: .5; cursor: not-allowed; }
+
+/* V7-068: one collapsible, resizable right-hand sidebar per tab.
+   The width custom property overrides Gradio's inline width/offset so the
+   maintained resizer owns the geometry; the fallback keeps the approved default. */
+#tools-sidebar,
+#applications-sidebar {
+  border-left: 1px solid var(--line);
+  width: var(--agentix-sidebar-width, 420px) !important;
+}
+#tools-sidebar { --agentix-sidebar-width: 420px; }
+#applications-sidebar { --agentix-sidebar-width: 380px; }
+
+/* V7-068-D2: contain each tab sidebar inside its own tab. Gradio renders a
+   sidebar as a fixed full-viewport overlay, which covered the header and the tab
+   bar; absolute positioning against the tab column keeps it inside the tab.
+   V7-068-D3: slide with `right` instead of `transform`. A transform makes the
+   panel the containing block for fixed descendants, which displaced Gradio's
+   `position: fixed` dropdown list far from its input. */
+#tools-sidebar,
+#applications-sidebar {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: calc(var(--agentix-sidebar-width, 420px) * -1) !important;
+  height: auto !important;
+  transform: none !important;
+  transition: right .3s ease-in-out;
+}
+/* V7-071: the open panel keeps a real gap from the workspace instead of sitting
+   flush against it; the resizer handle fills that gap exactly. */
+#tools-sidebar.open,
+#applications-sidebar.open { right: var(--agentix-sidebar-gap) !important; }
+#tools-tab,
+#applications-tab { --agentix-sidebar-gap: 12px; }
+#tools-tab { overflow-x: clip; }
+#applications-tab { overflow-x: clip; }
+
+/* The tab's own workspace absorbs the panel width plus the gap on both sides of
+   the panel edge, so content stops one gap short of the border. The outer wrap
+   must not shrink the tab bar, so its overlap padding is cancelled. */
+.wrap.sidebar-parent:has(#tools-sidebar.open),
+.wrap.sidebar-parent:has(#applications-sidebar.open) { padding-right: 0 !important; }
+#tools-tab > .column:has(> #tools-sidebar.open) > #agentix-workspace,
+#applications-tab > .column:has(> #applications-sidebar.open) > #applications-workspace {
+  padding-right: calc(
+    var(--agentix-sidebar-width, 420px) + var(--agentix-sidebar-gap) * 2
+  );
+  transition: padding-right .3s ease-in-out;
+}
+#applications-tab > .column:has(> #applications-sidebar.open) > #applications-workspace {
+  padding-right: calc(
+    var(--agentix-sidebar-width, 380px) + var(--agentix-sidebar-gap) * 2
+  );
+}
+
+/* The drag handle sits on the inner edge, clear of the native toggle button. */
+.agentix-sidebar-resizer {
+  position: absolute; top: 0; bottom: 0; width: 12px; z-index: 1002;
+  padding: 0; border: 0; background: transparent; cursor: col-resize;
+  touch-action: none;
+}
+#tools-sidebar .agentix-sidebar-resizer,
+#applications-sidebar .agentix-sidebar-resizer { left: -12px; }
+.agentix-sidebar-resizer:hover,
+.agentix-sidebar-resizer:focus-visible,
+.agentix-sidebar-resizer.agentix-resizing {
+  background: var(--accent); opacity: .35; outline: none;
+}
+#tools-sidebar:not(.open) .agentix-sidebar-resizer,
+#applications-sidebar:not(.open) .agentix-sidebar-resizer { display: none; }
+
+/* V7-070: a small inset keeps both right panels clear of the workspace edge
+   they border, instead of the content starting at the panel's own edge. */
+#tools-sidebar .sidebar-content,
+#applications-sidebar .sidebar-content { padding: 22px 22px 22px 40px; }
+
+/* UI-REVIEW-020: keep relocated human-review text readable in the dark workspace. */
+#authorization-review {
+  background: var(--bg-soft) !important; color: var(--text) !important;
+  --panel-background-fill: var(--bg-soft);
+  --panel-background-fill-dark: var(--bg-soft);
+}
+#authorization-review .prose {
+  background: transparent !important; color: var(--text) !important;
+}
+
+/* Gradio's nested group styler owns an opaque default fill independently of the group. */
+#authorization-review .styler { background: var(--bg-soft) !important; }
+
+/* V4-UI-02: trusted isolated apps use this same stylesheet; iframe CSS does not inherit. */
+.gradio-container { position: relative; }
+.application-close-button {
+  position: absolute !important; top: 8px !important; right: 8px !important;
+  width: 32px !important; min-width: 32px !important; max-width: 32px !important;
+  height: 32px !important; padding: 0 !important; z-index: 20;
+  font-size: 0 !important; line-height: 0 !important;
+  background: var(--glass) !important; color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+}
+.application-close-button::after { content: "×" / ""; font-size: 24px; line-height: 28px; }
+.application-close-button:hover { background: #442229 !important; border-color: #ed8599 !important; }
+.gradio-container footer { display: none !important; }
+
+/* V4-UI-03: one secondary-control palette for parent tabs and isolated widgets. */
+.gradio-container button.secondary {
+  background: var(--glass) !important; color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+}
+.gradio-container button.secondary:hover:not(:disabled) {
+  background: rgba(255,255,255,.07) !important; border-color: var(--accent) !important;
+}
+.gradio-container .block, .gradio-container .styler, .gradio-container .form {
+  border-color: var(--line) !important;
+}
+.agentix-application-frame { width: 100%; height: 760px; border: 0; }
+
+
+/* Shared operation feedback stays central and leaves review/close controls usable. */
+#agentix-operation-progress { min-height: 0; height: 0; margin: 0; padding: 0; border: 0; }
+.agentix-busy-panel,
+#agentix-operation-progress .wrap {
+    position: fixed !important; top: 45vh !important; left: 50vw !important;
+    transform: translate(-50%, -50%); z-index: 10000;
+    width: min(400px, 85vw) !important; min-height: 84px;
+    padding: 20px !important; background: #10141c !important; color: #e8f3ff !important;
+    border: 1px solid #5bd9ef !important; border-radius: 0 !important;
+    box-shadow: 0 8px 36px #0009; pointer-events: none;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+.agentix-spinner {
+    display: inline-block; width: 26px; height: 26px; flex-shrink: 0;
+    border: 3px solid #29434b; border-top-color: #57e8ff;
+    border-radius: 50% !important; animation: agentix-spin 0.8s linear infinite;
+}
+@keyframes agentix-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .agentix-spinner { animation: none; border-color: #57e8ff; } }
+#generated-application { border: 1px solid #4a6775 !important; padding: 14px !important; margin-top: 18px; }
+#generated-application-heading { color: #76e8f8; margin-bottom: 10px; }
+#generated-application-heading-row { display: flex; align-items: center; gap: 12px; }
+#generated-application-web { display: inline-block; padding: 4px 10px; border: 1px solid var(--accent); color: var(--accent); font: 12px Inter, sans-serif; text-decoration: none; }
+#generated-application-web:hover, #generated-application-web:focus-visible { background: #162630; color: #f1f3f5; }
+#applications-file-editor { max-height: 560px; overflow: auto; }
+
+/* Respect Gradio completion/error hiding; central placement must not revive a finished tracker. */
+#agentix-operation-progress .wrap.hidden,
+#agentix-operation-progress .wrap.hide { display: none !important; }
+
+/* The work area uses available width; the one shared Sidebar keeps its own space. */
+#agentix-tabs { width: 100%; min-width: 0; }
+.agentix-brand { padding-bottom: 14px; margin-bottom: 8px; }
+
+#applications-workspace { align-items: flex-start; gap: 18px; }
+@media (max-width: 1000px) { #applications-workspace { flex-direction: column; } }
+
+#applications-tool-panes { flex-wrap: nowrap; gap: 10px; }
+#applications-tool-panes > .column { min-width: 220px !important; }
+@media (max-width: 1100px) { #applications-tool-panes { flex-wrap: wrap; } }
+
+/* Generated applications share the parent palette and expose compact owned controls. */
+.application-canvas { position: relative; padding-top: 42px !important; }
+#application_execute, #application_edit, #application_stop, #application_refresh {
+  position: absolute !important; top: 8px !important; width: 32px !important;
+  min-width: 32px !important; height: 32px !important; z-index: 1000;
+  padding: 0 !important; font-size: 0 !important; border-radius: 0 !important;
+}
+#application_stop {right: 12px !important;}
+#application_edit {right: 50px !important;}
+#application_execute {right: 88px !important;}
+#application_refresh {right: 126px !important;}
+#application_execute::after {content: '▶'; font-size: 16px;}
+#application_execute.application-running::after {content: '■';}
+#application_edit::after {content: '✎'; font-size: 20px;}
+#application_stop::after {content: '×'; font-size: 24px;}
+#application_refresh::after {content: '⟳'; font-size: 20px;}
+.application-canvas .block, .application-canvas input, .application-canvas textarea,
+.application-canvas button {border-color: transparent !important; border-radius: 0 !important;}
+.application-layout-active > .row, .application-layout-active > .row > .column {position: static !important; min-height: 0 !important;}
+.application-layout-handle {display: none !important; position: absolute !important; z-index: 50; width: 24px !important; min-width: 24px !important; height: 24px !important; padding: 0 !important; touch-action: none;}
+.application-layout-handle.move {left: -4px; top: -18px; cursor: move;}
+.application-layout-handle.resize {right: -4px; bottom: -4px; cursor: nwse-resize;}
+.application-layout-editing .application-layout-handle {display: block !important;}
+.application-layout-editing [id]:has(> .application-layout-handle):hover {box-shadow: 0 0 10px 3px var(--color-accent, #32c9dd);}
+.application-layout-notice {position: fixed; top: 12px; left: 12px; z-index: 1000; font: 12px Inter, sans-serif;}
+
+/* V5-037: keep empty Gradio wrappers invisible and all editing grips reachable. */
+.application-layout-active .form, .application-layout-active .styler,
+.application-layout-active .gr-group {
+  border: 0 !important; box-shadow: none !important; background: transparent !important;
+}
+.application-layout-active .application-editable-element {background: transparent !important;}
+.application-layout-editing .application-editable-element {overflow: visible !important; background: var(--block-background-fill, #0b0d11) !important;}
+.application-layout-editing .application-editable-element > label,
+.application-layout-editing .application-editable-element > .label-wrap {padding-left: 28px !important;}
+.application-layout-editing .application-editable-element:hover {box-shadow: 0 0 10px 3px var(--accent) !important;}
+.application-layout-active .form, .application-layout-active .styler, .application-layout-active .row, .application-layout-active .column {overflow: visible !important;}
+.application-layout-handle.move {left: 2px !important; top: 2px !important;}
+.application-layout-handle.resize {right: 2px !important; bottom: 2px !important;}
+.application-layout-handle {line-height: 22px !important; font-size: 12px !important; background: var(--application-handle-color, #162630) !important; color: #7ee7ff !important;}
+.application-visibility-toggle {display: none !important; position: absolute !important; width: 16px !important; min-width: 16px !important; height: 16px !important; margin: 0 !important; padding: 0 !important; z-index: 60; cursor: pointer; accent-color: #32c9dd;}
+.application-layout-editing .application-visibility-toggle {display: block !important; appearance: none !important; border: 2px solid var(--accent) !important; background-color: #050608 !important;}
+.gradio-container .application-layout-editing input.application-visibility-toggle[type="checkbox"] {border-color: var(--accent) !important; background-color: #050608 !important;}
+.gradio-container .application-layout-editing input.application-visibility-toggle:checked[type="checkbox"] {border-color: var(--accent) !important; background-color: var(--accent) !important;}
+.gradio-container .application-layout-editing .application-visibility-toggle:focus-visible {outline: 2px solid var(--text) !important; outline-offset: 2px;}
+/* V7-068-D5: the tools legend sits below the play/edit/close toolbar, inside the
+   canvas, so it never covers the application controls. */
+#application-color-legend {position: absolute; right: 12px; top: 48px; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; width: max-content !important; max-width: 220px; padding: 8px 10px; background: #0b0d11ee; border: 1px solid var(--line); font: 12px Inter, sans-serif; color: var(--text); pointer-events: none; max-height: 80vh; overflow: hidden;}
+/* V7-068-D4: a widget always paints above the tools legend. */
+.application-layout-active [id^="application_"] {z-index: 2;}
+.application-legend-title {margin: 0 0 2px; font-weight: 600; color: #76e8f8;}
+.application-legend-row {display: flex; align-items: center; gap: 8px;}
+.application-legend-swatch {width: 12px; height: 12px; flex: 0 0 12px; border: 1px solid #0006;}
+.application-legend-name {white-space: nowrap;}
+.application-hidden-control {display: none !important;}
+.agentix-internal-input {display: none !important;}
+#chathelper-window {display: none; position: fixed; left: 25vw; top: 22vh; width: 480px; height: 460px; min-width: 300px; min-height: 100px; max-width: 95vw; max-height: 90vh; overflow: auto; resize: both; z-index: 20000; border: 1px solid var(--accent) !important; background: var(--bg-soft) !important; padding: 10px !important; box-shadow: 0 10px 40px #000a;}
+#chathelper-window.chathelper-open {display: block !important;}
+#chathelper-window.chathelper-minimized {height: 52px !important; min-height: 52px; resize: horizontal; overflow: hidden;}
+#chathelper-title {cursor: move; padding: 8px; user-select: none; background: #162630;}
+#chathelper-title button {float: right; width: 28px; min-width: 28px; height: 26px; padding: 0; margin-left: 4px;}
+#chathelper-file {padding: 4px 8px 8px; font: 12px Inter, sans-serif; color: var(--accent); border-bottom: 1px solid var(--line); margin-bottom: 6px; word-break: break-all;}
+#chathelper-menu {position: fixed; z-index: 20001; background: #162630; color: #f1f3f5; border: 1px solid #7ee7ff; padding: 8px; cursor: pointer;}
+#chathelper-transcript {min-height: 120px; max-height: 46vh; overflow: auto; padding: 4px 8px; border: 1px solid var(--line); background: #0b0d11;}
+#chathelper-transcript svg {max-width: 100%; height: auto;}
+#chathelper-transcript code.language-mermaid.mermaid-failed {color: #ffb4a2;}
+#applications-tool-panes {position: relative; padding-bottom: 18px;}
+#applications-tool-panes > .column {overflow: hidden; min-width: 150px !important;}
+#applications-tool-panes .cm-scroller {overflow: auto !important;}
+.review-column-split {position: absolute !important; top: 0; bottom: 18px; width: 8px !important; min-width: 8px !important; padding: 0 !important; cursor: col-resize; z-index: 50; background: #29434b !important; opacity: .5;}
+.review-height-resize {position: absolute !important; bottom: 0; left: 0; right: 0; height: 12px !important; min-height: 12px !important; padding: 0 !important; cursor: row-resize; z-index: 50; background: #29434b !important;}
+
+/* V5-039: low-contrast dark scrollbars, with distinct hover and focus. */
+* { scrollbar-width: thin; scrollbar-color: #394754 #0b0d11; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: #0b0d11; }
+*::-webkit-scrollbar-thumb { background: #394754; border: 2px solid #0b0d11; border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #597180; }
+*::-webkit-scrollbar-corner { background: #0b0d11; }
+
+/* Generated catalog widgets inherit the parent palette without visible group frames. */
+.application-canvas .form, .application-canvas .styler {
+  border: 0 !important; box-shadow: none !important; background: transparent !important;
+}
+.application-canvas button[id^="application_"]:not(.application-layout-handle) {
+  background: var(--bg-soft, #0b0d11); color: var(--text, #f1f3f5); border: 0;
+}
+.application-canvas button[id^="application_"]:not(.application-layout-handle):hover {
+  background: #162630;
+}
+.application-canvas label:has(input[type="radio"]) {
+  background: var(--bg-soft, #0b0d11); color: var(--text, #f1f3f5); border: 0;
+}
+
+/* Modal message window: same palette as the operation panel, dismissed only by Ok. */
+#agentix-message-dialog {
+  position: fixed !important; top: 45vh !important; left: 50vw !important;
+  transform: translate(-50%, -50%); z-index: 30000;
+  width: min(420px, 85vw) !important; padding: 20px !important;
+  background: #10141c !important; color: #e8f3ff !important;
+  border: 1px solid #5bd9ef !important; border-radius: 0 !important;
+  box-shadow: 0 8px 36px #0009;
+}
+#agentix-message-text { color: #e8f3ff !important; }
+#agentix-message-ok { width: 96px; margin-left: auto; }
+
+/* Widget style window: same overlay contract as the message dialog. Position is
+   driven by custom properties so the drag can move it despite !important. The
+   window is deliberately compact and scrolls inside itself, using the shared
+   thin scrollbar declared for the rest of the application. */
+#agentix-widget-style-dialog {
+  position: fixed !important;
+  top: var(--agentix-widget-style-top, 45vh) !important;
+  left: var(--agentix-widget-style-left, 50vw) !important;
+  transform: var(--agentix-widget-style-shift, translate(-50%, -50%));
+  z-index: 30000;
+  width: min(430px, 94vw) !important; padding: 18px 16px 14px !important;
+  max-height: min(88vh, 760px); overflow-y: auto; scrollbar-gutter: stable;
+  background: #10141c !important; color: #e8f3ff !important;
+  border: 1px solid #5bd9ef !important; border-radius: 0 !important;
+  box-shadow: 0 8px 36px #0009;
+}
+#agentix-widget-style-dialog .block { padding: 2px 0 !important; min-width: 0 !important; }
+#agentix-widget-style-dialog .form { border: 0 !important; background: transparent !important; }
+#agentix-widget-style-title, #agentix-widget-style-status { color: #e8f3ff !important; }
+#agentix-widget-style-title {
+  cursor: move; user-select: none; touch-action: none;
+  margin: 0 0 6px !important; padding-bottom: 6px; border-bottom: 1px solid #5bd9ef33;
+  line-height: 1.35 !important;
+}
+#agentix-widget-style-title h3, #agentix-widget-style-title p { margin: 0 !important; }
+#agentix-widget-style-status {
+  font-size: 12px; min-height: 0; margin: 0 0 10px !important; line-height: 1.4 !important;
+  overflow: visible !important; max-height: none !important;
+}
+#agentix-widget-style-status p { margin: 0 !important; }
+#agentix-widget-style-status .prose { overflow: visible !important; max-height: none !important; }
+.agentix-widget-style-caption {
+  margin: 6px 0 0 !important; font-size: 12px !important; font-weight: 600;
+  color: #9fd8e6 !important; letter-spacing: 0.02em;
+}
+#agentix-widget-style-dialog .agentix-widget-style-caption { margin: 6px 0 0 !important; }
+#agentix-widget-style-save, #agentix-widget-style-cancel { width: 120px; }
+
+/* Selectable retrieval candidates remain legible in the narrow application catalog. */
+#application-candidate-limit input[type="number"]::-webkit-inner-spin-button { opacity: 1; }
+#application-candidates-accept { white-space: normal; }
+#application-candidates-panel { border: 1px solid var(--border-color-primary); padding: 12px; }
+
+#application-candidates-list .wrap { flex-direction: column; }
+#application-candidates-list label { white-space: normal; overflow-wrap: anywhere; }
+
+#application-candidates-list label:has(input[type="checkbox"]) {
+  background: #10141c !important; color: #e8f3ff !important;
+  border: 1px solid #39414d !important; padding: 10px !important;
+}
+#application-candidates-list label:has(input[type="checkbox"]) span {
+  color: #e8f3ff !important;
+}

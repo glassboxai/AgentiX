@@ -1,0 +1,117 @@
+{
+  "block": "V5-043",
+  "date": "2026-10-30",
+  "scope": "Generated connection code; tools and contracts unchanged; no graph in new packages",
+  "checks": {
+    "offline": {
+      "passed": 827,
+      "deselected": 85
+    },
+    "frameworks": {
+      "passed": 13,
+      "deselected": 899
+    },
+    "native_positive": {
+      "passed": 1,
+      "cases": 2
+    },
+    "native_browser": {
+      "passed": 1,
+      "repeated_runs": 2
+    },
+    "native_negative": {
+      "passed": 2,
+      "cases": [
+        "missing call rejected",
+        "duplicate call rejected"
+      ],
+      "evidence": "Each child exited nonzero without timeout, with the specific maintained rejection and no application result. Repeated case was rerun alone after ACL preparation timeout."
+    },
+    "ruff_lint": "passed",
+    "ruff_format": {
+      "passed": true,
+      "files": 321
+    },
+    "references": "passed"
+  },
+  "native_initial_issue": "First positive attempt timed out preparing Windows ACLs before child code. Isolated repeat passed. Initial negative-test assertions mistakenly treated the native failure string as a boolean; corrected without changing rejection checks.",
+  "live": {
+    "port": 7882,
+    "launcher_pid": 35316,
+    "model": "qwen3-coder:30b",
+    "simply_app": "verified, installed and visibly executed",
+    "port_7880": "not restarted",
+    "session": "3407256a3acc40f6a6014184c600582c",
+    "operation": "39df971ebde24ba18956759b91965bec",
+    "schema_version": 3,
+    "graph_fields": [],
+    "tool_changes": false,
+    "reused_widgets": 3,
+    "acceptance": {
+      "payload": {
+        "text": "Hello world"
+      },
+      "expected": {
+        "vowel_count": 3,
+        "word_count": 2,
+        "multiply_vowels": 9,
+        "multiply_words": 6
+      }
+    },
+    "application_url": "http://127.0.0.1:53317/",
+    "installed_package": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-v5-039-live-b7f2b45581eb40e89b907aa0e23516e3\\home\\data\\applications\\simply-app",
+    "native_browser": {
+      "status": "passed",
+      "widgets": 4,
+      "standalone_widgets": 0,
+      "managed_widgets_verified_in_application": 4,
+      "expectations": "host-held reviewed tool cases",
+      "repeated_combined_runs": 2,
+      "fresh_completed_events": 2
+    },
+    "validation": {
+      "status": "passed",
+      "stage": "catalog_native_browser_acceptance"
+    },
+    "visible_result": {
+      "input": "Hello world",
+      "vowels": 3,
+      "words": 2,
+      "products": [
+        9,
+        6
+      ],
+      "status": "Completed"
+    },
+    "screenshot": "C:\\Users\\xpiku\\.codex\\visualizations\\2026\\10\\30\\01a18bfe-d93d-7e22-bc14-ab2bd7b9763f\\simply-app-code-working.jpg",
+    "connection_code_sha256": "03419e24c59e380ab5ab9e4262de7cbf9d829d142a30472ee1056f9489eb9a6c"
+  },
+  "source_sha256": {
+    "src/agentix/domain/application_code.py": "a6be6a0e96be1c54571a4abbd5ffed5b8a64292bc1b54a915c0c8911b0e5b589",
+    "src/agentix/adapters/application_crewai.py": "640fae0e2fb9211ab253f94d2e9976bacd735c8f5b6715b59521cbeeb406a70f",
+    "src/agentix/application/code_package.py": "1ba541e5af3d8fe8d136b17c80351ae35ffb541eb52ababe0905a6351b356337",
+    "src/agentix/application/general_pipeline.py": "90f28b0d401866bef9d534d70f07d11061262ce00e611193364a97fd0449e0ab",
+    "src/agentix/application/general_package.py": "7ba225db01e7d384191040eb7fb80caa52246629eff5a45633afae9ebdb783c9",
+    "src/agentix/application/app_review.py": "8051697f33bedabc6e385c340e3ff74c335eb9ff4dc01e99b338b942b5692cce",
+    "src/agentix/application/app_workflow.py": "0062f5ba9b9d1ecc8404e69fdd0e14e703d1dfd5c0d71ca8318ffa0753067320",
+    "src/agentix/application/app_invocation.py": "33bedd56d098eaf3946b9cad9b35f7c87e9c6f659837635552f1f79e444adf96",
+    "src/agentix/application/general_acceptance.py": "4a032b80228c0f88f1a49e73ad4a9df81b49421d9575847aa3768955f64f7cfd",
+    "src/agentix/application/templates/code/app.py": "4d6dfaba511fd05a478de7cd16db571b6d9d3d6b79fa4140d2a6789ab617ebf5",
+    "src/agentix/application/templates/code/operation.py": "33236ca5f1dfcdc988e2f60d87fe8171d2fa573b67047c9ad2551a835f59a66b",
+    "src/agentix/application/templates/code/application_values.py": "b2696747d1b37c9f11a489c7f56c9fb83dabf4d10eefb254d07a1e0ac8544bd7",
+    "src/agentix/lab/application_artifacts.py": "e6da5131046d7ff0bb74387ebd93560d308e667bee945f1af1ed47c0b4849d4d",
+    "src/agentix/lab/application_session.py": "cb18bdc361f98964c1937f0068cb8408dc8902d35ffbaab981c833c152f6af62",
+    "src/agentix/ui/applications_front.py": "362344b013a1ed622cd453a293a9ed5b190227293d7de7f331be6322b9958c8b",
+    "tests/test_application_crews.py": "cd4847503509f93174e4f05491a73d257787b2c383af47729aaff191f6721297",
+    "tests/test_code_application.py": "8ef6c7f2294f916bd1d8354548336490caae1a5a201e573a4a3646d8eeb4a8cc"
+  },
+  "provenance": "Engineer-authored and manually reviewed; no report inference. Framework/native/browser fixtures are independently authored, outside excluded project generated_tools.",
+  "legacy_template_baselines": {
+    "src\\agentix\\application\\templates\\app.py": "396e68258f69df9bc8500eabe6ebceb05c128aae25ad192cf69dc1bbb08431f8",
+    "src\\agentix\\application\\templates\\operation.py": "a2605827259bc4184d0de8b2d25a7f6c760deb8b722f309e94574e6f5ab6f0ab"
+  },
+  "limitations": [
+    "The original random-number A complex task has not been regenerated through version 3 in this block.",
+    "Native isolation and host comparisons do not establish correctness for arbitrary future model output."
+  ]
+}

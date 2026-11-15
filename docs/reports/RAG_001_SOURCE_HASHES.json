@@ -1,0 +1,20 @@
+{
+  "real_model_evaluation_sources": {
+    "src/agentix/retrieval/service.py": "36fba7b06473400754cd975fd277a05f9a896a4aeb30a381b34b3b9d16217890",
+    "src/agentix/retrieval/contracts.py": "17b91f4c59f7af92144cb843020a929c8279fa692c195334f74846030323137c",
+    "src/agentix/retrieval/ollama.py": "4062fc32a9b19b40e3713a5e074d73e9276848b3b8f3a029c5fd2b48a951f063"
+  },
+  "final_sources": {
+    "src/agentix/retrieval/__init__.py": "918e71312048e98da4ee1103408b8857fac1bcd51e081403f0b54e3b3de3eea6",
+    "src/agentix/retrieval/contracts.py": "7777c86d57d0e6f200fae35d091df17602b89443df80244f029dd19d3e7f9705",
+    "src/agentix/retrieval/lexical.py": "2646de1d250b90fe2dcdfd36da38f0ccefa61de36caed64853ef98e66d9a5da9",
+    "src/agentix/retrieval/ollama.py": "b514907b4d9ee647291988e62620bb5b97c5fc76b3d9ad82b8d6ab5aa5cf11c5",
+    "src/agentix/retrieval/service.py": "33f1aa3859289c6de70f44dd5f2e482c64471c039a2a759a76db41f4708769e8",
+    "tests/test_tool_retrieval.py": "80a2674e9806ea5f1b583fe291fe7dfea507885aa50742bcd5fb00e5c23e9925",
+    "tests/test_retrieval_adapters.py": "c08eb9d9a07f3b7b41a524b5b4c14bd2a5f16063e19cdb71b61160c220ac64ec",
+    "tests/test_retrieval_ollama.py": "4a55a223d3d303d06f7762bbaf9ca4c1d20a99d101d1b807ea99add6ff8922f5",
+    "tools/build_reference.py": "ec5287326a559bc1997e96d039a4c647bc873efed456d765874ae6c12b52dcfc"
+  },
+  "date": "2026-11-03",
+  "note": "Real-model evaluation preceded final measured timing instrumentation, return annotations and field comments. Retrieval policy unchanged; final offline checks verify current sources. Historical package manifests are not replaced."
+}

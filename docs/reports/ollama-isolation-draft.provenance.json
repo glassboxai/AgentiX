@@ -1,0 +1,10 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "Reviewed; corrections required. Original draft retained unmodified; authoritative report: ISOLATED_PIPELINE.md.",
+  "rejected_claims": [
+    "Resolved incidents incorrectly grouped as unresolved defects.",
+    "Source hashes identify a snapshot; they do not guarantee integrity or security."
+  ]
+}

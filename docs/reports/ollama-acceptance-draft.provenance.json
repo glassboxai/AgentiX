@@ -1,0 +1,9 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "Reviewed against raw evidence; authoritative report: HUMAN_ACCEPTANCE.md.",
+  "review_notes": [
+    "Counts and limitations corroborated. Generic baseline label corrected to implemented ACCEPT-001 change in authoritative report."
+  ]
+}

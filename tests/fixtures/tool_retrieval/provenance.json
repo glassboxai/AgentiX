@@ -1,0 +1,21 @@
+{
+  "source": "C:/Users/xpiku/AppData/Local/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/AgentiX/v5/data/tools",
+  "sha256": {
+    "basic_calculator/basic_calculator_code.py": "1a00146d3e0ae2d0827a7da3f83e459ae6c59a9bc9c69e2a89ce0ab43ce73173",
+    "basic_calculator/basic_calculator_specifications.md": "2de2b5aa4de54522dd7442facda0a32ca6644ede820a8a58ee78bccfbde6ddb7",
+    "count_vowels_in_text/count_vowels_in_text_code.py": "d0c42e5de7e90eb136b89e74949e95f636277e82af8d250357abe9db190ed622",
+    "count_vowels_in_text/count_vowels_in_text_specifications.md": "59c9c55f6d8d05c1542c91960c09fdad2c6d8b95011036e90068ccd15c18f58c",
+    "count_words_in_text/count_words_in_text_code.py": "c2039cffba10e84db7aa34210f924eb33f7bc613bdb21ebbd854d97346005c56",
+    "count_words_in_text/count_words_in_text_specifications.md": "2c77957de91d0eb56fa202d70d9070139c1c1b1fd98b7ec01153437db91dc33f",
+    "random_number_generator/random_number_generator_code.py": "3850306d665c20cae9b3e7ee543e3e9be48b1686d29432dc14c99ded45c904a2",
+    "random_number_generator/random_number_generator_specifications.md": "32393c5ae2e616e6dd4c715ed5915f7a29dc2a691ec29515629909a10bcba77d"
+  },
+  "purpose": "Static retrieval fixtures; never imported or executed; not approval evidence",
+  "captured": "2026-11-03",
+  "tools": [
+    "basic_calculator",
+    "count_vowels_in_text",
+    "count_words_in_text",
+    "random_number_generator"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "model": "qwen2.5:7b",
+  "purpose": "prose report only; never engineering code/tests",
+  "endpoint": "http://127.0.0.1:11434",
+  "keep_alive": 0,
+  "reason": "installed non-reasoning smaller model, lower resource use than 14b/30b",
+  "review_status": "unverified draft",
+  "status": "completed",
+  "duration_seconds": 12.69
+}

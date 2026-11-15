@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "grips_for_all_controls": 18,
+  "nonbutton_textbox_moved_and_resized": true,
+  "config": {
+    "x": 11,
+    "y": 458,
+    "width": 902,
+    "height": 186
+  },
+  "button_colors": {
+    "background": "rgba(255, 255, 255, 0.035)",
+    "color": "rgb(241, 243, 245)"
+  }
+}

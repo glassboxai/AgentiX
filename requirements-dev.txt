@@ -1,0 +1,3 @@
+# Baseline test runner; runtime dependency locking belongs to the installation phase.
+pytest==9.1.1
+ruff==0.14.1

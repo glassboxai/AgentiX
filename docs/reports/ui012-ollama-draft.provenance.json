@@ -1,0 +1,13 @@
+{
+  "model": "qwen3:14b",
+  "endpoint": "http://127.0.0.1:11434",
+  "done": true,
+  "review_status": "reviewed against raw evidence; usable prose summary",
+  "review_notes": [
+    "Corrected the draft wording: 1440 and 390 are viewport widths in pixels, not run counts.",
+    "Contrast assertions apply to displayed result text, not a comprehensive accessibility certification.",
+    "Final report retains explicit fixture versus real-model distinctions and local font fallback."
+  ],
+  "final_report": "UI012_PRESENTATION.md",
+  "engineering_code_or_tests_generated_by_ollama": false
+}

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "app_id": "6b24eb89cc944bae902fb211fdb6dc77",
+  "name": "Four-tool workshop",
+  "package": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-v5-039-live-b7f2b45581eb40e89b907aa0e23516e3\\home\\data\\applications\\four-tool-workshop",
+  "evidence": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-v5-039-live-b7f2b45581eb40e89b907aa0e23516e3\\home\\data\\drafts\\25d619363e04420abe56c1e0d722f399\\7ca64fb65447497299736552dde88941\\reverification-2a71c9b383f44cbb8b20139a3a350d30",
+  "digest": "e543f4b0519877014a14c3438f718d599017882fe2961f11a0bbf6ffa7a01d0e",
+  "restored_gui_review": "C:\\Users\\xpiku\\AppData\\Local\\Temp\\agentix-v5-039-live-b7f2b45581eb40e89b907aa0e23516e3\\home\\data\\drafts\\25d619363e04420abe56c1e0d722f399\\7ca64fb65447497299736552dde88941",
+  "fresh_native_and_browser_gates": true,
+  "new_model_calls": 0
+}

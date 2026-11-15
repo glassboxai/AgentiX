@@ -1,0 +1,155 @@
+{
+  "url": "http://127.0.0.1:7880/",
+  "app": "Four-tool workshop",
+  "observations": [
+    {
+      "case": "unseen_user_values",
+      "inputs": {
+        "basic_calculator": {
+          "operation": "subtract",
+          "num1": 83.5,
+          "num2": 19.25
+        },
+        "count_english_vowels": {
+          "text": "Reliable widgets stay independent."
+        },
+        "count_words_in_text": {
+          "text": "Reliable widgets stay independent."
+        },
+        "random_number_draw": {
+          "count": 7,
+          "lower_bound": -9,
+          "upper_bound": 12,
+          "seed": 20261030
+        }
+      },
+      "expected": {
+        "basic_calculator": 64.25,
+        "count_english_vowels": 11,
+        "count_words_in_text": 4,
+        "random_number_draw": [
+          8,
+          -2,
+          8,
+          1,
+          4,
+          -8,
+          7
+        ]
+      },
+      "status": "passed",
+      "fresh_event": "823de5b4fe29499e9675c82f545504a4"
+    },
+    {
+      "case": "same_seed_repeat",
+      "inputs": {
+        "basic_calculator": {
+          "operation": "subtract",
+          "num1": 83.5,
+          "num2": 19.25
+        },
+        "count_english_vowels": {
+          "text": "Reliable widgets stay independent."
+        },
+        "count_words_in_text": {
+          "text": "Reliable widgets stay independent."
+        },
+        "random_number_draw": {
+          "count": 7,
+          "lower_bound": -9,
+          "upper_bound": 12,
+          "seed": 20261030
+        }
+      },
+      "expected": {
+        "basic_calculator": 64.25,
+        "count_english_vowels": 11,
+        "count_words_in_text": 4,
+        "random_number_draw": [
+          8,
+          -2,
+          8,
+          1,
+          4,
+          -8,
+          7
+        ]
+      },
+      "status": "passed",
+      "fresh_event": "2b9c358dc5ec4beaaae8d6c9d52b5c1c"
+    },
+    {
+      "case": "new_values_and_zero_clear_old_results",
+      "inputs": {
+        "basic_calculator": {
+          "operation": "multiply",
+          "num1": 0,
+          "num2": 7
+        },
+        "count_english_vowels": {
+          "text": "caf\u00e9 and tea"
+        },
+        "count_words_in_text": {
+          "text": "caf\u00e9 and tea"
+        },
+        "random_number_draw": {
+          "count": 0,
+          "lower_bound": 5,
+          "upper_bound": 5,
+          "seed": 23
+        }
+      },
+      "expected": {
+        "basic_calculator": 0.0,
+        "count_english_vowels": 4,
+        "count_words_in_text": 3,
+        "random_number_draw": []
+      },
+      "status": "passed",
+      "fresh_event": "0fc7b670658b4c6b853b19aa5e384bb8"
+    },
+    {
+      "case": "fractional_count_rejected_without_rounding",
+      "status": "passed",
+      "all_old_results_cleared": true
+    },
+    {
+      "case": "visible_demonstration",
+      "inputs": {
+        "basic_calculator": {
+          "operation": "multiply",
+          "num1": 17,
+          "num2": 6
+        },
+        "count_english_vowels": {
+          "text": "Hello World!"
+        },
+        "count_words_in_text": {
+          "text": "Hello World!"
+        },
+        "random_number_draw": {
+          "count": 6,
+          "lower_bound": 1,
+          "upper_bound": 10,
+          "seed": 7
+        }
+      },
+      "expected": {
+        "basic_calculator": 102.0,
+        "count_english_vowels": 3,
+        "count_words_in_text": 2,
+        "random_number_draw": [
+          6,
+          3,
+          7,
+          1,
+          2,
+          9
+        ]
+      },
+      "status": "passed",
+      "fresh_event": "74756ece2c91467ba967629109fe1798"
+    }
+  ],
+  "unique_control_ids": true
+}

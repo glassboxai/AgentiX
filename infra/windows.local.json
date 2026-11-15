@@ -1,0 +1,9 @@
+{
+  "schema": 2,
+  "pythonVersion": "3.11.9",
+  "dscVersion": "3.3.0",
+  "port": 7878,
+  "openBrowser": true,
+  "home": "D:\\AI\\Agentix-data\\v7",
+  "toolsRoot": "D:\\AI\\AgentiX_v7\\generated_tools"
+}

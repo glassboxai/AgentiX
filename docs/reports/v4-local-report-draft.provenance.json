@@ -1,0 +1,10 @@
+{
+  "model": "qwen3:4b",
+  "purpose": "prose-only report draft",
+  "keep_alive": 0,
+  "endpoint": "http://127.0.0.1:11434",
+  "reason": "installed lower-memory model; avoid another large inference for reporting",
+  "review_status": "unverified draft",
+  "status": "completed",
+  "duration_seconds": 14.89
+}

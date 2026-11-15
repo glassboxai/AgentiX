@@ -1,0 +1,19 @@
+{
+  "historical_evidence": "Original RAG-001 manifests and model evidence remain unchanged",
+  "requirement": "RAG-008",
+  "baseline_manifest": "RAG_001_SOURCE_HASHES.json",
+  "scope": "Behavior-preserving typed constant extraction; independent characterization before and after; no model run repeated",
+  "final_sources": {
+    "src/agentix/retrieval/__init__.py": "918e71312048e98da4ee1103408b8857fac1bcd51e081403f0b54e3b3de3eea6",
+    "src/agentix/retrieval/contracts.py": "09cd1992c5a1f1938c7d03b4e0710f45bc080cbce1ce4c32b758d6c544085bdf",
+    "src/agentix/retrieval/lexical.py": "bacb3e539fecad13da50d31f1157111735adc86d31b765571e7c049bea090ee4",
+    "src/agentix/retrieval/ollama.py": "345dadc7b3c2f57bab8fecd9dcf868e6e004c1b3c1164aa2606768d70942839c",
+    "src/agentix/retrieval/policy.py": "0db38a311c51d67f08a0468e4aa5b69bbd3eb7ecf6aba91cbcc670ad2ba5162f",
+    "src/agentix/retrieval/service.py": "a37c0cf65fe19babed48f417b618b66ff77aab16b17434beea51b005d099e10d",
+    "tests/test_retrieval_policy.py": "251d8b0e6b4f002e197c5ac1fa4ce8b013d2a726b498aa41e8998d552c82b6b7",
+    "tests/test_tool_retrieval.py": "80a2674e9806ea5f1b583fe291fe7dfea507885aa50742bcd5fb00e5c23e9925",
+    "tests/test_retrieval_adapters.py": "c08eb9d9a07f3b7b41a524b5b4c14bd2a5f16063e19cdb71b61160c220ac64ec",
+    "tests/test_retrieval_ollama.py": "4a55a223d3d303d06f7762bbaf9ca4c1d20a99d101d1b807ea99add6ff8922f5"
+  },
+  "date": "2026-11-03"
+}
