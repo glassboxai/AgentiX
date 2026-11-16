@@ -1,3 +1,22 @@
+<p align="center">
+  <img src="assets/agentix-logo.png"
+       alt="AgentiX Logo"
+       width="180">
+</p>
+
+<h1 align="center">AgentiX</h1>
+
+<p align="center">
+  Agentic Software Development — Human in the Loop
+</p>
+
+
+![Status: Under Active Development](https://img.shields.io/badge/Status-Under%20Active%20Development-orange)
+
+> 🚧 **Under Active Development**
+>
+> This aplication is currently under active development. Its architecture, features, and documentation are evolving and may change as research and implementation progress. **Not yet recommended for production use**.
+
 # AgentiX v7
 
 Independent successor to v4. The Tools and Applications tabs share a left sidebar.
