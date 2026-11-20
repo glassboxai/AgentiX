@@ -123,7 +123,7 @@ The managed Windows profile pins CPython 3.11.9 and hashed Python dependencies. 
 | Gradio 6.30.0 | Developer interface |
 | Pydantic 2.12.5 | Structured contracts and model output validation |
 | ChromaDB 1.5.9 | Local tool-retrieval index |
-| Ollama | Default local model transport; model installation and lifecycle are external to AgentiX IaC |
+| Ollama | Default local model transport; model installation and lifecycle are external to AgentiX IaC. |
 | Windows AppContainer, Job Objects, DPAPI, Credential Manager | Native isolation, bounded child processes, protected approvals, and external-provider credentials |
 | PowerShell and DSC 3.3.0 | Per-user infrastructure management |
 | `pytest`, `unittest`, Playwright, Ruff | Offline, native/framework, browser, and maintained-code checks |
@@ -151,6 +151,8 @@ A developer searches for and explicitly selects currently approved text-counter 
 ## Installation and execution
 
 **Supported profile:** Windows 11 x64, a standard non-administrator user, and a v7 source checkout. The maintained installer provisions a private Python environment from a hash-pinned lock and DSC resources. It does not install, start, update, or download Ollama or models, and it does not start the GUI automatically.
+
+nomic-embed-text:latest, qwen3:14b, and qwen3-coder:30b must be installed in Ollama.
 
 From the AgentiX v7 checkout, first check the managed installation:
 
