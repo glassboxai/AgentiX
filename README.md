@@ -215,5 +215,6 @@ This project is licensed under **GNU Affero General Public License v3.0**; see [
 - Repository: [github.com/glassboxai/AgentiX](https://github.com/glassboxai/AgentiX) (URL verified; the currently displayed repository documentation appears older than this v7 checkout)
 - Project organization: [github.com/glassboxai](https://github.com/glassboxai)
 - [Architecture](docs/V7_ARCHITECTURE.md) · [Storage](docs/V7_STORAGE.md) · [Installation](docs/INSTALLATION.md) · [Known limitations](docs/KNOWN_ISSUES.md) · [Test plan](docs/specs/TEST_PLAN.md)
+- LinkledIn : [LikedIn](https://www.linkedin.com/in/glassbox-ai-research/)
 
 
