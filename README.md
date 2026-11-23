@@ -216,5 +216,6 @@ This project is licensed under **GNU Affero General Public License v3.0**; see [
 - Project organization: [github.com/glassboxai](https://github.com/glassboxai)
 - [Architecture](docs/V7_ARCHITECTURE.md) · [Storage](docs/V7_STORAGE.md) · [Installation](docs/INSTALLATION.md) · [Known limitations](docs/KNOWN_ISSUES.md) · [Test plan](docs/specs/TEST_PLAN.md)
 - LinkedIn: [Professional Profile](https://www.linkedin.com/in/glassbox-ai-research/)
+- [The Glass Box AI on YouTube](https://www.youtube.com/@TheGlassBoxAIProject)
 
 
